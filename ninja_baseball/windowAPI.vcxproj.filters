@@ -114,6 +114,9 @@
     <ClInclude Include="cameraManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="playerSelectScene.h">
+      <Filter>playGround\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="cameraManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="playerSelectScene.cpp">
+      <Filter>playGround\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

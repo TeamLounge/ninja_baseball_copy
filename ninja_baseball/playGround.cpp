@@ -17,10 +17,11 @@ HRESULT playGround::init()
 	gameNode::init(true);
 
 	SCENEMANAGER->addScene("title", new titleScene);
+	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("stage");
+	SCENEMANAGER->changeScene("playerSelect");
 
 	return S_OK;
 }
@@ -51,7 +52,10 @@ void playGround::render()
 
 	SCENEMANAGER->render();
 
-	TIMEMANAGER->render(getMemDC());
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		TIMEMANAGER->render(getMemDC());
+	}
 	//==================================================
 	//여기도 건들지마라
 	CAMERAMANAGER->render(this->getBackBuffer(), getHDC());

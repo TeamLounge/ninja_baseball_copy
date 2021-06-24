@@ -3,6 +3,7 @@
 #include "titleScene.h"
 #include "stageScene.h"
 #include "endingScene.h"
+#include "playerSelectScene.h"
 
 class playGround : public gameNode
 {
