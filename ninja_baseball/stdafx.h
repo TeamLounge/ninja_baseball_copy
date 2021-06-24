@@ -20,6 +20,7 @@
 #include "effectManager.h"
 #include "sceneManager.h"
 #include "soundManager.h"
+#include "cameraManager.h"
 
 using namespace std;
 using namespace SUNFL_UTIL;
@@ -32,7 +33,11 @@ using namespace SUNFL_UTIL;
 #define WINSTARTX 50	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
 #define WINSIZEX 1024	//윈도우 가로크기
-#define WINSIZEY 800	//윈도우 세로크기
+#define WINSIZEY 780	//윈도우 세로크기
+#define CAMERAX 1024
+#define CAMERAY 780
+#define BACKGROUNDX 4320
+#define BACKGROUNDY 2304
 #define WINSTYLE WS_CAPTION | WS_SYSMENU
 
 #define RND				randomFunction::getSingleton()
@@ -42,7 +47,7 @@ using namespace SUNFL_UTIL;
 #define EFFECTMANAGER	effectManager::getSingleton()
 #define SCENEMANAGER	sceneManager::getSingleton()
 #define SOUNDMANAGER	soundManager::getSingleton()
-#define TXTDATA			txtData::getSingleton()
+#define CAMERAMANAGER	cameraManager::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p) = nullptr;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
