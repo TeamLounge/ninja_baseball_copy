@@ -5,7 +5,8 @@
 class playGround : public gameNode
 {
 private:
-	player* _Ryno;
+	
+	player* _red;
 
 public:
 	playGround();
