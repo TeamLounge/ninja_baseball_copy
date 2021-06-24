@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "player.h"
 #include "red_jumpState.h"
 #include "red_idleState.h"
 
@@ -10,7 +9,7 @@ playerstate * red_jumpState::handleInput(player * _player)
 		_player->setY(_y);
 		return new red_idleState;
 	}
-	
+
 	return nullptr;
 }
 
@@ -45,7 +44,7 @@ void red_jumpState::enter(player * _player)
 
 	_x = _player->getX(); //점프했던 위치를 담음
 	_y = _player->getY();
-	
+
 	_count = _index = 0;
 
 	if (_player->isRight == true)

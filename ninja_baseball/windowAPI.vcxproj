@@ -147,10 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\이야 터졌다\red_attck.h" />
-    <ClInclude Include="..\..\이야 터졌다\red_idleState.h" />
-    <ClInclude Include="..\..\이야 터졌다\red_jumpState.h" />
-    <ClInclude Include="..\..\이야 터졌다\red_moveState.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -163,6 +159,9 @@
     <ClInclude Include="playerstate.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="red_idleState.h" />
+    <ClInclude Include="red_jumpState.h" />
+    <ClInclude Include="red_moveState.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -174,10 +173,6 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\이야 터졌다\red_attck.cpp" />
-    <ClCompile Include="..\..\이야 터졌다\red_idleState.cpp" />
-    <ClCompile Include="..\..\이야 터졌다\red_jumpState.cpp" />
-    <ClCompile Include="..\..\이야 터졌다\red_moveState.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
@@ -186,8 +181,10 @@
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="playerstate.cpp" />
     <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="red_idleState.cpp" />
+    <ClCompile Include="red_jumpState.cpp" />
+    <ClCompile Include="red_moveState.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -2,6 +2,8 @@
 #include "gameNode.h"
 #include "playerstate.h"
 
+class playerstate; //이것이 문제였네..
+
 class player : public gameNode
 {
 private:

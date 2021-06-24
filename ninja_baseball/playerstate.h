@@ -1,4 +1,6 @@
 #pragma once
+#include "player.h"
+#include "image.h"
 
 class player;
 

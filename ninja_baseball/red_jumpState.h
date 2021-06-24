@@ -3,7 +3,7 @@
 
 #define redSpeed 7
 
-class red_jumpState : public playerstate 
+class red_jumpState :  public playerstate
 {
 private:
 	RECT _rc;

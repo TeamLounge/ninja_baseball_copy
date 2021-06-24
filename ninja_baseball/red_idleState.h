@@ -1,7 +1,6 @@
 #pragma once
 #include "playerstate.h"
 
-
 class red_idleState : public playerstate
 {
 private:

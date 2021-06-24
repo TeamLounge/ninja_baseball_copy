@@ -1,10 +1,7 @@
 #include "stdafx.h"
-#include "player.h"
 #include "red_idleState.h"
-#include "red_moveState.h"
 #include "red_jumpState.h"
-#include "red_attck.h"
-#include "red_attackMotion.h"
+#include "red_moveState.h"
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -19,7 +16,7 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_jumpState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('A'))
+	/*if (KEYMANAGER->isOnceKeyDown('A'))
 	{
 		return new red_attck;
 	}
@@ -30,8 +27,8 @@ playerstate * red_idleState::handleInput(player * _player)
 		(KEYMANAGER->isStayKeyDown(VK_DOWN) && KEYMANAGER->isOnceKeyDown('A')))
 	{
 		return new red_attackMotion;
-	}
-	
+	}*/
+
 	return nullptr;
 }
 
@@ -55,9 +52,9 @@ void red_idleState::enter(player * _player)
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
 	_player->setRect(_rc);
-	
+
 	_count = _index = 0;
-	
+
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(_index);
@@ -68,6 +65,6 @@ void red_idleState::enter(player * _player)
 		_player->getImage()->setFrameX(_index);
 		_player->getImage()->setFrameY(1);
 	}
-	
+
 
 }

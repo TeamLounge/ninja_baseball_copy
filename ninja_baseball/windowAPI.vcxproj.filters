@@ -43,6 +43,9 @@
     <Filter Include="playGround\player">
       <UniqueIdentifier>{cd14df40-a80b-4d85-ab0f-07d9bc15130a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\playerState">
+      <UniqueIdentifier>{7159acf4-e428-4dd2-a0c6-173c24b8303e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -105,20 +108,17 @@
     <ClInclude Include="playerstate.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\이야 터졌다\red_attck.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\이야 터졌다\red_idleState.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\이야 터졌다\red_jumpState.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\이야 터졌다\red_moveState.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
     <ClInclude Include="image.h">
       <Filter>2DGameFramework\image</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGround\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGround\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGround\playerState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,20 +170,14 @@
     <ClCompile Include="player.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
-    <ClCompile Include="playerstate.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGround\playerState</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\이야 터졌다\red_attck.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGround\playerState</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\이야 터졌다\red_idleState.cpp">
-      <Filter>playGround\player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\이야 터졌다\red_jumpState.cpp">
-      <Filter>playGround\player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\이야 터졌다\red_moveState.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGround\playerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
