@@ -3,7 +3,7 @@
 
 HRESULT titleScene::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void titleScene::release()

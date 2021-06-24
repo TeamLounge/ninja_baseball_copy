@@ -3,7 +3,7 @@
 
 HRESULT endingScene::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void endingScene::release()

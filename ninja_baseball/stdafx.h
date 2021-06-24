@@ -32,10 +32,10 @@ using namespace SUNFL_UTIL;
 #define WINNAME (LPTSTR)(TEXT("Ninja Baseball Batman(Copy)"))
 #define WINSTARTX 50	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
-#define WINSIZEX 1024	//윈도우 가로크기
-#define WINSIZEY 780	//윈도우 세로크기
-#define CAMERAX 1024
-#define CAMERAY 780
+#define WINSIZEX 950	//윈도우 가로크기
+#define WINSIZEY 768	//윈도우 세로크기
+#define CAMERAX 950
+#define CAMERAY 768
 #define BACKGROUNDX 4320
 #define BACKGROUNDY 2304
 #define WINSTYLE WS_CAPTION | WS_SYSMENU

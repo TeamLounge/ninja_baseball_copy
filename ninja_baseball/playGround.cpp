@@ -16,6 +16,11 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	SCENEMANAGER->addScene("title", new titleScene);
+	SCENEMANAGER->addScene("stage", new stageScene);
+	SCENEMANAGER->addScene("ending", new endingScene);
+
+	SCENEMANAGER->changeScene("stage");
 
 	return S_OK;
 }
@@ -44,8 +49,11 @@ void playGround::render()
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
 
+	SCENEMANAGER->render();
+
 	TIMEMANAGER->render(getMemDC());
 	//==================================================
 	//여기도 건들지마라
-	this->getBackBuffer()->render(getHDC(), 0, 0);
+	CAMERAMANAGER->render(this->getBackBuffer(), getHDC());
+	//this->getBackBuffer()->render(getHDC(), 0, 0);
 }

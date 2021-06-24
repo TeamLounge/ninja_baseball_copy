@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
-class endingScene : gameNode
+
+class endingScene : public gameNode
 {
 private:
 
