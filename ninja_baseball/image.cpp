@@ -8,7 +8,7 @@ image::image()
 	: _imageInfo(NULL),
 	_fileName(NULL),
 	_trans(false),
-	_transColor(RGB(0,0,0))
+	_transColor(RGB(0, 0, 0))
 {
 }
 
@@ -318,7 +318,7 @@ void image::render(HDC hdc, int destX, int destY)
 
 	}
 
-	
+
 }
 
 void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)

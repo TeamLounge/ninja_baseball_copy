@@ -147,12 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\이야 터졌다\red_attackMotion.h" />
     <ClInclude Include="..\..\이야 터졌다\red_attck.h" />
     <ClInclude Include="..\..\이야 터졌다\red_idleState.h" />
     <ClInclude Include="..\..\이야 터졌다\red_jumpState.h" />
     <ClInclude Include="..\..\이야 터졌다\red_moveState.h" />
-    <ClInclude Include="..\..\이야 터졌다\red_run.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -176,12 +174,10 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\이야 터졌다\red_attackMotion.cpp" />
     <ClCompile Include="..\..\이야 터졌다\red_attck.cpp" />
     <ClCompile Include="..\..\이야 터졌다\red_idleState.cpp" />
     <ClCompile Include="..\..\이야 터졌다\red_jumpState.cpp" />
     <ClCompile Include="..\..\이야 터졌다\red_moveState.cpp" />
-    <ClCompile Include="..\..\이야 터졌다\red_run.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
