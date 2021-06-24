@@ -94,7 +94,7 @@ void effectManager::addEffect(string effectName, const char* imageName, int imag
 	}
 	else
 	{
-		img = IMAGEMANAGER->addImage(imageName, imageName, imageWidth, imageHeight, true, RGB(255, 0, 255));
+		img = IMAGEMANAGER->addImage(imageName, imageName, imageWidth, imageHeight, true, RGB(255, 0, 255), false);
 	}
 
 	for (int i = 0; i < buffer; ++i)
