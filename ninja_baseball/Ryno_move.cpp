@@ -2,6 +2,7 @@
 #include "Ryno_move.h"
 #include "Ryno_idle.h"
 #include "player.h"
+#include "Ryno_jump.h"
 playerstate * Ryno_move::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) ||
@@ -11,7 +12,10 @@ playerstate * Ryno_move::handleInput(player * player)
 	{
 		return new Ryno_idle;
 	}
-
+	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
+	{
+		return new Ryno_jump;
+	}
 
 	return nullptr;
 }
@@ -52,6 +56,8 @@ void Ryno_move::update(player * player)
 		_index++;
 		_count = 0;
 	}
+	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
+	player->_shadow->setY(player->getY() + 90);
 	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
 }
 
@@ -64,7 +70,8 @@ void Ryno_move::enter(player * player)
 	player->setRect(rc);
 
 	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
-
+	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
+	player->_shadow->setY(player->getY() + 90);
 	
 	if (player->isRight)
 	{

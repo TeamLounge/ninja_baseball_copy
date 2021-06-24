@@ -8,7 +8,7 @@ HRESULT player::init()
 	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move.bmp", 1101, 432, 6, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Ryno_jump_attack", "image/2_Player/green/green_jump_attack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138, 216, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("Ryno_hold", "image/2_Player/green/green_hold.bmp", 495, 546, 3, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 5, 2, true, RGB(255, 0, 255));
@@ -46,7 +46,7 @@ void player::release()
 void player::render()
 {
 	Rectangle(getMemDC(), _shadowrc); 
-	_shadow->render(getMemDC(), _x - (_shadow->getWidth() / 2), _y +90);
+	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2));
 
 }

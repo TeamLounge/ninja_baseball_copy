@@ -1,1 +1,4 @@
-﻿  windowAPI.vcxproj -> C:\Users\KGA_AM_30\Desktop\닌자베이스볼\ninja_baseball\x64\Debug\windowAPI.exe
+﻿  Ryno_jump.cpp
+c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_jump.cpp(55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_jump.cpp(59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  windowAPI.vcxproj -> C:\Users\zxxd2\Desktop\준팀포폴\ninja_baseball\x64\Debug\windowAPI.exe
