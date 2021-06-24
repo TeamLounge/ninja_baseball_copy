@@ -187,4 +187,3 @@ void imageManager::frameRender(string strKey, HDC hdc, int destX, int destY, int
 
 	if (img) img->frameRender(hdc, destX, destY, currentFrameX, currentFrameY);
 }
-z

@@ -169,7 +169,6 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\super_mario3_copy\super_mario3\cameraManager.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
