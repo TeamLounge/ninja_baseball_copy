@@ -160,6 +160,12 @@
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Ryno_attack.h" />
+    <ClInclude Include="Ryno_catch.h" />
+    <ClInclude Include="Ryno_crawl.h" />
+    <ClInclude Include="Ryno_idle.h" />
+    <ClInclude Include="Ryno_jump.h" />
+    <ClInclude Include="Ryno_move.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
@@ -180,6 +186,12 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerstate.cpp" />
     <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="Ryno_attack.cpp" />
+    <ClCompile Include="Ryno_catch.cpp" />
+    <ClCompile Include="Ryno_crawl.cpp" />
+    <ClCompile Include="Ryno_idle.cpp" />
+    <ClCompile Include="Ryno_jump.cpp" />
+    <ClCompile Include="Ryno_move.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stdafx.cpp">

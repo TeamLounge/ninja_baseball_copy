@@ -20,9 +20,8 @@ HRESULT playGround::init()
 	//만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
 	// player = new (상속한 클래스);
 
-
-
-
+	_Ryno = new player;
+	_Ryno->init();
 	return S_OK;
 }
 
@@ -41,7 +40,7 @@ void playGround::update()
 
 	
 	
-
+	_Ryno->update();
 
 }
 
@@ -54,7 +53,7 @@ void playGround::render()
 
 	TIMEMANAGER->render(getMemDC());
 
-	
+	_Ryno->render();
 	//==================================================
 	//여기도 건들지마라
 	this->getBackBuffer()->render(getHDC(), 0, 0);

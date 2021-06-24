@@ -108,6 +108,24 @@
     <ClInclude Include="playerstate.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -159,6 +177,24 @@
       <Filter>playGround\player</Filter>
     </ClCompile>
     <ClCompile Include="playerstate.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
