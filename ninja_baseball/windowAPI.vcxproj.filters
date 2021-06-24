@@ -43,6 +43,12 @@
     <Filter Include="playGround\player">
       <UniqueIdentifier>{cd14df40-a80b-4d85-ab0f-07d9bc15130a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\player\red">
+      <UniqueIdentifier>{38c5ed69-1d21-4e34-bf3c-b42ab7fe4b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\ryno">
+      <UniqueIdentifier>{2ebd21e9-043a-4ad2-ac93-e173bdb941a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -109,22 +115,28 @@
       <Filter>playGround\player</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_idle.h">
-      <Filter>playGround\player</Filter>
+      <Filter>playGround\player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_move.h">
-      <Filter>playGround\player</Filter>
+      <Filter>playGround\player\ryno</Filter>
     </ClInclude>
-    <ClInclude Include="Ryno_catch.h">
-      <Filter>playGround\player</Filter>
+    <ClInclude Include="..\..\이야 터졌다\red_moveState.h">
+      <Filter>playGround\player\red</Filter>
     </ClInclude>
-    <ClInclude Include="Ryno_crawl.h">
-      <Filter>playGround\player</Filter>
+    <ClInclude Include="..\..\이야 터졌다\red_run.h">
+      <Filter>playGround\player\red</Filter>
     </ClInclude>
-    <ClInclude Include="Ryno_attack.h">
-      <Filter>playGround\player</Filter>
+    <ClInclude Include="..\..\이야 터졌다\red_attackMotion.h">
+      <Filter>playGround\player\red</Filter>
     </ClInclude>
-    <ClInclude Include="Ryno_jump.h">
-      <Filter>playGround\player</Filter>
+    <ClInclude Include="..\..\이야 터졌다\red_attck.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\이야 터졌다\red_idleState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\이야 터졌다\red_jumpState.h">
+      <Filter>playGround\player\red</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -180,22 +192,28 @@
       <Filter>playGround\player</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_idle.cpp">
-      <Filter>playGround\player</Filter>
+      <Filter>playGround\player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_move.cpp">
-      <Filter>playGround\player</Filter>
+      <Filter>playGround\player\ryno</Filter>
     </ClCompile>
-    <ClCompile Include="Ryno_catch.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="..\..\이야 터졌다\red_moveState.cpp">
+      <Filter>playGround\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="..\..\이야 터졌다\red_run.cpp">
+      <Filter>playGround\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="Ryno_attack.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="..\..\이야 터졌다\red_attackMotion.cpp">
+      <Filter>playGround\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="Ryno_jump.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="..\..\이야 터졌다\red_attck.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\이야 터졌다\red_idleState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\이야 터졌다\red_jumpState.cpp">
+      <Filter>playGround\player\red</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -147,6 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\이야 터졌다\red_attackMotion.h" />
+    <ClInclude Include="..\..\이야 터졌다\red_attck.h" />
+    <ClInclude Include="..\..\이야 터졌다\red_idleState.h" />
+    <ClInclude Include="..\..\이야 터졌다\red_jumpState.h" />
+    <ClInclude Include="..\..\이야 터졌다\red_moveState.h" />
+    <ClInclude Include="..\..\이야 터졌다\red_run.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -160,11 +166,7 @@
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Ryno_attack.h" />
-    <ClInclude Include="Ryno_catch.h" />
-    <ClInclude Include="Ryno_crawl.h" />
     <ClInclude Include="Ryno_idle.h" />
-    <ClInclude Include="Ryno_jump.h" />
     <ClInclude Include="Ryno_move.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -176,6 +178,12 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\이야 터졌다\red_attackMotion.cpp" />
+    <ClCompile Include="..\..\이야 터졌다\red_attck.cpp" />
+    <ClCompile Include="..\..\이야 터졌다\red_idleState.cpp" />
+    <ClCompile Include="..\..\이야 터졌다\red_jumpState.cpp" />
+    <ClCompile Include="..\..\이야 터졌다\red_moveState.cpp" />
+    <ClCompile Include="..\..\이야 터졌다\red_run.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
@@ -186,11 +194,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerstate.cpp" />
     <ClCompile Include="playGround.cpp" />
-    <ClCompile Include="Ryno_attack.cpp" />
-    <ClCompile Include="Ryno_catch.cpp" />
-    <ClCompile Include="Ryno_crawl.cpp" />
     <ClCompile Include="Ryno_idle.cpp" />
-    <ClCompile Include="Ryno_jump.cpp" />
     <ClCompile Include="Ryno_move.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
