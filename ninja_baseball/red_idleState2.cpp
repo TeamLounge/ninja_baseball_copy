@@ -1,12 +1,25 @@
 #include "stdafx.h"
 #include "red_idleState2.h"
 #include "red_idleState.h"
+#include "red_moveState.h"
+#include "red_jumpState.h"
 
 playerstate * red_idleState2::handleInput(player * _player)
 {
 	if (_rotation > 4)
 	{
 		return new red_idleState;
+	}
+
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT) ||
+		KEYMANAGER->isStayKeyDown(VK_UP) || KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		return new red_moveState;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		return new red_jumpState;
 	}
 
 	return nullptr;
@@ -46,8 +59,6 @@ void red_idleState2::update(player * _player)
 			}
 			_count = 0;
 		}
-
-		
 		
 	}
 }
