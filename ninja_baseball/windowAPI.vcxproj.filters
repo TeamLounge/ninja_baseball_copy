@@ -123,7 +123,10 @@
     <ClInclude Include="redShadow.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
-    <ClInclude Include="red_attack.h">
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGround\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
       <Filter>playGround\playerState</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,7 +191,10 @@
     <ClCompile Include="redShadow.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
-    <ClCompile Include="red_attack.cpp">
+    <ClCompile Include="red_attackState.cpp">
+      <Filter>playGround\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
       <Filter>playGround\playerState</Filter>
     </ClCompile>
   </ItemGroup>
