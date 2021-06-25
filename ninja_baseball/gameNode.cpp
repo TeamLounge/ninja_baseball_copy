@@ -33,7 +33,7 @@ HRESULT gameNode::init(bool managerInit)
 		EFFECTMANAGER->init();
 		SCENEMANAGER->init();
 		SOUNDMANAGER->init();
-		
+		CAMERAMANAGER->init();
 	}
 
 	return S_OK;
@@ -61,6 +61,9 @@ void gameNode::release()
 
 		SOUNDMANAGER->release();
 		SOUNDMANAGER->releaseSingleton();
+
+		CAMERAMANAGER->release();
+		CAMERAMANAGER->releaseSingleton();
 	}
 	
 

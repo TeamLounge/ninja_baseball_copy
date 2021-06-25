@@ -36,7 +36,6 @@ void red_jumpState::update(player * _player)
 	{
 		_player->setX(_player->getX() + redSpeed);
 	}
-	_player->shadow->setX(_player->getX());
 }
 
 void red_jumpState::enter(player * _player)

@@ -63,11 +63,12 @@ void Ryno_idle::update(player * player)
 void Ryno_idle::enter(player * player)
 {
 	RECT rc;
+	image* img = IMAGEMANAGER->findImage("Ryno_idle");
 	_count = _index = _time = _Rotation= 0;
-	player->setImage(IMAGEMANAGER->findImage("Ryno_idle"));
+	player->setImage(img);
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(rc);
-	//player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)-15);
+	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)-15);
 	player->_shadow->setY(player->getY() + 90);
 	if (player->isRight)
 	{
