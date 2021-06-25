@@ -1,7 +1,8 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
 
-class playerShadow :public gameNode
+class redShadow :public gameNode
 {
 private:
 	
@@ -9,6 +10,8 @@ private:
 	float _y;
 	RECT _rc;
 	image* _shadowImage;
+
+	player* _player;
 
 public:
 

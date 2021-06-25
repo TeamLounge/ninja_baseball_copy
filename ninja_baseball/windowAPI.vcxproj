@@ -156,7 +156,7 @@
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="playerShadow.h" />
+    <ClInclude Include="redShadow.h" />
     <ClInclude Include="playerstate.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
@@ -182,7 +182,7 @@
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="playerShadow.cpp" />
+    <ClCompile Include="redShadow.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpState.cpp" />

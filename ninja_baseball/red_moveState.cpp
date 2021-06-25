@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "red_moveState.h"
 #include "red_idleState.h"
+#include "red_jumpState.h"
 
 playerstate * red_moveState::handleInput(player * _player)
 {
@@ -10,10 +11,10 @@ playerstate * red_moveState::handleInput(player * _player)
 		return new red_idleState;
 	}
 
-	//if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) //점프
-	//{
-	//	return new red_jumpState;
-	//}
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) //점프
+	{
+		return new red_jumpState;
+	}
 
 	//if (KEYMANAGER->isOnceKeyDown('A'))
 	//{

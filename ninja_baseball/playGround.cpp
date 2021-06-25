@@ -32,6 +32,9 @@ HRESULT playGround::init()
 
 	_red = new player;
 	_red->init();
+
+	_redShadow = new redShadow; //빨강이 그림자 할당?
+	_redShadow->init();
 		
 	return S_OK;
 }
@@ -49,6 +52,7 @@ void playGround::update()
 	gameNode::update();
 		
 	_red->update();
+	_redShadow->update();
 	
 }
 
@@ -62,6 +66,7 @@ void playGround::render()
 	TIMEMANAGER->render(getMemDC());
 
 	_red->render();
+	_redShadow->render();
 	
 	//==================================================
 	//여기도 건들지마라
