@@ -4,6 +4,7 @@
 #include "player.h"
 #include "Ryno_jump.h"
 #include "Ryno_attack.h"
+#include "Ryno_crawl.h"
 
 playerstate * Ryno_move::handleInput(player * player)
 {
@@ -13,6 +14,10 @@ playerstate * Ryno_move::handleInput(player * player)
 		KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{
 		return new Ryno_idle;
+	}
+	if (KEYMANAGER->isStayKeyDown('V'))
+	{
+		return new Ryno_crawl;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
 	{
@@ -32,11 +37,17 @@ void Ryno_move::update(player * player)
 	{
 		player->isRight = false;
 		player->setX(player->getX() - 5);
+		_index++;
+		if (_index > 3) _index = 0;
+
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		player->isRight = true;
 		player->setX(player->getX() + 5);
+		_index++;
+		if (_index > 3) _index = 0;
+		
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
@@ -48,7 +59,6 @@ void Ryno_move::update(player * player)
 	}
 	if (_count % 5 == 0)
 	{
-		if (_index > 6) _index = 0;
 		player->getImage()->setFrameX(_index);
 		if (player->isRight)
 		{
@@ -58,7 +68,6 @@ void Ryno_move::update(player * player)
 		{
 			player->getImage()->setFrameY(1);
 		}
-		_index++;
 		_count = 0;
 	}
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());

@@ -46,7 +46,7 @@ void Ryno_frontCombo::update(player * player)
 	if (_index >= 6)
 	{
 		_count++;
-		if (_count % 10 == 0)
+		if (_count % 15 == 0)
 		{
 			_index++;
 		}
