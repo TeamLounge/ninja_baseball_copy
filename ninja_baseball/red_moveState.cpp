@@ -17,10 +17,10 @@ playerstate * red_moveState::handleInput(player * _player)
 		return new red_jumpState;
 	}
 
-	//if (KEYMANAGER->isOnceKeyDown('A'))
-	//{
-	//	return new red_attck;
-	//}
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		return new red_attack;
+	}
 
 	return nullptr;
 }
