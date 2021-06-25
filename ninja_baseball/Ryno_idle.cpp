@@ -3,7 +3,7 @@
 #include "player.h"
 #include "Ryno_move.h"
 #include "Ryno_jump.h"
-
+#include "Ryno_attack.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT)|| KEYMANAGER->isStayKeyDown(VK_RIGHT)||KEYMANAGER->isStayKeyDown(VK_UP)||KEYMANAGER->isStayKeyDown(VK_DOWN))
@@ -13,6 +13,10 @@ playerstate * Ryno_idle::handleInput(player * player)
 	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
 	{
 		return new Ryno_jump;
+	}
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		return new Ryno_attack;
 	}
 	return nullptr;
 }
@@ -58,7 +62,7 @@ void Ryno_idle::update(player * player)
 
 void Ryno_idle::enter(player * player)
 {
-	RECT rc ,shadow;
+	RECT rc;
 	_count = _index = _time = _Rotation= 0;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_idle"));
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());

@@ -3,6 +3,7 @@
 #include "Ryno_idle.h"
 #include "player.h"
 #include "Ryno_jump.h"
+#include "Ryno_attack.h"
 playerstate * Ryno_move::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) ||
@@ -16,7 +17,10 @@ playerstate * Ryno_move::handleInput(player * player)
 	{
 		return new Ryno_jump;
 	}
-
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		return new Ryno_attack;
+	}
 	return nullptr;
 }
 
