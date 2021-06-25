@@ -1,1 +1,17 @@
-﻿  windowAPI.vcxproj -> C:\Users\KGA_AM_26\Desktop\game\ninja_baseball\x64\Debug\windowAPI.exe
+﻿  playGround.cpp
+  player.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\player.cpp(14): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_idleState.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_movestate.h(4): warning C4005: 'redSpeed': 매크로 재정의
+  c:\users\kga_am_26\desktop\game\ninja_baseball\red_jumpstate.h(4): note: 'redSpeed'의 이전 정의를 참조하십시오.
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_idlestate.cpp(52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_jumpState.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_jumpstate.cpp(21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_jumpstate.cpp(38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_moveState.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_movestate.cpp(77): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_movestate.cpp(86): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  winMain.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\winmain.cpp(91): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  windowAPI.vcxproj -> C:\Users\KGA_AM_26\Desktop\game\ninja_baseball\x64\Debug\windowAPI.exe
