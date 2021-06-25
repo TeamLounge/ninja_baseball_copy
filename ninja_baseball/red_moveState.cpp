@@ -2,6 +2,7 @@
 #include "red_moveState.h"
 #include "red_idleState.h"
 #include "red_jumpState.h"
+#include "red_attack.h"
 
 playerstate * red_moveState::handleInput(player * _player)
 {

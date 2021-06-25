@@ -10,7 +10,6 @@ private:
 	float _y;
 	RECT _rc;
 	image* _shadowImage;
-
 	player* _player;
 
 public:

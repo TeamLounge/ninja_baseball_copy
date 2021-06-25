@@ -17,16 +17,16 @@ HRESULT redShadow::init()
 
 void redShadow::release()
 {
+
 }
 
 void redShadow::update()
 {
-	_x = _player->getX();
-	_y = _player->getY();
-	_rc = RectMakeCenter(_x, _y, _shadowImage->getWidth(), _shadowImage->getHeight());
+	
+
 }
 
 void redShadow::render()
 { 
-	_shadowImage->render(getMemDC(), _rc.left, _rc.right);
+	/*_shadowImage->render(getMemDC(), _rc.left, _rc.right);*/
 }

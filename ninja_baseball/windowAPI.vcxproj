@@ -160,6 +160,7 @@
     <ClInclude Include="playerstate.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="red_attack.h" />
     <ClInclude Include="red_idleState.h" />
     <ClInclude Include="red_jumpState.h" />
     <ClInclude Include="red_moveState.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="redShadow.cpp" />
     <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="red_attack.cpp" />
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpState.cpp" />
     <ClCompile Include="red_moveState.cpp" />
