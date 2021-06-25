@@ -20,7 +20,7 @@ public:
 	bool isRight;
 	
 	image* _shadow; // 그림자이미지
-	RECT _shadowrc; // 그림자렉트
+
 
 
 	//함수를 선언하려면 여기에다

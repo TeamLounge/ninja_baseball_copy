@@ -5,11 +5,11 @@
 
 playerstate * Ryno_jump::handleInput(player * player)
 {
-	if (_jumpPower < -5)
+	if (_jumpPower < -10)
 	{
 		return new Ryno_idle; 
-	}
-	return nullptr;
+	} 
+ 	return nullptr;
 }
 
 void Ryno_jump::update(player * player)
@@ -48,15 +48,14 @@ void Ryno_jump::enter(player * player)
 {
 	RECT rc;
 	_count = _index = 0;
-	_jumpPower = 5.0f;
-	_gravity = 0.08f;
+	_jumpPower = 10.0f;
+	_gravity = 0.2f;
 
 	player->setImage(IMAGEMANAGER->findImage("Ryno_jumpAttack"));
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90 );
-	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
 
 
 	if (player->isRight)

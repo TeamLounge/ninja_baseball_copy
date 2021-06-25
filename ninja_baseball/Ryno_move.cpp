@@ -58,7 +58,6 @@ void Ryno_move::update(player * player)
 	}
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
-	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
 }
 
 void Ryno_move::enter(player * player)
@@ -69,7 +68,6 @@ void Ryno_move::enter(player * player)
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(rc);
 
-	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
 	

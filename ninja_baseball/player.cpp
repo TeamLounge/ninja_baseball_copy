@@ -22,7 +22,7 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_givp_up.bmp", 234, 564, 5, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addImage("Ryno_escape", "image/2_Player/green/green_escape.bmp", 189, 432, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("shadow", "image/2_Player/green/shadow.bmp", 145, 30, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255));
 	_shadow = IMAGEMANAGER->findImage("shadow");
 	isRight = true;
 	_x = WINSIZEX / 2;
@@ -45,7 +45,7 @@ void player::release()
 
 void player::render()
 {
-	Rectangle(getMemDC(), _shadowrc); 
+
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2));
 

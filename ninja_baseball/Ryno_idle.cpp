@@ -63,16 +63,17 @@ void Ryno_idle::enter(player * player)
 	player->setImage(IMAGEMANAGER->findImage("Ryno_idle"));
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(rc);
-	player->_shadowrc = RectMakeCenter(player->getX(), player->getY() + 90, player->_shadow->getWidth(), player->_shadow->getHeight());
-	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
+	//player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)-15);
 	player->_shadow->setY(player->getY() + 90);
 	if (player->isRight)
 	{
+		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) - 15);
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(0);
 	}
 	else
 	{
+		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)+15);
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
