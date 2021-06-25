@@ -32,12 +32,12 @@ void Ryno_jump::update(player * player)
 		player->setX(player->getX() + 5);
 		player->isRight = true;
 	} 
-	//z키누르면 공격
+	//z키누르면 공격상태
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		isattack = true;
 	}
-
+	//좌우 구분하기위해서
 	if (player->isRight)
 	{
 		player->getImage()->setFrameY(0);
@@ -46,7 +46,8 @@ void Ryno_jump::update(player * player)
 	{
 		player->getImage()->setFrameY(1);
 	}
-	//공격했을때  아직 렉트는 씌우지않음
+
+	//공격키를 눌렀을때 공격상태로  아직 렉트는 씌우지않음
 	//공격일때 플레이어의 공격렉트를 따로 띄울생각입니다
 	//마지막인덱스일떄 공격렉트를 띄우는거죠
  	if (isattack)
@@ -54,7 +55,7 @@ void Ryno_jump::update(player * player)
 		if (_count % 4 == 0)
 		{
 			_index++;
-			
+			//여기부터가 마지막 인덱스 공격렉트를 띄울부분
 			if (_index >= 4 && (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT)))
 			{
 				_index = 6;
@@ -63,10 +64,13 @@ void Ryno_jump::update(player * player)
 			{
 				_index = 5;
 			}
+			//여기까지
 			player->getImage()->setFrameX(_index);
 		}
 	}
+
 	//그림자 위치조정
+	//그림자는 점프했을때 x로만 움직이게 해놨어요
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	
 	
