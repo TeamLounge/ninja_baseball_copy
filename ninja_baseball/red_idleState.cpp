@@ -41,43 +41,8 @@ playerstate * red_idleState::handleInput(player * _player)
 
 void red_idleState::update(player * _player)
 {
-	_time++;
-	/*_time++;
-	if (_time >= 150)
-	{
-		if (_Rotation < 4)
-		{
-			_count++;
-			if (_count % 2 == 0) {
-				_index++;
-				player->getImage()->setFrameX(_index);
-				if (_index > 4)
-				{
-					_index = 0;
-					_Rotation++;
-				}
-				_count = 0;
-			}
-		}
-		else
-		{
-			_count++;
-			if (_count % 7 == 0) {
-				_index++;
-				player->getImage()->setFrameX(_index);
-				if (_index > 4)
-				{
-					_index = 0;
-					player->getImage()->setFrameX(_index);
-					_Rotation = 0;
-					_time = 0;
-				}
-				_count = 0;
-			}
-		}
-	}*/
-
-
+	_time++; //일정 타임이 쌓이면 idle2로 넘어감
+	
 	if (_player->isRight)
 	{
 		_player->getImage()->setFrameX(0);
