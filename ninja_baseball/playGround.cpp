@@ -16,12 +16,20 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	
+
 	//상속해서 다르게 하실수 있으니까
 	//만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
 	// player = new (상속한 클래스);
 
 	_Ryno = new player;
-	_Ryno->init();
+	_Ryno->init(2);
+	_red = new player;
+	_red->init(1);
+
+	//_redShadow = new redShadow; //빨강이 그림자 할당?
+	//_redShadow->init(2);
+		
 	return S_OK;
 }
 
@@ -29,19 +37,16 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
-
-
+	
 }
 
 
 void playGround::update()
 {
 	gameNode::update();
-
-	
-	
 	_Ryno->update();
-
+	_red->update();
+	
 }
 
 
@@ -53,7 +58,10 @@ void playGround::render()
 
 	TIMEMANAGER->render(getMemDC());
 
+	
+	_red->render();
 	_Ryno->render();
+	
 	//==================================================
 	//여기도 건들지마라
 	this->getBackBuffer()->render(getHDC(), 0, 0);

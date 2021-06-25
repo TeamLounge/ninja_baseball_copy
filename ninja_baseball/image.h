@@ -33,14 +33,14 @@ public:
 
 		tagImageInfo()
 		{
-			resID		= 0;
-			hMemDC		= NULL;
-			hBit		= NULL;
-			hOBit		= NULL;
-			x			= 0;
-			y			= 0;
-			width		= 0;
-			height		= 0;
+			resID = 0;
+			hMemDC = NULL;
+			hBit = NULL;
+			hOBit = NULL;
+			x = 0;
+			y = 0;
+			width = 0;
+			height = 0;
 			currentFrameX = 0;
 			currentFrameY = 0;
 			maxFrameX = 0;
