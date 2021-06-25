@@ -45,7 +45,7 @@ void player::render()
 	//이미지랜더;
 
 	_shadow->render(getMemDC());
-	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2));
 }
 
 void player::handleInput()
@@ -69,6 +69,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("red_run", "image/2_player/red/red_run.bmp", 0, 0, 768, 480, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_grip2", "image/2_player/red/red_grip2.bmp", 0, 0, 666, 444, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_jumpAttack", "image/2_player/red/red_jumpAttack.bmp", 0, 0, 588, 750, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_idle2", "image/2_player/red/red_idle2.bmp", 0, 0, 396, 510, 2, 2, true, RGB(255, 0, 255), false);
 	//여기 그림자 이미지 수정하셔서 addimage를 수정해주세요(수정완료)
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
