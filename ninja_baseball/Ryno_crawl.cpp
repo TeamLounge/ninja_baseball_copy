@@ -20,34 +20,41 @@ void Ryno_crawl::update(player * player)
 	{
 		player->isRight = false;
 		player->setX(player->getX() - 5);
+		if(_count%5==0)
+		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		player->isRight = true;
 		player->setX(player->getX() + 5);
+		if (_count % 5 == 0)
+		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		player->setY(player->getY() - 5);
+		if (_count % 5 == 0)
+		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		player->setY(player->getY() + 5);
-	}
-
-	if (_count % 5 == 0)
-	{
-		player->getImage()->setFrameX(_index);
-		if (player->isRight)
-		{
-			player->getImage()->setFrameY(0);
-		}
-		else
-		{
-			player->getImage()->setFrameY(1);
-		}
+		if (_count % 5 == 0)
 		_index++;
 	}
+
+	
+	if (_index > 4) _index = 0;
+	player->getImage()->setFrameX(_index);
+	if (player->isRight)
+	{
+		player->getImage()->setFrameY(0);
+	}
+	else
+	{
+		player->getImage()->setFrameY(1);
+	}
+	
 
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);

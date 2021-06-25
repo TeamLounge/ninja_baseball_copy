@@ -1,10 +1,9 @@
 #pragma once
 #include "playerstate.h"
-class Ryno_catch : public playerstate
+class Ryno_dashAttack : public playerstate
 {
 private:
 	int _count, _index;
-	bool isend, isfront;
 	RECT _rc;
 public:
 	virtual playerstate* handleInput(player* player);

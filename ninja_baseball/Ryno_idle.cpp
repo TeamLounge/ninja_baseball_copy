@@ -7,6 +7,10 @@
 #include "Ryno_crawl.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
+	if (_command == 2)
+	{
+		
+	}
 	if ( KEYMANAGER->isStayKeyDown('V'))
 	{
 		return new Ryno_crawl;
@@ -29,9 +33,11 @@ playerstate * Ryno_idle::handleInput(player * player)
 void Ryno_idle::update(player * player)
 {
 
+
 	_time++;
 	if (_time >= 150 )
 	{
+		
 		if (_Rotation<4)
 		{
 			_count++;

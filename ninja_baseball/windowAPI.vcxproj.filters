@@ -73,9 +73,6 @@
     <ClCompile Include="Ryno_catch.cpp">
       <Filter>playGround\Ryno</Filter>
     </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround\Ryno</Filter>
-    </ClCompile>
     <ClCompile Include="Ryno_idle.cpp">
       <Filter>playGround\Ryno</Filter>
     </ClCompile>
@@ -86,6 +83,15 @@
       <Filter>playGround\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_frontCombo.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dash.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAttack.cpp">
       <Filter>playGround\Ryno</Filter>
     </ClCompile>
   </ItemGroup>
@@ -190,6 +196,12 @@
       <Filter>playGround\Ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dash.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAttack.h">
       <Filter>playGround\Ryno</Filter>
     </ClInclude>
   </ItemGroup>
