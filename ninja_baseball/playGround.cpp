@@ -20,8 +20,8 @@ HRESULT playGround::init()
 	//만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
 	// player = new (상속한 클래스);
 
-	_Ryno = new player;
-	_Ryno->init(2);
+	//_Ryno = new player;
+	//_Ryno->init(2);
 	_red = new player;
 	_red->init(1);
 
@@ -46,7 +46,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	_Ryno->update();
+	//_Ryno->update();
 	_red->update();
 	
 }
@@ -60,7 +60,7 @@ void playGround::render()
 
 	SCENEMANAGER->render();
 
-	_Ryno->render();
+	//_Ryno->render();
 	_red->render();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))

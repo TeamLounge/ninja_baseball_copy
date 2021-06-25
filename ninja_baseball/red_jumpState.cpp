@@ -7,7 +7,7 @@ playerstate * red_jumpState::handleInput(player * _player)
 {
 	if (_player->getY() >= _player->getImage()->getY())
 	{
-		_player->setY(_y);
+		/*_player->setY(_y);*/
 		return new red_idleState;
 	}
 
