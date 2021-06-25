@@ -1,0 +1,9 @@
+diff a/ninja_baseball/playGround.cpp b/ninja_baseball/playGround.cpp	(rejected hunks)
+@@ -22,7 +22,6 @@
+ 	//���� ������ϼ̴ٸ� �ٸ��� new�Ҵ��� ���ֽø� �˴ϴ�.
+ 	// player = new (����� Ŭ����);
+ 
+-	_Ryno = new player;
+ 	_red = new player;
+ 	_red->init(1);
+ 
