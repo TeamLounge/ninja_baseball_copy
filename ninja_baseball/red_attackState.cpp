@@ -23,16 +23,27 @@ void red_attackState::update(player * _player)
 	
 	if (_count % 5 == 0)
 	{
-		if(_player->isRight == true)
-		
-			_index++;
-		_attackCount++;
-		if (_index < 3)
+		if (_player->isRight == true)
 		{
-			_player->getImage()->setFrameX(_index);
-			_player->getImage()->setFrameY(0);
+			_index++;
+			_attackCount++;
+			if (_index < 3)
+			{
+				_player->getImage()->setFrameX(_index);
+				_player->getImage()->setFrameY(0);
+			}
 		}
-			
+		if (_player->isRight == false)
+		{
+			_index++;
+			_attackCount++;
+			if (_index < 3)
+			{
+				_player->getImage()->setFrameX(_index);
+				_player->getImage()->setFrameY(1);
+			}
+		}
+
 			_count = 0;
 	}
 }

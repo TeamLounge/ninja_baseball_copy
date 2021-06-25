@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "red_jumpState.h"
 #include "red_idleState.h"
+#include "red_jumpAttackState.h"
 
 playerstate * red_jumpState::handleInput(player * _player)
 {
@@ -8,6 +9,11 @@ playerstate * red_jumpState::handleInput(player * _player)
 	{
 		_player->setY(_y);
 		return new red_idleState;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		return new red_jumpAttackState;
 	}
 
 	return nullptr;

@@ -2,7 +2,7 @@
 #include "red_idleState.h"
 #include "red_jumpState.h"
 #include "red_moveState.h"
-#include "red_attack.h"
+#include "red_attackState.h"
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -19,7 +19,7 @@ playerstate * red_idleState::handleInput(player * _player)
 
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
-		return new red_attack;
+		return new red_attackState;
 	}
 
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
