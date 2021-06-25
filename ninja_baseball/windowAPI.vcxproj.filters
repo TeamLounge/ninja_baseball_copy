@@ -85,6 +85,9 @@
     <ClCompile Include="Ryno_move.cpp">
       <Filter>playGround\rynoState</Filter>
     </ClCompile>
+    <ClCompile Include="red_idleState2.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="Ryno_move.h">
       <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState2.h">
+      <Filter>playGround\redState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

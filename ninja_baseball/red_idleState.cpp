@@ -3,6 +3,7 @@
 #include "red_jumpState.h"
 #include "red_moveState.h"
 #include "red_attackState.h"
+#include "red_idleState2.h"
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -22,6 +23,11 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_attackState;
 	}
 
+	if (_time > 200)
+	{
+		return new red_idleState2;
+	}
+
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
 	//	(KEYMANAGER->isStayKeyDown(VK_RIGHT) && KEYMANAGER->isOnceKeyDown('A')) ||
 	//	(KEYMANAGER->isStayKeyDown(VK_UP) && KEYMANAGER->isOnceKeyDown('A')) ||
@@ -35,6 +41,43 @@ playerstate * red_idleState::handleInput(player * _player)
 
 void red_idleState::update(player * _player)
 {
+	_time++;
+	/*_time++;
+	if (_time >= 150)
+	{
+		if (_Rotation < 4)
+		{
+			_count++;
+			if (_count % 2 == 0) {
+				_index++;
+				player->getImage()->setFrameX(_index);
+				if (_index > 4)
+				{
+					_index = 0;
+					_Rotation++;
+				}
+				_count = 0;
+			}
+		}
+		else
+		{
+			_count++;
+			if (_count % 7 == 0) {
+				_index++;
+				player->getImage()->setFrameX(_index);
+				if (_index > 4)
+				{
+					_index = 0;
+					player->getImage()->setFrameX(_index);
+					_Rotation = 0;
+					_time = 0;
+				}
+				_count = 0;
+			}
+		}
+	}*/
+
+
 	if (_player->isRight)
 	{
 		_player->getImage()->setFrameX(0);

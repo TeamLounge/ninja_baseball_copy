@@ -7,6 +7,7 @@ private:
 	RECT _rc;
 	int _count;
 	int _index;
+	int _time;
 
 public:
 	playerstate* handleInput(player* _player);
