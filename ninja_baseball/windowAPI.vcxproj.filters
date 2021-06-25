@@ -120,6 +120,9 @@
     <ClInclude Include="red_jumpState.h">
       <Filter>playGround\playerState</Filter>
     </ClInclude>
+    <ClInclude Include="playerShadow.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="red_jumpState.cpp">
       <Filter>playGround\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerShadow.cpp">
+      <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
