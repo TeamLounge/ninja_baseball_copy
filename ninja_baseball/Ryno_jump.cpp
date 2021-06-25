@@ -71,6 +71,8 @@ void Ryno_jump::update(player * player)
 
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
+	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	
 	
@@ -78,7 +80,7 @@ void Ryno_jump::update(player * player)
 
 void Ryno_jump::enter(player * player)
 {
-	RECT rc;
+
 	_count = _index = 0;
 	
 	_jumpPower = 10.0f;

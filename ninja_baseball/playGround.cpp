@@ -22,8 +22,6 @@ HRESULT playGround::init()
 
 	_Ryno = new player;
 	_Ryno->init(2);
-	_red = new player;
-	_red->init(1);
 
 	SCENEMANAGER->addScene("title", new titleScene);
 	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
@@ -47,8 +45,7 @@ void playGround::update()
 {
 	gameNode::update();
 	_Ryno->update();
-	_red->update();
-	
+
 }
 
 
@@ -61,7 +58,7 @@ void playGround::render()
 	SCENEMANAGER->render();
 
 	_Ryno->render();
-	_red->render();
+
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{

@@ -40,39 +40,6 @@
     <ClCompile Include="player.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="red_attackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_idleState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_moveState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_attack.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_catch.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_idle.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_jump.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_move.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
@@ -84,6 +51,42 @@
     </ClCompile>
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="red_attackState.cpp">
+      <Filter>playGround\captin</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGround\captin</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
+      <Filter>playGround\captin</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGround\captin</Filter>
+    </ClCompile>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGround\captin</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_frontCombo.cpp">
+      <Filter>playGround\Ryno</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,40 +129,7 @@
     <ClInclude Include="player.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="red_attackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_idleState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpAttackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_moveState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_attack.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_catch.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_crawl.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_idle.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_jump.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_move.h">
       <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="commonMacroFunction.h">
@@ -183,8 +153,44 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGround\captin</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGround\captin</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
+      <Filter>playGround\captin</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGround\captin</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGround\captin</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
     <ClInclude Include="playerstate.h">
-      <Filter>playGround</Filter>
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>playGround\Ryno</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,12 @@
     </Filter>
     <Filter Include="playGround\scene">
       <UniqueIdentifier>{3b595d30-892f-4a9e-938d-2c88c4534eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\captin">
+      <UniqueIdentifier>{f7b60cc2-c207-44dc-bef0-379f8ef096cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Ryno">
+      <UniqueIdentifier>{bf44de85-8dd5-4d79-91b0-61061a19e8aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
