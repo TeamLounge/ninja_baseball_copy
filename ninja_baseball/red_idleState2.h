@@ -10,6 +10,7 @@ private:
 	int _count;
 	int _index;
 	int _rotation;
+	int _time;
 
 public:
 

@@ -1,13 +1,55 @@
 #include "stdafx.h"
 #include "red_idleState2.h"
+#include "red_idleState.h"
 
 playerstate * red_idleState2::handleInput(player * _player)
 {
+	if (_rotation > 4)
+	{
+		return new red_idleState;
+	}
+
 	return nullptr;
 }
 
 void red_idleState2::update(player * _player)
 {
+	_count++;
+
+	if (_count % 10 == 0)
+	{
+		if (_player->isRight == true)
+		{
+			_player->getImage()->setFrameX(_index);
+			_player->getImage()->setFrameY(0);
+			_index++;
+
+			if (_player->getImage()->getMaxFrameX() < _index)
+			{
+				_index = 0;
+				_rotation++;
+			}
+			_count = 0;
+		}
+
+
+		if (_player->isRight == false)
+		{
+			_player->getImage()->setFrameX(_index);
+			_player->getImage()->setFrameY(1);
+			_index++;
+
+			if (_player->getImage()->getMaxFrameX() < _index)
+			{
+				_index = 0;
+				_rotation++;
+			}
+			_count = 0;
+		}
+
+		
+		
+	}
 }
 
 void red_idleState2::enter(player * _player)
@@ -22,7 +64,7 @@ void red_idleState2::enter(player * _player)
 		_player->getImage()->getFrameHeight());
 	_player->setRect(_rc);
 
-	_count = _index = 0;
+	_count = _index = _rotation = 0;
 	
 	if (_player->isRight == true)
 	{

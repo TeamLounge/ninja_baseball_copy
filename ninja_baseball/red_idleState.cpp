@@ -113,7 +113,7 @@ void red_idleState::enter(player * _player)
 	
 	_player->setRect(_rc);
 
-	_count = _index = 0;
+	_count = _index = _time = 0;
 
 	if (_player->isRight == true)
 	{
