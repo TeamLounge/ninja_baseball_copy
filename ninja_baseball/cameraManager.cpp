@@ -12,7 +12,7 @@ void cameraManager::cameraRange()
 HRESULT cameraManager::init()
 {
 	_cameraBuffer = new image;
-	_cameraBuffer->init(CAMERAX, CAMERAY);
+	_cameraBuffer->init(CAMERAX, CAMERAY, false);
 	for (int i = 0; i < 2; i++)
 	{
 		x[i] = 0;

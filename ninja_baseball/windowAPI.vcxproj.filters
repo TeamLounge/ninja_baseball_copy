@@ -1,75 +1,383 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="animation.cpp" />
-    <ClCompile Include="effect.cpp" />
-    <ClCompile Include="effectManager.cpp" />
-    <ClCompile Include="gameNode.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="imageManager.cpp" />
-    <ClCompile Include="keyManager.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="playGround.cpp" />
-    <ClCompile Include="red_attackState.cpp" />
-    <ClCompile Include="red_idleState.cpp" />
-    <ClCompile Include="red_jumpAttackState.cpp" />
-    <ClCompile Include="red_jumpState.cpp" />
-    <ClCompile Include="red_moveState.cpp" />
-    <ClCompile Include="sceneManager.cpp" />
-    <ClCompile Include="soundManager.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="timeManager.cpp" />
-    <ClCompile Include="timer.cpp" />
-    <ClCompile Include="utils.cpp" />
-    <ClCompile Include="winMain.cpp" />
-    <ClCompile Include="Ryno_attack.cpp" />
-    <ClCompile Include="Ryno_catch.cpp" />
-    <ClCompile Include="Ryno_crawl.cpp" />
-    <ClCompile Include="Ryno_idle.cpp" />
-    <ClCompile Include="Ryno_jump.cpp" />
-    <ClCompile Include="Ryno_move.cpp" />
-    <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="cameraManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="effectManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="imageManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="keyManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>2DGameFramework\image</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="gameNode.cpp">
+      <Filter>2DGameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="playGround.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="red_attackState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>2DGameFramework\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animation.h" />
-    <ClInclude Include="commonMacroFunction.h" />
-    <ClInclude Include="effect.h" />
-    <ClInclude Include="effectManager.h" />
-    <ClInclude Include="gameNode.h" />
-    <ClInclude Include="image.h" />
-    <ClInclude Include="imageManager.h" />
-    <ClInclude Include="keyManager.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="playerstate.h" />
-    <ClInclude Include="playGround.h" />
-    <ClInclude Include="randomFunction.h" />
-    <ClInclude Include="red_attackState.h" />
-    <ClInclude Include="red_idleState.h" />
-    <ClInclude Include="red_jumpAttackState.h" />
-    <ClInclude Include="red_jumpState.h" />
-    <ClInclude Include="red_moveState.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="sceneManager.h" />
-    <ClInclude Include="singletonBase.h" />
-    <ClInclude Include="soundManager.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="timeManager.h" />
-    <ClInclude Include="timer.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="Ryno_attack.h" />
-    <ClInclude Include="Ryno_catch.h" />
-    <ClInclude Include="Ryno_crawl.h" />
-    <ClInclude Include="Ryno_idle.h" />
-    <ClInclude Include="Ryno_jump.h" />
-    <ClInclude Include="Ryno_move.h" />
-    <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="effectManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="imageManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>2DGameFramework\image</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>2DGameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="playGround.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>2DGameFramework\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="singletonBase.h">
+      <Filter>2DGameFramework\SingletonBase</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="windowAPI.rc" />
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="2DGameFramework">
+      <UniqueIdentifier>{d4228325-ab86-4575-8d38-59949d73a0ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround">
+      <UniqueIdentifier>{84513b37-b08c-49e4-bd15-6f8f6752b18e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\SingletonBase">
+      <UniqueIdentifier>{8785790c-f93f-411d-90ff-bd2e05bd6334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\Manager">
+      <UniqueIdentifier>{ddfb3dc3-ec5a-4752-880c-db14429b78a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\image">
+      <UniqueIdentifier>{73affc36-76a7-43ee-9dc2-13a65e5a5209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\Utils">
+      <UniqueIdentifier>{dbe4a488-41b4-49cf-8cff-49dbace1d532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\timer">
+      <UniqueIdentifier>{51ba2134-09a6-4e4a-a113-fec61f8f954a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\animation">
+      <UniqueIdentifier>{fb20fc3d-f78c-4396-a07a-e840a861adde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\effect">
+      <UniqueIdentifier>{636d27ed-03a5-48da-b1cf-b7f6dad3d4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\scene">
+      <UniqueIdentifier>{3b595d30-892f-4a9e-938d-2c88c4534eb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico" />
-    <Image Include="windowAPI.ico" />
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>2DGameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="playGround.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="singletonBase.h">
+      <Filter>2DGameFramework\SingletonBase</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>2DGameFramework\image</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="imageManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>2DGameFramework\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="effectManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="titleScene.h">
+      <Filter>playGround\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene.h">
+      <Filter>playGround\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="endingScene.h">
+      <Filter>playGround\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="playerSelectScene.h">
+      <Filter>playGround\scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gameNode.cpp">
+      <Filter>2DGameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="playGround.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="keyManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>2DGameFramework\image</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="imageManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>2DGameFramework\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="effectManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="titleScene.cpp">
+      <Filter>playGround\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene.cpp">
+      <Filter>playGround\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="endingScene.cpp">
+      <Filter>playGround\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cameraManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="playerSelectScene.cpp">
+      <Filter>playGround\scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="windowAPI.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="windowAPI.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

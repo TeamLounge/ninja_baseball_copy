@@ -1,6 +1,10 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
+#include "titleScene.h"
+#include "stageScene.h"
+#include "endingScene.h"
+#include "playerSelectScene.h"
 
 class playGround : public gameNode
 {
@@ -8,7 +12,6 @@ private:
 	
 	player* _red;
 	player* _Ryno;
-
 
 public:
 	playGround();
@@ -18,7 +21,5 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
-	
 };
 
