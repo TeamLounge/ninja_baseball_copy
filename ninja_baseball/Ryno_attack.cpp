@@ -92,10 +92,6 @@ void Ryno_attack::update(player * player)
 		}
 	}
 
-	//아까 말했던 새로운 공격패턴상태인지 체크하는거에요
-	//지금 if문조건처럼 "현재 이미지가 이 이미지인가?" 도 되더라구요
-	//이 공격부분은 아직 미완입니다.
-
 	
 	player->getImage()->setFrameX(_index);
 }

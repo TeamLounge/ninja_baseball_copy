@@ -14,6 +14,7 @@ playerstate * Ryno_move::handleInput(player * player)
 		KEYMANAGER->isOnceKeyUp(VK_UP) ||
 		KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{
+
 		return new Ryno_idle;
 	}
 	if (KEYMANAGER->isStayKeyDown('V'))

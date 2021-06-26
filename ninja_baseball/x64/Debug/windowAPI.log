@@ -1,25 +1,4 @@
-﻿  player.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\player.cpp(25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\player.cpp(49): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_attack.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_attack.cpp(110): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_catch.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_catch.cpp(20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_crawl.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_crawl.cpp(59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_crawl.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_dash.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_dash.cpp(31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_frontCombo.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_frontcombo.cpp(61): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_frontcombo.cpp(73): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_idle.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_idle.cpp(80): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_jump.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_jump.cpp(74): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_jump.cpp(93): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Ryno_move.cpp
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_move.cpp(71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_move.cpp(82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
+﻿  Ryno_fly.cpp
+c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_fly.cpp(48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\zxxd2\desktop\준팀포폴\ninja_baseball\ryno_fly.cpp(115): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   windowAPI.vcxproj -> C:\Users\zxxd2\Desktop\준팀포폴\ninja_baseball\x64\Debug\windowAPI.exe

@@ -94,6 +94,12 @@
     <ClCompile Include="Ryno_dashAttack.cpp">
       <Filter>playGround\Ryno</Filter>
     </ClCompile>
+    <ClCompile Include="Ryno_fly.cpp">
+      <Filter>playGround\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fall.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -203,6 +209,12 @@
     </ClInclude>
     <ClInclude Include="Ryno_dashAttack.h">
       <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fly.h">
+      <Filter>playGround\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fall.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

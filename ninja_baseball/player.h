@@ -20,7 +20,8 @@ private:
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
 	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 
-	bool isRight;
+	RECT _attack_rc;
+	bool isRight , isattack;
 	image* _shadow; // 그림자이미지
 
 	//함수를 선언하려면 여기에다

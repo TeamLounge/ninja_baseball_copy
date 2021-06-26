@@ -2,7 +2,7 @@
 #include "Ryno_jump.h"
 #include "player.h"
 #include "Ryno_idle.h"
-
+#include "Ryno_fly.h"
 playerstate * Ryno_jump::handleInput(player * player)
 {
 	//이부분도 나중에 바꿔야할것같음..
@@ -10,6 +10,10 @@ playerstate * Ryno_jump::handleInput(player * player)
 	{
 		return new Ryno_idle;
 	}   
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)&&KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		return new Ryno_fly;
+	}
  	return nullptr;
 }
 

@@ -173,6 +173,8 @@
     <ClInclude Include="Ryno_crawl.h" />
     <ClInclude Include="Ryno_dash.h" />
     <ClInclude Include="Ryno_dashAttack.h" />
+    <ClInclude Include="Ryno_fall.h" />
+    <ClInclude Include="Ryno_fly.h" />
     <ClInclude Include="Ryno_frontCombo.h" />
     <ClInclude Include="Ryno_idle.h" />
     <ClInclude Include="Ryno_jump.h" />
@@ -211,6 +213,8 @@
     <ClCompile Include="Ryno_crawl.cpp" />
     <ClCompile Include="Ryno_dash.cpp" />
     <ClCompile Include="Ryno_dashAttack.cpp" />
+    <ClCompile Include="Ryno_fall.cpp" />
+    <ClCompile Include="Ryno_fly.cpp" />
     <ClCompile Include="Ryno_frontCombo.cpp" />
     <ClCompile Include="Ryno_idle.cpp" />
     <ClCompile Include="Ryno_jump.cpp" />

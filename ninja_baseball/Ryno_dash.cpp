@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Ryno_dash.h"
 #include "Ryno_idle.h"
+#include "Ryno_dashAttack.h";
+
 playerstate * Ryno_dash::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
@@ -8,6 +10,10 @@ playerstate * Ryno_dash::handleInput(player * player)
 		return new Ryno_idle;
 	}
 
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		return new Ryno_dashAttack;
+	}
 	return nullptr;
 }
 
