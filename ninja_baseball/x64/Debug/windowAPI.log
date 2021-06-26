@@ -1,4 +1,82 @@
-﻿  endingScene.cpp
-c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(29): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(50): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  stdafx.cpp
+  Ryno_attack.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\ryno_attack.cpp(133): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Ryno_catch.cpp
+  Ryno_crawl.cpp
+  Ryno_idle.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\ryno_idle.cpp(69): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Ryno_jump.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\ryno_jump.cpp(91): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Ryno_move.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\ryno_move.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  animation.cpp
+  cameraManager.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(50): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(102): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(114): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(132): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\cameramanager.cpp(144): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  effect.cpp
+  effectManager.cpp
+  endingScene.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(39): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(53): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(63): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\endingscene.cpp(84): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\gamenode.cpp(93): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\gamenode.cpp(94): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\gamenode.cpp(85): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\gamenode.cpp(84): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+  image.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(70): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(119): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(168): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(255): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(254): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(271): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(270): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(496): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(504): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\image.cpp(509): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  keyManager.cpp
+  playGround.cpp
+  player.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\player.cpp(25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\player.cpp(49): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playerSelectScene.cpp
+  red_attackState.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_attackstate.cpp(54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_idleState.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_movestate.h(4): warning C4005: 'redSpeed': 매크로 재정의
+  c:\portfolio\ninja_baseball_copy\ninja_baseball\red_jumpstate.h(4): note: 'redSpeed'의 이전 정의를 참조하십시오.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_idlestate.cpp(53): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  red_jumpAttackState.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_jumpattackstate.cpp(33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_jumpState.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_jumpstate.cpp(27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_jumpstate.cpp(44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  red_moveState.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_jumpstate.h(4): warning C4005: 'redSpeed': 매크로 재정의
+  c:\portfolio\ninja_baseball_copy\ninja_baseball\red_movestate.h(4): note: 'redSpeed'의 이전 정의를 참조하십시오.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_movestate.cpp(79): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\red_movestate.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  sceneManager.cpp
+  soundManager.cpp
+  stageScene.cpp
+  timeManager.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\timemanager.cpp(57): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\timemanager.cpp(61): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\portfolio\ninja_baseball_copy\ninja_baseball\timemanager.cpp(65): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timer.cpp
+  titleScene.cpp
+  utils.cpp
+  winMain.cpp
+c:\portfolio\ninja_baseball_copy\ninja_baseball\winmain.cpp(91): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
   windowAPI.vcxproj -> C:\portfolio\ninja_baseball_copy\ninja_baseball\x64\Debug\windowAPI.exe

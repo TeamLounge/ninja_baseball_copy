@@ -21,6 +21,7 @@
 #include "sceneManager.h"
 #include "soundManager.h"
 #include "cameraManager.h"
+#include "txtData.h"
 
 using namespace std;
 using namespace SUNFL_UTIL;
@@ -48,6 +49,7 @@ using namespace SUNFL_UTIL;
 #define SCENEMANAGER	sceneManager::getSingleton()
 #define SOUNDMANAGER	soundManager::getSingleton()
 #define CAMERAMANAGER	cameraManager::getSingleton()
+#define TXTDATA			txtData::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p) = nullptr;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
