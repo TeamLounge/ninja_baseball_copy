@@ -85,6 +85,39 @@
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ybState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackJumpState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackPunchState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbIdleState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbRollState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="wbStopState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="whiteBaseball.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ybMoveState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowBaseball.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -184,6 +217,39 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="playerstate.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ybState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackJumpState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackPunchState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbIdleState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbRollState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="wbStopState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="whiteBaseball.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ybMoveState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yellowBaseball.h">
       <Filter>playGround</Filter>
     </ClInclude>
   </ItemGroup>

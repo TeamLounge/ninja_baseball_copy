@@ -153,6 +153,7 @@
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="endingScene.h" />
+    <ClInclude Include="enemyManager.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
@@ -184,6 +185,16 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="titleScene.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="wbAttackJumpState.h" />
+    <ClInclude Include="wbAttackPunchState.h" />
+    <ClInclude Include="wbIdleState.h" />
+    <ClInclude Include="wbRollState.h" />
+    <ClInclude Include="wbState.h" />
+    <ClInclude Include="wbStopState.h" />
+    <ClInclude Include="whiteBaseball.h" />
+    <ClInclude Include="ybMoveState.h" />
+    <ClInclude Include="ybState.h" />
+    <ClInclude Include="yellowBaseball.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
@@ -191,6 +202,7 @@
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="endingScene.cpp" />
+    <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
@@ -222,7 +234,17 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="titleScene.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="wbAttackJumpState.cpp" />
+    <ClCompile Include="wbAttackPunchState.cpp" />
+    <ClCompile Include="wbIdleState.cpp" />
+    <ClCompile Include="wbRollState.cpp" />
+    <ClCompile Include="wbState.cpp" />
+    <ClCompile Include="wbStopState.cpp" />
+    <ClCompile Include="whiteBaseball.cpp" />
     <ClCompile Include="winMain.cpp" />
+    <ClCompile Include="ybMoveState.cpp" />
+    <ClCompile Include="ybState.cpp" />
+    <ClCompile Include="yellowBaseball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc" />
