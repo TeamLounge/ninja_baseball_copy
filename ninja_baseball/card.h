@@ -77,3 +77,7 @@ public:
 	bool getIsBullet() { return _isPunchBullet; }
 };
 
+class card
+{
+};
+

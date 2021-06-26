@@ -42,3 +42,7 @@ class punchBullet
 {
 };
 
+class punchBullet
+{
+};
+
