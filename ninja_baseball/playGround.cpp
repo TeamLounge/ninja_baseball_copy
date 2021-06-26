@@ -30,7 +30,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("stage");
+	SCENEMANAGER->changeScene("playerSelect");
 	
 	return S_OK;
 }
