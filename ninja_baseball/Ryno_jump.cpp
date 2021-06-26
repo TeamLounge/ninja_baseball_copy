@@ -2,7 +2,7 @@
 #include "Ryno_jump.h"
 #include "player.h"
 #include "Ryno_idle.h"
-
+#include "Ryno_fly.h"
 playerstate * Ryno_jump::handleInput(player * player)
 {
 	//이부분도 나중에 바꿔야할것같음..
@@ -10,6 +10,10 @@ playerstate * Ryno_jump::handleInput(player * player)
 	{
 		return new Ryno_idle;
 	}   
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)&&KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		return new Ryno_fly;
+	}
  	return nullptr;
 }
 
@@ -71,6 +75,8 @@ void Ryno_jump::update(player * player)
 
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
+	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	
 	
@@ -78,7 +84,7 @@ void Ryno_jump::update(player * player)
 
 void Ryno_jump::enter(player * player)
 {
-	RECT rc;
+
 	_count = _index = 0;
 	
 	_jumpPower = 10.0f;

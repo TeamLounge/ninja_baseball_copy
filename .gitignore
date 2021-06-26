@@ -1,3 +1,4 @@
 ninja_baseball/.vs/windowAPI/
 .vs/
 ninja_baseball/x64/Debug/
+ninja_baseball/windowAPI.vcxproj.filters

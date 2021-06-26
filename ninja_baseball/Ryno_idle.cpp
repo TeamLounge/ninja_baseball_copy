@@ -4,8 +4,17 @@
 #include "Ryno_move.h"
 #include "Ryno_jump.h"
 #include "Ryno_attack.h"
+#include "Ryno_crawl.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
+	if (_command == 2)
+	{
+		
+	}
+	if ( KEYMANAGER->isStayKeyDown('V'))
+	{
+		return new Ryno_crawl;
+	}
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT)|| KEYMANAGER->isStayKeyDown(VK_RIGHT)||KEYMANAGER->isStayKeyDown(VK_UP)||KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		return new Ryno_move;
@@ -24,9 +33,11 @@ playerstate * Ryno_idle::handleInput(player * player)
 void Ryno_idle::update(player * player)
 {
 
+
 	_time++;
 	if (_time >= 150 )
 	{
+		
 		if (_Rotation<4)
 		{
 			_count++;

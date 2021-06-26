@@ -4,7 +4,8 @@ class Ryno_attack :public playerstate
 {
 private:
 	int _count, _index;
-	bool isend;
+	bool isend , isfront;
+	RECT _rc;
 public:
 	virtual playerstate* handleInput(player* player);
 	virtual void update(player* player);

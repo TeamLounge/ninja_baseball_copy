@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Ryno_attack.h"
 #include "Ryno_idle.h"
+#include "Ryno_frontCombo.h"
 #include "player.h"
 playerstate * Ryno_attack::handleInput(player * player)
 {
@@ -10,6 +11,10 @@ playerstate * Ryno_attack::handleInput(player * player)
 		return new Ryno_idle;
 	}
 
+	if (isfront)
+	{
+		return new Ryno_frontCombo;
+	}
 	return nullptr;
 }
 
@@ -33,12 +38,12 @@ void Ryno_attack::update(player * player)
 			if (_count < 30) {
 				//z키를누르면서 앞키를 누르면 새로운 공격패턴으로 갑니다.
 				//이것도 상태클래스를 새로 정의하는게 정신건강에 이로워요 ㅋㅋ  저는 안햇는데.. 이거 수정하려구요
-				if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && KEYMANAGER->isOnceKeyDown('Z'))
+				if ((KEYMANAGER->isStayKeyDown(VK_RIGHT)||(KEYMANAGER->isStayKeyDown(VK_LEFT)) && KEYMANAGER->isOnceKeyDown('Z')))
 				{
+
+					isfront = true;
 					//새로운 공격패턴을 주기위해 이미지를 새로주고 인덱스, 카운터도 처음으로 되돌립니다.
-					player->setImage(IMAGEMANAGER->findImage("Ryno_attack_front"));
-					_index = 0;
-					_count = 0;
+				
 				}
 				//그냥 z키를 누르면 기본공격만
 				if (KEYMANAGER->isOnceKeyDown('Z'))
@@ -52,38 +57,6 @@ void Ryno_attack::update(player * player)
 				isend = true;
 		}
 	}
-
-	//아까 말했던 새로운 공격패턴상태인지 체크하는거에요
-	//지금 if문조건처럼 "현재 이미지가 이 이미지인가?" 도 되더라구요
-	//이 공격부분은 아직 미완입니다.
-	if(player->getImage() == IMAGEMANAGER->findImage("Ryno_attack_front"))
-	{
-		//그러면 랜더용카운터시작
-		_count++;
-		if (_count%5==0) {
-
-			//마찬가지로 인덱스를 0~4까지만돌려요
-			if (_index < 5) _index++;
-			//여기가 인덱스 5일때 결정하는 시간입니다.
-			//이떄도 랜더용 카운트를 시간으로 썻습니다..
-			if (_count < 30) {
-				if (KEYMANAGER->isOnceKeyDown('Z'))
-				{
-					_index++;
-				}
-			}
-			//결정했다면 공격을 계속 이어나갑니다.
-			if (_index >= 6)
-			{
-				_index++;
-				//인덱스가 총프레임에 넘어가면 없애버리기 
-				if (_index > 7)
-					isend = true;
-			}
-		}
-
-	}
-
 	//처음공격부분에서 그대로 기본공격을결정했다면
 	//다음 기본공격 분기로 옵니다.
 	//이 분기에 키를 또 입력하면 계속 공격을 진행해요.
@@ -110,7 +83,7 @@ void Ryno_attack::update(player * player)
 	{
 		//랜더용 카운트
 		_count++;
-		if (_count % 5 == 0) 
+		if (_count % 5 == 0)
 		{
 			_index++;
 			//계속 돌리다가 총프레임의 바깥으로 인덱스가 나가면 공격 끝
@@ -118,20 +91,20 @@ void Ryno_attack::update(player * player)
 				isend = true;
 		}
 	}
+
 	
 	player->getImage()->setFrameX(_index);
 }
 
 void Ryno_attack::enter(player * player)
 {
-	RECT rc;
 	_count = _index = 0;
 	//이 bool변수가 공격이끝났는지를 체크합니다.
 	isend = false;
-
+	isfront = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_attack"));
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
-	player->setRect(rc);
+	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	player->setRect(_rc);
 
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
