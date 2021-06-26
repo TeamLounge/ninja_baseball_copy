@@ -21,3 +21,7 @@ class cardMoveState
 {
 };
 
+class cardMoveState
+{
+};
+

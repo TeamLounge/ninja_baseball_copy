@@ -27,3 +27,7 @@ class cardDashAttackState
 {
 };
 
+class cardDashAttackState
+{
+};
+

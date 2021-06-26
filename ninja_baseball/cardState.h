@@ -16,3 +16,7 @@ class cardState
 {
 };
 
+class cardState
+{
+};
+

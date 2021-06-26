@@ -18,3 +18,7 @@ class cardIdleState
 {
 };
 
+class cardIdleState
+{
+};
+

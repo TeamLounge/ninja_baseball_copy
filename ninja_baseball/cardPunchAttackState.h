@@ -18,3 +18,7 @@ class cardPunchAttackState
 {
 };
 
+class cardPunchAttackState
+{
+};
+
