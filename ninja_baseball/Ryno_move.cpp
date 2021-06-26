@@ -9,10 +9,7 @@
 playerstate * Ryno_move::handleInput(player * player)
 {
 
-	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) ||
-		KEYMANAGER->isOnceKeyUp(VK_RIGHT) ||
-		KEYMANAGER->isOnceKeyUp(VK_UP) ||
-		KEYMANAGER->isOnceKeyUp(VK_DOWN))
+	if (!LEFT&&!RIGHT&&!UP&&!DOWN)
 	{
 
 		return new Ryno_idle;
@@ -21,7 +18,7 @@ playerstate * Ryno_move::handleInput(player * player)
 	{
 		return new Ryno_crawl;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
+	if (KEYMANAGER->isStayKeyDown('C'))
 	{
 		return new Ryno_jump;
 	}
@@ -37,23 +34,32 @@ void Ryno_move::update(player * player)
 	_count++;
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
+		LEFT = true;
 		player->isRight = false;
 		player->setX(player->getX() - 5);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
+		RIGHT = true;
 		player->isRight = true;
 		player->setX(player->getX() + 5);
-		
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
+		UP = true;
 		player->setY(player->getY() - 5);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
+		DOWN = true;
 		player->setY(player->getY() + 5);
 	}
+
+	if (KEYMANAGER->isOnceKeyUp(VK_LEFT)) LEFT = false;
+	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT)) RIGHT = false;
+	if (KEYMANAGER->isOnceKeyUp(VK_UP)) UP = false;
+	if (KEYMANAGER->isOnceKeyUp(VK_DOWN)) DOWN = false;
+
 	if (_count % 5 == 0)
 	{
 		if (_index > 6) _index = 0;
@@ -79,6 +85,7 @@ void Ryno_move::enter(player * player)
 {
 	
 	_count = _index =  0;
+	 LEFT = RIGHT = UP = DOWN = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_move"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);

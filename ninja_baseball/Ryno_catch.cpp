@@ -16,7 +16,7 @@ void Ryno_catch::enter(player * player)
 {
 	_count = _index = 0;
 
-	player->setImage(IMAGEMANAGER->findImage("Ryno_crawl"));
+	player->setImage(IMAGEMANAGER->findImage("Ryno_catch"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));

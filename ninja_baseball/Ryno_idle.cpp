@@ -5,21 +5,45 @@
 #include "Ryno_jump.h"
 #include "Ryno_attack.h"
 #include "Ryno_crawl.h"
+#include "Ryno_dash.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
-	if (_command == 2)
-	{
-		
-	}
-	if ( KEYMANAGER->isStayKeyDown('V'))
+
+	if (KEYMANAGER->isStayKeyDown('V'))
 	{
 		return new Ryno_crawl;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)|| KEYMANAGER->isStayKeyDown(VK_RIGHT)||KEYMANAGER->isStayKeyDown(VK_UP)||KEYMANAGER->isStayKeyDown(VK_DOWN))
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		
+		player->_isrun = true;
+		if (player->_run)
+		{
+			player->_run = false;
+			player->_isrun = false;
+			return new Ryno_dash;
+		}
+		return new Ryno_move;
+		
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+
+		player->_isrun = true;
+		if (player->_run)
+		{
+			player->_run = false;
+			player->_isrun = false;
+			return new Ryno_dash;
+		}
+		return new Ryno_move;
+		
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP)||KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		return new Ryno_move;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
+	if (KEYMANAGER->isStayKeyDown('C'))
 	{
 		return new Ryno_jump;
 	}
@@ -32,7 +56,6 @@ playerstate * Ryno_idle::handleInput(player * player)
 
 void Ryno_idle::update(player * player)
 {
-
 
 	_time++;
 	if (_time >= 150 )

@@ -1,21 +1,21 @@
 #include "stdafx.h"
-#include "Ryno_dashAttack.h"
+#include "Ryno_dashAlt.h"
 #include "Ryno_idle.h"
-playerstate * Ryno_dashAttack::handleInput(player * player)
+playerstate * Ryno_dashAlt::handleInput(player * player)
 {
 	if (speed < 0)
 	{
-		player->setY(player->getY() - 30);
+
 		return new Ryno_idle;
 	}
 	return nullptr;
 }
 
-void Ryno_dashAttack::update(player * player)
+void Ryno_dashAlt::update(player * player)
 {
-	if (player->isRight) 
+	if (player->isRight)
 	{
-		player->setX(player->getX()+speed);
+		player->setX(player->getX() + speed);
 		speed -= inertia;
 	}
 	else
@@ -23,20 +23,24 @@ void Ryno_dashAttack::update(player * player)
 		player->setX(player->getX() - speed);
 		speed -= inertia;
 	}
+	
+	if ( 2.f <speed && speed<11.5f)_index = 1;
+	if (speed < 2.f) _index = 2;
+	player->getImage()->setFrameX(_index);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 }
 
-void Ryno_dashAttack::enter(player * player)
+void Ryno_dashAlt::enter(player * player)
 {
 	_count = _index = 0;
-	speed = 10.f;
+	speed = 13.f;
 	inertia = 0.2f;
-	player->setImage(IMAGEMANAGER->findImage("Ryno_dashAttack_ctrl"));
+	player->setImage(IMAGEMANAGER->findImage("Ryno_dashAttack_alt"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
-	player->setY(player->_shadow->getY() - 60);
+
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
-	player->_shadow->setY(player->getY() + 60);
+	player->_shadow->setY(player->getY() + 90);
 
 	if (player->isRight)
 	{

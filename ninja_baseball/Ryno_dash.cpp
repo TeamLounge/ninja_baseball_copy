@@ -2,7 +2,7 @@
 #include "Ryno_dash.h"
 #include "Ryno_idle.h"
 #include "Ryno_dashAttack.h";
-
+#include "Ryno_dashAlt.h"
 playerstate * Ryno_dash::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
@@ -13,6 +13,10 @@ playerstate * Ryno_dash::handleInput(player * player)
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		return new Ryno_dashAttack;
+	}
+	if (KEYMANAGER->isOnceKeyDown('X'))
+	{
+		return new Ryno_dashAlt;
 	}
 	return nullptr;
 }
@@ -34,7 +38,7 @@ void Ryno_dash::update(player * player)
 
 	if (_count % 5 == 0)
 	{
-		if (_index > 6) _index = 0;
+		if (_index > 4) _index = 0;
 		player->getImage()->setFrameX(_index);
 		if (player->isRight)
 		{
@@ -56,10 +60,12 @@ void Ryno_dash::update(player * player)
 void Ryno_dash::enter(player * player)
 {
 	_count = _index = 0;
+	player->_run = false;
+	player->_isrun = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_dash"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
-
+	//여기player->setY해라
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
 

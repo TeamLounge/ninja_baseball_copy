@@ -5,7 +5,7 @@ class Ryno_idle : public playerstate
 {
 private:
 	int _count, _time, _index , _Rotation;
-	int _command;
+	int _runtime;
 public:
 	virtual playerstate* handleInput(player* player);
 	virtual void update(player* player);

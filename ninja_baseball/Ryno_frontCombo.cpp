@@ -16,6 +16,7 @@ void Ryno_frontCombo::update(player * player)
 {
 
 	if (_index < 5) {
+		
 		_count++;
 		if (_count % 5 == 0) {
 			//마찬가지로 인덱스를 0~4까지만돌려요
@@ -72,9 +73,10 @@ void Ryno_frontCombo::enter(player * player)
 	player->setImage(IMAGEMANAGER->findImage("Ryno_attack_front"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
-
+	//여기player->setY해라
+	player->setY(player->_shadow->getY() - 120);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
-	player->_shadow->setY(player->getY() + 90);
+	player->_shadow->setY(player->getY() + 120);
 
 	if (player->isRight)
 	{

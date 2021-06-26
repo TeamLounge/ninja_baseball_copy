@@ -24,6 +24,9 @@ public:
 	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 , 공격을했는지 안했는지 판단하기위해서 쓰는 bool변수
 	bool isRight , isattack;
 	image* _shadow; // 그림자이미지
+	bool _isrun ,_run;
+	float _runtime;
+
 
 	//함수를 선언하려면 여기에다
 	//겟터와 셋터는 따로따로 밑에 다 선언 해주세요

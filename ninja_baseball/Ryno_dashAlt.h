@@ -1,6 +1,6 @@
 #pragma once
 #include "playerstate.h"
-class Ryno_dashAttack : public playerstate
+class Ryno_dashAlt : public playerstate
 {
 private:
 	int _count, _index;
