@@ -31,7 +31,7 @@ public:
 	vector<whiteBaseball*> getVWb() { return _vWb; }
 	vector<whiteBaseball*>::iterator getVIWb() { return _viWb; }
 
-	void setRedMemoryAddressLink(_player* player) { _player = player; }
+	void setRedMemoryAddressLink(player* player) { _player = player; }
 
 	void setWB();
 	void updateWB();
