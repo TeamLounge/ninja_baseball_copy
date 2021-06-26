@@ -33,11 +33,15 @@ void endingScene::update()
 			IMAGEMANAGER->findImage("ending_background")->setX(IMAGEMANAGER->findImage("ending_background")->getX() - 3);
 		}
 	}
-	_sceneHeight += 5;
-	if (_sceneHeight >= IMAGEMANAGER->findImage("character_scene")->getHeight() /2)
+	if (_sceneHeight >= IMAGEMANAGER->findImage("character_scene")->getHeight() / 2)
 	{
-		_sceneHeight = IMAGEMANAGER->findImage("character_scene")->getHeight() /2;
+		_sceneHeight = IMAGEMANAGER->findImage("character_scene")->getHeight() / 2;
 	}
+	else
+	{
+		_sceneHeight += 4;
+	}
+	
 }
 
 void endingScene::render()
@@ -49,7 +53,10 @@ void endingScene::render()
 	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
 	HPEN pen = CreatePen(PS_NULL, 0, RGB(0, 0, 0));
 	HPEN oldPen = (HPEN)SelectObject(getMemDC(), pen);
-	Rectangle(getMemDC(), _textRC);
+	if (_sceneHeight == IMAGEMANAGER->findImage("character_scene")->getHeight() / 2)
+	{
+		Rectangle(getMemDC(), _textRC);
+	}
 	SelectObject(getMemDC(), oldPen);
 	DeleteObject(pen);
 	SelectObject(getMemDC(), oldBrush);
