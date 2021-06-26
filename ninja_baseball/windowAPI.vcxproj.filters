@@ -118,6 +118,27 @@
     <ClCompile Include="yellowBaseball.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
+    <ClCompile Include="punchBullet.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="card.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="cardState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="cardPunchAttackState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="cardDashAttackState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="cardMoveState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="cardIdleState.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -252,6 +273,27 @@
     <ClInclude Include="yellowBaseball.h">
       <Filter>playGround</Filter>
     </ClInclude>
+    <ClInclude Include="punchBullet.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="card.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="cardState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="cardPunchAttackState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="cardDashAttackState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="cardMoveState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="cardIdleState.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -295,6 +337,21 @@
     </Filter>
     <Filter Include="playGround\scene">
       <UniqueIdentifier>{3b595d30-892f-4a9e-938d-2c88c4534eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy">
+      <UniqueIdentifier>{94550e38-51a5-4142-83c0-8e7d5766a91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\card">
+      <UniqueIdentifier>{21e48dc8-a77b-4467-aad5-32040fecfeef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\card\action">
+      <UniqueIdentifier>{5e40e916-cea5-46c0-bafc-26e43a41642b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\card\attack">
+      <UniqueIdentifier>{a9491298-3fbe-4462-945c-85e3ec699bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\bullets">
+      <UniqueIdentifier>{ea7be278-70fe-4add-8c73-18428f3bcc5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
