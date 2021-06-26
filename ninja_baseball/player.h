@@ -19,8 +19,9 @@ private:
 
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
-	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 
+	//이 렉트는 player가 공격중이다 하면 상태클래스내에서 꺼낼 렉트를 미리 생성해두는겁니다.
 	RECT _attack_rc;
+	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 , 공격을했는지 안했는지 판단하기위해서 쓰는 bool변수
 	bool isRight , isattack;
 	image* _shadow; // 그림자이미지
 

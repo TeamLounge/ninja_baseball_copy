@@ -99,19 +99,19 @@ void whiteBaseball::render()
 
 void whiteBaseball::setImage()
 {
-	IMAGEMANAGER->addFrameImage("wBaseball_move", "image/wBaseball_move.bmp", 2880, 600, 8, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_idle", "image/wBaseball_idle.bmp", 1080, 600, 3, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_damaged", "image/wBaseball_damaged.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_hang", "image/wBaseball_hang.bmp", 360, 600, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_kick", "image/wBaseball_kick.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_land", "image/wBaseball_land.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_punch", "image/wBaseball_punch.bmp", 720, 600, 2, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_roll", "image/wBaseball_roll.bmp", 4320, 600, 12, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_spin", "image/wBaseball_spin.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_stop", "image/wBaseball_stop.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);	//마지막 인자 : 알파렌 유무
+	IMAGEMANAGER->addFrameImage("wBaseball_move", "image/3_Enemy/baseball/wBaseball_move.bmp", 2880, 600, 8, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_idle", "image/3_Enemy/baseball/wBaseball_idle.bmp", 1080, 600, 3, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_damaged", "image/3_Enemy/baseball/wBaseball_damaged.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_hang", "image/3_Enemy/baseball/wBaseball_hang.bmp", 360, 600, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_kick", "image/3_Enemy/baseball/wBaseball_kick.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_land", "image/3_Enemy/baseball/wBaseball_land.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_punch", "image/3_Enemy/baseball/wBaseball_punch.bmp", 720, 600, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_roll", "image/3_Enemy/baseball/wBaseball_roll.bmp", 4320, 600, 12, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_spin", "image/3_Enemy/baseball/wBaseball_spin.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("wBaseball_stop", "image/3_Enemy/baseball/wBaseball_stop.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);	//마지막 인자 : 알파렌 유무
 
-	IMAGEMANAGER->addImage("wBaseball_deathL", "image/wBaseball_deathL.bmp", 360, 300, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("wBaseball_deathR", "image/wBaseball_deathR.bmp", 360, 300, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("wBaseball_deathL", "image/3_Enemy/baseball/wBaseball_deathL.bmp", 360, 300, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("wBaseball_deathR", "image/3_Enemy/baseball/wBaseball_deathR.bmp", 360, 300, true, RGB(255, 0, 255), false);
 
 }
 

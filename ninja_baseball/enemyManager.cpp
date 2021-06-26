@@ -67,23 +67,23 @@ void enemyManager::playerLocation()
 		if (!(*_viWb)->isJump)	//점프 = true
 		{
 			//에너미가 플레이어의 오른쪽?
-			if (_red->getRect().right > (*_viWb)->getRect().right)
+			if (_player->getRect().right > (*_viWb)->getRect().right)
 			{
 				(*_viWb)->setIsRight(true);
 			}
 			//에너미가 플레이어의 왼쪽?
-			if (_red->getRect().left < (*_viWb)->getRect().left)
+			if (_player->getRect().left < (*_viWb)->getRect().left)
 			{
 				(*_viWb)->setIsRight(false);
 			}
 
 			//에너미가 플레이어의 위?
-			if (_red->getRect().top > (*_viWb)->getRect().top)
+			if (_player->getRect().top > (*_viWb)->getRect().top)
 			{
 				(*_viWb)->setIsDown(false);
 			}
 			//에너미가 플레이어의 아래?
-			if (_red->getRect().bottom > (*_viWb)->getRect().bottom)
+			if (_player->getRect().bottom > (*_viWb)->getRect().bottom)
 			{
 				(*_viWb)->setIsDown(true);
 			}
@@ -96,7 +96,7 @@ void enemyManager::collision()
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		RECT temp;
-		if (IntersectRect(&temp, &_red->getRect(), &(*_viWb)->getAttackRect()))
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))
 		{
 			(*_viWb)->setIsCollisionAttack(true);
 		}
