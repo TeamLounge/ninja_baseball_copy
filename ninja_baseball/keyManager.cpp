@@ -30,7 +30,7 @@ bool keyManager::isOnceKeyDown()
 {
 	for (int i = 0; i < KEYMAX; i++)
 	{
-		if (i == 9 || i == 27) continue;
+		if (i == 9 || i == 27 || i == 144 || i == 145) continue;
 
 		if (GetAsyncKeyState(i) & 0x8000)
 		{

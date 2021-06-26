@@ -19,6 +19,7 @@ public:
 	HRESULT init();
 	void release();
 
+	//아무 키나 누르면 확인
 	bool isOnceKeyDown();
 
 	//키를 누르면
