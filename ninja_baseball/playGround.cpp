@@ -16,9 +16,9 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
-	//상속해서 다르게 하실수 있으니까
-	//만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
-	// player = new (상속한 클래스);
+	//	상속해서 다르게 하실수 있으니까
+	//	만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
+	//	player = new (상속한 클래스);
 
 	_Ryno = new player;
 	_Ryno->init(2);
@@ -30,7 +30,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("title");
+	SCENEMANAGER->changeScene("stage");
 	
 	return S_OK;
 }
