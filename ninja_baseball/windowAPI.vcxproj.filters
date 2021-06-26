@@ -137,7 +137,7 @@
       <Filter>playGround\bullets</Filter>
     </ClCompile>
     <ClCompile Include="cardIdleState.cpp">
-      <Filter>playGround\enemy\card\cardState</Filter>
+      <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
