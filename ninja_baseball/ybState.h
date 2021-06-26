@@ -11,8 +11,3 @@ public:
 	virtual void exit(yellowBaseball* yellowBaseball) = 0;
 
 };
-
-class ybState
-{
-};
-

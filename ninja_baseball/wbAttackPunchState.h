@@ -16,7 +16,3 @@ public:
 	virtual void exit(whiteBaseball* whiteBaseball);
 
 };
-
-class wbAttackPunchState
-{
-};

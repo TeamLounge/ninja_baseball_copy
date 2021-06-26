@@ -104,19 +104,19 @@ void card::setImage()
 	//////////////////////////////////////////////////////
 	//            카드 스테이트 프레임
 	/////////////////////////////////////////////////////
-	IMAGEMANAGER->addFrameImage("card_attack", "image/card/card_attack.bmp", 1350, 428, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_damaged", "image/card/card_damaged.bmp", 1800, 428, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_dashAttack", "image/card/card_dashAttack.bmp", 900, 428, 2, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_death", "image/card/card_death.bmp", 2250, 428, 5, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_idle", "image/card/card_idle.bmp", 900, 428, 2, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_move", "image/card/card_move.bmp", 1800, 428, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("card_stun", "image/card/card_stun.bmp", 1350, 428, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("card_attack", "image/card/card_attack.bmp", 1350, 428, 3, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_damaged", "image/card/card_damaged.bmp", 1800, 428, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_dashAttack", "image/card/card_dashAttack.bmp", 900, 428, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_death", "image/card/card_death.bmp", 2250, 428, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_idle", "image/card/card_idle.bmp", 900, 428, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_move", "image/card/card_move.bmp", 1800, 428, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("card_stun", "image/card/card_stun.bmp", 1350, 428, 3, 2, true, RGB(255, 0, 255), false);
 
 
 	/////////////////////////////////////////////////////
 	//             카드 쉐도우 프레임
 	////////////////////////////////////////////////////
-	IMAGEMANAGER->addImage("card_shadow", "image/card/card_shadow.bmp", 133, 39, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("card_shadow", "image/card/card_shadow.bmp", 133, 39, true, RGB(255, 0, 255), false);
 }
 
 void card::setCard()

@@ -88,9 +88,6 @@
     <ClCompile Include="ybState.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="enemyManager.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="wbAttackJumpState.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
@@ -138,6 +135,9 @@
     </ClCompile>
     <ClCompile Include="cardDashAttackState.cpp">
       <Filter>playGround\enemy\card\cardState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +243,6 @@
     <ClInclude Include="ybState.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="enemyManager.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="wbAttackJumpState.h">
       <Filter>playGround</Filter>
     </ClInclude>
@@ -293,6 +290,9 @@
     </ClInclude>
     <ClInclude Include="cardDashAttackState.h">
       <Filter>playGround\enemy\card\cardState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

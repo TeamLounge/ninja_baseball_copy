@@ -15,8 +15,3 @@ public:
 	virtual void enter(whiteBaseball* whiteBaseball);
 	virtual void exit(whiteBaseball* whiteBaseball);
 };
-
-class wbIdleState
-{
-};
-
