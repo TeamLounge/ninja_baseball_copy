@@ -47,5 +47,5 @@ void yellowBaseball::render()
 
 void yellowBaseball::setImage()
 {
-	IMAGEMANAGER->addFrameImage("yBaseball_move", "image/yBaseball_move.bmp", 2880, 600, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("yBaseball_move", "image/yBaseball_move.bmp", 2880, 600, 8, 2, true, RGB(255, 0, 255), false);
 }

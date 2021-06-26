@@ -24,7 +24,3 @@ public:
 	void jump(whiteBaseball * whiteBaseball);
 
 };
-
-class wbAttackJumpState
-{
-};

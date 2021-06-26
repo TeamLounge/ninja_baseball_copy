@@ -19,7 +19,3 @@ public:
 	void wbMove(whiteBaseball* whiteBaseball);
 
 };
-
-class wbRollState
-{
-};

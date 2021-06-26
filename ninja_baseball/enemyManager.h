@@ -4,7 +4,7 @@
 #include "whiteBaseball.h"
 #include <vector>
 
-class red;
+class player;
 
 class enemyManager : public gameNode
 {
@@ -17,7 +17,7 @@ private:
 	viWhiteBaseball _viWb;
 
 
-	red* _red;
+	player* _player;
 	
 public:
 	enemyManager() {};
@@ -31,7 +31,7 @@ public:
 	vector<whiteBaseball*> getVWb() { return _vWb; }
 	vector<whiteBaseball*>::iterator getVIWb() { return _viWb; }
 
-	void setRedMemoryAddressLink(red* red) { _red = red; }
+	void setRedMemoryAddressLink(_player* player) { _player = player; }
 
 	void setWB();
 	void updateWB();

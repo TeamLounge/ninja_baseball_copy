@@ -17,8 +17,3 @@ public:
 	int getCurrentFrameX() { return _currentFrameX; }
 	int getCurrentFrameY() { return _currentFrameY; }
 };
-
-class wbState
-{
-};
-

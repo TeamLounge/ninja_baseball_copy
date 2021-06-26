@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "enemyManager.h"
-//#include "red.h"
+#include "player.h"
 
 HRESULT enemyManager::init()
 {
@@ -88,8 +88,6 @@ void enemyManager::playerLocation()
 				(*_viWb)->setIsDown(true);
 			}
 		}
-		  
-
 	}
 }
 
