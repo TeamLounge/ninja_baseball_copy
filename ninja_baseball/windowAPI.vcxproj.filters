@@ -121,14 +121,8 @@
     <ClCompile Include="card.cpp">
       <Filter>playGround\enemy\card</Filter>
     </ClCompile>
-    <ClCompile Include="cardDashAttackState.cpp">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClCompile>
     <ClCompile Include="cardPunchAttackState.cpp">
       <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClCompile>
-    <ClCompile Include="cardMoveState.cpp">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClCompile>
     <ClCompile Include="cardState.cpp">
       <Filter>playGround\enemy\card\cardState</Filter>
@@ -138,6 +132,12 @@
     </ClCompile>
     <ClCompile Include="cardIdleState.cpp">
       <Filter>playGround\enemy\card\cardState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="cardMoveState.cpp">
+      <Filter>playGround\enemy\card\cardState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="cardDashAttackState.cpp">
+      <Filter>playGround\enemy\card\cardState\attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -276,11 +276,14 @@
     <ClInclude Include="card.h">
       <Filter>playGround\enemy\card</Filter>
     </ClInclude>
-    <ClInclude Include="cardDashAttackState.h">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClInclude>
     <ClInclude Include="cardPunchAttackState.h">
       <Filter>playGround\enemy\card\cardState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="cardState.h">
+      <Filter>playGround\enemy\card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="punchBullet.h">
+      <Filter>playGround\bullets</Filter>
     </ClInclude>
     <ClInclude Include="cardIdleState.h">
       <Filter>playGround\enemy\card\cardState\action</Filter>
@@ -288,11 +291,8 @@
     <ClInclude Include="cardMoveState.h">
       <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClInclude>
-    <ClInclude Include="cardState.h">
-      <Filter>playGround\enemy\card\cardState</Filter>
-    </ClInclude>
-    <ClInclude Include="punchBullet.h">
-      <Filter>playGround\bullets</Filter>
+    <ClInclude Include="cardDashAttackState.h">
+      <Filter>playGround\enemy\card\cardState\attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

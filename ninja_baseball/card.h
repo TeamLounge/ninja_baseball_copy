@@ -76,8 +76,3 @@ public:
 	bool getIsDash() { return _isDash; }
 	bool getIsBullet() { return _isPunchBullet; }
 };
-
-class card
-{
-};
-

@@ -38,11 +38,3 @@ public:
 	void move();
 };
 
-class punchBullet
-{
-};
-
-class punchBullet
-{
-};
-

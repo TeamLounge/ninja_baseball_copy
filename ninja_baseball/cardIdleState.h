@@ -14,11 +14,5 @@ public:
 	virtual void exit(card* card);
 };
 
-class cardIdleState
-{
-};
 
-class cardIdleState
-{
-};
 

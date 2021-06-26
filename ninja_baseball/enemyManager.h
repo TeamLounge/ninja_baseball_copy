@@ -42,7 +42,3 @@ public:
 	void collision();
 };
 
-class enemyManager
-{
-};
-

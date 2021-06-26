@@ -22,12 +22,3 @@ public:
 
 	void dashMove(card* card);
 };
-
-class cardDashAttackState
-{
-};
-
-class cardDashAttackState
-{
-};
-

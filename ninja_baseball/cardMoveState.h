@@ -17,11 +17,3 @@ public:
 	void move(card* card);
 };
 
-class cardMoveState
-{
-};
-
-class cardMoveState
-{
-};
-

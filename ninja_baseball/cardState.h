@@ -12,11 +12,3 @@ public:
 	virtual void exit(card* card) = 0;
 };
 
-class cardState
-{
-};
-
-class cardState
-{
-};
-

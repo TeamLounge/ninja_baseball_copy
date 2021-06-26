@@ -14,11 +14,3 @@ public:
 	virtual void exit(card* card);
 };
 
-class cardPunchAttackState
-{
-};
-
-class cardPunchAttackState
-{
-};
-
