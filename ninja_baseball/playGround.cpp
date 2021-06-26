@@ -30,7 +30,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("title");
+	SCENEMANAGER->changeScene("ending");
 	
 	return S_OK;
 }
@@ -57,7 +57,7 @@ void playGround::update()
 
 void playGround::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
 

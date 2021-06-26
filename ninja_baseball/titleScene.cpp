@@ -8,12 +8,17 @@ HRESULT titleScene::init()
 	IMAGEMANAGER->addImage("silhouette", "image/6_UI/title/silhouette.bmp", 900, 510, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("title_start", "image/6_UI/title/title_start_frame.bmp", 19200, 420, 20, 1, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("title_frame", "image/6_UI/title/title_frame.bmp", 11745, 420, 15, 1, true, RGB(255, 0, 255), false);
-	
+	IMAGEMANAGER->addImage("push_any_button", "image/6_UI/title/push_any_button.bmp", 717, 45, true, RGB(255, 0, 255), true);
+
+
 	_silhouette = RectMakeCenter(WINSIZEX / 2, WINSIZEY + IMAGEMANAGER->findImage("silhouette")->getHeight()/2, IMAGEMANAGER->findImage("silhouette")->getWidth(), IMAGEMANAGER->findImage("silhouette")->getHeight());
 	CAMERAMANAGER->setCamera(0, 0);
 
 	_elapsedSec = 0;
 	_isTitleStart = false;
+
+	_textElapsedSec = 0;
+	_textBlend = 0;
 
 	return S_OK;
 }
@@ -36,7 +41,7 @@ void titleScene::update()
 	}
 
 	if (_silhouette.top == WINSIZEY / 2 - 90 - IMAGEMANAGER->findImage("silhouette")->getHeight() / 2)
-	{
+	{	
 		_elapsedSec += TIMEMANAGER->getElapsedTime();
 		if (_elapsedSec >= 2.0f)
 		{
@@ -64,6 +69,7 @@ void titleScene::update()
 
 	if (_isTitleStoped)
 	{
+		_textElapsedSec += TIMEMANAGER->getElapsedTime();
 		if (_elapsedSec >= 0.25f)
 		{
 			_elapsedSec -= 0.25f;
@@ -76,12 +82,22 @@ void titleScene::update()
 				IMAGEMANAGER->findImage("title_frame")->setFrameX(IMAGEMANAGER->findImage("title_frame")->getFrameX() + 1);
 			}
 		}
-
+		if (_textElapsedSec >= 1.0f)
+		{
+			_textElapsedSec -= 1.0f;
+			if (_textBlend == 255)
+			{
+				_textBlend = 0;
+			}
+			else
+			{
+				_textBlend = 255;
+			}
+		}
 		if(KEYMANAGER->isOnceKeyDown())
 		{
 			SCENEMANAGER->changeScene("playerSelect");
 		}
-		
 	}
 }
 
@@ -98,7 +114,7 @@ void titleScene::render()
 		IMAGEMANAGER->findImage("title_frame")->frameRender(getMemDC(), 123, 30);
 	}
 	
-	//IMAGEMANAGER->findImage("title_start")->frameRender(getMemDC(), 0, 30, 19, 0);
+	IMAGEMANAGER->findImage("push_any_button")->alphaRender(getMemDC(), WINSIZEX / 2 - IMAGEMANAGER->findImage("push_any_button")->getWidth()/2, WINSIZEY/2 + 100, _textBlend);
 	
 	
 }
