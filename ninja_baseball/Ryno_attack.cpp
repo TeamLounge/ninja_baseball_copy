@@ -38,7 +38,7 @@ void Ryno_attack::update(player * player)
 			if (_count < 30) {
 				//z키를누르면서 앞키를 누르면 새로운 공격패턴으로 갑니다.
 				//이것도 상태클래스를 새로 정의하는게 정신건강에 이로워요 ㅋㅋ  저는 안햇는데.. 이거 수정하려구요
-				if ((KEYMANAGER->isStayKeyDown(VK_RIGHT)||(KEYMANAGER->isStayKeyDown(VK_LEFT)) && KEYMANAGER->isOnceKeyDown('Z')))
+				if ((KEYMANAGER->isStayKeyDown(VK_RIGHT)||(KEYMANAGER->isStayKeyDown(VK_LEFT))) && KEYMANAGER->isOnceKeyDown('Z'))
 				{
 
 					isfront = true;

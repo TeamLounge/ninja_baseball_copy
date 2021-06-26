@@ -43,11 +43,13 @@ void player::render()
 
 	
 	Rectangle(getMemDC(), _playerrc);
-	//이미지랜더;
-
+	//이미지랜더
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
-	
+	if (isattack)
+	{
+		Rectangle(getMemDC(), _attack_rc);
+	}
 }
 
 void player::handleInput()

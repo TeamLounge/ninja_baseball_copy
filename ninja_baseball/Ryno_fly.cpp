@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Ryno_fly.h"
-#include "Ryno_jump.h"
-
+#include "Ryno_fall.h"
 playerstate * Ryno_fly::handleInput(player * player)
 {
 	if (isend)
 	{
-		return new Ryno_jump;
+		player->isattack = false;
+		return new Ryno_fall;
 	}
 	return nullptr;
 }
@@ -26,9 +26,9 @@ void Ryno_fly::update(player * player)
 			//커맨드 시간안에 공격키누르면 쏜다! 근데 아직 렉트는 안띄워봣음 ㅋㅋ..
 			if (_commandTime < 50)
 			{
-				if (KEYMANAGER->isOnceKeyDown('X'))
+				if (KEYMANAGER->isOnceKeyDown('X')&& (player->getY() < _top))
 				{
-					isattack = true;
+					player->isattack = true;
 				}
 			}
 			//커맨드 시간안에 공격키 안누르면 끝!
@@ -46,13 +46,13 @@ void Ryno_fly::update(player * player)
 	}
 
 	//이거는 공격했다면 공격렉트를 쏠겁니다
-	if (_index<2 && isattack)
+	if (_index<2 && player->isattack)
 	{
 		_actiontime++;
 		next = true;
-		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*_top, player->getX() + sinf(0.75)*_top, 100, 100);
+		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*300, player->getY() + sinf(0.75)*400, 150, 150);
 		//공격렉트를 이정도 시간동안 띄우고  시간이 지나면 다음 행동으로 넘어가게 합니다. 나머지 안쓸것도 다 0으로 초기화 해주구요
-		if (_actiontime > 100)
+		if (_actiontime > 50)
 		{
 			_index++;
 			_actiontime = 0;
@@ -68,8 +68,8 @@ void Ryno_fly::update(player * player)
 		//찍을때 아마 공격렉트부분을 또 만들껍니다.
 		if (player->getY()+(player->getImage()->getFrameHeight()/2) < player->_shadow->getY())
 		{
-			player->setX(player->getX() + 2);
-			player->setY(player->getY() + 10);
+			player->setX(player->getX() + cosf(0.75) * 30);
+			player->setY(player->getY() + sinf(0.75) * 40);
 		}
 		else
 		{
@@ -85,7 +85,7 @@ void Ryno_fly::update(player * player)
 		_actiontime++;
 		//마무리를 일단 액션시간으로 가게 했어요 이다음을 어떻게 해야할지모르겟네요
 		//새롭게 falling 상태를 만들어서 떨어지게 하려구요
-		if (_actiontime < 10)
+		if (_actiontime < 30)
 		{
 			player->setX(player->getX() + 2);
 			player->setY(player->getY() - 5);
@@ -118,7 +118,7 @@ void Ryno_fly::enter(player * player)
 	_actiontime = _commandTime =  0;
 
 	next = false;
-	isattack = false;
+	player->isattack = false;
 	isend = false;
 	//플레이어의 이미지,렉트,그림자 초기화
 	player->setImage(IMAGEMANAGER->findImage("Ryno_fly"));

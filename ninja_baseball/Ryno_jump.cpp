@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "Ryno_jump.h"
 #include "player.h"
-#include "Ryno_idle.h"
+#include "Ryno_fall.h"
 #include "Ryno_fly.h"
 playerstate * Ryno_jump::handleInput(player * player)
 {
 	//이부분도 나중에 바꿔야할것같음..
-	if (_jumpPower < -10)
+	if (_jumpPower < 0)
 	{
-		return new Ryno_idle;
+		return new Ryno_fall;
 	}   
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)&&KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
@@ -39,7 +39,7 @@ void Ryno_jump::update(player * player)
 	//z키누르면 공격상태
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
-		isattack = true;
+		player->isattack = true;
 	}
 	//좌우 구분하기위해서
 	if (player->isRight)
@@ -90,7 +90,7 @@ void Ryno_jump::enter(player * player)
 	_jumpPower = 10.0f;
 	_gravity = 0.2f;
 
-	isattack = false;
+	player->isattack = false;
 	
 	//플레이어의 이미지,렉트,그림자 초기화
 	player->setImage(IMAGEMANAGER->findImage("Ryno_jumpAttack"));
