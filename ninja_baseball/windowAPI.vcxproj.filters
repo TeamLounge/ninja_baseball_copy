@@ -127,9 +127,6 @@
     <ClCompile Include="cardPunchAttackState.cpp">
       <Filter>playGround\enemy\card\cardState\attack</Filter>
     </ClCompile>
-    <ClCompile Include="cardIdleState.cpp">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
-    </ClCompile>
     <ClCompile Include="cardMoveState.cpp">
       <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClCompile>
@@ -138,6 +135,9 @@
     </ClCompile>
     <ClCompile Include="punchBullet.cpp">
       <Filter>playGround\bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="cardIdleState.cpp">
+      <Filter>playGround\enemy\card\cardState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
