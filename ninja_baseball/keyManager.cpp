@@ -26,6 +26,25 @@ void keyManager::release()
 {
 }
 
+bool keyManager::isOnceKeyDown()
+{
+	for (int i = 0; i < KEYMAX; i++)
+	{
+		if (i == 9) continue;
+
+		if (GetAsyncKeyState(i) & 0x8000)
+		{
+			if (!this->getKeyDown()[i])
+			{
+				this->setKeyDown(i, true);
+
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 bool keyManager::isOnceKeyDown(int key)
 {
 	if (GetAsyncKeyState(key) & 0x8000)

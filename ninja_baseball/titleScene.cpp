@@ -76,10 +76,12 @@ void titleScene::update()
 				IMAGEMANAGER->findImage("title_frame")->setFrameX(IMAGEMANAGER->findImage("title_frame")->getFrameX() + 1);
 			}
 		}
-		if ()
+
+		if(KEYMANAGER->isOnceKeyDown())
 		{
 			SCENEMANAGER->changeScene("playerSelect");
 		}
+		
 	}
 }
 

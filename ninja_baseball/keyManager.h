@@ -19,6 +19,8 @@ public:
 	HRESULT init();
 	void release();
 
+	bool isOnceKeyDown();
+
 	//키를 누르면
 	bool isOnceKeyDown(int key);
 
