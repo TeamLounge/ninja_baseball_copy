@@ -22,7 +22,7 @@ void endingScene::release()
 
 void endingScene::update()
 {
-	if (_sceneHeight == IMAGEMANAGER->findImage("ending_background")->getHeight())
+	if (_sceneHeight == IMAGEMANAGER->findImage("ending_background")->getHeight()/2)
 	{
 		if (IMAGEMANAGER->findImage("ending_background")->getX() + IMAGEMANAGER->findImage("ending_background")->getWidth() <= WINSIZEX)
 		{
@@ -48,7 +48,7 @@ void endingScene::render()
 {
 	IMAGEMANAGER->findImage("tile_background")->render(getMemDC());
 	IMAGEMANAGER->findImage("ending_background")->render(getMemDC(), IMAGEMANAGER->findImage("ending_background")->getX(), 144 + IMAGEMANAGER->findImage("ending_background")->getHeight()/2 - _sceneHeight,
-		0, IMAGEMANAGER->findImage("ending_background")->getHeight()/2 - _sceneHeight, WINSIZEX, _sceneHeight * 2);
+		0, IMAGEMANAGER->findImage("ending_background")->getHeight()/2 - _sceneHeight, IMAGEMANAGER->findImage("ending_background")->getWidth(), _sceneHeight * 2);
 	HBRUSH brush = CreateSolidBrush(RGB(105, 105, 105));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
 	HPEN pen = CreatePen(PS_NULL, 0, RGB(0, 0, 0));
