@@ -49,6 +49,7 @@ public:
 	virtual void setX(float x) { _x = x; }
 	virtual void setY(float y) { _y = y; }
 
+	//에너미매니저와 링크
 	void setEmMemoryAddressLink(enemyManager * em) { _em = em; }
 };
 

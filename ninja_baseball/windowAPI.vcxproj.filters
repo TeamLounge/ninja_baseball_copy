@@ -94,9 +94,6 @@
     <ClCompile Include="cardState.cpp">
       <Filter>playGround\enemy\card\cardState</Filter>
     </ClCompile>
-    <ClCompile Include="punchBullet.cpp">
-      <Filter>playGround\bullets</Filter>
-    </ClCompile>
     <ClCompile Include="cardIdleState.cpp">
       <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClCompile>
@@ -177,6 +174,12 @@
     </ClCompile>
     <ClCompile Include="ybState.cpp">
       <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\enemy\BOSS</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,9 +291,6 @@
     <ClInclude Include="cardState.h">
       <Filter>playGround\enemy\card\cardState</Filter>
     </ClInclude>
-    <ClInclude Include="punchBullet.h">
-      <Filter>playGround\bullets</Filter>
-    </ClInclude>
     <ClInclude Include="cardIdleState.h">
       <Filter>playGround\enemy\card\cardState\action</Filter>
     </ClInclude>
@@ -371,6 +371,12 @@
     </ClInclude>
     <ClInclude Include="ybState.h">
       <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\enemy\BOSS</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +463,12 @@
     </Filter>
     <Filter Include="playGround\enemy\baseballYellow\ybState">
       <UniqueIdentifier>{87872637-2daf-45ef-9872-9d1c852f2980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\BOSS">
+      <UniqueIdentifier>{0813b2a4-3370-48c1-acf6-617562248110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\BOSS\bossState">
+      <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

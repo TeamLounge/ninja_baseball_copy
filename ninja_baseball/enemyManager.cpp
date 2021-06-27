@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "enemyManager.h"
 #include "player.h"
-#include "time.h"
 
 HRESULT enemyManager::init()
 {
@@ -349,6 +348,7 @@ void enemyManager::baseballCollision()
 }
 
 
+
 //////////////////////////////////////////////////
 //			카드 에너미 세팅
 /////////////////////////////////////////////////
@@ -422,21 +422,28 @@ void enemyManager::WhereIsCard()
 			}
 
 			RECT temp;
-			if (IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc()))
+			if (IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc())
+				&& !(*_viCard)->_isCrash)
 			{
-				srand(time(NULL));
-				int Num = 0;
-				Num = rand() % 3;
+				(*_viCard)->numPattern = rand() % 3;
+				(*_viCard)->setIsDash(false);
+				(*_viCard)->setIsBullet(false);
+				(*_viCard)->_isCrash = true;
 
-				if (Num == 1)
+				if ((*_viCard)->numPattern == 1)
 				{
 					(*_viCard)->setIsDash(true);
 				}
 
-				if (Num == 2)
+				if ((*_viCard)->numPattern == 2)
 				{
 					(*_viCard)->setIsBullet(true);
 				}
+			}
+
+			if (!IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc()))
+			{
+				(*_viCard)->_isCrash = false;
 			}
 		}
 	}

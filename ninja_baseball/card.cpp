@@ -41,6 +41,8 @@ HRESULT card::init(POINT position)
 	_card.img->setX(_card.x);
 	_card.img->setY(_card.y);
 
+	_currentFrameX = _currentFrameY = 0;
+
 	setCard();
 	setCardShadow();
 	return S_OK;
@@ -69,16 +71,17 @@ void card::update()
 		_atkRc = RectMake(_card.x - 400, _card.y + 70, 200, 40);
 	}
 	
-
 	getGravity();
+	updateBullet();
 }
 
 void card::render()
 {
 	_cardShadow.img->render(getMemDC(), _cardShadow.rc.left, _cardShadow.rc.top);
-	_card.img->frameRender(getMemDC(), _card.x, _card.y);
+	_card.img->frameRender(getMemDC(), _card.x, _card.y, _currentFrameX, _currentFrameY);
+	renderBullet();
 
-	if (KEYMANAGER->isToggleKey(VK_F1))
+	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		SetBkMode(getMemDC(), TRANSPARENT);
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
@@ -92,6 +95,11 @@ void card::render()
 		Rectangle(getMemDC(), _card.rc);
 		Rectangle(getMemDC(), _cardShadow.rc);
 		Rectangle(getMemDC(), _atkRc);
+
+		for (_viPunchBullet = _vPunchBullet.begin(); _viPunchBullet != _vPunchBullet.end(); ++_viPunchBullet)
+		{
+			Rectangle(getMemDC(), _viPunchBullet->rc);
+		}
 
 		SelectObject(getMemDC(), oldBrush);
 		DeleteObject(myPen);
@@ -139,6 +147,10 @@ void card::setCard()
 	_isApex = false;
 	//각 벽에 닿았는지 확인
 	_isRightWall = _isLeftWall = _isTopWall = _isBottomWall = false;
+	//총알 발사하게하는 불값
+	_isFire = false;
+	//총알 몇번쐈는지 확인용
+	_bulletCount = 0;
 }
 
 void card::setCardShadow()
@@ -176,5 +188,72 @@ void card::getGravity()
 	{
 		_isJump = true;
 	}
-	
+}
+
+void card::setBullet(int bulletMax, float range)
+{
+	_range = range;
+	_bulletMax = bulletMax;
+	_isFire = true;
+}
+
+void card::updateBullet()
+{
+	moveBullet();
+}
+
+void card::renderBullet()
+{
+	for (_viPunchBullet = _vPunchBullet.begin(); _viPunchBullet != _vPunchBullet.end(); ++_viPunchBullet)
+	{
+		if (_isLeft) _viPunchBullet->currentFrameY = 1;
+		if (!_isLeft) _viPunchBullet->currentFrameY = 0;
+
+		_viPunchBullet->img->frameRender(getMemDC(), _viPunchBullet->rc.left, _viPunchBullet->rc.top,
+			0, _viPunchBullet->currentFrameY);
+	}
+}
+
+void card::fireBullet(float x, float y, float angle)
+{
+	if (_bulletMax < _vPunchBullet.size() || _isFire) return;
+
+	tagPunchBullet bullet;
+	ZeroMemory(&bullet, sizeof(tagPunchBullet));
+	bullet.img = new image;
+	bullet.img->init("image/3_Enemy/card/card_punch.bmp", 0, 0, 195, 390, 1, 2,
+		true, RGB(255, 0, 255), false);
+	bullet.speed = 15.0f;
+	bullet.angle = angle;
+	bullet.x = bullet.fireX = x;
+	bullet.y = bullet.fireY = y;
+	bullet.rc = RectMakeCenter(bullet.x, bullet.y,
+		bullet.img->getFrameWidth(),
+		bullet.img->getFrameHeight());
+
+	_vPunchBullet.push_back(bullet);
+
+}
+
+void card::moveBullet()
+{
+	for (_viPunchBullet = _vPunchBullet.begin(); _viPunchBullet != _vPunchBullet.end();)
+	{
+		_viPunchBullet->x += cosf(_viPunchBullet->angle) * _viPunchBullet->speed;
+		_viPunchBullet->y += -sinf(_viPunchBullet->angle) * _viPunchBullet->speed;
+
+		_viPunchBullet->rc = RectMakeCenter(_viPunchBullet->x, _viPunchBullet->y,
+			_viPunchBullet->img->getFrameWidth(),
+			_viPunchBullet->img->getFrameHeight());
+
+		//사거리보다 더 멀리 나가면(?)
+		if (_range < getDistance(_viPunchBullet->x, _viPunchBullet->y, _viPunchBullet->fireX, _viPunchBullet->fireY))
+		{
+			SAFE_RELEASE(_viPunchBullet->img);
+			SAFE_DELETE(_viPunchBullet->img);
+			_viPunchBullet = _vPunchBullet.erase(_viPunchBullet);
+			_isFire = false;
+		}
+		else ++_viPunchBullet;
+	}
 }
