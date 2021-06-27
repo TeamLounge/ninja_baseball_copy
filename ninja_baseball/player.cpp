@@ -3,6 +3,7 @@
 #include "Ryno_idle.h"
 #include "red_idleState.h"
 #include "red_moveState.h"
+#include "enemyManager.h"
 
 HRESULT player::init(int character)
 {	

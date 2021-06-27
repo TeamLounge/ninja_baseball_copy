@@ -3,9 +3,6 @@
 #include "gameNode.h"
 #include "wbState.h"
 
-//red랑 상호참조 해보자
-//class red;
-
 struct WHITEBASEBALL
 {
 	RECT rc;					//에너미 렉트
@@ -48,6 +45,8 @@ public:
 	bool isDown;				//에너미가 플레이어의 아래에 있어?
 	bool isCollisionAttack;		//에너미 들어와서 칠거야?
 	bool isJump;				//점프했어?
+	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
+	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 
 
 	whiteBaseball() {};
@@ -64,11 +63,16 @@ public:
 	
 	inline RECT getRect() { return _whiteBaseball.rc; }
 	inline RECT getAttackRect() { return _whiteBaseball.rcAttackRange; }
+
+	float getCenterX() { return (_whiteBaseball.rc.left + _whiteBaseball.rc.right) / 2; }
+	float getCenterY() { return (_whiteBaseball.rc.top + _whiteBaseball.rc.bottom) / 2; }
 	
 
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
+	void setIsXOverlap(bool _isXOverlap) { isXOverlap = _isXOverlap; }
+	void setIsYOverlap(bool _isYOverlap) { isYOverlap = _isYOverlap; }
 
 	//상호참조 위함
 	//void setRedMemoryAddressLink(red* red) { _red = red; }

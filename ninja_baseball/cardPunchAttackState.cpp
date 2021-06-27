@@ -7,6 +7,11 @@
 
 cardState * cardPunchAttackState::inputHandle(card * card)
 {
+	if (card->_currentFrameX == card->_card.img->getMaxFrameX())
+	{
+		card->_isPunchBullet = false;
+		return new cardIdleState();
+	}
 	return S_OK;
 }
 
@@ -18,12 +23,18 @@ void cardPunchAttackState::update(card * card)
 		if (frameCount >= 25)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(card->_card.img->getMaxFrameX());
+				card->_currentFrameX = card->_card.img->getMaxFrameX();
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(0);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 0;
+			//총알을 원하는 프레임에서 발사하기 위한 조건문
+			if (card->_currentFrameX == 1)
+			{
+				card->fireBullet(card->_card.rc.right, card->getCenterY(), PI-PI);
+				card->setBullet(1, WINSIZEX);
+			}
 		}
 	}
 
@@ -33,12 +44,18 @@ void cardPunchAttackState::update(card * card)
 		if (frameCount >= 25)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(card->_card.img->getMaxFrameX());
+				card->_currentFrameX = card->_card.img->getMaxFrameX();
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(1);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 1;
+			//총알을 원하는 프레임에서 발사하기 위한 조건문
+			if (card->_currentFrameX == 1)
+			{
+				card->fireBullet(card->_card.rc.left, card->getCenterY(), PI);
+				card->setBullet(1, WINSIZEX);
+			}
 		}
 	}
 }
@@ -51,14 +68,14 @@ void cardPunchAttackState::enter(card * card)
 
 	if (!card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(0);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 0;
 	}
 
 	if (card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(1);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 1;
 	}
 }
 

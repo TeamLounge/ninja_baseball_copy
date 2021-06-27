@@ -5,13 +5,16 @@
 #include "stageScene.h"
 #include "endingScene.h"
 #include "playerSelectScene.h"
+#include "enemyManager.h"
 
 class playGround : public gameNode
 {
 private:
 	
 	player* _red;
-	player* _Ryno;
+	//player* _Ryno;
+
+	enemyManager* _em;
 
 public:
 	playGround();

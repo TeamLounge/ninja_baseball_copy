@@ -75,8 +75,8 @@ void wbAttackJumpState::enter(whiteBaseball * whiteBaseball)
 	_currentFrameX = 0;
 
 	//초기화
-	jumpPower = 4.5f;
-	gravity = 0.04f;
+	jumpPower =21.0f;
+	gravity = 0.58f;
 	
 }
 
@@ -95,11 +95,11 @@ void wbAttackJumpState::jump(whiteBaseball * whiteBaseball)
 		//x좌표 움직이기
 		if (!whiteBaseball->isRight)	//왼쪽
 		{
-			whiteBaseball->_whiteBaseball.x -= 3;
+			whiteBaseball->_whiteBaseball.x -= 5;
 		}
 		if (whiteBaseball->isRight)		//오른쪽
 		{
-			whiteBaseball->_whiteBaseball.x += 3;
+			whiteBaseball->_whiteBaseball.x += 5;
 		}
 
 		//y좌표 특정위치까지만 중력ON

@@ -4,6 +4,7 @@
 #include "cardIdleState.h"
 #include "cardDashAttackState.h"
 #include "cardPunchAttackState.h"
+#include "time.h"
 
 cardState * cardMoveState::inputHandle(card * card)
 {
@@ -27,12 +28,12 @@ void cardMoveState::update(card * card)
 		if (frameCount >= 10)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(-1);
+				card->_currentFrameX = 0;
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(0);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 0;
 		}
 	}
 
@@ -42,12 +43,12 @@ void cardMoveState::update(card * card)
 		if (frameCount >= 10)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(-1);
+				card->_currentFrameX = 0;
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(1);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 1;
 		}
 	}
 
@@ -63,14 +64,14 @@ void cardMoveState::enter(card * card)
 
 	if (!card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(0);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 0;
 	}
 
 	if (card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(1);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 1;
 	}
 
 

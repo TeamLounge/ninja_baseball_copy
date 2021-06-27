@@ -1,7 +1,11 @@
 #pragma once
 #include "gameNode.h"
 #include "cardState.h"
+#include <vector>
 
+/////////////////////////////
+//     카드 구조체
+////////////////////////////
 struct CARD
 {
 	RECT rc;
@@ -9,7 +13,9 @@ struct CARD
 	image* img;
 };
 
-//카드 쉐도우가 먼저 렌더되게 해야된다.
+/////////////////////////
+//    그림자 구조체
+/////////////////////////
 struct CARDSHADOW
 {
 	RECT rc;
@@ -18,11 +24,30 @@ struct CARDSHADOW
 };
 
 
+/////////////////////////
+//    총알 구조체
+/////////////////////////
+struct tagPunchBullet
+{
+	RECT rc;
+	float x, y;
+	float fireX, fireY;
+	image* img;
+	bool isFire;
+	float speed;
+	float angle;
+	float range;
+	int count;
+	int currentFrameX, currentFrameY;
+};
+
 class card : public gameNode
 {
 private:
 	
 public:
+	vector<tagPunchBullet>				 _vPunchBullet;
+	vector<tagPunchBullet>::iterator	 _viPunchBullet;
 	cardState* _cardState;
 	CARDSHADOW _cardShadow;
 	CARD _card;
@@ -41,14 +66,27 @@ public:
 	bool _isDash, _isPunchBullet;
 	//플레이어의 센터 X와 센터Y를 받아오려고 만들었음.
 	float _rpX, _rpY;
+	//펀치 뷸렛 상태인지 프레임이 1에 왔는지 확인하고 총알을 발사하기 위한 방법
+	bool _isFire;
 	//공격용 렉트
 	RECT _atkRc;
+	//현재 프레임 번호 변수(스테이트)
+	int _currentFrameX, _currentFrameY;
+	//현재 프레임 번호 변수(총알)
+	int _bulletFrameX, _bulletFrameY;
+	//총알 몇번 쐈는지 카운트하는거
+	int _bulletCount;
+	int _bulletMax;
+	float _range;
+	//공격패턴을 넣기위한 작업
+	int numPattern;
+	bool _isCrash;
 
 	card();
 	~card();
 
 	virtual HRESULT init();	
-	virtual HRESULT init( POINT position);
+	virtual HRESULT init(POINT position);
 	virtual void release();
 	virtual void update();
 	virtual void render();	
@@ -58,6 +96,15 @@ public:
 	void setCardShadow();
 	void getGravity();
 
+	////////////////////////////
+	//   총알 발사 함수
+	///////////////////////////
+	void setBullet(int bulletMax, float range);
+	void updateBullet();
+	void renderBullet();
+	void fireBullet(float x, float y, float angle);
+	void moveBullet();
+
 	//세터 함수
 	void setIsUpper(bool isUpper) { _isUpper = isUpper; }
 	void setIsLeft(bool isLeft) { _isLeft = isLeft; }
@@ -65,6 +112,7 @@ public:
 	void setIsBullet(bool isPunchBullet) { _isPunchBullet = isPunchBullet; }
 	void setIsDamaged(bool isDamaged) { _isDamaged = isDamaged; }
 	void setIsJump(bool isJump) { _isJump = isJump; }
+	void setIsFire(bool isFire) { _isFire = isFire; }
 
 	//게터 설정
 	RECT getCardRc() { return _card.rc; }
@@ -75,4 +123,5 @@ public:
 	bool getIsLeft() { return _isLeft; }
 	bool getIsDash() { return _isDash; }
 	bool getIsBullet() { return _isPunchBullet; }
+	bool getIsFire() { return _isFire; }
 };

@@ -10,7 +10,7 @@ HRESULT stageScene::init()
 	_em = new enemyManager;
 	_em->init();
 
-	_em->setRedMemoryAddressLink(_Ryno);
+	_em->setPlayerMemoryAddressLink(_Ryno);
 
 	return S_OK;
 }

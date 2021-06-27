@@ -148,6 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="bbAttackPunchState.h" />
+    <ClInclude Include="bbIdleState.h" />
+    <ClInclude Include="bbLandState.h" />
+    <ClInclude Include="bbState.h" />
+    <ClInclude Include="blueBaseball.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bossState.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="card.h" />
     <ClInclude Include="cardDashAttackState.h" />
@@ -161,6 +168,12 @@
     <ClInclude Include="endingScene.h" />
     <ClInclude Include="enemyManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="gbAttackPunchState.h" />
+    <ClInclude Include="gbHangState.h" />
+    <ClInclude Include="gbIdleState.h" />
+    <ClInclude Include="gbLandState.h" />
+    <ClInclude Include="gbState.h" />
+    <ClInclude Include="greenBaseball.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
@@ -168,7 +181,6 @@
     <ClInclude Include="playerstate.h" />
     <ClInclude Include="playerSelectScene.h" />
     <ClInclude Include="playGround.h" />
-    <ClInclude Include="punchBullet.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="red_attackState.h" />
     <ClInclude Include="red_idleState.h" />
@@ -205,12 +217,21 @@
     <ClInclude Include="wbState.h" />
     <ClInclude Include="wbStopState.h" />
     <ClInclude Include="whiteBaseball.h" />
+    <ClInclude Include="ybAttackPunchState.h" />
+    <ClInclude Include="ybIdleState.h" />
     <ClInclude Include="ybMoveState.h" />
     <ClInclude Include="ybState.h" />
     <ClInclude Include="yellowBaseball.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="bbAttackPunchState.cpp" />
+    <ClCompile Include="bbIdleState.cpp" />
+    <ClCompile Include="bbLandState.cpp" />
+    <ClCompile Include="bbState.cpp" />
+    <ClCompile Include="blueBaseball.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossState.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="cardDashAttackState.cpp" />
@@ -223,13 +244,18 @@
     <ClCompile Include="endingScene.cpp" />
     <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="gbAttackPunchState.cpp" />
+    <ClCompile Include="gbHangState.cpp" />
+    <ClCompile Include="gbIdleState.cpp" />
+    <ClCompile Include="gbLandState.cpp" />
+    <ClCompile Include="gbState.cpp" />
+    <ClCompile Include="greenBaseball.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSelectScene.cpp" />
     <ClCompile Include="playGround.cpp" />
-    <ClCompile Include="punchBullet.cpp" />
     <ClCompile Include="red_attackState.cpp" />
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpAttackState.cpp" />
@@ -268,6 +294,8 @@
     <ClCompile Include="wbStopState.cpp" />
     <ClCompile Include="whiteBaseball.cpp" />
     <ClCompile Include="winMain.cpp" />
+    <ClCompile Include="ybAttackPunchState.cpp" />
+    <ClCompile Include="ybIdleState.cpp" />
     <ClCompile Include="ybMoveState.cpp" />
     <ClCompile Include="ybState.cpp" />
     <ClCompile Include="yellowBaseball.cpp" />

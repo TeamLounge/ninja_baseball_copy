@@ -45,7 +45,10 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 		}
 
 		//move
-		whiteBaseball->_whiteBaseball.x -= 0.7f;
+		if (!whiteBaseball->isXOverlap)
+		{
+			whiteBaseball->_whiteBaseball.x -= 0.7f;
+		}
 		//감지 범위 => 왼쪽으로 생김
 		whiteBaseball->_whiteBaseball.rcAttackRange = RectMakeCenter(whiteBaseball->_whiteBaseball.x, whiteBaseball->_whiteBaseball.y + 200, 250, 50);
 
@@ -69,20 +72,27 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 
 		}
 		//move
-		whiteBaseball->_whiteBaseball.x += 0.7f;
+		if (!whiteBaseball->isXOverlap)
+		{
+			whiteBaseball->_whiteBaseball.x += 0.7f;
+		}
 		//감지 범위 => 오른쪽으로 생김
 		whiteBaseball->_whiteBaseball.rcAttackRange = RectMakeCenter(whiteBaseball->_whiteBaseball.x + 360, whiteBaseball->_whiteBaseball.y + 200, 250, 50);
 	}
 
 	//move (up, down)
-	if (!whiteBaseball->isDown)	//위쪽이면
+	if (!whiteBaseball->isYOverlap)//떨림방지	//isOverlap이 false일 때.. 즉, 구간 밖일 때(평소)	//반대로 중점이 구간 내라면 그 땐 y좌표는 움직이지 않는다.
 	{
-		whiteBaseball->_whiteBaseball.y -= 0.7f;
+		if (!whiteBaseball->isDown)	//위쪽이면
+		{
+			whiteBaseball->_whiteBaseball.y -= 0.7f;
+		}
+		if (whiteBaseball->isDown)	//아래쪽이면
+		{
+			whiteBaseball->_whiteBaseball.y += 0.7f;
+		}
 	}
-	if (whiteBaseball->isDown)	//아래쪽이면
-	{
-		whiteBaseball->_whiteBaseball.y += 0.7f;
-	}
+	
 
 
 	

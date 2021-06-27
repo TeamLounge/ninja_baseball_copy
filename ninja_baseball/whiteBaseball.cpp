@@ -28,7 +28,7 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	setShadow();
 
-	_wbState = new wbRollState();
+	_wbState = new wbRollState();		//롤 모습으로 등장
 	_wbState->enter(this);
 
 	_whiteBaseball.x = position.x;
@@ -45,6 +45,8 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
+	isXOverlap == false;
+	isYOverlap == false;
 
 	return S_OK;
 }
@@ -63,7 +65,7 @@ void whiteBaseball::update()
 	
 
 	//에너미
-	_whiteBaseball.rc = RectMakeCenter(_whiteBaseball.x + 200 , _whiteBaseball.y + 200, 300, 230);
+	_whiteBaseball.rc = RectMakeCenter(_whiteBaseball.x + 200 , _whiteBaseball.y + 200, 300, 232);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{
@@ -84,10 +86,26 @@ void whiteBaseball::update()
 
 void whiteBaseball::render()
 {
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		SetBkMode(getMemDC(), TRANSPARENT);
+		SetTextColor(getMemDC(), RGB(255, 255, 255));
 
-	Rectangle(getMemDC(), _whiteBaseball.rcAttackRange);	//공격 범위 렉트
-	Rectangle(getMemDC(), _whiteBaseball.rc);				//에너미 렉트
-	Rectangle(getMemDC(), _wbShadow.rc);					//그림자 렉트
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
+
+		HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
+		SelectObject(getMemDC(), myPen);
+
+		Rectangle(getMemDC(), _whiteBaseball.rcAttackRange);	//공격 범위 렉트
+		Rectangle(getMemDC(), _whiteBaseball.rc);				//에너미 렉트
+		Rectangle(getMemDC(), _wbShadow.rc);					//그림자 렉트
+
+		SelectObject(getMemDC(), oldBrush);
+		DeleteObject(myPen);
+		DeleteObject(myBrush);
+	}
+	
 	//Rectangle(getMemDC(), _whiteBaseball.rcStop);			//등장 충돌 렉트
 
 	_wbShadow.img->render(getMemDC(), _wbShadow.rc.left, _wbShadow.rc.top);	
@@ -108,7 +126,9 @@ void whiteBaseball::setImage()
 	IMAGEMANAGER->addFrameImage("wBaseball_punch", "image/3_Enemy/baseball/wBaseball_punch.bmp", 720, 600, 2, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("wBaseball_roll", "image/3_Enemy/baseball/wBaseball_roll.bmp", 4320, 600, 12, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("wBaseball_spin", "image/3_Enemy/baseball/wBaseball_spin.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("wBaseball_stop", "image/3_Enemy/baseball/wBaseball_stop.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);	//마지막 인자 : 알파렌 유무
+
+	IMAGEMANAGER->addFrameImage("wBaseball_stop", "image/3_Enemy/baseball/wBaseball_stop.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);	
+																																		//마지막 인자 : 알파렌더 유무
 
 	IMAGEMANAGER->addImage("wBaseball_deathL", "image/3_Enemy/baseball/wBaseball_deathL.bmp", 360, 300, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("wBaseball_deathR", "image/3_Enemy/baseball/wBaseball_deathR.bmp", 360, 300, true, RGB(255, 0, 255), false);
