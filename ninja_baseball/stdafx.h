@@ -30,7 +30,7 @@ using namespace SUNFL_UTIL;
 //==================================
 
 #define WINNAME (LPTSTR)(TEXT("Ninja Baseball Batman(Copy)"))
-#define WINSTARTX 50	//윈도우 창 시작좌표 (left)
+#define WINSTARTX 2000	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
 #define WINSIZEX 960	//윈도우 가로크기
 #define WINSIZEY 768	//윈도우 세로크기

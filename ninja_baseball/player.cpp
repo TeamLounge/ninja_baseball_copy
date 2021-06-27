@@ -21,8 +21,8 @@ HRESULT player::init(int character)
 		_state = new Ryno_idle;
 	}
 	isRight = true;
-	_x = WINSIZEX / 2;
-	_y = WINSIZEY / 2 + 200;
+	_x = 200;
+	_y = BACKGROUNDY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
 	
@@ -62,7 +62,7 @@ void player::render()
 {
 
 	
-	Rectangle(getMemDC(), _playerrc);
+	//Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );

@@ -117,6 +117,6 @@ void whiteBaseball::setImage()
 
 void whiteBaseball::setShadow()
 {
-	IMAGEMANAGER->addImage("wBaseball_shadow", "image/wBaseball_shadow.bmp", 215, 50, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("wBaseball_shadow", "image/3_Enemy/baseball/wBaseball_shadow.bmp", 215, 50, true, RGB(255, 0, 255), false);
 	_wbShadow.img = IMAGEMANAGER->findImage("wBaseball_shadow");
 }

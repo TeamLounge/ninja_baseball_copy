@@ -6,8 +6,6 @@ HRESULT enemyManager::init()
 {
 	setWB();
 
-	
-
 	return S_OK;
 }
 
@@ -34,7 +32,7 @@ void enemyManager::setWB()
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
-		_wb->init(PointMake(WINSIZEX + i * 220, -50 + i * 200));			//이닛으로 위치 잡아주고
+		_wb->init(PointMake(WINSIZEX + i * 220, BACKGROUNDY - 200 -50 + i * 200));			//이닛으로 위치 잡아주고
 		_vWb.push_back(_wb);					//위치 잡아준 애를 벡터에 넣음
 
 	}

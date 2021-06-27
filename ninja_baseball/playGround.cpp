@@ -20,15 +20,13 @@ HRESULT playGround::init()
 	//	만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
 	//	player = new (상속한 클래스);
 
-	_Ryno = new player;
-	_Ryno->init(2);
 
 	SCENEMANAGER->addScene("title", new titleScene);
 	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("title");
+	SCENEMANAGER->changeScene("stage");
 	
 	return S_OK;
 }
@@ -44,8 +42,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	_Ryno->update();
-
+	SCENEMANAGER->update();
 }
 
 
@@ -55,16 +52,14 @@ void playGround::render()
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
 
-	SCENEMANAGER->render();
 
-	_Ryno->render();
 
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		TIMEMANAGER->render(getMemDC());
 	}
-
+	SCENEMANAGER->render();
 	//==================================================
 	//여기도 건들지마라
 	CAMERAMANAGER->render(this->getBackBuffer(), getHDC());
