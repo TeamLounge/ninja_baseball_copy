@@ -21,16 +21,15 @@ void stageScene::release()
 
 void stageScene::update()
 {
-	
 	_Ryno->update();
 	_em->update();
 	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());
+
 }
 
 void stageScene::render()
 {
 	IMAGEMANAGER->findImage("stage")->render(getMemDC(), 0, 0);
-	//Rectangle(getMemDC(), _rc);
 	_em->render();
 	_Ryno->render();
 }

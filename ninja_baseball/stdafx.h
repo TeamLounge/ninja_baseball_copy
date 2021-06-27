@@ -21,6 +21,7 @@
 #include "sceneManager.h"
 #include "soundManager.h"
 #include "cameraManager.h"
+#include "txtData.h"
 
 using namespace std;
 using namespace SUNFL_UTIL;
@@ -30,7 +31,7 @@ using namespace SUNFL_UTIL;
 //==================================
 
 #define WINNAME (LPTSTR)(TEXT("Ninja Baseball Batman(Copy)"))
-#define WINSTARTX 2000	//윈도우 창 시작좌표 (left)
+#define WINSTARTX 50	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
 #define WINSIZEX 960	//윈도우 가로크기
 #define WINSIZEY 768	//윈도우 세로크기
@@ -48,6 +49,7 @@ using namespace SUNFL_UTIL;
 #define SCENEMANAGER	sceneManager::getSingleton()
 #define SOUNDMANAGER	soundManager::getSingleton()
 #define CAMERAMANAGER	cameraManager::getSingleton()
+#define TXTDATA			txtData::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p) = nullptr;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
