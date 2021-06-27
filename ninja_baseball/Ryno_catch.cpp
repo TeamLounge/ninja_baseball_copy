@@ -9,7 +9,7 @@ playerstate * Ryno_catch::handleInput(player * player)
 
 void Ryno_catch::update(player * player)
 {
-
+	
 }
 
 void Ryno_catch::enter(player * player)

@@ -54,7 +54,7 @@ void Ryno_jump::update(player * player)
 	//공격키를 눌렀을때 공격상태로  아직 렉트는 씌우지않음
 	//공격일때 플레이어의 공격렉트를 따로 띄울생각입니다
 	//마지막인덱스일떄 공격렉트를 띄우는거죠
- 	if (isattack)
+ 	if (player->isattack)
 	{
 		if (_count % 4 == 0)
 		{

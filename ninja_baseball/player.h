@@ -3,6 +3,7 @@
 #include "playerstate.h"
 
 class playerstate; //이것이 문제였네..
+class enemyManager;
 
 class player : public gameNode
 {
@@ -13,6 +14,7 @@ private:
 	RECT _playerrc; // 렉트
 	float _x, _y; // 좌표
 	playerstate* _state; // 상태패턴 변수
+	enemyManager* _em;
 	//==================================
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
@@ -37,6 +39,8 @@ public:
 	virtual void handleInput(); // 상태변환받는함수
 
 	virtual void addImage();
+	virtual void collision();
+
 	//수만은 겟터
 	virtual image* getImage() { return _playerimg; }
 	virtual RECT getRect() { return _playerrc; }
@@ -49,6 +53,6 @@ public:
 	virtual void setRect(RECT rc) { _playerrc = rc; }
 	virtual void setX(float x) { _x = x; }
 	virtual void setY(float y) { _y = y; }
-
+	virtual void setLinkEnemyManager(enemyManager* em) { _em = em; }
 };
 

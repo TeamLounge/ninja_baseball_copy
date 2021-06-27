@@ -5,6 +5,7 @@ playerstate * Ryno_dashAttack::handleInput(player * player)
 {
 	if (speed < 0)
 	{
+
 		player->setY(player->getY() - 30);
 		return new Ryno_idle;
 	}

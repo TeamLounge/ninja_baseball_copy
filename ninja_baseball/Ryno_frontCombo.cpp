@@ -6,6 +6,7 @@ playerstate * Ryno_frontCombo::handleInput(player * player)
 {
 	if (isend)
 	{
+		player->setY(player->getY() + 30);
 		return new Ryno_idle;
 	}
 
