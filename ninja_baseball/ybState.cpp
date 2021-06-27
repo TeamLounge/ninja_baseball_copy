@@ -1,3 +1,5 @@
 #include "stdafx.h"
 #include "ybState.h"
 #include "ybMoveState.h"
+#include "ybIdleState.h"
+#include "ybAttackPunchState.h"

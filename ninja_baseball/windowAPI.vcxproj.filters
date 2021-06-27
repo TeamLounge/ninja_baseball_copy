@@ -85,36 +85,6 @@
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ybState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbAttackJumpState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbAttackPunchState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbIdleState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbRollState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="wbStopState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="whiteBaseball.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="ybMoveState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="yellowBaseball.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="card.cpp">
       <Filter>playGround\enemy\card</Filter>
     </ClCompile>
@@ -138,6 +108,75 @@
     </ClCompile>
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowBaseball.cpp">
+      <Filter>playGround\enemy\baseballYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="whiteBaseball.cpp">
+      <Filter>playGround\enemy\baseballWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="blueBaseball.cpp">
+      <Filter>playGround\enemy\baseballBlue</Filter>
+    </ClCompile>
+    <ClCompile Include="greenBaseball.cpp">
+      <Filter>playGround\enemy\baseballGreen</Filter>
+    </ClCompile>
+    <ClCompile Include="bbAttackPunchState.cpp">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbIdleState.cpp">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbLandState.cpp">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbState.cpp">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbAttackPunchState.cpp">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbHangState.cpp">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbIdleState.cpp">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbLandState.cpp">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbState.cpp">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackJumpState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackPunchState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbIdleState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbRollState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbStopState.cpp">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybAttackPunchState.cpp">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybIdleState.cpp">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybMoveState.cpp">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybState.cpp">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,36 +279,6 @@
     <ClInclude Include="playerstate.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="ybState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbAttackJumpState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbAttackPunchState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbIdleState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbRollState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="wbStopState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="whiteBaseball.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="ybMoveState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="yellowBaseball.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="card.h">
       <Filter>playGround\enemy\card</Filter>
     </ClInclude>
@@ -293,6 +302,75 @@
     </ClInclude>
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="yellowBaseball.h">
+      <Filter>playGround\enemy\baseballYellow</Filter>
+    </ClInclude>
+    <ClInclude Include="whiteBaseball.h">
+      <Filter>playGround\enemy\baseballWhite</Filter>
+    </ClInclude>
+    <ClInclude Include="blueBaseball.h">
+      <Filter>playGround\enemy\baseballBlue</Filter>
+    </ClInclude>
+    <ClInclude Include="greenBaseball.h">
+      <Filter>playGround\enemy\baseballGreen</Filter>
+    </ClInclude>
+    <ClInclude Include="bbState.h">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbAttackPunchState.h">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbIdleState.h">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbLandState.h">
+      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbAttackPunchState.h">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHangState.h">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbIdleState.h">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbLandState.h">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbState.h">
+      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackJumpState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackPunchState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbIdleState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbRollState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbStopState.h">
+      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybAttackPunchState.h">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybIdleState.h">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybMoveState.h">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybState.h">
+      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +433,30 @@
     </Filter>
     <Filter Include="playGround\enemy\card\cardState\attack">
       <UniqueIdentifier>{a9491298-3fbe-4462-945c-85e3ec699bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballYellow">
+      <UniqueIdentifier>{6304013c-83d1-4630-93ba-6257523d9c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballBlue">
+      <UniqueIdentifier>{d0b8e381-c13b-4342-98f7-0642f48c2978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballGreen">
+      <UniqueIdentifier>{90ede90f-a804-4b70-84de-0ca1726b2c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballWhite">
+      <UniqueIdentifier>{cb479cc6-d308-4c93-99d9-d3f456de7b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballBlue\bbState">
+      <UniqueIdentifier>{dd5e1e03-fc99-45ed-97f2-7a37d0147c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballGreen\gbState">
+      <UniqueIdentifier>{ff1abde2-01d2-46c0-b7d3-88dbd9e98e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballWhite\wbState">
+      <UniqueIdentifier>{c1432f22-90f8-48fc-a91d-a3003f6d7b6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\baseballYellow\ybState">
+      <UniqueIdentifier>{87872637-2daf-45ef-9872-9d1c852f2980}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

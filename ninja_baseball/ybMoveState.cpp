@@ -1,32 +1,42 @@
 #include "stdafx.h"
 #include "yellowBaseball.h"
 #include "ybMoveState.h"
+#include "ybIdleState.h"
+#include "ybAttackPunchState.h"
 
 ybState * ybMoveState::inputHandle(yellowBaseball * yellowBaseball)
 {
+	//타격 범위에 들어오면 
+	if (yellowBaseball->isCollisionAttack)
+	{
+		return new ybIdleState();
+	}
 	return nullptr;
 }
 
 void ybMoveState::update(yellowBaseball * yellowBaseball)
 {
 	frameCount++;
-	if (frameCount >= 14)
+	if (frameCount >= 8)
 	{
 		frameCount = 0;
-		if (yellowBaseball->_yellowBaseball.img->getFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+		if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 		{
-			yellowBaseball->_yellowBaseball.img->setFrameX(-1);	//뭐지 이거
+			_currentFrameX = 0;
 		}
-		yellowBaseball->_yellowBaseball.img->setFrameX(yellowBaseball->_yellowBaseball.img->getFrameX() + 1);
-		yellowBaseball->_yellowBaseball.img->setFrameY(0);
+		else {
+			_currentFrameX++;
+
+		}
+		_currentFrameY = 1;
 	}
 }
 
 void ybMoveState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_move");
-	yellowBaseball->_yellowBaseball.img->setFrameX(0);
-	yellowBaseball->_yellowBaseball.img->setFrameY(0);
+	_currentFrameX = 0;
+	_currentFrameY = 1;
 
 	return;
 }

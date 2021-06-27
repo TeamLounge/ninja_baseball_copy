@@ -14,6 +14,5 @@ public:
 	virtual void enter(yellowBaseball* yellowBaseball);
 	virtual void exit(yellowBaseball* yellowBaseball);
 
-
 };
 

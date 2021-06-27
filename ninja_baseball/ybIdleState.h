@@ -1,0 +1,17 @@
+#pragma once
+#include "ybState.h"
+
+class yellowBaseball;
+
+class ybIdleState :public ybState
+{
+public:
+
+	int frameCount;
+	int timeCount;
+
+	virtual ybState* inputHandle(yellowBaseball* yellowBaseball);
+	virtual void update(yellowBaseball* yellowBaseball);
+	virtual void enter(yellowBaseball* yellowBaseball);
+	virtual void exit(yellowBaseball* yellowBaseball);
+};
