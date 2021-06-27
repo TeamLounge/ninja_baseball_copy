@@ -10,9 +10,9 @@ private:
 
 	float _elapsedTime;
 
-	int _dialogTextNum; //출력할 개수
-
-	char str[128];
+	int _dialogTextNum[3]; //출력할 개수
+	int _dialogNow;
+	vector<string> _dialog;
 public:
 	HRESULT init();
 	void release();

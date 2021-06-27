@@ -19,9 +19,15 @@ HRESULT endingScene::init()
 
 	_elapsedTime = 0;
 
-	_dialogTextNum = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		_dialogTextNum[i] = 0;
+	}
+	_dialogNow = 0;
 
-	sprintf_s(str, "ONE DAY SIX BASEBALL ITEMS WERE");
+	_dialog.push_back("GOOD, WE GOT THE BAT BACK!!");
+	_dialog.push_back("THE NEXT ENEMY IS WAITING FOR US");
+	_dialog.push_back("ON THE STEAM SHIP!!");
 	return S_OK;
 }
 
@@ -45,22 +51,29 @@ void endingScene::update()
 
 		//다이얼로그도 출력
 		_elapsedTime += TIMEMANAGER->getElapsedTime();
-		if (_elapsedTime >= 0.2f)
-		{
-			_elapsedTime -= 0.2f;
-			if (_dialogTextNum >= strlen(str))
-			{
-				_dialogTextNum = strlen(str);
-			}
-			else
-			{
-				_dialogTextNum++;
-			}
 
-		}
-		if (KEYMANAGER->isOnceKeyDown('Z'))
+		if (_dialogNow < _dialog.size())
 		{
-			_dialogTextNum = strlen(str);
+			if (_elapsedTime >= 0.2f)
+			{
+				_elapsedTime -= 0.2f;
+				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
+				{
+					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
+				}
+				else
+				{
+					_dialogTextNum[_dialogNow]++;
+				}
+			}
+			if (_dialogTextNum[_dialogNow] == _dialog[_dialogNow].length())
+			{
+				_dialogNow++;
+			}
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
+			}
 		}
 	}
 
@@ -101,6 +114,24 @@ void endingScene::render()
 	//캐릭터 씬
 	IMAGEMANAGER->findImage("character_scene")->render(getMemDC(), 0, 144 + IMAGEMANAGER->findImage("character_scene")->getHeight() / 2 - _sceneHeight, 
 		0, IMAGEMANAGER->findImage("character_scene")->getHeight() /2 - _sceneHeight, WINSIZEX, _sceneHeight * 2);
+	
+	HFONT font = CreateFont(20, 0, 0, 0, 100, false, false, false, DEFAULT_CHARSET,
+		0, 0, 0, 0, TEXT("Arcade Normal"));
+	HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
+	SetBkMode(getMemDC(), TRANSPARENT);
+	SetTextColor(getMemDC(), RGB(0, 0, 0));
+	for (int i = 0; i < 3; i++)
+	{
+		TextOut(getMemDC(), 102, 602 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+	}
+	SetTextColor(getMemDC(), RGB(255, 255, 255));
+	
+	for (int i = 0; i < 3; i++)
+	{
+		TextOut(getMemDC(), 100, 600 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+	}
+	SelectObject(getMemDC(), oldFont);
+	DeleteObject(font);
 
-	TextOut(getMemDC(), 100, 100, str, _dialogTextNum);
+
 }

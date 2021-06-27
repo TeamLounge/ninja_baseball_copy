@@ -187,6 +187,7 @@
     <ClInclude Include="red_jumpAttackState.h" />
     <ClInclude Include="red_jumpState.h" />
     <ClInclude Include="red_moveState.h" />
+    <ClInclude Include="renderManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Ryno_attack.h" />
     <ClInclude Include="Ryno_catch.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="red_jumpAttackState.cpp" />
     <ClCompile Include="red_jumpState.cpp" />
     <ClCompile Include="red_moveState.cpp" />
+    <ClCompile Include="renderManager.cpp" />
     <ClCompile Include="Ryno_attack.cpp" />
     <ClCompile Include="Ryno_catch.cpp" />
     <ClCompile Include="Ryno_crawl.cpp" />
