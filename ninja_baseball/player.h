@@ -4,6 +4,8 @@
 
 class playerstate; //이것이 문제였네..
 
+class enemyManager; //enemy들과 충돌 위한 전방선언(상호참조용)
+
 class player : public gameNode
 {
 private:
@@ -16,6 +18,8 @@ private:
 	//==================================
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
+
+	enemyManager* _em;
 
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
@@ -45,5 +49,7 @@ public:
 	virtual void setX(float x) { _x = x; }
 	virtual void setY(float y) { _y = y; }
 
+	//에너미매니저와 링크
+	void setEmMemoryAddressLink(enemyManager * em) { _em = em; }
 };
 

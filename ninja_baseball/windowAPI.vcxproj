@@ -148,6 +148,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bossState.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="card.h" />
     <ClInclude Include="cardDashAttackState.h" />
@@ -168,7 +170,6 @@
     <ClInclude Include="playerstate.h" />
     <ClInclude Include="playerSelectScene.h" />
     <ClInclude Include="playGround.h" />
-    <ClInclude Include="punchBullet.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="red_attackState.h" />
     <ClInclude Include="red_idleState.h" />
@@ -205,6 +206,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossState.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="cardDashAttackState.cpp" />
@@ -223,7 +226,6 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSelectScene.cpp" />
     <ClCompile Include="playGround.cpp" />
-    <ClCompile Include="punchBullet.cpp" />
     <ClCompile Include="red_attackState.cpp" />
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpAttackState.cpp" />

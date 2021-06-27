@@ -1,14 +1,11 @@
 #include "stdafx.h"
 #include "enemyManager.h"
 #include "player.h"
-//이거 지워보면 
 
 HRESULT enemyManager::init()
 {
-	setWB();
-
+	setCard();
 	
-
 	return S_OK;
 }
 
@@ -18,15 +15,17 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	updateWB();
 	playerLocation();
 
 	collision();	//레드 vs wb타격범위렉트
+
+	updateCard();
+	WhereIsCard();
 }
 
 void enemyManager::render()
 {
-	renderWB();
+	renderCard();
 }
 
 
@@ -68,23 +67,23 @@ void enemyManager::playerLocation()
 		if (!(*_viWb)->isJump)	//점프 = true
 		{
 			//에너미가 플레이어의 오른쪽?
-			if (_red->getRect().right > (*_viWb)->getRect().right)
+			if (_player->getRect().right > (*_viWb)->getRect().right)
 			{
 				(*_viWb)->setIsRight(true);
 			}
 			//에너미가 플레이어의 왼쪽?
-			if (_red->getRect().left < (*_viWb)->getRect().left)
+			if (_player->getRect().left < (*_viWb)->getRect().left)
 			{
 				(*_viWb)->setIsRight(false);
 			}
 
 			//에너미가 플레이어의 위?
-			if (_red->getRect().top > (*_viWb)->getRect().top)
+			if (_player->getRect().top > (*_viWb)->getRect().top)
 			{
 				(*_viWb)->setIsDown(false);
 			}
 			//에너미가 플레이어의 아래?
-			if (_red->getRect().bottom > (*_viWb)->getRect().bottom)
+			if (_player->getRect().bottom > (*_viWb)->getRect().bottom)
 			{
 				(*_viWb)->setIsDown(true);
 			}
@@ -97,7 +96,7 @@ void enemyManager::collision()
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		RECT temp;
-		if (IntersectRect(&temp, &_red->getRect(), &(*_viWb)->getAttackRect()))
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))
 		{
 			(*_viWb)->setIsCollisionAttack(true);
 		}
@@ -106,6 +105,107 @@ void enemyManager::collision()
 			(*_viWb)->setIsCollisionAttack(false);
 		}
 
+	}
+}
+
+
+//////////////////////////////////////////////////
+//			카드 에너미 세팅
+/////////////////////////////////////////////////
+void enemyManager::setCard()
+{
+	for (int i = 0; i < 2; i++)
+	{
+		card* _cd;
+		_cd = new card;
+		_cd->init(PointMake(-50 + i * 700, 300));
+		_vCard.push_back(_cd);
+	}
+}
+
+
+//////////////////////////////////////////////////
+//			카드 에너미 업데이트
+/////////////////////////////////////////////////
+void enemyManager::updateCard()
+{
+	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
+	{
+		(*_viCard)->update();
+	}
+}
+
+
+//////////////////////////////////////////////////
+//			카드 에너미 렌더
+/////////////////////////////////////////////////
+void enemyManager::renderCard()
+{
+	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
+	{
+		(*_viCard)->render();
+	}
+}
+
+
+//////////////////////////////////////////////////
+//			카드 위치 탐색용
+/////////////////////////////////////////////////
+void enemyManager::WhereIsCard()
+{
+	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
+	{
+		if (!(*_viCard)->getIsDash() && !(*_viCard)->getIsBullet())
+		{
+			//플레이어보다 왼쪽에 있을때
+			if (_player->getX() > (*_viCard)->getCenterX())
+			{
+				(*_viCard)->setIsLeft(false);
+			}
+
+			//플레이어보다 오른쪽에 있을때
+			if (_player->getX() < (*_viCard)->getCenterX())
+			{
+				(*_viCard)->setIsLeft(true);
+			}
+
+			//플레이어보다 위에 있을때
+			if (_player->getY() > (*_viCard)->getCenterY())
+			{
+				(*_viCard)->setIsUpper(true);
+			}
+
+			//플레이어보다 아래에 있을때
+			if (_player->getY() < (*_viCard)->getCenterY())
+			{
+				(*_viCard)->setIsUpper(false);
+			}
+
+			RECT temp;
+			if (IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc())
+				&& !(*_viCard)->_isCrash)
+			{
+				(*_viCard)->numPattern = rand() % 3;
+				(*_viCard)->setIsDash(false);
+				(*_viCard)->setIsBullet(false);
+				(*_viCard)->_isCrash = true;
+
+				if ((*_viCard)->numPattern == 1)
+				{
+					(*_viCard)->setIsDash(true);
+				}
+
+				if ((*_viCard)->numPattern == 2)
+				{
+					(*_viCard)->setIsBullet(true);
+				}
+			}
+
+			if (!IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc()))
+			{
+				(*_viCard)->_isCrash = false;
+			}
+		}
 	}
 }
 

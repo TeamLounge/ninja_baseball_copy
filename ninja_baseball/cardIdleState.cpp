@@ -7,7 +7,7 @@
 
 cardState * cardIdleState::inputHandle(card * card)
 {
-	if (!card->_isDash && !card->_isPunchBullet)
+	if ((!card->_isDash && !card->_isPunchBullet) || card->numPattern == 0)
 	{
 		return new cardMoveState();
 	}
@@ -22,12 +22,12 @@ void cardIdleState::update(card * card)
 		if (frameCount >= 25)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(-1);
+				card->_currentFrameX = 0;
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(0);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 0;
 		}
 	}
 
@@ -37,14 +37,17 @@ void cardIdleState::update(card * card)
 		if (frameCount >= 25)
 		{
 			frameCount = 0;
-			if (card->_card.img->getFrameX() == card->_card.img->getMaxFrameX())
+			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
-				card->_card.img->setFrameX(-1);
+				card->_currentFrameX = 0;
 			}
-			card->_card.img->setFrameX(card->_card.img->getFrameX() + 1);
-			card->_card.img->setFrameY(1);
+			else card->_currentFrameX++;
+			card->_currentFrameY = 1;
 		}
 	}
+
+	card->_isDash = false;
+	card->_isPunchBullet = false;
 }
 
 void cardIdleState::enter(card * card)
@@ -55,14 +58,14 @@ void cardIdleState::enter(card * card)
 
 	if (!card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(0);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 0;
 	}
 
 	if (card->_isLeft)
 	{
-		card->_card.img->setFrameX(0);
-		card->_card.img->setFrameY(1);
+		card->_currentFrameX = 0;
+		card->_currentFrameY = 1;
 	}
 
 
