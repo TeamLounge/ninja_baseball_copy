@@ -41,12 +41,12 @@ void Ryno_fly::update(player * player)
 		if (player->getY() >= _top)
 		{
 			if (player->isRight) {
-				player->setY(player->getY() - 10);
+				player->setY(player->getY() - 20);
 				player->setX(player->getX() - 2);
 			}
 			else
 			{
-				player->setY(player->getY() - 10);
+				player->setY(player->getY() - 20);
 				player->setX(player->getX() + 2);
 			}
 

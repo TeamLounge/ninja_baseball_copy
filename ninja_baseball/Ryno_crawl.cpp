@@ -10,7 +10,7 @@ playerstate * Ryno_crawl::handleInput(player * player)
 		player->setY(player->getY() - 45);
 		return new Ryno_idle;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN) && KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN) && KEYMANAGER->isOnceKeyDown('X'))
 	{
 		return new Ryno_fly;
 	}

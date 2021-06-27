@@ -10,7 +10,7 @@ playerstate * Ryno_jump::handleInput(player * player)
 	{
 		return new Ryno_fall;
 	}   
-	if (KEYMANAGER->isOnceKeyDown('C')&&KEYMANAGER->isStayKeyDown(VK_DOWN))
+	if (KEYMANAGER->isOnceKeyDown('X')&&KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		return new Ryno_fly;
 	}
