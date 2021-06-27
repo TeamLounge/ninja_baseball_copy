@@ -8,6 +8,8 @@ HRESULT endingScene::init()
 	IMAGEMANAGER->addImage("character_scene", "image/6_UI/endingScene/stage1CleardCharacter.bmp", WINSIZEX, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("ending_background", "image/6_UI/endingScene/ending_background.bmp", 1440, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->findImage("ending_background")->setX(0);
+	IMAGEMANAGER->addImage("ui_green", "image/6_UI/inGame/green.bmp", 63, 72, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("ui_red", "image/6_UI/inGame/red.bmp", 63, 72, true, RGB(255, 0, 255), false);
 
 	//카메라 설정
 	CAMERAMANAGER->setCamera(0, 0);
@@ -115,23 +117,34 @@ void endingScene::render()
 	IMAGEMANAGER->findImage("character_scene")->render(getMemDC(), 0, 144 + IMAGEMANAGER->findImage("character_scene")->getHeight() / 2 - _sceneHeight, 
 		0, IMAGEMANAGER->findImage("character_scene")->getHeight() /2 - _sceneHeight, WINSIZEX, _sceneHeight * 2);
 	
-	HFONT font = CreateFont(20, 0, 0, 0, 100, false, false, false, DEFAULT_CHARSET,
-		0, 0, 0, 0, TEXT("Arcade Normal"));
+	HFONT font = CreateFont(35, 0, 0, 0, 600, false, false, false, DEFAULT_CHARSET,
+		0, 0, 0, 0, TEXT("Retro Gaming"));
 	HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
 	SetBkMode(getMemDC(), TRANSPARENT);
+
+	//그림자
 	SetTextColor(getMemDC(), RGB(0, 0, 0));
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		TextOut(getMemDC(), 102, 602 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+		TextOut(getMemDC(), 152, 553 + 110 * i, _dialog[i].c_str(), _dialogTextNum[i]);
 	}
+	TextOut(getMemDC(), 152, 553 + 135, _dialog[2].c_str(), _dialogTextNum[2]);
+
+	//텍스트
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
-	
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		TextOut(getMemDC(), 100, 600 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+		TextOut(getMemDC(), 150, 550 + 110 * i, _dialog[i].c_str(), _dialogTextNum[i]);
 	}
+	TextOut(getMemDC(), 150, 550 + 135, _dialog[2].c_str(), _dialogTextNum[2]);
 	SelectObject(getMemDC(), oldFont);
 	DeleteObject(font);
-
-
+	if (_dialogTextNum[0] != 0)
+	{
+		IMAGEMANAGER->findImage("ui_green")->render(getMemDC(), 60, _textRC.top + 2);
+	}
+	if (_dialogTextNum[1] != 0)
+	{
+		IMAGEMANAGER->findImage("ui_red")->render(getMemDC(), 60, _textRC.top + 120);
+	}
 }
