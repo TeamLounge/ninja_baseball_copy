@@ -5,10 +5,13 @@
 #include "Ryno_jump.h"
 #include "Ryno_attack.h"
 #include "Ryno_crawl.h"
-
+#include "Ryno_damage.h"
 playerstate * Ryno_move::handleInput(player * player)
 {
-
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
+	}
 	if (!LEFT&&!RIGHT&&!UP&&!DOWN)
 	{
 

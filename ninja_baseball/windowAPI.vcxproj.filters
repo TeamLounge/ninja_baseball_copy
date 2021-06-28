@@ -37,42 +37,6 @@
     <ClCompile Include="playGround.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_attackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_idleState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_moveState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_attack.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_catch.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_idle.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_jump.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_move.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
@@ -181,6 +145,63 @@
     <ClCompile Include="bossState.cpp">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClCompile>
+    <ClCompile Include="red_attackState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGround\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dash.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAlt.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAttack.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fall.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fly.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_frontCombo.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_damage.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -219,43 +240,7 @@
     <ClInclude Include="playGround.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_attackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_idleState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpAttackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_moveState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_attack.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_catch.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_crawl.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_idle.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_jump.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_move.h">
       <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="commonMacroFunction.h">
@@ -278,9 +263,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="playerstate.h">
-      <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="card.h">
       <Filter>playGround\enemy\card</Filter>
@@ -378,6 +360,66 @@
     <ClInclude Include="bossState.h">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClInclude>
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGround\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dash.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAlt.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAttack.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fall.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fly.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_damage.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -469,6 +511,15 @@
     </Filter>
     <Filter Include="playGround\enemy\BOSS\bossState">
       <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{d89f7fe9-8e19-4d91-a5ac-da3ab01f0e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\Ryno">
+      <UniqueIdentifier>{60bbfc20-091c-4851-8217-8345cd6cdeb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\red">
+      <UniqueIdentifier>{0683c45a-a673-47bf-9cab-b352d8505492}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@ private:
 	/////////////////////////////////
 	vCard _vCard;
 	viCard _viCard;
-
+	bool isdamage;
 	player* _player;
 	
 public:

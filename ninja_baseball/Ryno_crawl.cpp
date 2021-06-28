@@ -2,9 +2,13 @@
 #include "Ryno_crawl.h"
 #include "Ryno_idle.h"
 #include "Ryno_fly.h"
+#include "Ryno_damage.h"
 playerstate * Ryno_crawl::handleInput(player * player)
 {
-
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
+	}
 	if(KEYMANAGER->isOnceKeyUp('V')) 
 	{
 		player->setY(player->getY() - 45);
@@ -76,7 +80,7 @@ void Ryno_crawl::enter(player * player)
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
-	player->_shadow->setY(player->getY()+45);
+	//player->_shadow->setY(player->getY()+90);
 
 	//ÁÂ¿ì±¸ºÐ
 	if (player->isRight)

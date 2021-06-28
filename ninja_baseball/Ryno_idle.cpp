@@ -6,9 +6,14 @@
 #include "Ryno_attack.h"
 #include "Ryno_crawl.h"
 #include "Ryno_dash.h"
+#include "Ryno_damage.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
 
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
+	}
 	if (KEYMANAGER->isStayKeyDown('V'))
 	{
 		return new Ryno_crawl;
