@@ -118,6 +118,9 @@
     <ClCompile Include="red_legKickState.cpp">
       <Filter>playGround\redState</Filter>
     </ClCompile>
+    <ClCompile Include="red_throw.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -250,6 +253,9 @@
       <Filter>playGround\player</Filter>
     </ClInclude>
     <ClInclude Include="red_legKickState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_throw.h">
       <Filter>playGround\redState</Filter>
     </ClInclude>
   </ItemGroup>
