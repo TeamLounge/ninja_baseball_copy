@@ -6,6 +6,7 @@ playerstate* red_slidingState::handleInput(player* _player)
 {
 	if (_time == 50)
 	{
+		_player->setY(_player->getY() - 40);
 		return new red_idleState;
 	}
 
@@ -37,18 +38,23 @@ void red_slidingState::update(player* _player)
 	}
 
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	if (_player->isRight == true)
+	{
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
+		_player->_shadow->setY(_player->getY() + 50);
+	}
+	if (_player->isRight == false)
+	{
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
+		_player->_shadow->setY(_player->getY() + 50);
+	}
 }
 
 void red_slidingState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_sliding"));
-
-	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
-
+	_player->setY(_player->getY() + 40);
+	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
 	//_player->setRect(_rc);
