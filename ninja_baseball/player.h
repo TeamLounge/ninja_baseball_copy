@@ -32,6 +32,10 @@ public:
 	bool _isrun ,_run;
 	float _runtime;
 	enemyManager* _em;
+		
+	bool isdamage;
+	bool iscatch;
+	bool iscrawl;
 
 
 	//함수를 선언하려면 여기에다

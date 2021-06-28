@@ -25,8 +25,7 @@ playerstate* red_homeRunState::handleInput(player* _player)
 void red_homeRunState::update(player* _player)
 {
 	_count++;
-
-
+	
 	if (_count % 5 == 0)
 	{
 		_index++;

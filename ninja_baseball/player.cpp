@@ -27,6 +27,11 @@ HRESULT player::init(int character)
 	_y = BACKGROUNDY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
+
+	isattack = false;
+	isdamage = false;
+	iscatch = false;
+	iscrawl = false;
 	
 	return S_OK;
 }
@@ -133,9 +138,13 @@ void player::addImage()
 
 void player::collision()
 {
+
+	
 	for (int i = 0; _em->getVWb().size(); i++)
 	{
 		RECT temp;
+
+		//플레이어 공격렉트 충돌처리함수
 		if (_em->getVWb()[i]->isCollisionAttack)
 		{
 			if (_shadow->getCenterY() > _em->getVWb()[i]->_wbShadow.rc.top&&
@@ -143,9 +152,23 @@ void player::collision()
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
 				{
-					/*isdamage = true;*/
+					isdamage = true;
 				}
 			}
 		}
+
+		//잡기상태로 갈때 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
+			{
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					iscatch = true;
+				}
+			}
+		}
+		//이게 뭐지??
 	}
 }
