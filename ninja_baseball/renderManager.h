@@ -14,6 +14,7 @@ private:
 		RECT shadow; //±×¸²ÀÚ
 		int currentFrameX, currentFrameY;
 		float shadowX, shadowY;
+		bool isHaveRect;
 	}OBJ;
 
 	typedef vector<OBJ>						arrObj;
@@ -31,6 +32,8 @@ public :
 	void release();
 	void update();
 	void render(HDC hdc);
+
+	void addObj(string strKey, string bodyImageName, string shadowImageName);
 
 	void addObj(string strKey, string bodyImageName, string shadowImageName, RECT& body, RECT& shadow, int& currentFrameX, int& currentFrameY);
 

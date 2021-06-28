@@ -20,14 +20,16 @@ HRESULT playGround::init()
 	//	만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
 	//	player = new (상속한 클래스);
 
+	IMAGEMANAGER->addImage("tile_background", "image/6_UI/tile_background.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), false);
 
 	SCENEMANAGER->addScene("title", new titleScene);
+	SCENEMANAGER->addScene("start", new startScene);
 	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
 	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
 
-	SCENEMANAGER->changeScene("ending");
+	SCENEMANAGER->changeScene("start");
 	
 	return S_OK;
 }

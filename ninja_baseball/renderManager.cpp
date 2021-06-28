@@ -20,9 +20,38 @@ void renderManager::render(HDC hdc)
 {
 	for (int i = 0; i < _arrObj.size(); i++)
 	{
-		IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, _arrObj[i].body.left, _arrObj[i].body.top, _arrObj[i].currentFrameX, _arrObj[i].currentFrameY);
-		IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc, _arrObj[i].shadow.left, _arrObj[i].shadow.top);
+		if (!_arrObj[i].isHaveRect)
+		{
+			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, _arrObj[i].body.left, _arrObj[i].body.top);
+			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc);
+		}
+		else
+		{
+			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, _arrObj[i].body.left, _arrObj[i].body.top, _arrObj[i].currentFrameX, _arrObj[i].currentFrameY);
+			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc, _arrObj[i].shadow.left, _arrObj[i].shadow.top);
+		}
 	}
+}
+
+void renderManager::addObj(string strKey, string bodyImageName, string shadowImageName)
+{
+	OBJ object;
+	object.bodyImageName = bodyImageName;
+	object.shadowImageName = shadowImageName;
+	object.shadowY = IMAGEMANAGER->findImage(shadowImageName)->getCenterY();
+	object.shadowX = IMAGEMANAGER->findImage(shadowImageName)->getCenterX();
+	object.isHaveRect = false;
+	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
+	{
+		if (iter->first == strKey)
+		{
+			iter->second.push_back(object);
+			return;
+		}
+	}
+	arrObj array;
+	array.push_back(object);
+	_mObjList.insert(make_pair(strKey, array));
 }
 
 void renderManager::addObj(string strKey, string bodyImageName, string shadowImageName, RECT& body, RECT& shadow, int& currentFrameX, int& currentFrameY)
@@ -36,6 +65,7 @@ void renderManager::addObj(string strKey, string bodyImageName, string shadowIma
 	object.shadowY = (object.shadow.bottom + object.shadow.top) / 2;
 	object.currentFrameX = currentFrameX;
 	object.currentFrameY = currentFrameY;
+	object.isHaveRect = true;
 
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{

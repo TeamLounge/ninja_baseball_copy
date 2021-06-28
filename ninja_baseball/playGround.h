@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "player.h"
 #include "titleScene.h"
+#include "startScene.h"
 #include "stageScene.h"
 #include "endingScene.h"
 #include "playerSelectScene.h"

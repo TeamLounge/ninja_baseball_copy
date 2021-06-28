@@ -4,7 +4,6 @@
 HRESULT endingScene::init()
 {
 	//이미지 추가
-	IMAGEMANAGER->addImage("tile_background", "image/6_UI/tile_background.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("character_scene", "image/6_UI/endingScene/stage1CleardCharacter.bmp", WINSIZEX, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("ending_background", "image/6_UI/endingScene/ending_background.bmp", 1440, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->findImage("ending_background")->setX(0);
@@ -56,9 +55,9 @@ void endingScene::update()
 
 		if (_dialogNow < _dialog.size())
 		{
-			if (_elapsedTime >= 0.2f)
+			if (_elapsedTime >= 0.1f)
 			{
-				_elapsedTime -= 0.2f;
+				_elapsedTime -= 0.1f;
 				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
 				{
 					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
