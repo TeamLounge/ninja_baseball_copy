@@ -37,42 +37,6 @@
     <ClCompile Include="playGround.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_attackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_idleState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="red_moveState.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_attack.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_catch.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_idle.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_jump.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_move.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
@@ -84,6 +48,78 @@
     </ClCompile>
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="red_attackState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGround\rynoState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState2.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_homeRunState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_runState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_slidingState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_dashAttackState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_damage1State.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_damage2State.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_gripState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_standUpState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_downAttackState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="red_legKickState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_throw.cpp">
+      <Filter>playGround\redState</Filter>
     </ClCompile>
     <ClCompile Include="card.cpp">
       <Filter>playGround\enemy\card</Filter>
@@ -219,43 +255,7 @@
     <ClInclude Include="playGround.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_attackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_idleState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpAttackState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="red_moveState.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_attack.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_catch.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_crawl.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_idle.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_jump.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_move.h">
       <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="commonMacroFunction.h">
@@ -279,8 +279,80 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGround\rynoState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState2.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_homeRunState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_runState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_slidingState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dashAttackState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_damage1State.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_damage2State.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_gripState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_standUpState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_downAttackState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
     <ClInclude Include="playerstate.h">
-      <Filter>playGround</Filter>
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="red_legKickState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_throw.h">
+      <Filter>playGround\redState</Filter>
     </ClInclude>
     <ClInclude Include="card.h">
       <Filter>playGround\enemy\card</Filter>
@@ -469,6 +541,14 @@
     </Filter>
     <Filter Include="playGround\enemy\BOSS\bossState">
       <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
+    <Filter Include="playGround\redState">
+      <UniqueIdentifier>{43079ea0-86b0-4b29-8040-c4cbbd812b73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\rynoState">
+      <UniqueIdentifier>{fc0c428e-caa5-46db-a2f7-258b9589b4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{98b61e79-7358-4790-861f-1d757ed73d06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

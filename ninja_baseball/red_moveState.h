@@ -9,6 +9,9 @@ private:
 	RECT _rc;
 	int _count;
 	int _index;
+	int _runTime;
+	bool _runTimeStart;
+	bool _isRun;
 
 public:
 	playerstate* handleInput(player* _player);

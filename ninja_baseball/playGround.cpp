@@ -16,11 +16,6 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
-	//	상속해서 다르게 하실수 있으니까
-	//	만약 상속을하셨다면 다르게 new할당을 해주시면 됩니다.
-	//	player = new (상속한 클래스);
-
-
 	SCENEMANAGER->addScene("title", new titleScene);
 	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
 	SCENEMANAGER->addScene("stage", new stageScene);
@@ -44,8 +39,6 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
-	
-	
 }
 
 
@@ -54,9 +47,6 @@ void playGround::render()
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
-
-
-
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		TIMEMANAGER->render(getMemDC());

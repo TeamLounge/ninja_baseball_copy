@@ -7,6 +7,10 @@ HRESULT stageScene::init()
 
 	_Ryno = new player;
 	_Ryno->init(2);
+
+	_red = new player;
+	_red->init(1);
+
 	_em = new enemyManager;
 	_em->init();
 
@@ -22,6 +26,7 @@ void stageScene::release()
 void stageScene::update()
 {
 	_Ryno->update();
+	_red->update();
 	_em->update();
 	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());
 
@@ -32,4 +37,5 @@ void stageScene::render()
 	IMAGEMANAGER->findImage("stage")->render(getMemDC(), 0, 0);
 	_em->render();
 	_Ryno->render();
+	_red->render();
 }
