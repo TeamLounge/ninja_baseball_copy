@@ -51,13 +51,14 @@ void player::update()
 			_isrun = false;
 		}
 	}
+
 	handleInput();
 	_state->update(this);
-	
 }
 
 void player::release()
 {
+
 }
 
 void player::render()
