@@ -31,6 +31,7 @@ void stageScene::update()
 	_red->update();
 	_em->update();
 	/*CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());*/
+	CAMERAMANAGER->updateCamera(_red->getX(), _red->getY());
 
 }
 
