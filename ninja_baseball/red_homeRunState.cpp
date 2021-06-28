@@ -6,6 +6,16 @@ playerstate* red_homeRunState::handleInput(player* _player)
 {
 	if (_index > _player->getImage()->getMaxFrameX())
 	{
+		_player->setY(_player->getY() + 20);
+
+		if (_player->isRight == true)
+		{
+			_player->setX(_player->getX() - 60);
+		}
+		if (_player->isRight == false)
+		{
+			_player->setX(_player->getX() + 60);
+		}
 		return new red_idleState;
 	}
 
@@ -17,7 +27,7 @@ void red_homeRunState::update(player* _player)
 	_count++;
 
 
-	if (_count % 4 == 0)
+	if (_count % 5 == 0)
 	{
 		_index++;
 
@@ -46,8 +56,17 @@ void red_homeRunState::update(player* _player)
 		}
 
 		//그림자 위치
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		if (_player->isRight == true)
+		{
+			_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 70);
+			_player->_shadow->setY(_player->getY() + 110);
+		}
+		if (_player->isRight == false)
+		{
+			_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 70);
+			_player->_shadow->setY(_player->getY() + 110);
+		}
+		
 
 	}
 }
@@ -56,9 +75,15 @@ void red_homeRunState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_homerun"));
 
-	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	_player->setY(_player->getY() + 20);
+	if (_player->isRight == true)
+	{
+		_player->setX(_player->getX() + 60);
+	}
+	if (_player->isRight == false)
+	{
+		_player->setX(_player->getX() - 60);
+	}
 
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
