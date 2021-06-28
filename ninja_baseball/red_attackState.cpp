@@ -1,12 +1,18 @@
 #include "stdafx.h"
 #include "red_attackState.h"
 #include "red_idleState.h"
+#include "red_homeRunState.h"
 
 playerstate * red_attackState::handleInput(player * _player)
 {
 	if (_isend)
 	{
 		return new red_idleState;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('X'))
+	{
+		return new red_homeRunState; //홈런공격??
 	}
 	
 	return nullptr;

@@ -70,6 +70,13 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("red_grip2", "image/2_player/red/red_grip2.bmp", 0, 0, 666, 444, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_jumpAttack", "image/2_player/red/red_jumpAttack.bmp", 0, 0, 588, 750, 2, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_idle2", "image/2_player/red/red_idle2.bmp", 0, 0, 396, 510, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_sliding", "image/2_player/red/red_sliding.bmp", 0, 0, 288, 366, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_dashAttack", "image/2_player/red/red_dashAttack.bmp", 0, 0, 192, 444, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_homerun", "image/2_player/red/red_homerun.bmp", 0, 0, 2520, 522, 7, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_damage1", "image/2_player/red/red_damage.bmp", 0, 0, 666, 462, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_damage2", "image/2_player/red/red_damage2.bmp", 0, 0, 234, 396, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_downAttack", "image/2_player/red/red_downAttack.bmp", 0, 0, 792, 480, 3, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_standUp", "image/2_player/red/red_standUp.bmp", 0, 0, 2016, 576, 7, 2, true, RGB(255, 0, 255), false);
 	//여기 그림자 이미지 수정하셔서 addimage를 수정해주세요(수정완료)
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
