@@ -26,10 +26,10 @@ void Ryno_catchfrontCombo::update(player * player)
 	if (_index > 0 && _index < 3)
 	{
 		_count++;
-		if (_count % 5==0)
+		if (_count % 3==0)
 		{
-			_Rotation++;
 			_index++;
+			if (_index == 2)_Rotation++;
 			if (_Rotation <= 5)_index = 1;
 
 		}
@@ -61,7 +61,7 @@ void Ryno_catchfrontCombo::enter(player * player)
 	isend = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_catch_frontCombo"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
-	player->setY(player->_shadow->getY() - 120);
+	player->setY(player->_shadow->getY()-90);
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	//player->_shadow->setY(player->getY() + 90);

@@ -4,23 +4,26 @@
 #include "Ryno_catchfrontCombo.h"
 playerstate * Ryno_catch::handleInput(player * player)
 {
-	if (KEYMANAGER->isOnceKeyUp('V'))
-	{
-		player->setY(player->getY() + 30);
-		player->iscatch = false;
-		return new Ryno_idle;
-	}
-	if (isfront)
-	{
-		player->setY(player->getY() + 30);
-		return new Ryno_catchfrontCombo;
-	}
 	if (isend)
 	{
 		player->setY(player->getY() + 30);
 		player->iscatch = false;
+		player->isattack = false;
 		return new Ryno_idle;
 	}
+	if (KEYMANAGER->isOnceKeyUp('V'))
+	{
+		player->setY(player->getY() + 30);
+		player->iscatch = false;
+		player->isattack = false;
+		return new Ryno_idle;
+	}
+	if (isfront)
+	{
+		
+		return new Ryno_catchfrontCombo;
+	}
+
 
 	return nullptr;
 }
@@ -31,41 +34,23 @@ void Ryno_catch::update(player * player)
 	{
 		if (player->isRight) {
 			player->getImage()->setFrameY(0);
-			if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-			{
-				if (KEYMANAGER->isOnceKeyDown('Z'))
-					_index += 3;
-				if (KEYMANAGER->isOnceKeyDown('X'))
-					isfront = true;
-			}
+			if (KEYMANAGER->isStayKeyDown(VK_LEFT)&& KEYMANAGER->isOnceKeyDown('Z'))
+				_index += 3;
+			if(KEYMANAGER->isStayKeyDown(VK_RIGHT) && KEYMANAGER->isOnceKeyDown('X'))
+				isfront = true;
 		}
 		else
 		{
 			player->getImage()->setFrameY(1);
-			if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-			{
-				if (KEYMANAGER->isOnceKeyDown('Z'))
-					_index += 3;
-				if (KEYMANAGER->isOnceKeyDown('X'))
-					isfront = true;
-			}
-		}
-		
-		/*if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
-		{
-			if (player->isRight) {
-				player->getImage()->setFrameY(0);
-			}
-			else {
-				player->getImage()->setFrameY(1);
-			}
-			if (KEYMANAGER->isOnceKeyDown('Z'))
+			if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && KEYMANAGER->isOnceKeyDown('Z'))
 				_index += 3;
+			if (KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('X'))
+				isfront = true;
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+				_index++;
 		}
-		else if (KEYMANAGER->isOnceKeyDown('Z'))
-		{
+		if (KEYMANAGER->isOnceKeyDown('Z'))
 			_index++;
-		}*/
 	}
 	if (_index > 0 && _index < 3)
 	{
@@ -73,7 +58,17 @@ void Ryno_catch::update(player * player)
 		if (_count % 5 == 0)
 		{
 			_index++;
-			if (_index > 2) _index = 0;
+			if (_index == 2)
+			{
+				player->isattack = true;
+				if (player->isRight) {
+					player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY(), 50, 50);
+				}
+				else
+					player->_attack_rc = RectMakeCenter(player->getX() - 90, player->getY(), 50, 50);
+
+			}
+			if (_index > 2) { _index = 0;  player->isattack = false; }
 			_count = 0;
 		}
 	}
@@ -89,7 +84,7 @@ void Ryno_catch::update(player * player)
 	if (_index == 5)
 	{
 		_count++;
-		if (_count % 20 == 0)
+		if (_count % 10 == 0)
 		{
 			_index++;
 			if (_index > 5) isend = true;

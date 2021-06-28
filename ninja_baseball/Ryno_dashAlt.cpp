@@ -35,6 +35,7 @@ void Ryno_dashAlt::enter(player * player)
 	_count = _index = 0;
 	speed = 13.f;
 	inertia = 0.2f;
+	
 	player->setImage(IMAGEMANAGER->findImage("Ryno_dashAttack_alt"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);

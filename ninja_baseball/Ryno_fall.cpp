@@ -5,6 +5,7 @@ playerstate * Ryno_fall::handleInput(player * player)
 {
 	if (player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
+		player->isattack = false;
 		return new Ryno_idle;
 	}
 	return nullptr;
@@ -17,7 +18,6 @@ void Ryno_fall::update(player * player)
 	//점프중력
 	player->setY(player->getY() - _jumpPower);
 	_jumpPower -= _gravity;
-
 	//움직이기
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
@@ -49,23 +49,46 @@ void Ryno_fall::update(player * player)
 	//마지막인덱스일떄 공격렉트를 띄우는거죠
 	if (player->isattack)
 	{
+		if (player->jumpindex < 4)
+			player->_attack_rc = RectMakeCenter(player->getX() , player->getY(), 50, 50);
 		if (_count % 4 == 0)
 		{
-			_index++;
+			player->jumpindex++;
 			//여기부터가 마지막 인덱스 공격렉트를 띄울부분
-			if (_index >= 4 && (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+			if (player->jumpindex >= 4 && (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT)))
 			{
-				_index = 6;
+				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+				player->jumpindex = 6;
 			}
-			else if (_index > 5)
+			else if (player->jumpindex > 5)
 			{
-				_index = 5;
+				player->_attack_rc = RectMakeCenter(player->getX(), player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
+				player->jumpindex = 5;
 			}
 			//여기까지
-			player->getImage()->setFrameX(_index);
+			if (player->jumpindex == 5) {
+				if (player->isRight)
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() + 30, player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
+				}
+				else
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() - 30, player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
+				}
+			}
+			if (player->jumpindex == 6) {
+				if (player->isRight)
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY() + 80, 50, 50);
+				}
+				else
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY() + 80, 50, 50);
+				}
+			}
 		}
 	}
-
+	player->getImage()->setFrameX(player->jumpindex);
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());

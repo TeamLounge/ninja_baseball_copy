@@ -52,8 +52,18 @@ void Ryno_frontCombo::update(player * player)
 		{
 			_index++;
 		}
-		if(player->isRight) player->setX(player->getX() + 3);
-		else player->setX(player->getX() - 3);
+		if (_index == 6)
+		{
+			if (player->isRight) player->setX(player->getX() + 3);
+			else player->setX(player->getX() - 3);
+			player->setY(player->getY() - 7);
+		}
+		if (_index == 7)
+		{
+			if (player->isRight) player->setX(player->getX() + 3);
+			else player->setX(player->getX() - 3);
+			player->setY(player->getY() + 7);
+		}
 		if (_index > 7)
 		isend = true;
 

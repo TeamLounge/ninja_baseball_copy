@@ -33,6 +33,8 @@ public:
 	bool _isrun ,_run;
 	float _runtime;
 	enemyManager* _em; //애너미정보가져오기
+	int jumpindex;
+
 
 	//함수를 선언하려면 여기에다
 	//겟터와 셋터는 따로따로 밑에 다 선언 해주세요

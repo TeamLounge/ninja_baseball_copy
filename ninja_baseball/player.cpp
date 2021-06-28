@@ -65,6 +65,8 @@ void player::render()
 {
 	char str[128];
 	sprintf_s(str, "플레이어 아팟써");
+	char str2[128];
+	sprintf_s(str2, "공격!");
 	//Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
 	_shadow->render(getMemDC());
@@ -72,6 +74,7 @@ void player::render()
 	if (isattack)
 	{
 		Rectangle(getMemDC(), _attack_rc);
+		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
 	}
 	if (isdamage)
 	{
