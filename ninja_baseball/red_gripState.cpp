@@ -73,8 +73,17 @@ void red_gripState::update(player* _player)
 	}
 	
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	if (_player->isRight == true)
+	{
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
+		_player->_shadow->setY(_player->getY() + 90);
+	}
+	if (_player->isRight == false)
+	{
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
+		_player->_shadow->setY(_player->getY() + 90);
+	}
+	
 }
 
 void red_gripState::enter(player* _player)

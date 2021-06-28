@@ -173,6 +173,7 @@
     <ClInclude Include="red_idleState.h" />
     <ClInclude Include="red_jumpAttackState.h" />
     <ClInclude Include="red_jumpState.h" />
+    <ClInclude Include="red_legKickState.h" />
     <ClInclude Include="red_moveState.h" />
     <ClInclude Include="red_runState.h" />
     <ClInclude Include="red_slidingState.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpAttackState.cpp" />
     <ClCompile Include="red_jumpState.cpp" />
+    <ClCompile Include="red_legKickState.cpp" />
     <ClCompile Include="red_moveState.cpp" />
     <ClCompile Include="red_runState.cpp" />
     <ClCompile Include="red_slidingState.cpp" />
