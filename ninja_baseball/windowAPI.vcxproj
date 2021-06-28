@@ -190,6 +190,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Ryno_attack.h" />
     <ClInclude Include="Ryno_catch.h" />
+    <ClInclude Include="Ryno_catchfrontCombo.h" />
     <ClInclude Include="Ryno_crawl.h" />
     <ClInclude Include="Ryno_damage.h" />
     <ClInclude Include="Ryno_dash.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="red_moveState.cpp" />
     <ClCompile Include="Ryno_attack.cpp" />
     <ClCompile Include="Ryno_catch.cpp" />
+    <ClCompile Include="Ryno_catchfrontCombo.cpp" />
     <ClCompile Include="Ryno_crawl.cpp" />
     <ClCompile Include="Ryno_damage.cpp" />
     <ClCompile Include="Ryno_dash.cpp" />

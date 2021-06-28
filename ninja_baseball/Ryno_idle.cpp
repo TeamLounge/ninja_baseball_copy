@@ -108,7 +108,6 @@ void Ryno_idle::enter(player * player)
 	player->setImage(img);
 	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(rc);
-	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)-15);
 	player->_shadow->setY(player->getY() + 90);
 	if (player->isRight)
 	{

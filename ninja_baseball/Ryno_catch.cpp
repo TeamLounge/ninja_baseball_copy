@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Ryno_catch.h"
 #include "Ryno_idle.h"
+#include "Ryno_catchfrontCombo.h"
 playerstate * Ryno_catch::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp('V'))
@@ -9,12 +10,18 @@ playerstate * Ryno_catch::handleInput(player * player)
 		player->iscatch = false;
 		return new Ryno_idle;
 	}
+	if (isfront)
+	{
+		player->setY(player->getY() + 30);
+		return new Ryno_catchfrontCombo;
+	}
 	if (isend)
 	{
 		player->setY(player->getY() + 30);
 		player->iscatch = false;
 		return new Ryno_idle;
 	}
+
 	return nullptr;
 }
 
@@ -22,23 +29,43 @@ void Ryno_catch::update(player * player)
 {
 	if (_index == 0)
 	{
-		if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		if (player->isRight) {
+			player->getImage()->setFrameY(0);
+			if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+			{
+				if (KEYMANAGER->isOnceKeyDown('Z'))
+					_index += 3;
+				if (KEYMANAGER->isOnceKeyDown('X'))
+					isfront = true;
+			}
+		}
+		else
+		{
+			player->getImage()->setFrameY(1);
+			if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+			{
+				if (KEYMANAGER->isOnceKeyDown('Z'))
+					_index += 3;
+				if (KEYMANAGER->isOnceKeyDown('X'))
+					isfront = true;
+			}
+		}
+		
+		/*if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
 			if (player->isRight) {
 				player->getImage()->setFrameY(0);
-				if (KEYMANAGER->isOnceKeyDown('Z'))
-					_index += 3;
 			}
 			else {
 				player->getImage()->setFrameY(1);
-				if (KEYMANAGER->isOnceKeyDown('Z'))
-					_index += 3;
 			}
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+				_index += 3;
 		}
 		else if (KEYMANAGER->isOnceKeyDown('Z'))
 		{
 			_index++;
-		}
+		}*/
 	}
 	if (_index > 0 && _index < 3)
 	{
@@ -56,9 +83,19 @@ void Ryno_catch::update(player * player)
 		if (_count % 10 == 0)
 		{
 			_index++;
+			_count = 0;
+		}
+	}
+	if (_index == 5)
+	{
+		_count++;
+		if (_count % 20 == 0)
+		{
+			_index++;
 			if (_index > 5) isend = true;
 			_count = 0;
 		}
+
 	}
 	player->getImage()->setFrameX(_index);
 }
@@ -66,7 +103,7 @@ void Ryno_catch::update(player * player)
 void Ryno_catch::enter(player * player)
 {
 	_count = _index = 0;
-	isend = false;
+	isend = isfront = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_catch"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setY(player->_shadow->getY() - 120);

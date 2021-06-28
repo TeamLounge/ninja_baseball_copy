@@ -117,7 +117,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_ctrl", "image/2_Player/green/green_dashAttack_ctrl.bmp", 219, 330, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_crawl", "image/2_Player/green/green_crawl.bmp", 1008, 294, 4, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_catch", "image/2_Player/green/green_catch.bmp", 2784, 576, 8, 2, true, RGB(255, 0, 255),false);
-	//IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_dash.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_catch_frontCombo.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_fly", "image/2_Player/green/green_fly.bmp", 1332, 378, 4, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), false);

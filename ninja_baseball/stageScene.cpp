@@ -26,7 +26,7 @@ void stageScene::update()
 	
 	_em->update();
 	_Ryno->update();
-	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());
+	CAMERAMANAGER->updateCamera(_Ryno->getX(), BACKGROUNDY - WINSIZEY/2);
 
 }
 
