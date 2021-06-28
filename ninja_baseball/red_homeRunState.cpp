@@ -36,22 +36,28 @@ void red_homeRunState::update(player* _player)
 			_player->getImage()->setFrameX(_index);
 			_player->getImage()->setFrameY(0);
 			_count++;
-
-			if (_count2 < 5 && _index > 1)
-			{
-				_player->setX(_player->getX() + 30);
-			}
 		}
-
+		
 		if (_player->isRight == false)
 		{
 			_player->getImage()->setFrameX(_index);
 			_player->getImage()->setFrameY(1);
 			_count++;
-
-			if (_count2 < 5 && _index > 1)
+		}
+		
+		if (_player->isRight == true)
+		{
+			if (_count2 < 5 && _index > 3)
 			{
-				_player->setX(_player->getX() - 30);
+				_player->setX(_player->getX() + 50);
+			}
+		}
+
+		if (_player->isRight == false)
+		{
+			if (_count2 < 5 && _index > 3)
+			{
+				_player->setX(_player->getX() - 50);
 			}
 		}
 
