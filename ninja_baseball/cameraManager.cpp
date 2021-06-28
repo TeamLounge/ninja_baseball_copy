@@ -48,6 +48,11 @@ void cameraManager::render(image* backBuffer, HDC frontDC)
 	}
 
 	backBuffer->render(cameraDC, 0, 0, _cameraBuffer->getX(), _cameraBuffer->getY(), CAMERAX, CAMERAY);
+	
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		TIMEMANAGER->render(cameraDC);
+	}
 	_cameraBuffer->render(frontDC, 0, 0);
 }
 

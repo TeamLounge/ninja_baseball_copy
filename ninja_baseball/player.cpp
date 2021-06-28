@@ -27,6 +27,8 @@ HRESULT player::init(int character)
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
 	
+	RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+
 	return S_OK;
 }
 
@@ -65,8 +67,10 @@ void player::render()
 	
 	//Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
+	/*
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+	*/
 	if (isattack)
 	{
 		Rectangle(getMemDC(), _attack_rc);

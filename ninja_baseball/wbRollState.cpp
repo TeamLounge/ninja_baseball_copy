@@ -23,15 +23,14 @@ void wbRollState::update(whiteBaseball * whiteBaseball)
 	if (frameCount >= 8)
 	{
 		frameCount = 0;
-		if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+		if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 		{
-			_currentFrameX = 0;
+			whiteBaseball->setCurrentFrameX(0);
 		}
 		else {
-			_currentFrameX++;
-
+			whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 		}
-		_currentFrameY = 1;
+		whiteBaseball->setCurrentFrameY(1);
 	}
 
 	wbMove(whiteBaseball);
@@ -41,10 +40,10 @@ void wbRollState::update(whiteBaseball * whiteBaseball)
 void wbRollState::enter(whiteBaseball * whiteBaseball)	//init!!!!
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_roll");
-	_currentFrameX = 0;
-	_currentFrameY = 1;
+	whiteBaseball->setCurrentFrameX(0);
+	whiteBaseball->setCurrentFrameY(1);
 
-
+	whiteBaseball->setImageName("wBaseball_roll");
 
 
 

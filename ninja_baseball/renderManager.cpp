@@ -20,27 +20,36 @@ void renderManager::render(HDC hdc)
 {
 	for (int i = 0; i < _arrObj.size(); i++)
 	{
-		if (!_arrObj[i].isHaveRect)
+		if (!_arrObj[i].isHaveFrame)
 		{
-			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, _arrObj[i].body.left, _arrObj[i].body.top);
-			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc);
+			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
+				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
+				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
+			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameWidth() / 2), *_arrObj[i].bodyY - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameHeight() / 2));
 		}
 		else
 		{
-			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, _arrObj[i].body.left, _arrObj[i].body.top, _arrObj[i].currentFrameX, _arrObj[i].currentFrameY);
-			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc, _arrObj[i].shadow.left, _arrObj[i].shadow.top);
+			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
+				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
+				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
+
+			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc,
+				*_arrObj[i].bodyX,
+				*_arrObj[i].bodyY, *_arrObj[i].currentFrameX, *_arrObj[i].currentFrameY);
 		}
 	}
 }
 
-void renderManager::addObj(string strKey, string bodyImageName, string shadowImageName)
+void renderManager::addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY)
 {
 	OBJ object;
 	object.bodyImageName = bodyImageName;
 	object.shadowImageName = shadowImageName;
-	object.shadowY = IMAGEMANAGER->findImage(shadowImageName)->getCenterY();
-	object.shadowX = IMAGEMANAGER->findImage(shadowImageName)->getCenterX();
-	object.isHaveRect = false;
+	object.bodyX = bodyX;
+	object.bodyY = bodyY;
+	object.shadowX = shadowX;
+	object.shadowY = shadowY;
+	object.isHaveFrame = false;
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{
 		if (iter->first == strKey)
@@ -54,18 +63,18 @@ void renderManager::addObj(string strKey, string bodyImageName, string shadowIma
 	_mObjList.insert(make_pair(strKey, array));
 }
 
-void renderManager::addObj(string strKey, string bodyImageName, string shadowImageName, RECT& body, RECT& shadow, int& currentFrameX, int& currentFrameY)
+void renderManager::addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, int* currentFrameX, int* currentFrameY)
 {
 	OBJ object;
 	object.bodyImageName = bodyImageName;
 	object.shadowImageName = shadowImageName;
-	object.body = body;
-	object.shadow = shadow;
-	object.shadowX = (object.shadow.right + object.shadow.left) / 2;
-	object.shadowY = (object.shadow.bottom + object.shadow.top) / 2;
+	object.bodyX = bodyX;
+	object.bodyY = bodyY;
+	object.shadowX = shadowX;
+	object.shadowY = shadowY;
 	object.currentFrameX = currentFrameX;
 	object.currentFrameY = currentFrameY;
-	object.isHaveRect = true;
+	object.isHaveFrame = true;
 
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{
@@ -95,6 +104,10 @@ void renderManager::deleteObj(string strKey, int i)
 
 void renderManager::setObjArray()
 {
+	if (!_arrObj.empty())
+	{
+		_arrObj.clear();
+	}
 	for (mapObjIter mIter = _mObjList.begin(); mIter != _mObjList.end(); mIter++)
 	{
 		for (iterObj vIter = mIter->second.begin(); vIter != mIter->second.end(); vIter++)
@@ -118,8 +131,8 @@ void renderManager::quickSort(int left, int right)
 
 	while (i <= j)
 	{
-		while (i <= right && _arrObj[i].shadowY <= _arrObj[pivot].shadowY) i++;
-		while (j > left && _arrObj[j].shadowY >= _arrObj[pivot].shadowY) j--;
+		while (i <= right && *_arrObj[i].shadowY <= *_arrObj[pivot].shadowY) i++;
+		while (j > left && *_arrObj[j].shadowY >= *_arrObj[pivot].shadowY) j--;
 
 		if (i > j)
 		{
@@ -132,7 +145,6 @@ void renderManager::quickSort(int left, int right)
 			temp = _arrObj[j];
 			_arrObj[j] = _arrObj[i];
 			_arrObj[i] = temp;
-			break;
 		}
 	}
 	quickSort(left, j - 1);

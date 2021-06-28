@@ -26,15 +26,14 @@ void wbStopState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 4)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = whiteBaseball->_whiteBaseball.img->getMaxFrameX();
+				whiteBaseball->setCurrentFrameX(whiteBaseball->_whiteBaseball.img->getMaxFrameX());
 			}
 			else {
-				_currentFrameX++;
-
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 			}
-			_currentFrameY = 1;
+			whiteBaseball->setCurrentFrameY(1);
 		}
 	}
 	if (whiteBaseball->isRight)			//오른쪽 바라보면
@@ -43,16 +42,16 @@ void wbStopState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 4)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = whiteBaseball->_whiteBaseball.img->getMaxFrameX();
+				whiteBaseball->setCurrentFrameX(whiteBaseball->_whiteBaseball.img->getMaxFrameX());
 			}
 			else
 			{
-				_currentFrameX++;
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 0;
+			whiteBaseball->setCurrentFrameY(0);
 		}
 	}
 
@@ -80,16 +79,18 @@ void wbStopState::enter(whiteBaseball * whiteBaseball)
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_stop");
 	if (!whiteBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		whiteBaseball->setCurrentFrameY(1);
 	}
 	if (whiteBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		whiteBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	whiteBaseball->setCurrentFrameX(0);
 
 	speed = 3.0f;
 	friction = 0.07f;
+
+	whiteBaseball->setImageName("wBaseball_stop");
 }
 
 void wbStopState::exit(whiteBaseball * whiteBaseball)

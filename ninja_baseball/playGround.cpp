@@ -29,7 +29,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("ending", new endingScene);
 
 
-	SCENEMANAGER->changeScene("start");
+	SCENEMANAGER->changeScene("stage");
 	
 	return S_OK;
 }
@@ -46,8 +46,6 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
-	
-	
 }
 
 
@@ -57,12 +55,6 @@ void playGround::render()
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
 
-
-
-	if (KEYMANAGER->isToggleKey(VK_TAB))
-	{
-		TIMEMANAGER->render(getMemDC());
-	}
 	SCENEMANAGER->render();
 	//==================================================
 	//여기도 건들지마라

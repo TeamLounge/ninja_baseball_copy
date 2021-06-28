@@ -8,7 +8,7 @@
 
 wbState * wbAttackPunchState::inputHandle(whiteBaseball * whiteBaseball)
 {	
-	if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+	if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 	{
 		whiteBaseball->isJump = true;	//점프했음을 알림
 		return new wbAttackJumpState();
@@ -26,15 +26,14 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = whiteBaseball->_whiteBaseball.img->getMaxFrameX();
+				whiteBaseball->setCurrentFrameX(whiteBaseball->_whiteBaseball.img->getMaxFrameX());
 			}
 			else {
-				_currentFrameX++;
-
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 			}
-			_currentFrameY = 1;
+			whiteBaseball->setCurrentFrameY(1);
 		}
 	}
 	if (whiteBaseball->isRight)			//오른쪽 바라보면
@@ -43,19 +42,17 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = whiteBaseball->_whiteBaseball.img->getMaxFrameX();
+				whiteBaseball->setCurrentFrameX(whiteBaseball->_whiteBaseball.img->getMaxFrameX());
 			}
 			else
 			{
-				_currentFrameX++;
-
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 			}
-			_currentFrameY = 0;
+			whiteBaseball->setCurrentFrameY(1);
 		}
 	}
-
 }
 
 void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
@@ -63,13 +60,15 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_punch");
 	if (!whiteBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		whiteBaseball->setCurrentFrameY(1);
 	}
 	if (whiteBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		whiteBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	whiteBaseball->setCurrentFrameX(0);
+
+	whiteBaseball->setImageName("wBaseball_punch");
 }
 
 void wbAttackPunchState::exit(whiteBaseball * whiteBaseball)
