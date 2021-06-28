@@ -26,15 +26,14 @@ void wbAttackJumpState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 4)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				whiteBaseball->setCurrentFrameX(0);
 			}
 			else {
-				_currentFrameX++;
-
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 			}
-			_currentFrameY = 1;
+			whiteBaseball->setCurrentFrameY(1);
 		}
 	}
 	if (whiteBaseball->isRight)			//오른쪽 바라보면
@@ -43,16 +42,16 @@ void wbAttackJumpState::update(whiteBaseball * whiteBaseball)
 		if (frameCount >= 4)
 		{
 			frameCount = 0;
-			if (_currentFrameX == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+			if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				whiteBaseball->setCurrentFrameX(0);
 			}
 			else
 			{
-				_currentFrameX++;
+				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 0;
+			whiteBaseball->setCurrentFrameY(0);
 		}
 	}
 
@@ -66,17 +65,19 @@ void wbAttackJumpState::enter(whiteBaseball * whiteBaseball)
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_roll");
 	if (!whiteBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		whiteBaseball->setCurrentFrameY(1);
 	}
 	if (whiteBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		whiteBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	whiteBaseball->setCurrentFrameX(0);
 
 	//초기화
 	jumpPower =21.0f;
 	gravity = 0.58f;
+
+	whiteBaseball->setImageName("wBaseball_roll");
 	
 }
 

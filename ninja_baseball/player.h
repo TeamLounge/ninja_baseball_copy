@@ -13,8 +13,11 @@ private:
 	//기본적인 요소 다른게 필요하다면 추가해주셔도됩니다
 	//===================================
 	image* _playerimg; //이미지
+	string _playerImgName;
+
 	RECT _playerrc; // 렉트
 	float _x, _y; // 좌표
+	float _shadowX, _shadowY;
 	playerstate* _state; // 상태패턴 변수
 	enemyManager* _em;
 	//==================================
@@ -53,13 +56,17 @@ public:
 
 	//수만은 셋터
 	virtual void setImage(image* img) { _playerimg = img; }
+
 	virtual void setRect(RECT rc) { _playerrc = rc; }
 	virtual void setX(float x) { _x = x; }
 	virtual void setY(float y) { _y = y; }
 
+	virtual void setImageName(string s) { _playerImgName = s; }
 
 	//에너미매니저와 링크
 	void setEmMemoryAddressLink(enemyManager * em) { _em = em; }
 
+	void setShadowX(float shadowX) { _shadowX = shadowX; }
+	void setShadowY(float shadowY) { _shadowY = shadowY; }
 };
 

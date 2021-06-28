@@ -4,10 +4,11 @@
 HRESULT endingScene::init()
 {
 	//이미지 추가
-	IMAGEMANAGER->addImage("tile_background", "image/6_UI/tile_background.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("character_scene", "image/6_UI/endingScene/stage1CleardCharacter.bmp", WINSIZEX, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("ending_background", "image/6_UI/endingScene/ending_background.bmp", 1440, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->findImage("ending_background")->setX(0);
+	IMAGEMANAGER->addImage("ui_green", "image/6_UI/inGame/green.bmp", 63, 72, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("ui_red", "image/6_UI/inGame/red.bmp", 63, 72, true, RGB(255, 0, 255), false);
 
 	//카메라 설정
 	CAMERAMANAGER->setCamera(0, 0);
@@ -19,9 +20,15 @@ HRESULT endingScene::init()
 
 	_elapsedTime = 0;
 
-	_dialogTextNum = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		_dialogTextNum[i] = 0;
+	}
+	_dialogNow = 0;
 
-	sprintf_s(str, "ONE DAY SIX BASEBALL ITEMS WERE");
+	_dialog.push_back("GOOD, WE GOT THE BAT BACK!!");
+	_dialog.push_back("THE NEXT ENEMY IS WAITING FOR US");
+	_dialog.push_back("ON THE STEAM SHIP!!");
 	return S_OK;
 }
 
@@ -45,22 +52,29 @@ void endingScene::update()
 
 		//다이얼로그도 출력
 		_elapsedTime += TIMEMANAGER->getElapsedTime();
-		if (_elapsedTime >= 0.2f)
-		{
-			_elapsedTime -= 0.2f;
-			if (_dialogTextNum >= strlen(str))
-			{
-				_dialogTextNum = strlen(str);
-			}
-			else
-			{
-				_dialogTextNum++;
-			}
 
-		}
-		if (KEYMANAGER->isOnceKeyDown('Z'))
+		if (_dialogNow < _dialog.size())
 		{
-			_dialogTextNum = strlen(str);
+			if (_elapsedTime >= 0.1f)
+			{
+				_elapsedTime -= 0.1f;
+				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
+				{
+					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
+				}
+				else
+				{
+					_dialogTextNum[_dialogNow]++;
+				}
+			}
+			if (_dialogTextNum[_dialogNow] == _dialog[_dialogNow].length())
+			{
+				_dialogNow++;
+			}
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
+			}
 		}
 	}
 
@@ -101,6 +115,35 @@ void endingScene::render()
 	//캐릭터 씬
 	IMAGEMANAGER->findImage("character_scene")->render(getMemDC(), 0, 144 + IMAGEMANAGER->findImage("character_scene")->getHeight() / 2 - _sceneHeight, 
 		0, IMAGEMANAGER->findImage("character_scene")->getHeight() /2 - _sceneHeight, WINSIZEX, _sceneHeight * 2);
+	
+	HFONT font = CreateFont(35, 0, 0, 0, 600, false, false, false, DEFAULT_CHARSET,
+		0, 0, 0, 0, TEXT("Retro Gaming"));
+	HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
+	SetBkMode(getMemDC(), TRANSPARENT);
 
-	TextOut(getMemDC(), 100, 100, str, _dialogTextNum);
+	//그림자
+	SetTextColor(getMemDC(), RGB(0, 0, 0));
+	for (int i = 0; i < 2; i++)
+	{
+		TextOut(getMemDC(), 152, 553 + 110 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+	}
+	TextOut(getMemDC(), 152, 553 + 135, _dialog[2].c_str(), _dialogTextNum[2]);
+
+	//텍스트
+	SetTextColor(getMemDC(), RGB(255, 255, 255));
+	for (int i = 0; i < 2; i++)
+	{
+		TextOut(getMemDC(), 150, 550 + 110 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+	}
+	TextOut(getMemDC(), 150, 550 + 135, _dialog[2].c_str(), _dialogTextNum[2]);
+	SelectObject(getMemDC(), oldFont);
+	DeleteObject(font);
+	if (_dialogTextNum[0] != 0)
+	{
+		IMAGEMANAGER->findImage("ui_green")->render(getMemDC(), 60, _textRC.top + 2);
+	}
+	if (_dialogTextNum[1] != 0)
+	{
+		IMAGEMANAGER->findImage("ui_red")->render(getMemDC(), 60, _textRC.top + 120);
+	}
 }
