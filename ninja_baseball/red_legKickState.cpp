@@ -4,6 +4,11 @@
 
 playerstate * red_legKickState::handleInput(player * _player)
 {
+	if (_time > 30)
+	{
+		return new red_idleState;
+	}
+
 	return nullptr;
 }
 
@@ -11,7 +16,7 @@ void red_legKickState::update(player * _player)
 {
 	_count++;
 
-	if (_count % 5 == 0)
+	if (_count % 8 == 0)
 	{
 		if (_player->isRight == true)
 		{
@@ -26,20 +31,47 @@ void red_legKickState::update(player * _player)
 			_player->getImage()->setFrameY(1);
 			_index++;
 		}
-
+		
 		_count = 0;
 	}
 
+	if (_index > 3 && _index <= _player->getImage()->getMaxFrameX())
+	{
+		if (_player->isRight == true)
+		{
+			_player->setX(_player->getX() + 15);
+		}
+		if (_player->isRight == false)
+		{
+			_player->setX(_player->getX() - 15);
+		}
+
+		if (_index > 3 && _index < 7)
+		{
+			_player->setY(_player->getY() - 3);
+		}
+		if (_index >= 8  && _index <= _player->getImage()->getMaxFrameX())
+		{
+			_player->setY(_player->getY() + 3);
+		}
+				
+	}
+
+	if (_player->getImage()->getMaxFrameX() < _index)
+	{
+		_time++;
+	}
+	
 	//그림자 위치
 	if (_player->isRight == true)
 	{
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setY(_player->getY() + 90);*/
 	}
 	if (_player->isRight == false)
 	{
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setY(_player->getY() + 90);*/
 	}
 }
 
