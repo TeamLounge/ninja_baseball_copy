@@ -97,6 +97,9 @@
     <ClCompile Include="red_slidingState.cpp">
       <Filter>playGround\redState</Filter>
     </ClCompile>
+    <ClCompile Include="red_dashAttackState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -208,6 +211,9 @@
       <Filter>playGround\redState</Filter>
     </ClInclude>
     <ClInclude Include="red_slidingState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dashAttackState.h">
       <Filter>playGround\redState</Filter>
     </ClInclude>
   </ItemGroup>

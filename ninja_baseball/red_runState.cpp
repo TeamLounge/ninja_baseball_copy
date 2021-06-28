@@ -2,7 +2,7 @@
 #include "red_runState.h"
 #include "red_idleState.h"
 #include "red_slidingState.h"
-//#include "red_dashAttackState.h"
+#include "red_dashAttackState.h"
 
 playerstate* red_runState::handleInput(player* _player)
 {
@@ -16,10 +16,10 @@ playerstate* red_runState::handleInput(player* _player)
 		return new red_slidingState;
 	}
 
-	/*if (KEYMANAGER->isOnceKeyDown('X'))
+	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		return new red_dashAttackState;
-	}*/
+	}
 
 	return nullptr;
 }
