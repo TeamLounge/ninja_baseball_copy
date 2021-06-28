@@ -111,71 +111,14 @@
     <ClCompile Include="player.cpp">
       <Filter>player</Filter>
     </ClCompile>
-    <ClCompile Include="wbAttackJumpState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="wbAttackPunchState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="wbIdleState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="wbRollState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="wbState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="wbStopState.cpp">
-      <Filter>whiteBaseball</Filter>
-    </ClCompile>
     <ClCompile Include="whiteBaseball.cpp">
       <Filter>whiteBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="bbAttackPunchState.cpp">
-      <Filter>blueBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="bbIdleState.cpp">
-      <Filter>blueBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="bbLandState.cpp">
-      <Filter>blueBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="bbState.cpp">
-      <Filter>blueBaseball</Filter>
     </ClCompile>
     <ClCompile Include="blueBaseball.cpp">
       <Filter>blueBaseball</Filter>
     </ClCompile>
-    <ClCompile Include="ybAttackPunchState.cpp">
-      <Filter>yellowBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="ybIdleState.cpp">
-      <Filter>yellowBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="ybMoveState.cpp">
-      <Filter>yellowBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="ybState.cpp">
-      <Filter>yellowBaseball</Filter>
-    </ClCompile>
     <ClCompile Include="yellowBaseball.cpp">
       <Filter>yellowBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="gbAttackPunchState.cpp">
-      <Filter>greenBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="gbHangState.cpp">
-      <Filter>greenBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="gbIdleState.cpp">
-      <Filter>greenBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="gbLandState.cpp">
-      <Filter>greenBaseball</Filter>
-    </ClCompile>
-    <ClCompile Include="gbState.cpp">
-      <Filter>greenBaseball</Filter>
     </ClCompile>
     <ClCompile Include="greenBaseball.cpp">
       <Filter>greenBaseball</Filter>
@@ -206,6 +149,63 @@
     </ClCompile>
     <ClCompile Include="enemyManager.cpp">
       <Filter>enemyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="wbStopState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbRollState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbIdleState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackPunchState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackJumpState.cpp">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybAttackPunchState.cpp">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybIdleState.cpp">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybMoveState.cpp">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybState.cpp">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbAttackPunchState.cpp">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbHangState.cpp">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbIdleState.cpp">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbLandState.cpp">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbState.cpp">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbAttackPunchState.cpp">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbIdleState.cpp">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbLandState.cpp">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbState.cpp">
+      <Filter>blueBaseball\bbState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,71 +326,14 @@
     <ClInclude Include="player.h">
       <Filter>player</Filter>
     </ClInclude>
-    <ClInclude Include="wbAttackJumpState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="wbAttackPunchState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="wbIdleState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="wbRollState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="wbState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="wbStopState.h">
-      <Filter>whiteBaseball</Filter>
-    </ClInclude>
     <ClInclude Include="whiteBaseball.h">
       <Filter>whiteBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="bbAttackPunchState.h">
-      <Filter>blueBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="bbIdleState.h">
-      <Filter>blueBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="bbLandState.h">
-      <Filter>blueBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="bbState.h">
-      <Filter>blueBaseball</Filter>
     </ClInclude>
     <ClInclude Include="blueBaseball.h">
       <Filter>blueBaseball</Filter>
     </ClInclude>
-    <ClInclude Include="ybAttackPunchState.h">
-      <Filter>yellowBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="ybIdleState.h">
-      <Filter>yellowBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="ybMoveState.h">
-      <Filter>yellowBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="ybState.h">
-      <Filter>yellowBaseball</Filter>
-    </ClInclude>
     <ClInclude Include="yellowBaseball.h">
       <Filter>yellowBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="gbAttackPunchState.h">
-      <Filter>greenBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="gbHangState.h">
-      <Filter>greenBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="gbIdleState.h">
-      <Filter>greenBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="gbLandState.h">
-      <Filter>greenBaseball</Filter>
-    </ClInclude>
-    <ClInclude Include="gbState.h">
-      <Filter>greenBaseball</Filter>
     </ClInclude>
     <ClInclude Include="greenBaseball.h">
       <Filter>greenBaseball</Filter>
@@ -421,6 +364,63 @@
     </ClInclude>
     <ClInclude Include="enemyManager.h">
       <Filter>enemyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="wbStopState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbRollState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbIdleState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackPunchState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackJumpState.h">
+      <Filter>whiteBaseball\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybAttackPunchState.h">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybIdleState.h">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybMoveState.h">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybState.h">
+      <Filter>yellowBaseball\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbAttackPunchState.h">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHangState.h">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbIdleState.h">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbLandState.h">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbState.h">
+      <Filter>greenBaseball\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbAttackPunchState.h">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbIdleState.h">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbLandState.h">
+      <Filter>blueBaseball\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbState.h">
+      <Filter>blueBaseball\bbState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +460,18 @@
     </Filter>
     <Filter Include="enemyManager">
       <UniqueIdentifier>{7d20e81f-56a0-4ee8-a633-9a1e29a70653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="whiteBaseball\wbState">
+      <UniqueIdentifier>{8b33e4a6-1423-4c24-9157-31abceef0349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="yellowBaseball\ybState">
+      <UniqueIdentifier>{ad384cb0-a97d-4b23-8863-994d33ac047b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="greenBaseball\gbState">
+      <UniqueIdentifier>{b799502c-0888-4979-8814-eef0baa9aa59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blueBaseball\bbState">
+      <UniqueIdentifier>{81cbf108-d9b4-4c12-a5ea-b127096fa22a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
