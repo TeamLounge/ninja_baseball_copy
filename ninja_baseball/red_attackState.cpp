@@ -83,11 +83,10 @@ void red_attackState::update(player * _player)
 			{
 				_isend = true;
 			}
-
-
 		}
 	}
 	_player->getImage()->setFrameX(_index);
+
 	/*if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		_index = 0;

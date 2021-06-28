@@ -37,9 +37,6 @@
     <ClCompile Include="playGround.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
     <ClCompile Include="red_downAttackState.cpp">
       <Filter>playGround\redState</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -153,9 +153,6 @@
     <ClInclude Include="playGround.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>playGround</Filter>
     </ClInclude>
@@ -179,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="playerstate.h">
-      <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="red_attackState.h">
       <Filter>playGround\redState</Filter>
@@ -246,6 +240,12 @@
     <ClInclude Include="red_downAttackState.h">
       <Filter>playGround\redState</Filter>
     </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -295,6 +295,9 @@
     </Filter>
     <Filter Include="playGround\rynoState">
       <UniqueIdentifier>{fc0c428e-caa5-46db-a2f7-258b9589b4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{98b61e79-7358-4790-861f-1d757ed73d06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
