@@ -24,12 +24,16 @@ void Ryno_catch::update(player * player)
 	{
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
-			if (player->isRight)
+			if (player->isRight) {
 				player->getImage()->setFrameY(0);
-			else
+				if (KEYMANAGER->isOnceKeyDown('Z'))
+					_index += 3;
+			}
+			else {
 				player->getImage()->setFrameY(1);
-			if (KEYMANAGER->isOnceKeyDown('Z'))
-				_index += 3;
+				if (KEYMANAGER->isOnceKeyDown('Z'))
+					_index += 3;
+			}
 		}
 		else if (KEYMANAGER->isOnceKeyDown('Z'))
 		{
@@ -46,7 +50,7 @@ void Ryno_catch::update(player * player)
 			_count = 0;
 		}
 	}
-	if (_index > 2)
+	if (_index >= 3)
 	{
 		_count++;
 		if (_count % 10 == 0)
@@ -62,7 +66,7 @@ void Ryno_catch::update(player * player)
 void Ryno_catch::enter(player * player)
 {
 	_count = _index = 0;
-
+	isend = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_catch"));
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setY(player->_shadow->getY() - 120);
