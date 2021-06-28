@@ -132,5 +132,19 @@ void player::addImage()
 
 void player::collision()
 {
-
+	for (int i = 0; _em->getVWb().size(); i++)
+	{
+		RECT temp;
+		if (_em->getVWb()[i]->isCollisionAttack)
+		{
+			if (_shadow->getCenterY() > _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadow->getCenterY() < _em->getVWb()[i]->_wbShadow.rc.bottom)
+			{
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					/*isdamage = true;*/
+				}
+			}
+		}
+	}
 }

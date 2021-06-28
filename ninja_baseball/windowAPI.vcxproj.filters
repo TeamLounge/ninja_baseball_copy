@@ -30,7 +30,6 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
-    <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSelectScene.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="sceneManager.cpp" />
@@ -55,91 +54,94 @@
     <ClCompile Include="ybState.cpp" />
     <ClCompile Include="yellowBaseball.cpp" />
     <ClCompile Include="red_attackState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_damage1State.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_damage2State.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_dashAttackState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_downAttackState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_gripState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_homeRunState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_idleState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_idleState2.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_jumpState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_legKickState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_moveState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_runState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_slidingState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_standUpState.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_throw.cpp">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_attack.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_catch.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dash.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dashAlt.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dashAttack.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_fall.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_fly.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_frontCombo.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_idle.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_jump.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_move.cpp">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,8 +175,6 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="playerstate.h" />
     <ClInclude Include="playerSelectScene.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
@@ -202,91 +202,97 @@
     <ClInclude Include="ybState.h" />
     <ClInclude Include="yellowBaseball.h" />
     <ClInclude Include="red_attackState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_damage1State.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_damage2State.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_dashAttackState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_downAttackState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_gripState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_homeRunState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_idleState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_idleState2.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_jumpAttackState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_jumpState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_legKickState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_moveState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_runState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_slidingState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_standUpState.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_throw.h">
-      <Filter>redState</Filter>
+      <Filter>player\red</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_attack.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_catch.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_crawl.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_dash.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_dashAlt.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_dashAttack.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_fall.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_fly.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_frontCombo.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_idle.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_jump.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_move.h">
-      <Filter>rynoState</Filter>
+      <Filter>player\ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>player</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,11 +303,14 @@
     <Image Include="windowAPI.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="redState">
-      <UniqueIdentifier>{2f6ad8c0-df6b-4342-97b2-6bf39417e444}</UniqueIdentifier>
+    <Filter Include="player">
+      <UniqueIdentifier>{82aeacbf-67c2-434d-84e2-4cb832bd69d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="rynoState">
+    <Filter Include="player\ryno">
       <UniqueIdentifier>{ae1a6d75-a49d-4b0a-8b16-ccc87fba547b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="player\red">
+      <UniqueIdentifier>{2f6ad8c0-df6b-4342-97b2-6bf39417e444}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

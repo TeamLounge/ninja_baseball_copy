@@ -16,7 +16,7 @@ private:
 	RECT _playerrc; // 렉트
 	float _x, _y; // 좌표
 	playerstate* _state; // 상태패턴 변수
-	enemyManager* _em;
+
 	//==================================
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
@@ -31,6 +31,7 @@ public:
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
 	float _runtime;
+	enemyManager* _em;
 
 
 	//함수를 선언하려면 여기에다

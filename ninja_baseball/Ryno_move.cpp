@@ -72,8 +72,10 @@ void Ryno_move::update(player * player)
 		{
 			player->getImage()->setFrameY(1);
 		}
+
 		_index++;
 		_count = 0;
+
 	}
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
