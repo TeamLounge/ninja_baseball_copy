@@ -4,6 +4,7 @@
 #include "red_moveState.h"
 #include "red_attackState.h"
 #include "red_idleState2.h"
+#include "red_damage1State.h"
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -27,6 +28,24 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_idleState2;
 	}
+
+	//=============================================================================
+	//잘 되는지 확인하려고 키설정한 것-> 나중에 삭제할 예정
+	if (KEYMANAGER->isOnceKeyDown('G'))
+	{
+		return new red_damage1State; //강하게 공격당했을 때
+	}
+
+	//if (KEYMANAGER->isOnceKeyDown('H'))
+	//{
+	//	return new red_damage2State; //약하게 공격당했을 때
+	//}
+
+	//if (KEYMANAGER->isOnceKeyDown('J'))
+	//{
+	//	return new red_downAttack; //몸이 누웠을 때 내려찍기
+	//}
+	//================================================================================
 
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
 	//	(KEYMANAGER->isStayKeyDown(VK_RIGHT) && KEYMANAGER->isOnceKeyDown('A')) ||

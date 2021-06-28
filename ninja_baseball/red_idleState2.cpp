@@ -17,7 +17,7 @@ playerstate * red_idleState2::handleInput(player * _player)
 		return new red_moveState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		return new red_jumpState;
 	}
