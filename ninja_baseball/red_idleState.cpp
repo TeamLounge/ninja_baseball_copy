@@ -4,8 +4,11 @@
 #include "red_moveState.h"
 #include "red_attackState.h"
 #include "red_idleState2.h"
+//=====================================
 #include "red_damage1State.h"
 #include "red_damage2State.h"
+#include "red_downAttackState.h"
+//=====================================
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -15,7 +18,7 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_moveState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		return new red_jumpState;
 	}
@@ -42,10 +45,10 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_damage2State; //¾àÇÏ°Ô °ø°Ý´çÇßÀ» ¶§
 	}
 
-	//if (KEYMANAGER->isOnceKeyDown('J'))
-	//{
-	//	return new red_downAttack; //¸öÀÌ ´©¿üÀ» ¶§ ³»·ÁÂï±â
-	//}
+	if (KEYMANAGER->isOnceKeyDown('J'))
+	{
+		return new red_downAttackState; //¸öÀÌ ´©¿üÀ» ¶§ ³»·ÁÂï±â
+	}
 	//================================================================================
 
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
