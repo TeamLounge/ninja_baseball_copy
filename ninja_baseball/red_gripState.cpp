@@ -16,22 +16,22 @@ void red_gripState::update(player* _player)
 	if (KEYMANAGER->isStayKeyDown('Z') && KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_isMove = true;
-		_player->setX(_player->getX() - 8);
+		_player->setX(_player->getX() - 6);
 	}
 	if (KEYMANAGER->isStayKeyDown('Z') && KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_isMove = true;
-		_player->setX(_player->getX() + 8);
+		_player->setX(_player->getX() + 6);
 	}
 	if (KEYMANAGER->isStayKeyDown('Z') && KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_isMove = true;
-		_player->setY(_player->getY() - 8);
+		_player->setY(_player->getY() - 6);
 	}
 	if (KEYMANAGER->isStayKeyDown('Z') && KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_isMove = true;
-		_player->setY(_player->getY() + 8);
+		_player->setY(_player->getY() + 6);
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT) ||
 		KEYMANAGER->isOnceKeyUp(VK_UP) || KEYMANAGER->isOnceKeyUp(VK_DOWN))
@@ -71,8 +71,7 @@ void red_gripState::update(player* _player)
 			_count = 0;
 		}
 	}
-
-
+	
 	//그림자 위치
 	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
 	_player->_shadow->setY(_player->getY() + 90);
