@@ -103,6 +103,9 @@
     <ClCompile Include="red_damage1State.cpp">
       <Filter>playGround\redState</Filter>
     </ClCompile>
+    <ClCompile Include="red_damage2State.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -220,6 +223,9 @@
       <Filter>playGround\redState</Filter>
     </ClInclude>
     <ClInclude Include="red_damage1State.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_damage2State.h">
       <Filter>playGround\redState</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include "red_attackState.h"
 #include "red_idleState2.h"
 #include "red_damage1State.h"
+#include "red_damage2State.h"
 
 playerstate * red_idleState::handleInput(player * _player)
 {
@@ -36,10 +37,10 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_damage1State; //강하게 공격당했을 때
 	}
 
-	//if (KEYMANAGER->isOnceKeyDown('H'))
-	//{
-	//	return new red_damage2State; //약하게 공격당했을 때
-	//}
+	if (KEYMANAGER->isOnceKeyDown('H'))
+	{
+		return new red_damage2State; //약하게 공격당했을 때
+	}
 
 	//if (KEYMANAGER->isOnceKeyDown('J'))
 	//{
