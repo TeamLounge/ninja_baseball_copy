@@ -1,2 +1,4 @@
-﻿  red_runState.cpp
+﻿  red_moveState.cpp
+c:\users\kga_am_26\desktop\game\ninja_baseball\red_jumpstate.h(4): warning C4005: 'redSpeed': 매크로 재정의
+  c:\users\kga_am_26\desktop\game\ninja_baseball\red_movestate.h(4): note: 'redSpeed'의 이전 정의를 참조하십시오.
   windowAPI.vcxproj -> C:\Users\KGA_AM_26\Desktop\game\ninja_baseball\x64\Debug\windowAPI.exe

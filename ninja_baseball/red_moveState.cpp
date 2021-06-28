@@ -82,7 +82,7 @@ void red_moveState::update(player * _player)
 		_runTime++;
 	}
 
-	if (_runTime < 10)
+	if (_runTime < 4)
 	{
 		_isRun = true;
 	}

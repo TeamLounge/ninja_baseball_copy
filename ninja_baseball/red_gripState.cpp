@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "red_gripState.h"
 #include "red_idleState.h"
+#include "red_legKickState.h"
 
 playerstate* red_gripState::handleInput(player* _player)
 {
@@ -8,6 +9,12 @@ playerstate* red_gripState::handleInput(player* _player)
 	{
 		return new red_idleState;
 	}
+
+	if (KEYMANAGER->isOnceKeyDown('X'))
+	{
+		return new red_legKickState;
+	}
+
 	return nullptr;
 }
 
