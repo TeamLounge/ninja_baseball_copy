@@ -45,12 +45,11 @@ void red_gripState::update(player* _player)
 	{
 		if (_count % 8 == 0)
 		{
-			_index++;
-
 			if (_player->isRight == true)
 			{
 				_player->getImage()->setFrameX(_index);
 				_player->getImage()->setFrameY(0);
+				_index++;
 
 				if (_player->getImage()->getMaxFrameX() < _index)
 				{
@@ -62,6 +61,7 @@ void red_gripState::update(player* _player)
 			{
 				_player->getImage()->setFrameX(_index);
 				_player->getImage()->setFrameY(1);
+				_index++;
 
 				if (_player->getImage()->getMaxFrameX() < _index)
 				{

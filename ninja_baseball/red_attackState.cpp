@@ -12,7 +12,7 @@ playerstate * red_attackState::handleInput(player * _player)
 
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
-		return new red_homeRunState; //홈런공격??
+		return new red_homeRunState; //홈런공격?
 	}
 	
 	return nullptr;
