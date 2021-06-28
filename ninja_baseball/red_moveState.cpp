@@ -137,11 +137,7 @@ void red_moveState::update(player * _player)
 void red_moveState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_walk"));
-
-	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
-
+	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
 	//_player->setRect(_rc);

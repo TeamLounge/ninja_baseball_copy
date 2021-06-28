@@ -7,6 +7,16 @@ playerstate * red_jumpState::handleInput(player * _player)
 {
 	if (_player->getY() + 90 >= _player->_shadow->getY())
 	{
+		if (_player->isRight == true)
+		{
+			_player->setX(_player->getX() - 30);
+		}
+		if (_player->isRight == false)
+		{
+			_player->setX(_player->getX() + 30);
+		}
+		
+
 		return new red_idleState;
 	}
 
@@ -23,9 +33,9 @@ void red_jumpState::update(player * _player)
 	_jumpPower -= _grivity;
 	_player->setY(_player->getY() - _jumpPower);
 
-	_rc = RectMakeCenter(_player->getX() , _player->getY(), _player->getImage()->getFrameWidth(),
+	/*_rc = RectMakeCenter(_player->getX() , _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);
+	_player->setRect(_rc);*/
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) //점프중 왼쪽 이동
 	{
@@ -39,13 +49,13 @@ void red_jumpState::update(player * _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
 		
 	}
 
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
 		
 	}
 
@@ -79,28 +89,24 @@ void red_jumpState::update(player * _player)
 			_count = 0;
 		}
 	}
+	
 }
 
 void red_jumpState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_jump"));
-	
-	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setX(_player->getX() + 30);
 	}
-
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setX(_player->getX() - 30);
 	}
-
-	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+	
+	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);
+	_player->setRect(_rc);*/
 
 	_jumpPower = 13.0f;
 	_grivity = 0.5f;

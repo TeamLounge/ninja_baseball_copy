@@ -64,10 +64,4 @@ void red_standUpState::enter(player* _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
-
-	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
-
-
 }
