@@ -6,7 +6,7 @@ class stageScene : public gameNode
 {
 private:
 	player* _red;
-	player* _Ryno;
+	/*player* _Ryno;*/
 
 	enemyManager* _em;
 public:

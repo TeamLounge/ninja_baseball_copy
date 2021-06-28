@@ -47,7 +47,7 @@ private:
 	viCard _viCard;
 
 	player* _player;
-	
+		
 public:
 	enemyManager() {};
 	~enemyManager() {};
