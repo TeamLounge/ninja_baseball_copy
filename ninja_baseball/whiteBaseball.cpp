@@ -50,6 +50,7 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	isattack = false;
 	isdamage = false;
+	iscatch = false;
 
 	return S_OK;
 }

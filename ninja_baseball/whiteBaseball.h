@@ -50,6 +50,7 @@ public:
 	
 	bool isattack;
 	bool isdamage;
+	bool iscatch;
 
 	whiteBaseball() {};
 	~whiteBaseball() {};

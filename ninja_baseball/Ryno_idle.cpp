@@ -7,6 +7,7 @@
 #include "Ryno_crawl.h"
 #include "Ryno_dash.h"
 #include "Ryno_damage.h"
+#include "enemyManager.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
 

@@ -3,8 +3,15 @@
 #include "Ryno_idle.h"
 #include "Ryno_fly.h"
 #include "Ryno_damage.h"
+#include "Ryno_catch.h"
+#include "enemyManager.h"
 playerstate * Ryno_crawl::handleInput(player * player)
 {
+	if (player->iscatch)
+	{
+		player->iscrawl = false;
+		return new Ryno_catch;
+	}
 	if (player->isdamage)
 	{
 		return new Ryno_damage;
@@ -76,6 +83,7 @@ void Ryno_crawl::enter(player * player)
 	_count = _index = 0;
 
 	player->setImage(IMAGEMANAGER->findImage("Ryno_crawl"));
+	player->iscrawl = true;
 	player->setY(player->_shadow->getY() - 45);
 	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
 	player->setRect(_rc);
@@ -94,3 +102,4 @@ void Ryno_crawl::enter(player * player)
 		player->getImage()->setFrameY(1);
 	}
 }
+

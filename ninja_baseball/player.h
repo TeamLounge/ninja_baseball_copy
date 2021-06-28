@@ -16,7 +16,6 @@ private:
 	RECT _playerrc; // 렉트
 	float _x, _y; // 좌표
 	playerstate* _state; // 상태패턴 변수
-	enemyManager* _em;
 	//==================================
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
@@ -27,11 +26,13 @@ public:
 	//이 렉트는 player가 공격중이다 하면 상태클래스내에서 꺼낼 렉트를 미리 생성해두는겁니다.
 	RECT _attack_rc;
 	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 , 공격을했는지 안했는지 판단하기위해서 쓰는 bool변수 , 맞았는지 안맞았는지 판단하는 bool 변수
+	//기어다니는지 아닌지 판단하는 bool변수 , 잡앗는지 안 잡았는지 확인하는 bool 변수
 	bool isRight, isattack, isdamage;
+	bool iscrawl , iscatch;
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
 	float _runtime;
-
+	enemyManager* _em; //애너미정보가져오기
 
 	//함수를 선언하려면 여기에다
 	//겟터와 셋터는 따로따로 밑에 다 선언 해주세요
