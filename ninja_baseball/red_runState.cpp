@@ -42,9 +42,9 @@ void red_runState::update(player* _player)
 	{
 		if (_player->isRight == true)
 		{
-			_index++;
 			_player->getImage()->setFrameX(_index);
 			_player->getImage()->setFrameY(0);
+			_index++;
 
 			if (_player->getImage()->getMaxFrameX() <= _player->getImage()->getFrameX())
 			{
@@ -55,9 +55,9 @@ void red_runState::update(player* _player)
 
 		if (_player->isRight == false)
 		{
-			_index++;
 			_player->getImage()->setFrameX(_index);
 			_player->getImage()->setFrameY(1);
+			_index++;
 
 			if (_player->getImage()->getMaxFrameX() <= _player->getImage()->getFrameX())
 			{

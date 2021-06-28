@@ -79,9 +79,9 @@ void red_idleState2::enter(player * _player)
 		_player->_shadow->setY(_player->getY() + 90);
 	}
 	
-	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);
+	_player->setRect(_rc);*/
 
 	_count = _index = _rotation = 0;
 	
