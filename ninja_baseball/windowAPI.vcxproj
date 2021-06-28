@@ -157,6 +157,7 @@
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
     <ClInclude Include="red_dashAttackState.h" />
+    <ClInclude Include="red_gripState.h" />
     <ClInclude Include="red_homeRunState.h" />
     <ClInclude Include="red_idleState2.h" />
     <ClInclude Include="image.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />
     <ClCompile Include="red_dashAttackState.cpp" />
+    <ClCompile Include="red_gripState.cpp" />
     <ClCompile Include="red_homeRunState.cpp" />
     <ClCompile Include="red_idleState2.cpp" />
     <ClCompile Include="image.cpp" />

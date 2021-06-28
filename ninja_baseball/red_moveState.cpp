@@ -4,6 +4,7 @@
 #include "red_jumpState.h"
 #include "red_attackState.h"
 #include "red_runState.h"
+#include "red_gripState.h"
 
 playerstate* red_moveState::handleInput(player* _player)
 {
@@ -29,10 +30,10 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_runState;
 	}
 
-	//if (KEYMANAGER->isStayKeyDown('Z')) //공격준비자세?
-	//{
-	//	return new red_gripState;
-	//}
+	if (KEYMANAGER->isStayKeyDown('Z')) //공격준비자세?
+	{
+		return new red_gripState;
+	}
 
 	return nullptr;
 }

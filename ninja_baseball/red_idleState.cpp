@@ -61,8 +61,8 @@ playerstate * red_idleState::handleInput(player * _player)
 
 void red_idleState::update(player * _player)
 {
-	_time++; //일정 타임이 쌓이면 idle2로 넘어감
-	
+	_time++; //일정 타임카운터가 쌓이면 idle2로 넘어감 
+
 	if (_player->isRight)
 	{
 		_player->getImage()->setFrameX(0);
