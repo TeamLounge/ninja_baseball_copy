@@ -91,6 +91,9 @@
     <ClCompile Include="red_homeRunState.cpp">
       <Filter>playGround\redState</Filter>
     </ClCompile>
+    <ClCompile Include="red_runState.cpp">
+      <Filter>playGround\redState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -196,6 +199,9 @@
       <Filter>playGround\redState</Filter>
     </ClInclude>
     <ClInclude Include="red_homeRunState.h">
+      <Filter>playGround\redState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_runState.h">
       <Filter>playGround\redState</Filter>
     </ClInclude>
   </ItemGroup>
