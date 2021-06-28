@@ -45,16 +45,18 @@ void startScene::release()
 
 void startScene::update()
 {
+	//배경이 전부 나오면 다이얼로그 출력 시작
 	if (_backgroundHeight == IMAGEMANAGER->findImage("start_background")->getHeight() / 2)
 	{
+		//첫번째 다이얼로그
 		if (_dialogTextNum[2] >= 17 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForFrame += TIMEMANAGER->getElapsedTime();
 			if (IMAGEMANAGER->findImage("stolen")->getFrameX() >= IMAGEMANAGER->findImage("stolen")->getMaxFrameX())
 			{
-				if (_elapsedSecForFrame >= 2.0f)
+				if (_elapsedSecForFrame >= 1.0f)
 				{
-					_elapsedSecForFrame -= 2.0f;
+					_elapsedSecForFrame -= 1.0f;
 					_isFirstDialogEnd = true;
 				}
 			}
@@ -71,7 +73,7 @@ void startScene::update()
 				}
 			}
 		}
-
+		//두번째 다이얼로그
 		if (_dialogNow < 4 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForText += TIMEMANAGER->getElapsedTime();
@@ -121,6 +123,8 @@ void startScene::update()
 			}
 		}
 	}
+
+	//다이얼로그가 전부 나오고, 배경이 사라지면 씬 바꿈
 	if (_dialogTextNum[_dialog.size() - 1] == _dialog[_dialog.size() - 1].length())
 	{
 		_backgroundHeight -= 4;
@@ -131,7 +135,7 @@ void startScene::update()
 	}
 	else
 	{
-		//캐릭터 씬 y 출력 사이즈 조절
+		//배경 y 출력 사이즈 조절
 		if (_backgroundHeight >= IMAGEMANAGER->findImage("start_background")->getHeight() / 2)
 		{
 			_backgroundHeight = IMAGEMANAGER->findImage("start_background")->getHeight() / 2;
@@ -141,6 +145,8 @@ void startScene::update()
 			_backgroundHeight += 4;
 		}
 	}
+
+	//장면 효과
 	if (_dialogTextNum[4] == 1 || _dialogTextNum[5] == 4 || _dialogTextNum[6] == 12)
 	{
 		_faceImgName = "face_blue";
