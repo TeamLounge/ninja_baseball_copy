@@ -32,7 +32,19 @@ void stageScene::update()
 	_Ryno->update();
 	_red->update();
 	_em->update();
-	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());
+	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY(), 0.51f);
+
+	if (KEYMANAGER->isOnceKeyDown('A'))
+	{
+		if (!CAMERAMANAGER->_isFixed)
+		{
+			CAMERAMANAGER->_isFixed = true;
+		}
+		else
+		{
+			CAMERAMANAGER->_isFixed = false;
+		}
+	}
 }
 
 void stageScene::render()
