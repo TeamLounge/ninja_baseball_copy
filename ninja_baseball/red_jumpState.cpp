@@ -10,10 +10,10 @@ playerstate * red_jumpState::handleInput(player * _player)
 		return new red_idleState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('Z'))
+	/*if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		return new red_jumpAttackState;
-	}
+	}*/
 
 	return nullptr;
 }
@@ -48,6 +48,37 @@ void red_jumpState::update(player * _player)
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
 		
 	}
+
+	//점프 공격
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		_isJumpAttack = true;
+	}
+
+	if (_isJumpAttack)
+	{
+		_count++;
+
+		if (_count % 4 == 0)
+		{
+			_player->setImage(IMAGEMANAGER->findImage("red_jumpAttack"));
+
+			if (_player->isRight == true)
+			{
+				_player->getImage()->setFrameX(_index);
+				_player->getImage()->setFrameY(0);
+				_index++;
+			}
+
+			if (_player->isRight == false)
+			{
+				_player->getImage()->setFrameX(_index);
+				_player->getImage()->setFrameY(1);
+				_index++;
+			}
+			_count = 0;
+		}
+	}
 }
 
 void red_jumpState::enter(player * _player)
@@ -71,8 +102,9 @@ void red_jumpState::enter(player * _player)
 		_player->getImage()->getFrameHeight());
 	_player->setRect(_rc);
 
-	_jumpPower = 16.0f;
+	_jumpPower = 13.0f;
 	_grivity = 0.5f;
+	_isJumpAttack = false;
 	
 	_count = _index = 0;
 
