@@ -1,11 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClCompile>
     <ClCompile Include="cameraManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClCompile>
     <ClCompile Include="effectManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="endingScene.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="gameNode.cpp">
+      <Filter>2DGameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>2DGameFramework\image</Filter>
     </ClCompile>
     <ClCompile Include="imageManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
@@ -13,727 +31,497 @@
     <ClCompile Include="keyManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="sceneManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
+    <ClCompile Include="player.cpp">
+      <Filter>playGound\player</Filter>
     </ClCompile>
-    <ClCompile Include="soundManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="timeManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>2DGameFramework\image</Filter>
-    </ClCompile>
-    <ClCompile Include="animation.cpp">
-      <Filter>2DGameFramework\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="effect.cpp">
-      <Filter>2DGameFramework\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="gameNode.cpp">
-      <Filter>2DGameFramework</Filter>
+    <ClCompile Include="playerSelectScene.cpp">
+      <Filter>playGound\scene</Filter>
     </ClCompile>
     <ClCompile Include="playGround.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
-      <Filter>2DGameFramework\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>2DGameFramework\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="winMain.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound</Filter>
     </ClCompile>
     <ClCompile Include="red_attackState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_idleState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_jumpState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_moveState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_attack.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_catch.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_crawl.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_idle.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_jump.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="Ryno_move.cpp">
-      <Filter>playGround\rynoState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_idleState2.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_homeRunState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_runState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_slidingState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_dashAttackState.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_damage1State.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_damage2State.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="red_gripState.cpp">
-      <Filter>playGround\redState</Filter>
-    </ClCompile>
-    <ClCompile Include="red_standUpState.cpp">
-      <Filter>playGround\redState</Filter>
+    <ClCompile Include="red_dashAttackState.cpp">
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_downAttackState.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround\player</Filter>
+    <ClCompile Include="red_gripState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_homeRunState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_idleState2.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpAttackState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_jumpState.cpp">
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_legKickState.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_moveState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_runState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_slidingState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_standUpState.cpp">
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
     <ClCompile Include="red_throw.cpp">
-      <Filter>playGround\redState</Filter>
+      <Filter>playGound\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="card.cpp">
-      <Filter>playGround\enemy\card</Filter>
+    <ClCompile Include="Ryno_attack.cpp">
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
-    <ClCompile Include="cardPunchAttackState.cpp">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
+    <ClCompile Include="Ryno_catch.cpp">
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
-    <ClCompile Include="cardState.cpp">
-      <Filter>playGround\enemy\card\cardState</Filter>
-    </ClCompile>
-    <ClCompile Include="cardIdleState.cpp">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
-    </ClCompile>
-    <ClCompile Include="cardMoveState.cpp">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
-    </ClCompile>
-    <ClCompile Include="cardDashAttackState.cpp">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClCompile>
-    <ClCompile Include="enemyManager.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="yellowBaseball.cpp">
-      <Filter>playGround\enemy\baseballYellow</Filter>
-    </ClCompile>
-    <ClCompile Include="whiteBaseball.cpp">
-      <Filter>playGround\enemy\baseballWhite</Filter>
-    </ClCompile>
-    <ClCompile Include="blueBaseball.cpp">
-      <Filter>playGround\enemy\baseballBlue</Filter>
-    </ClCompile>
-    <ClCompile Include="greenBaseball.cpp">
-      <Filter>playGround\enemy\baseballGreen</Filter>
-    </ClCompile>
-    <ClCompile Include="bbAttackPunchState.cpp">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
-    <ClCompile Include="bbIdleState.cpp">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
-    <ClCompile Include="bbLandState.cpp">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
-    <ClCompile Include="bbState.cpp">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
-    <ClCompile Include="gbAttackPunchState.cpp">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClCompile>
-    <ClCompile Include="gbHangState.cpp">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClCompile>
-    <ClCompile Include="gbIdleState.cpp">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClCompile>
-    <ClCompile Include="gbLandState.cpp">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClCompile>
-    <ClCompile Include="gbState.cpp">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbAttackJumpState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbAttackPunchState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbIdleState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbRollState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="wbStopState.cpp">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClCompile>
-    <ClCompile Include="ybAttackPunchState.cpp">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClCompile>
-    <ClCompile Include="ybIdleState.cpp">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClCompile>
-    <ClCompile Include="ybMoveState.cpp">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClCompile>
-    <ClCompile Include="ybState.cpp">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClCompile>
-    <ClCompile Include="boss.cpp">
-      <Filter>playGround\enemy\BOSS</Filter>
-    </ClCompile>
-    <ClCompile Include="bossState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState</Filter>
+    <ClCompile Include="Ryno_crawl.cpp">
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dash.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dashAlt.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_dashAttack.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_fall.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_fly.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="Ryno_frontCombo.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_idle.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_jump.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_move.cpp">
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
     <ClCompile Include="renderManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="startScene.cpp">
-      <Filter>playGround\scene</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="cameraManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="effectManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="imageManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="keyManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="soundManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="timeManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>2DGameFramework\image</Filter>
-    </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>2DGameFramework\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="effect.h">
-      <Filter>2DGameFramework\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="gameNode.h">
-      <Filter>2DGameFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="playGround.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="commonMacroFunction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="randomFunction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>2DGameFramework\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>2DGameFramework\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="singletonBase.h">
-      <Filter>2DGameFramework\SingletonBase</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="red_attackState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_idleState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpAttackState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_moveState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_attack.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_catch.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_crawl.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_idle.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_jump.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_move.h">
-      <Filter>playGround\rynoState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_idleState2.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_homeRunState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_runState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_slidingState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_dashAttackState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_damage1State.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_damage2State.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_gripState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_standUpState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_downAttackState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
-    <ClInclude Include="playerstate.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
-    <ClInclude Include="red_legKickState.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="red_throw.h">
-      <Filter>playGround\redState</Filter>
-    </ClInclude>
-    <ClInclude Include="card.h">
-      <Filter>playGround\enemy\card</Filter>
-    </ClInclude>
-    <ClInclude Include="cardPunchAttackState.h">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="cardState.h">
-      <Filter>playGround\enemy\card\cardState</Filter>
-    </ClInclude>
-    <ClInclude Include="cardIdleState.h">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
-    </ClInclude>
-    <ClInclude Include="cardMoveState.h">
-      <Filter>playGround\enemy\card\cardState\action</Filter>
-    </ClInclude>
-    <ClInclude Include="cardDashAttackState.h">
-      <Filter>playGround\enemy\card\cardState\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="enemyManager.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="yellowBaseball.h">
-      <Filter>playGround\enemy\baseballYellow</Filter>
-    </ClInclude>
-    <ClInclude Include="whiteBaseball.h">
-      <Filter>playGround\enemy\baseballWhite</Filter>
-    </ClInclude>
-    <ClInclude Include="blueBaseball.h">
-      <Filter>playGround\enemy\baseballBlue</Filter>
-    </ClInclude>
-    <ClInclude Include="greenBaseball.h">
-      <Filter>playGround\enemy\baseballGreen</Filter>
-    </ClInclude>
-    <ClInclude Include="bbState.h">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="bbAttackPunchState.h">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="bbIdleState.h">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="bbLandState.h">
-      <Filter>playGround\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="gbAttackPunchState.h">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClInclude>
-    <ClInclude Include="gbHangState.h">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClInclude>
-    <ClInclude Include="gbIdleState.h">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClInclude>
-    <ClInclude Include="gbLandState.h">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClInclude>
-    <ClInclude Include="gbState.h">
-      <Filter>playGround\enemy\baseballGreen\gbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbAttackJumpState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbAttackPunchState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbIdleState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbRollState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="wbStopState.h">
-      <Filter>playGround\enemy\baseballWhite\wbState</Filter>
-    </ClInclude>
-    <ClInclude Include="ybAttackPunchState.h">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClInclude>
-    <ClInclude Include="ybIdleState.h">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClInclude>
-    <ClInclude Include="ybMoveState.h">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClInclude>
-    <ClInclude Include="ybState.h">
-      <Filter>playGround\enemy\baseballYellow\ybState</Filter>
-    </ClInclude>
-    <ClInclude Include="boss.h">
-      <Filter>playGround\enemy\BOSS</Filter>
-    </ClInclude>
-    <ClInclude Include="bossState.h">
-      <Filter>playGround\enemy\BOSS\bossState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_dash.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_dashAlt.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_dashAttack.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_fall.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_fly.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ryno_frontCombo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="renderManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="startScene.h">
-      <Filter>playGround\scene</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="2DGameFramework">
-      <UniqueIdentifier>{d4228325-ab86-4575-8d38-59949d73a0ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround">
-      <UniqueIdentifier>{84513b37-b08c-49e4-bd15-6f8f6752b18e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\SingletonBase">
-      <UniqueIdentifier>{8785790c-f93f-411d-90ff-bd2e05bd6334}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\Manager">
-      <UniqueIdentifier>{ddfb3dc3-ec5a-4752-880c-db14429b78a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\image">
-      <UniqueIdentifier>{73affc36-76a7-43ee-9dc2-13a65e5a5209}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\Utils">
-      <UniqueIdentifier>{dbe4a488-41b4-49cf-8cff-49dbace1d532}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\timer">
-      <UniqueIdentifier>{51ba2134-09a6-4e4a-a113-fec61f8f954a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\animation">
-      <UniqueIdentifier>{fb20fc3d-f78c-4396-a07a-e840a861adde}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2DGameFramework\effect">
-      <UniqueIdentifier>{636d27ed-03a5-48da-b1cf-b7f6dad3d4bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\scene">
-      <UniqueIdentifier>{3b595d30-892f-4a9e-938d-2c88c4534eb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy">
-      <UniqueIdentifier>{94550e38-51a5-4142-83c0-8e7d5766a91b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\card">
-      <UniqueIdentifier>{21e48dc8-a77b-4467-aad5-32040fecfeef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\bullets">
-      <UniqueIdentifier>{ea7be278-70fe-4add-8c73-18428f3bcc5c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\card\cardState">
-      <UniqueIdentifier>{e9957034-82b1-409a-8247-4748062524b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\card\cardState\action">
-      <UniqueIdentifier>{5e40e916-cea5-46c0-bafc-26e43a41642b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\card\cardState\attack">
-      <UniqueIdentifier>{a9491298-3fbe-4462-945c-85e3ec699bd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballYellow">
-      <UniqueIdentifier>{6304013c-83d1-4630-93ba-6257523d9c2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballBlue">
-      <UniqueIdentifier>{d0b8e381-c13b-4342-98f7-0642f48c2978}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballGreen">
-      <UniqueIdentifier>{90ede90f-a804-4b70-84de-0ca1726b2c74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballWhite">
-      <UniqueIdentifier>{cb479cc6-d308-4c93-99d9-d3f456de7b2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballBlue\bbState">
-      <UniqueIdentifier>{dd5e1e03-fc99-45ed-97f2-7a37d0147c34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballGreen\gbState">
-      <UniqueIdentifier>{ff1abde2-01d2-46c0-b7d3-88dbd9e98e0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballWhite\wbState">
-      <UniqueIdentifier>{c1432f22-90f8-48fc-a91d-a3003f6d7b6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\baseballYellow\ybState">
-      <UniqueIdentifier>{87872637-2daf-45ef-9872-9d1c852f2980}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\BOSS">
-      <UniqueIdentifier>{0813b2a4-3370-48c1-acf6-617562248110}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\BOSS\bossState">
-      <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
-    <Filter Include="playGround\redState">
-      <UniqueIdentifier>{43079ea0-86b0-4b29-8040-c4cbbd812b73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\rynoState">
-      <UniqueIdentifier>{fc0c428e-caa5-46db-a2f7-258b9589b4db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\player">
-      <UniqueIdentifier>{98b61e79-7358-4790-861f-1d757ed73d06}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="commonMacroFunction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="gameNode.h">
-      <Filter>2DGameFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="playGround.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="singletonBase.h">
-      <Filter>2DGameFramework\SingletonBase</Filter>
-    </ClInclude>
-    <ClInclude Include="randomFunction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="keyManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>2DGameFramework\image</Filter>
-    </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>2DGameFramework\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="imageManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>2DGameFramework\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="timeManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>2DGameFramework\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="effect.h">
-      <Filter>2DGameFramework\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="effectManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="soundManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="titleScene.h">
-      <Filter>playGround\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="stageScene.h">
-      <Filter>playGround\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="endingScene.h">
-      <Filter>playGround\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="cameraManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="playerSelectScene.h">
-      <Filter>playGround\scene</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="winMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="gameNode.cpp">
-      <Filter>2DGameFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="playGround.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="keyManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>2DGameFramework\image</Filter>
-    </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>2DGameFramework\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="imageManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
-      <Filter>2DGameFramework\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="timeManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="animation.cpp">
-      <Filter>2DGameFramework\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="effect.cpp">
-      <Filter>2DGameFramework\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="effectManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
     <ClCompile Include="soundManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="titleScene.cpp">
-      <Filter>playGround\scene</Filter>
-    </ClCompile>
     <ClCompile Include="stageScene.cpp">
-      <Filter>playGround\scene</Filter>
+      <Filter>playGound\scene</Filter>
     </ClCompile>
-    <ClCompile Include="endingScene.cpp">
-      <Filter>playGround\scene</Filter>
+    <ClCompile Include="startScene.cpp">
+      <Filter>playGound\scene</Filter>
     </ClCompile>
-    <ClCompile Include="cameraManager.cpp">
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="playerSelectScene.cpp">
-      <Filter>playGround\scene</Filter>
+    <ClCompile Include="timer.cpp">
+      <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
+    <ClCompile Include="titleScene.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bbAttackPunchState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbIdleState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbLandState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="blueBaseball.cpp">
+      <Filter>playGound\enemy\baseballBlue</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGound\enemy\BOSS</Filter>
+    </ClCompile>
+    <ClCompile Include="card.cpp">
+      <Filter>playGound\enemy\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardDashAttackState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardIdleState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardMoveState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardPunchAttackState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="greenBaseball.cpp">
+      <Filter>playGound\enemy\baseballGreen</Filter>
+    </ClCompile>
+    <ClCompile Include="gbAttackPunchState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbHangState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbIdleState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbLandState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="whiteBaseball.cpp">
+      <Filter>playGound\enemy\baseballWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackJumpState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbAttackPunchState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbIdleState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbRollState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbStopState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybAttackPunchState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybIdleState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybMoveState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowBaseball.cpp">
+      <Filter>playGound\enemy\baseballYellow</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="animation.h">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>2DGameFramework\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="effectManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="endingScene.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>2DGameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>2DGameFramework\image</Filter>
+    </ClInclude>
+    <ClInclude Include="imageManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGound\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>playGound\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerSelectScene.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="playGround.h">
+      <Filter>playGound</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="red_attackState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_damage1State.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_damage2State.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dashAttackState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_downAttackState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_gripState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_homeRunState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_idleState2.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpAttackState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_jumpState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_legKickState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_moveState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_runState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_slidingState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_standUpState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_throw.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_attack.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_catch.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_crawl.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dash.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAlt.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAttack.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fall.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fly.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_idle.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_jump.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_move.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="renderManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="singletonBase.h">
+      <Filter>2DGameFramework\SingletonBase</Filter>
+    </ClInclude>
+    <ClInclude Include="startScene.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>2DGameFramework\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="titleScene.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="bbAttackPunchState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbIdleState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbLandState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="blueBaseball.h">
+      <Filter>playGound\enemy\baseballBlue</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGound\enemy\BOSS</Filter>
+    </ClInclude>
+    <ClInclude Include="card.h">
+      <Filter>playGound\enemy\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>playGound\enemy\BOSS\bossState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardDashAttackState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardIdleState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardMoveState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardPunchAttackState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="greenBaseball.h">
+      <Filter>playGound\enemy\baseballGreen</Filter>
+    </ClInclude>
+    <ClInclude Include="gbState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbAttackPunchState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHangState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbIdleState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbLandState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="whiteBaseball.h">
+      <Filter>playGound\enemy\baseballWhite</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackJumpState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbAttackPunchState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbIdleState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbRollState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbStopState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybAttackPunchState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybIdleState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybMoveState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="yellowBaseball.h">
+      <Filter>playGound\enemy\baseballYellow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">
@@ -742,6 +530,95 @@
     <Image Include="small.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{8fecbaba-20c9-42ec-9bb8-0987c6b64334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{da365ad7-287f-4380-99e2-8bcd01bccc2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{596106e3-ff7d-4a55-b6ad-e81ecbebc02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework">
+      <UniqueIdentifier>{0f9483f6-ba41-4267-a9b2-ec5f5cff6e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\animation">
+      <UniqueIdentifier>{3a6cc513-ee5f-48c8-a75a-56c3afa43155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\effect">
+      <UniqueIdentifier>{7cfd3e98-3e9f-4609-a574-616e6f0fac7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\image">
+      <UniqueIdentifier>{12e8f179-640f-443f-907e-9eca2fa1e8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\Manager">
+      <UniqueIdentifier>{307c38b4-3f23-4692-bb23-8c5e0e4249cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\SingletonBase">
+      <UniqueIdentifier>{3f05bdca-e2af-4b81-8edb-802aa21b19c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\timer">
+      <UniqueIdentifier>{8e4e8027-cc33-4a20-a008-427ed8174c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\Utils">
+      <UniqueIdentifier>{facfa802-42f3-4212-a262-cc3cd1c46aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound">
+      <UniqueIdentifier>{adb117ce-6513-4a11-8f5e-48c7337c17e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy">
+      <UniqueIdentifier>{73163bdf-dc8d-4651-8972-6fa84f97e025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\scene">
+      <UniqueIdentifier>{c5153cdd-672e-4271-9889-4657413c0ec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\player">
+      <UniqueIdentifier>{a79d5e91-b457-4fb9-9d01-3747bd6566f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\player\Ryno">
+      <UniqueIdentifier>{ebe10b66-c2c7-4cab-92d5-6da628260cca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\player\red">
+      <UniqueIdentifier>{955ead85-7116-4f24-a0b6-9fcb28c491b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballBlue">
+      <UniqueIdentifier>{cd648247-74f7-4f3a-ae7e-275c22ca0c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballBlue\bbState">
+      <UniqueIdentifier>{7d819ee6-fe67-46f1-bf7d-3190c3f70336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballGreen">
+      <UniqueIdentifier>{7b8a88c2-13b7-4bfc-820c-e027e3182807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballWhite">
+      <UniqueIdentifier>{c130472a-80f4-43a9-81f4-359a08cc050d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballYellow">
+      <UniqueIdentifier>{29a28dfe-0538-44de-a819-3231fae80ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\Card">
+      <UniqueIdentifier>{fcb077ee-86a3-4cf5-9956-699cc7cc6e1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\BOSS">
+      <UniqueIdentifier>{a82165a4-c97c-4c72-ab0d-4f9ca7881f4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\BOSS\bossState">
+      <UniqueIdentifier>{c66e19f2-1131-4aa8-95dd-f3c0e18efbb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballGreen\gbState">
+      <UniqueIdentifier>{afc3747b-4848-4b2e-8657-27bd11bccb0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\Card\cardState">
+      <UniqueIdentifier>{782823c4-211b-465e-b66f-65785a2fb767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballWhite\wbState">
+      <UniqueIdentifier>{a72fbf59-04d7-4535-a361-842019a2697e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\baseballYellow\ybState">
+      <UniqueIdentifier>{1641877a-2258-4043-b73b-02b4da5d6198}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">
