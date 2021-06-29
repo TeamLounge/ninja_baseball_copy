@@ -216,7 +216,7 @@ void player::collision()
 			if (_shadow->getCenterY() >= _em->getVBb()[i]->_bbShadow.rc.top&&
 				_shadow->getCenterY() <= _em->getVBb()[i]->_bbShadow.rc.bottom)
 			{
-				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				if (IntersectRect(&temp, &_playerrc, &_em->getVBb()[i]->getRect()))
 				{
 					isdamage = true;
 				}
@@ -226,10 +226,10 @@ void player::collision()
 		//blueBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
-				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
+			if (_shadow->getCenterY() >= _em->getVBb()[i]->_bbShadow.rc.top&&
+				_shadow->getCenterY() <= _em->getVBb()[i]->_bbShadow.rc.bottom)
 			{
-				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				if (IntersectRect(&temp, &_playerrc, &_em->getVBb()[i]->getRect()))
 				{
 					iscatch = true;
 				}
