@@ -4,8 +4,8 @@
 
 HRESULT enemyManager::init()
 {
-	//setBaseball();
-	//setCard();
+	setBaseball();
+	setCard();
 	setBoss();
 
 	return S_OK;
@@ -17,21 +17,21 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	//updateBaseball();
-	//playerLocation();
+	updateBaseball();
+	playerLocation();
 
-	//baseballCollision();	//플레이어 vs wb타격범위렉트
+	baseballCollision();	//플레이어 vs wb타격범위렉트
 
-	//updateCard();
-	//WhereIsCard();	
+	updateCard();
+	WhereIsCard();	
 
 	updateBoss();
 }
 
 void enemyManager::render()
 {
-	//renderBaseball();
-	//renderCard();
+	renderBaseball();
+	renderCard();
 	renderBoss();
 }
 
