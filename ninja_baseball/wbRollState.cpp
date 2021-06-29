@@ -27,10 +27,8 @@ void wbRollState::update(whiteBaseball * whiteBaseball)
 		{
 			whiteBaseball->setCurrentFrameX(0);
 		}
-		else 
-		{
+		else {
 			whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
-
 		}
 		whiteBaseball->setCurrentFrameY(1);
 	}
@@ -45,7 +43,7 @@ void wbRollState::enter(whiteBaseball * whiteBaseball)	//init!!!!
 	whiteBaseball->setCurrentFrameX(0);
 	whiteBaseball->setCurrentFrameY(1);
 
-
+	whiteBaseball->setImageName("wBaseball_roll");
 
 
 

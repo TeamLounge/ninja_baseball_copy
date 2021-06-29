@@ -78,6 +78,8 @@ void wbAttackJumpState::enter(whiteBaseball * whiteBaseball)
 	//ÃÊ±âÈ­
 	jumpPower =21.0f;
 	gravity = 0.58f;
+
+	whiteBaseball->setImageName("wBaseball_roll");
 	
 }
 

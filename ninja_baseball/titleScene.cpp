@@ -116,5 +116,4 @@ void titleScene::render()
 	
 	IMAGEMANAGER->findImage("push_any_button")->alphaRender(getMemDC(), WINSIZEX / 2 - IMAGEMANAGER->findImage("push_any_button")->getWidth()/2, WINSIZEY/2 + 100, _textBlend);
 	
-	
 }

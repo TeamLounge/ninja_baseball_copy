@@ -187,6 +187,13 @@
     <ClInclude Include="gloveMoveState.h" />
     <ClInclude Include="gloveState.h" />
     <ClInclude Include="greenBaseball.h" />
+    <ClInclude Include="red_damage1State.h" />
+    <ClInclude Include="red_damage2State.h" />
+    <ClInclude Include="red_dashAttackState.h" />
+    <ClInclude Include="red_downAttackState.h" />
+    <ClInclude Include="red_gripState.h" />
+    <ClInclude Include="red_homeRunState.h" />
+    <ClInclude Include="red_idleState2.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
@@ -199,7 +206,13 @@
     <ClInclude Include="red_idleState.h" />
     <ClInclude Include="red_jumpAttackState.h" />
     <ClInclude Include="red_jumpState.h" />
+    <ClInclude Include="red_legKickState.h" />
     <ClInclude Include="red_moveState.h" />
+    <ClInclude Include="red_runState.h" />
+    <ClInclude Include="red_slidingState.h" />
+    <ClInclude Include="red_standUpState.h" />
+    <ClInclude Include="red_throw.h" />
+    <ClInclude Include="renderManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Ryno_attack.h" />
     <ClInclude Include="Ryno_catch.h" />
@@ -217,6 +230,7 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stageScene.h" />
+    <ClInclude Include="startScene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="timeManager.h" />
@@ -276,6 +290,13 @@
     <ClCompile Include="gloveMoveState.cpp" />
     <ClCompile Include="gloveState.cpp" />
     <ClCompile Include="greenBaseball.cpp" />
+    <ClCompile Include="red_damage1State.cpp" />
+    <ClCompile Include="red_damage2State.cpp" />
+    <ClCompile Include="red_dashAttackState.cpp" />
+    <ClCompile Include="red_downAttackState.cpp" />
+    <ClCompile Include="red_gripState.cpp" />
+    <ClCompile Include="red_homeRunState.cpp" />
+    <ClCompile Include="red_idleState2.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
@@ -286,7 +307,13 @@
     <ClCompile Include="red_idleState.cpp" />
     <ClCompile Include="red_jumpAttackState.cpp" />
     <ClCompile Include="red_jumpState.cpp" />
+    <ClCompile Include="red_legKickState.cpp" />
     <ClCompile Include="red_moveState.cpp" />
+    <ClCompile Include="red_runState.cpp" />
+    <ClCompile Include="red_slidingState.cpp" />
+    <ClCompile Include="red_standUpState.cpp" />
+    <ClCompile Include="red_throw.cpp" />
+    <ClCompile Include="renderManager.cpp" />
     <ClCompile Include="Ryno_attack.cpp" />
     <ClCompile Include="Ryno_catch.cpp" />
     <ClCompile Include="Ryno_crawl.cpp" />
@@ -302,6 +329,7 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
+    <ClCompile Include="startScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

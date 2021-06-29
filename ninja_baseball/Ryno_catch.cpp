@@ -21,6 +21,9 @@ void Ryno_catch::enter(player * player)
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
+	
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	player->setShadowY(player->getY() + 90 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
 
 	//ÁÂ¿ì±¸ºÐ
 	if (player->isRight)
@@ -33,4 +36,6 @@ void Ryno_catch::enter(player * player)
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
+
+	player->setImageName("Ryno_catch");
 }

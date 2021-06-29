@@ -37,8 +37,7 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 			{
 				whiteBaseball->setCurrentFrameX(0);
 			}
-			else 
-			{
+			else {
 				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
 			}
@@ -70,7 +69,6 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 
 			}
 			whiteBaseball->setCurrentFrameY(0);
-
 		}
 		//move
 		if (!whiteBaseball->isXOverlap)
@@ -110,6 +108,7 @@ void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
 
 	timeCount = 0;
 
+	whiteBaseball->setImageName("wBaseball_idle");
 }
 
 void wbIdleState::exit(whiteBaseball * whiteBaseball)

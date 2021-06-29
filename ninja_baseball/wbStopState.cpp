@@ -34,6 +34,7 @@ void wbStopState::update(whiteBaseball * whiteBaseball)
 			{
 				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
+
 			}
 			whiteBaseball->setCurrentFrameY(1);
 		}
@@ -91,6 +92,8 @@ void wbStopState::enter(whiteBaseball * whiteBaseball)
 
 	speed = 3.0f;
 	friction = 0.07f;
+
+	whiteBaseball->setImageName("wBaseball_stop");
 }
 
 void wbStopState::exit(whiteBaseball * whiteBaseball)

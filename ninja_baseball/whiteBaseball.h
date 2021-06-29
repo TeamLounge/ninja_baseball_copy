@@ -28,9 +28,9 @@ class whiteBaseball :public gameNode
 {
 
 private:
-	int _currentFrameX;
-	int _currentFrameY;
 
+	string _imgName;
+	int _currentFrameX, _currentFrameY;
 public:
 
 	void InputHandle();
@@ -79,12 +79,9 @@ public:
 
 	int getCurrentFrameX() { return _currentFrameX; }
 	int getCurrentFrameY() { return _currentFrameY; }
-
+	
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
-	//상호참조 위함
-	//상호참조 위함
-	//void setRedMemoryAddressLink(red* red) { _red = red; }
 
-
+	void setImageName(string imgName) { _imgName = imgName; }
 };

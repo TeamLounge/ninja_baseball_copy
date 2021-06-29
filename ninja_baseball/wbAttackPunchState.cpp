@@ -30,8 +30,7 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 			{
 				whiteBaseball->setCurrentFrameX(whiteBaseball->_whiteBaseball.img->getMaxFrameX());
 			}
-			else
-			{
+			else {
 				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 			}
 			whiteBaseball->setCurrentFrameY(1);
@@ -54,7 +53,6 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 			whiteBaseball->setCurrentFrameY(0);
 		}
 	}
-
 }
 
 void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
@@ -69,6 +67,8 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 		whiteBaseball->setCurrentFrameY(0);
 	}
 	whiteBaseball->setCurrentFrameX(0);
+
+	whiteBaseball->setImageName("wBaseball_punch");
 }
 
 void wbAttackPunchState::exit(whiteBaseball * whiteBaseball)

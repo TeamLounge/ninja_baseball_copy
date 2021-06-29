@@ -21,12 +21,15 @@ HRESULT player::init(int character)
 		_shadow = IMAGEMANAGER->findImage("green_shadow");
 		_state = new Ryno_idle;
 	}
+
 	isRight = true;
 	_x = 200;
 	_y = BACKGROUNDY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
 	
+	//RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+
 	return S_OK;
 }
 
@@ -61,16 +64,18 @@ void player::release()
 
 void player::render()
 {
-
 	
 	//Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
+	
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+
 	if (isattack)
 	{
 		Rectangle(getMemDC(), _attack_rc);
 	}
+
 }
 
 void player::handleInput()
@@ -81,7 +86,6 @@ void player::handleInput()
 		SAFE_DELETE(_state);
 		_state = state;
 		_state->enter(this);
-		
 	}
 }
 
@@ -95,8 +99,18 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("red_run", "image/2_player/red/red_run.bmp", 0, 0, 768, 480, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_grip2", "image/2_player/red/red_grip2.bmp", 0, 0, 666, 444, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_jumpAttack", "image/2_player/red/red_jumpAttack.bmp", 0, 0, 588, 750, 2, 2, true, RGB(255, 0, 255), false);
-	//여기 그림자 이미지 수정하셔서 addimage를 수정해주세요
-	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_idle2", "image/2_player/red/red_idle2.bmp", 0, 0, 396, 510, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_sliding", "image/2_player/red/red_sliding.bmp", 0, 0, 288, 366, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_dashAttack", "image/2_player/red/red_dashAttack.bmp", 0, 0, 192, 444, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_homerun", "image/2_player/red/red_homerun.bmp", 0, 0, 2520, 522, 7, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_damage1", "image/2_player/red/red_damage.bmp", 0, 0, 666, 462, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_damage2", "image/2_player/red/red_damage2.bmp", 0, 0, 234, 396, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_downAttack", "image/2_player/red/red_downAttack.bmp", 0, 0, 792, 480, 3, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_standUp", "image/2_player/red/red_standUp.bmp", 0, 0, 2016, 576, 7, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_legKick", "image/2_player/red/red_legKick.bmp", 0, 0, 3420, 522, 10, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_throw", "image/2_player/red/red_throw.bmp", 0, 0, 2250, 642, 5, 2, true, RGB(255, 0, 255), false);
+	//플레이어(레드) 그림자 이미지
+	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
 	//이건  Ryno이미지입니다 하나씩 풀꺼입니다.
 	IMAGEMANAGER->addFrameImage("Ryno_idle", "image/2_Player/green/green_idle.bmp", 1020, 432, 5, 2, true, RGB(255, 0, 255), false);
