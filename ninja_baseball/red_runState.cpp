@@ -3,6 +3,7 @@
 #include "red_idleState.h"
 #include "red_slidingState.h"
 #include "red_dashAttackState.h"
+#include "red_damage1State.h"
 
 playerstate* red_runState::handleInput(player* _player)
 {
@@ -19,6 +20,11 @@ playerstate* red_runState::handleInput(player* _player)
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		return new red_dashAttackState;
+	}
+
+	if (_player->isdamage)
+	{
+		return new red_damage1State;
 	}
 
 	return nullptr;

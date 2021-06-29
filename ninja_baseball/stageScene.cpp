@@ -17,8 +17,8 @@ HRESULT stageScene::init()
 
 	_red->_em->init();
 	/*_em->setPlayerMemoryAddressLink(_Ryno);*/
-	//_em->setPlayerMemoryAddressLink(_red);
-	//_red->setEmMemoryAddressLink(_em);
+	_em->setPlayerMemoryAddressLink(_red);
+	_red->setEmMemoryAddressLink(_em);
 	return S_OK;
 }
 

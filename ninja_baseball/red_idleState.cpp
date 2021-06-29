@@ -99,8 +99,17 @@ void red_idleState::enter(player * _player)
 	}
 	
 	 	
-	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-		_player->getImage()->getFrameHeight());
+	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());*/
+	
+	if (_player->isRight == true) //오른쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() + 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+	if (_player->isRight == false) //왼쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() - 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
 	
 	_player->setRect(_rc);
 

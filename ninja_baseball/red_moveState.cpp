@@ -5,6 +5,7 @@
 #include "red_attackState.h"
 #include "red_runState.h"
 #include "red_gripState.h"
+#include "red_damage1State.h"
 
 playerstate* red_moveState::handleInput(player* _player)
 {
@@ -35,6 +36,11 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_gripState;
 	}
 
+	if (_player->isdamage)
+	{
+		return new red_damage1State;
+	}
+	
 	return nullptr;
 }
 
