@@ -250,39 +250,6 @@
     <ClCompile Include="yellowBaseball.cpp">
       <Filter>playGound\enemy\baseballYellow</Filter>
     </ClCompile>
-    <ClCompile Include="gloveAttackTongueState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="gloveDamagedState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="gloveDeathState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="gloveJumpState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="gloveMoveState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="gloveState.cpp">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="batAttackState.cpp">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClCompile>
-    <ClCompile Include="batDamagedState.cpp">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClCompile>
-    <ClCompile Include="batIdleState.cpp">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClCompile>
-    <ClCompile Include="batMoveState.cpp">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClCompile>
-    <ClCompile Include="batState.cpp">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClCompile>
     <ClCompile Include="Ryno_dash.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
@@ -301,40 +268,104 @@
     <ClCompile Include="Ryno_frontCombo.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="bat.cpp" />
-    <ClCompile Include="glove.cpp" />
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGound\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="bossEntryState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    <ClCompile Include="Ryno_catchfrontCombo.cpp">
+      <Filter>playGound\player\Ryno</Filter>
     </ClCompile>
-    <ClCompile Include="bossIdleState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    <ClCompile Include="Ryno_damage.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_death.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_givp_up.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_start.cpp">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene1.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene2.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene3.cpp">
+      <Filter>playGound\scene</Filter>
     </ClCompile>
     <ClCompile Include="bossWindState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClCompile>
     <ClCompile Include="bossMoveState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClCompile>
-    <ClCompile Include="bossShootingProp.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClCompile Include="bossIdleState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClCompile>
-    <ClCompile Include="bossShootingState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClCompile Include="bossEntryState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClCompile>
-    <ClCompile Include="bossShootingReady.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClCompile Include="bossDamagedState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClCompile>
     <ClCompile Include="bossJabAttackState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingProp.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingReady.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
     </ClCompile>
     <ClCompile Include="bossStraightAttackState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
     </ClCompile>
     <ClCompile Include="bossUpperCutState.cpp">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bat.cpp">
+      <Filter>playGound\enemy\bat</Filter>
+    </ClCompile>
+    <ClCompile Include="batAttackState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batDamagedState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batIdleState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batMoveState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="glove.cpp">
+      <Filter>playGound\enemy\glove</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveAttackTongueState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveDamagedState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveDeathState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveJumpState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveMoveState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveState.cpp">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -602,39 +633,6 @@
     <ClInclude Include="yellowBaseball.h">
       <Filter>playGound\enemy\baseballYellow</Filter>
     </ClInclude>
-    <ClInclude Include="gloveAttackTongueState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="gloveDamagedState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="gloveDeathState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="gloveJumpState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="gloveMoveState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="gloveState.h">
-      <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="batAttackState.h">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClInclude>
-    <ClInclude Include="batDamagedState.h">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClInclude>
-    <ClInclude Include="batIdleState.h">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClInclude>
-    <ClInclude Include="batMoveState.h">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClInclude>
-    <ClInclude Include="batState.h">
-      <Filter>playGround\enemy\bat\batState</Filter>
-    </ClInclude>
     <ClInclude Include="Ryno_dash.h">
       <Filter>playGround</Filter>
     </ClInclude>
@@ -653,43 +651,107 @@
     <ClInclude Include="Ryno_frontCombo.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="bat.h" />
-    <ClInclude Include="glove.h" />
     <ClInclude Include="enemyManager.h">
       <Filter>playGound\enemy</Filter>
     </ClInclude>
     <ClInclude Include="bossState.h">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClInclude>
-    <ClInclude Include="bossIdleState.h">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    <ClInclude Include="Ryno_catchfrontCombo.h">
+      <Filter>playGound\player\Ryno</Filter>
     </ClInclude>
-    <ClInclude Include="bossEntryState.h">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    <ClInclude Include="Ryno_damage.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_death.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_givp_up.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_start.h">
+      <Filter>playGound\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene3.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene1.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene2.h">
+      <Filter>playGound\scene</Filter>
     </ClInclude>
     <ClInclude Include="bossWindState.h">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
     <ClInclude Include="bossMoveState.h">
-      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
-    <ClInclude Include="bossShootingState.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClInclude Include="bossIdleState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
-    <ClInclude Include="bossShootingReady.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClInclude Include="bossEntryState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
-    <ClInclude Include="bossShootingProp.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    <ClInclude Include="bossDamagedState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
     <ClInclude Include="bossJabAttackState.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingProp.h">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingReady.h">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingState.h">
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
     </ClInclude>
     <ClInclude Include="bossStraightAttackState.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
     </ClInclude>
     <ClInclude Include="bossUpperCutState.h">
-      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+      <Filter>playGound\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bat.h">
+      <Filter>playGound\enemy\bat</Filter>
+    </ClInclude>
+    <ClInclude Include="batAttackState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batDamagedState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batIdleState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batMoveState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="glove.h">
+      <Filter>playGound\enemy\glove</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveAttackTongueState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveDamagedState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveDeathState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveJumpState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveMoveState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveState.h">
+      <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -788,17 +850,23 @@
     <Filter Include="playGound\enemy\baseballYellow\ybState">
       <UniqueIdentifier>{1641877a-2258-4043-b73b-02b4da5d6198}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\glove\gloveState">
-      <UniqueIdentifier>{27ebb2b4-f83e-44de-b7b0-ee081cd59073}</UniqueIdentifier>
+    <Filter Include="playGound\enemy\BOSS\bossState\attack">
+      <UniqueIdentifier>{2afe3cf3-e617-439c-8ffb-c461ca093523}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\bat\batState">
-      <UniqueIdentifier>{8d5b53f8-49d5-4c64-a5c9-091b11a0ba3c}</UniqueIdentifier>
+    <Filter Include="playGound\enemy\BOSS\bossState\action">
+      <UniqueIdentifier>{504b7fc2-7603-4da1-be41-534d81456375}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\BOSS\bossState\action">
-      <UniqueIdentifier>{04840746-fa55-4d8d-a416-6e44cb33d603}</UniqueIdentifier>
+    <Filter Include="playGound\enemy\bat">
+      <UniqueIdentifier>{4289df52-715b-41db-86fa-7f6981218725}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\BOSS\bossState\attack">
-      <UniqueIdentifier>{0ad43314-d397-4fc7-a93d-17192200e98f}</UniqueIdentifier>
+    <Filter Include="playGound\enemy\bat\batState">
+      <UniqueIdentifier>{90841f06-8818-4212-99a3-70c7db22d4cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\glove">
+      <UniqueIdentifier>{b8d19e53-4b78-4bcc-8d88-dd538b54fed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\enemy\glove\gloveState">
+      <UniqueIdentifier>{39fa768e-1008-4fd3-a03a-518e20d11c27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
