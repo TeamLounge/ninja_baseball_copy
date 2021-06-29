@@ -24,6 +24,19 @@ void red_dashAttackState::update(player* _player)
 			_player->setX(_player->getX() + 25);
 		}
 
+		//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+		if (_time < 20)
+		{
+			_player->isattack = true;
+			_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY(), 70, 70);
+		}
+		else
+		{
+			_player->isattack = false;
+		}
+		//=============================================================
+
 	}
 	if (_player->isRight == false)
 	{
@@ -33,6 +46,19 @@ void red_dashAttackState::update(player* _player)
 		{
 			_player->setX(_player->getX() - 25);
 		}
+
+		//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+		if (_time < 20)
+		{
+			_player->isattack = true;
+			_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 30, _player->getY(), 70, 70);
+		}
+		else
+		{
+			_player->isattack = false;
+		}
+		//=============================================================
 	}
 
 	//그림자 위치
