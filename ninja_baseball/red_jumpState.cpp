@@ -77,6 +77,18 @@ void red_jumpState::update(player * _player)
 			{
 				_player->getImage()->setFrameX(_index);
 				_player->getImage()->setFrameY(0);
+				
+				//점프 공격시 에너미와 충돌할 렉트 생성(오른쪽을 바라볼 때)
+				if (_index == 0)
+				{
+					_player->isattack = true;
+					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY() + 120, 70, 70);
+				}
+				else
+				{
+					_player->isattack = false;
+				}
+
 				_index++;
 			}
 
@@ -84,8 +96,21 @@ void red_jumpState::update(player * _player)
 			{
 				_player->getImage()->setFrameX(_index);
 				_player->getImage()->setFrameY(1);
+
+				//점프 공격시 에너미와 충돌할 렉트 생성(왼쪽을 바라볼 때)
+				if (_index == 0)
+				{
+					_player->isattack = true;
+					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 30, _player->getY() + 120, 70, 70);
+				}
+				else
+				{
+					_player->isattack = false;
+				}
+
 				_index++;
 			}
+			
 			_count = 0;
 		}
 	}
