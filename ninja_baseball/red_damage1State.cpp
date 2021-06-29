@@ -78,9 +78,9 @@ void red_damage1State::enter(player* _player)
 		_player->getImage()->getMaxFrameY());
 	_player->setRect(_rc);
 
-	//적에게 맞을떄 공중에 띄우기 위해서
-	_jumpPower = 5.0f;
-	_gravity = 0.1f;
+	//적에게 맞을떄 공중에 띄우기 위해서 점프값과 중력값 줬음
+	_jumpPower = 3.0f;
+	_gravity = 0.15f;
 	   	
 	_count = _index = _time = 0;
 	_isLie = false; //적에게 맞고 바닥에 닿았는지 
