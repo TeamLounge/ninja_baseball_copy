@@ -53,17 +53,17 @@ void Ryno_fall::update(player * player)
 			player->_attack_rc = RectMakeCenter(player->getX() , player->getY(), 50, 50);
 		if (_count % 4 == 0)
 		{
-			player->jumpindex++;
+			_index++;
 			//여기부터가 마지막 인덱스 공격렉트를 띄울부분
 			if (_index >= 4 && (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT)))
 			{
 				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
-				player->jumpindex = 6;
+				_index = 6;
 			}
 			else if (_index > 5)
 			{
 				player->_attack_rc = RectMakeCenter(player->getX(), player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
-				player->jumpindex = 5;
+				_index = 5;
 			}
 			//여기까지
 			if (_index == 5) {
@@ -91,7 +91,7 @@ void Ryno_fall::update(player * player)
 	player->getImage()->setFrameX(_index);
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 
@@ -106,7 +106,7 @@ void Ryno_fall::enter(player * player)
 	
 	//플레이어의 이미지,렉트,그림자 초기화
 	player->setImage(IMAGEMANAGER->findImage("Ryno_jumpAttack"));
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 

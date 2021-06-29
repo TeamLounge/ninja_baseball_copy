@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "Ryno_damage.h"
 #include "Ryno_idle.h"
+#include "Ryno_death.h"
 playerstate * Ryno_damage::handleInput(player * player)
 {
+	if (player->gethp() < 0)
+	{
+		return new Ryno_death;
+	}
 	if (isend)
 	{
 		player->isdamage = false;
@@ -24,16 +29,17 @@ void Ryno_damage::update(player * player)
 			player->setX(player->getX() + 5);
 	}
 	else isend = true;
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(rc);
 }
 
 void Ryno_damage::enter(player * player)
 {
-	RECT rc;
 	image* img = IMAGEMANAGER->findImage("Ryno_damage");
 	_time = 0;
 	isend = false;
 	player->setImage(img);
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) - 15);
 	player->_shadow->setY(player->getY() + 90);

@@ -92,7 +92,7 @@ void Ryno_frontCombo::update(player * player)
 	}
 
 	player->getImage()->setFrameX(_index);
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 }
 
@@ -104,7 +104,7 @@ void Ryno_frontCombo::enter(player * player)
 	isend = false;
 
 	player->setImage(IMAGEMANAGER->findImage("Ryno_attack_front"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	//여기player->setY해라
 	player->setY(player->_shadow->getY() - 120);

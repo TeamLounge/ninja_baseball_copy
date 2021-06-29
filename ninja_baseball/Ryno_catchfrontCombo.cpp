@@ -74,7 +74,7 @@ void Ryno_catchfrontCombo::enter(player * player)
 	_count = _index = _Rotation = 0;
 	isend = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_catch_frontCombo"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY()+30, 140, 197);
 	player->setY(player->_shadow->getY()-90);
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));

@@ -13,6 +13,7 @@ playerstate * Ryno_idle::handleInput(player * player)
 
 	if (player->isdamage)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	if (KEYMANAGER->isStayKeyDown('V'))
@@ -106,7 +107,7 @@ void Ryno_idle::enter(player * player)
 	image* img = IMAGEMANAGER->findImage("Ryno_idle");
 	_count = _index = _time = _Rotation= 0;
 	player->setImage(img);
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140 , 197);
 	player->setRect(rc);
 	player->_shadow->setY(player->getY() + 90);
 	if (player->isRight)

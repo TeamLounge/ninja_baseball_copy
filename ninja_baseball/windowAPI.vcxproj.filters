@@ -205,6 +205,15 @@
     <ClCompile Include="Ryno_catchfrontCombo.cpp">
       <Filter>playGround\player\Ryno</Filter>
     </ClCompile>
+    <ClCompile Include="Ryno_givp_up.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_death.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_start.cpp">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -424,6 +433,15 @@
       <Filter>playGround\player\Ryno</Filter>
     </ClInclude>
     <ClInclude Include="Ryno_catchfrontCombo.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_givp_up.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_death.h">
+      <Filter>playGround\player\Ryno</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_start.h">
       <Filter>playGround\player\Ryno</Filter>
     </ClInclude>
   </ItemGroup>

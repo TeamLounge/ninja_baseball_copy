@@ -1,6 +1,6 @@
 #pragma once
 #include "playerstate.h"
-class Ryno_damage : public playerstate
+class Ryno_givp_up : public playerstate
 {
 private:
 	int _count, _time, _index;

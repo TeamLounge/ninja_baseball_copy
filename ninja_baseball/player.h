@@ -19,7 +19,7 @@ private:
 	//==================================
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
-
+	int _life , _hp;  // 목숨과 hp
 
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
@@ -51,14 +51,16 @@ public:
 	virtual RECT getRect() { return _playerrc; }
 	virtual float getX() { return _x; }
 	virtual float getY() { return _y; }
-
+	virtual int gethp() { return _hp; }
+	virtual int getlife() { return _life; }
 
 	//수만은 셋터
 	virtual void setImage(image* img) { _playerimg = img; }
 	virtual void setRect(RECT rc) { _playerrc = rc; }
 	virtual void setX(float x) { _x = x; }
 	virtual void setY(float y) { _y = y; }
-
+	virtual void sethp(int hp) { _hp = hp; }
+	virtual void setlife(int life) { _life  = life; }
 
 	//에너미매니저와 링크
 	void setEmMemoryAddressLink(enemyManager* em) { _em = em; }

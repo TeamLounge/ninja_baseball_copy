@@ -1,10 +1,11 @@
 #pragma once
 #include "playerstate.h"
-class Ryno_damage : public playerstate
+class Ryno_death : public playerstate
 {
 private:
-	int _count, _time, _index;
-	bool isend;
+	int _count, _index;
+	float jumpPower, gravity;
+
 	RECT rc;
 public:
 	virtual playerstate* handleInput(player* player);

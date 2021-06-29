@@ -38,6 +38,8 @@ void Ryno_dashAlt::update(player * player)
 		player->isattack = false;
 	}
 	player->getImage()->setFrameX(_index);
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 }
 
@@ -48,7 +50,7 @@ void Ryno_dashAlt::enter(player * player)
 	inertia = 0.2f;
 	
 	player->setImage(IMAGEMANAGER->findImage("Ryno_dashAttack_alt"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
