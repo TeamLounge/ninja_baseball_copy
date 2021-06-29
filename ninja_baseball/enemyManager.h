@@ -72,13 +72,14 @@ private:
 	vCard _vCard;
 	viCard _viCard;
 
+
 	/////////////////////////////////
 	// ######  보스 에너미 #########
 	/////////////////////////////////
 	boss* _boss;
 
 	bool isdamage;
-	
+
 public:
 	enemyManager() {};
 	~enemyManager() {};

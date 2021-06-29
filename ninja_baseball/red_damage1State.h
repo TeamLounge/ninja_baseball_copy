@@ -10,6 +10,10 @@ private:
 	int _index;
 	int _time;
 
+	float _jumpPower;
+	float _gravity;
+	bool _isLie;
+
 public:
 
 	playerstate* handleInput(player* _player);

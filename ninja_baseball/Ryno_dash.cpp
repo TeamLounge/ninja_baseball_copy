@@ -4,6 +4,7 @@
 #include "Ryno_dashAttack.h";
 #include "Ryno_dashAlt.h"
 #include "Ryno_jump.h"
+
 playerstate * Ryno_dash::handleInput(player * player)
 {
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
@@ -22,12 +23,14 @@ playerstate * Ryno_dash::handleInput(player * player)
 	{
 		return new Ryno_dashAlt;
 	}
+
 	return nullptr;
 }
 
 void Ryno_dash::update(player * player)
 {
 	_count++;
+
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		player->isRight = false;
@@ -56,6 +59,7 @@ void Ryno_dash::update(player * player)
 		_count = 0;
 	}
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);

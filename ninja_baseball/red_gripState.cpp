@@ -75,6 +75,7 @@ void red_gripState::update(player* _player)
 					_index = 0;
 				}
 			}
+
 			_count = 0;
 		}
 	}

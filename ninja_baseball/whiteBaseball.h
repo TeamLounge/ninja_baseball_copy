@@ -49,7 +49,7 @@ public:
 	bool isJump;				//점프했어?
 	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
 	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
-	
+
 	bool isattack;
 	bool isdamage;
 	bool iscatch;

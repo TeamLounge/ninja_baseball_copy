@@ -5,6 +5,7 @@
 #include "red_attackState.h"
 #include "red_runState.h"
 #include "red_gripState.h"
+#include "red_damage1State.h"
 
 playerstate* red_moveState::handleInput(player* _player)
 {
@@ -35,44 +36,49 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_gripState;
 	}
 
+	if (_player->isdamage)
+	{
+		return new red_damage1State;
+	}
+	
 	return nullptr;
 }
 
 void red_moveState::update(player * _player)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _player->getX() > 0)
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->setX(_player->getX() - redSpeed);
 		_player->isRight = false;
 		_runTimeStart = true;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _player->getX() > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 	{
 		_player->isRight = false;
 		_runTimeStart = true;
 	}
 
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _player->getX() < WINSIZEX)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player->setX(_player->getX() + redSpeed);
 		_player->isRight = true;
 		_runTimeStart = true;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _player->getX() > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 	{
 		_player->isRight = true;
 		_runTimeStart = true;
 	}
 
 
-	if (KEYMANAGER->isStayKeyDown(VK_UP) && _player->getY() > 0)
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_player->setY(_player->getY() - redSpeed);
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _player->getY() < WINSIZEY)
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_player->setY(_player->getY() + redSpeed);
 	}
@@ -129,8 +135,19 @@ void red_moveState::update(player * _player)
 	}
 
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);*/
+		_player->getImage()->getFrameHeight());*/
+	
+
+	if (_player->isRight == true) //오른쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() + 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+	if (_player->isRight == false) //왼쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() - 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+
+	_player->setRect(_rc);
 
 }
 

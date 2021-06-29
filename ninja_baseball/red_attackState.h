@@ -11,7 +11,7 @@ private:
 	int _time;
 	int _attackCount;
 	bool _isend;
-	
+			
 public:
 
 	playerstate* handleInput(player* _player);

@@ -10,6 +10,7 @@ bbState * bbAttackPunchState::inputHandle(blueBaseball * blueBaseball)
 	{
 		return new bbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
+
 	return nullptr;
 }
 

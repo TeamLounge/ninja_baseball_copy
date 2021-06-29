@@ -3,6 +3,7 @@
 #include "red_idleState.h"
 #include "red_slidingState.h"
 #include "red_dashAttackState.h"
+#include "red_damage1State.h"
 
 playerstate* red_runState::handleInput(player* _player)
 {
@@ -21,6 +22,11 @@ playerstate* red_runState::handleInput(player* _player)
 		return new red_dashAttackState;
 	}
 
+	if (_player->isdamage)
+	{
+		return new red_damage1State;
+	}
+
 	return nullptr;
 }
 
@@ -28,12 +34,12 @@ void red_runState::update(player* _player)
 {
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_player->setX(_player->getX() - 12);
+		_player->setX(_player->getX() - 8);
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_player->setX(_player->getX() + 12);
+		_player->setX(_player->getX() + 8);
 	}
 
 	_count++;
@@ -78,6 +84,18 @@ void red_runState::update(player* _player)
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
 		_player->_shadow->setY(_player->getY() + 90);
 	}
+
+	if (_player->isRight == true) //오른쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() + 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+	if (_player->isRight == false) //왼쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() - 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+
+	_player->setRect(_rc);
+
 }
 
 void red_runState::enter(player* _player)
