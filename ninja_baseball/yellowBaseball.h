@@ -47,6 +47,9 @@ public:
 	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
 	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 
+	bool isattack;              //에너미가 공격했어??
+	bool isdamage;				//에너미가 데미지 받았어??							
+	bool iscatch;				//에저미가 잡혔어??
 
 
 	yellowBaseball() {};

@@ -58,7 +58,7 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 
 void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 {
-	whiteBaseball->isattack = true;
+	/*whiteBaseball->isattack = true;*/
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_punch");
 	if (!whiteBaseball->isRight)
 	{

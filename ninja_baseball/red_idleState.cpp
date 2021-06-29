@@ -84,18 +84,25 @@ void red_idleState::update(player * _player)
 void red_idleState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_idle"));
+	_player->setImageName("red_idle");
 	
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
+		_player->_shadow->setY(_player->getY() + 90);*/
+
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
+		_player->_shadow->setY(_player->getY() + 90);*/
+
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 	
 	 	

@@ -173,12 +173,12 @@ void player::addImage()
 
 void player::collision()
 {
-	
+	//whiteBaseball 충돌
 	for (int i = 0; i <_em->getVWb().size(); i++)
 	{
 		RECT temp;
 
-		//플레이어가 에너미한테 맞을때 충돌함수
+		//플레이어가 whiteBaseball한테 맞을때 충돌함수
 		if (_em->getVWb()[i]->isattack)
 		{
 			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
@@ -191,7 +191,39 @@ void player::collision()
 			}
 		}
 
-		//잡기상태로 갈때 충돌처리함수
+		//whiteBaseball와 잡기상태 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
+			{
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
+
+	//blueBaseball 충돌
+	for (int i = 0; i < _em->getVBb().size(); i++)
+	{
+		RECT temp;
+
+		//플레이어가 blueBaseball한테 맞을때 충돌함수
+		if (_em->getVBb()[i]->isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVBb()[i]->_bbShadow.rc.top&&
+				_shadow->getCenterY() <= _em->getVBb()[i]->_bbShadow.rc.bottom)
+			{
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					isdamage = true;
+				}
+			}
+		}
+
+		//blueBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
 			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
