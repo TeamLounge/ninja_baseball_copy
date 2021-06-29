@@ -84,6 +84,18 @@ void red_runState::update(player* _player)
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
 		_player->_shadow->setY(_player->getY() + 90);
 	}
+
+	if (_player->isRight == true) //오른쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() + 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+	if (_player->isRight == false) //왼쪽방향일때 렉트상태
+	{
+		_rc = RectMakeCenter(_player->getX() - 10, _player->getY(), 130, _player->getImage()->getFrameHeight());
+	}
+
+	_player->setRect(_rc);
+
 }
 
 void red_runState::enter(player* _player)
