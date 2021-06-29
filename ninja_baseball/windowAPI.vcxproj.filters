@@ -253,6 +253,15 @@
     <ClCompile Include="yellowBaseball.cpp">
       <Filter>playGound\enemy\baseballYellow</Filter>
     </ClCompile>
+    <ClCompile Include="stageScene1.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene2.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene3.cpp">
+      <Filter>playGound\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -521,6 +530,15 @@
     </ClInclude>
     <ClInclude Include="yellowBaseball.h">
       <Filter>playGound\enemy\baseballYellow</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene1.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene2.h">
+      <Filter>playGound\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stageScene3.h">
+      <Filter>playGound\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

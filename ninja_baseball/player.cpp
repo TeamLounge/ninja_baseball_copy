@@ -24,7 +24,7 @@ HRESULT player::init(int character)
 
 	isRight = true;
 	_x = 200;
-	_y = BACKGROUNDY - 200;
+	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
 	
