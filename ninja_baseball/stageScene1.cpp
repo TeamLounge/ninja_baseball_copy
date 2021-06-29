@@ -21,6 +21,8 @@ HRESULT stageScene1::init()
 
 void stageScene1::release()
 {
+	_Ryno->release();
+	_red->release();
 }
 
 void stageScene1::update()
