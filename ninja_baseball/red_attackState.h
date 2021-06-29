@@ -11,6 +11,10 @@ private:
 	int _time;
 	int _attackCount;
 	bool _isend;
+
+	RECT _attackRc1;
+	RECT _attackRc2;
+	RECT _attackRc3;
 	
 public:
 

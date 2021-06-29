@@ -11,12 +11,12 @@ playerstate * red_jumpState::handleInput(player * _player)
 		{
 			_player->setX(_player->getX() - 30);
 		}
+
 		if (_player->isRight == false)
 		{
 			_player->setX(_player->getX() + 30);
 		}
 		
-
 		return new red_idleState;
 	}
 

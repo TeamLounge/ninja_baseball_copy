@@ -29,7 +29,6 @@ void red_attackState::update(player * _player)
 
 		if (_count % 3 == 0)
 		{
-
 			if (_index < 3) _index++;
 
 			if (_time < 30) {
@@ -88,6 +87,39 @@ void red_attackState::update(player * _player)
 	}
 
 	_player->getImage()->setFrameX(_index);
+
+	//특정 인덱스가 되면 나타나는 렉트
+	if (_player->isRight == true) //플레이어가 오른쪽을 바라볼때
+	{
+		if (_index == 1)
+		{
+			_attackRc1 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+		if (_index == 5)
+		{
+			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+		if (_index == 14)
+		{
+			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+	}
+	if (_player->isRight == false) //플레이어가 왼쪽을 바라볼때
+	{
+		if (_index == 1)
+		{
+			_attackRc1 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+		if (_index == 5)
+		{
+			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+		if (_index == 14)
+		{
+			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
+		}
+	}
+		
 	
 	/*if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
