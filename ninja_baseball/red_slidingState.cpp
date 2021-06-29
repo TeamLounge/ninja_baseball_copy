@@ -24,7 +24,19 @@ void red_slidingState::update(player* _player)
 		if (_time < 50)
 		{
 			_player->setX(_player->getX() + 15);
+		
+			if (_time < 45) //슬라이딩 공격할때 에너미와 충돌할 렉트 생성
+			{
+				_player->isattack = true;
+				_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY() + 50, 80, 80);
+			}
+			else
+			{
+				_player->isattack = false;
+			}
 		}
+
+		
 
 	}
 	if (_player->isRight == false)
@@ -34,6 +46,16 @@ void red_slidingState::update(player* _player)
 		if (_time < 50)
 		{
 			_player->setX(_player->getX() - 15);
+
+			if (_time < 45) //슬라이딩 공격할때 에너미와 충돌할 렉트 생성
+			{
+				_player->isattack = true;
+				_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 30, _player->getY() + 50, 80, 80);
+			}
+			else
+			{
+				_player->isattack = false;
+			}
 		}
 	}
 
