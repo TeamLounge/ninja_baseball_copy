@@ -28,12 +28,12 @@ void red_runState::update(player* _player)
 {
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_player->setX(_player->getX() - 12);
+		_player->setX(_player->getX() - 8);
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_player->setX(_player->getX() + 12);
+		_player->setX(_player->getX() + 8);
 	}
 
 	_count++;
