@@ -20,23 +20,24 @@ void ybMoveState::update(yellowBaseball * yellowBaseball)
 	if (frameCount >= 8)
 	{
 		frameCount = 0;
-		if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+		if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 		{
-			_currentFrameX = 0;
+			yellowBaseball->setCurrentFrameX(0);
 		}
-		else {
-			_currentFrameX++;
+		else 
+		{
+			yellowBaseball->setCurrentFrameX(yellowBaseball->getCurrentFrameX() + 1);
 
 		}
-		_currentFrameY = 1;
+		yellowBaseball->setCurrentFrameY(1);
 	}
 }
 
 void ybMoveState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_move");
-	_currentFrameX = 0;
-	_currentFrameY = 1;
+	yellowBaseball->setCurrentFrameX(0);
+	yellowBaseball->setCurrentFrameY(1);
 
 	return;
 }

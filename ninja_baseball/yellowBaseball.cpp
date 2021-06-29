@@ -15,7 +15,7 @@ void yellowBaseball::InputHandle()
 
 HRESULT yellowBaseball::init()
 {
-	
+
 	return S_OK;
 }
 
@@ -42,8 +42,8 @@ HRESULT yellowBaseball::init(POINT position)
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+	isXOverlap = false;
+	isYOverlap = false;
 
 	return S_OK;
 }
@@ -98,7 +98,7 @@ void yellowBaseball::render()
 	}
 
 	_ybShadow.img->render(getMemDC(), _ybShadow.rc.left, _ybShadow.rc.top);
-	_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.x, _yellowBaseball.y, _ybState->getCurrentFrameX(), _ybState->getCurrentFrameY());
+	_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.x, _yellowBaseball.y, _currentFrameX, _currentFrameY);
 	//_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.rc.left, _yellowBaseball.rc.top);
 	//_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.x, _yellowBaseball.y);
 }

@@ -5,9 +5,11 @@
 HRESULT enemyManager::init()
 {
 
-	setBaseball();
+	//setBaseball();
+	//setBat();
 	setCard();
-	
+	setGlove();
+
 
 	return S_OK;
 }
@@ -19,18 +21,27 @@ void enemyManager::release()
 void enemyManager::update()
 {
 	updateBaseball();
+	baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+
+	updateBat();
+	batCollision();
+
+	updateGlove();
+	gloveCollision();
+
+
 	playerLocation();
 
-	baseballCollision();	//플레이어 vs wb타격범위렉트
-
 	updateCard();
-	WhereIsCard();	
+	WhereIsCard();
 }
 
 void enemyManager::render()
 {
 
 	renderBaseball();
+	renderBat();
+	renderGlove();
 	renderCard();
 }
 
@@ -41,16 +52,16 @@ void enemyManager::setBaseball()
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
-		_wb->init(PointMake(WINSIZEX + i * 220, BACKGROUNDY - 200 -50 + i * 200));			//이닛으로 위치 잡아주고
+		_wb->init(PointMake(WINSIZEX + i * 220, BACKGROUNDY - 400 - 50 + i * 200));			//이닛으로 위치 잡아주고
 		_vWb.push_back(_wb);					//위치 잡아준 애를 벡터에 넣음
 
 	}
-								//좀 일정치 않은 놈 뽑으려면 for문 밖에 빼서 해주는 것도 방법
-								//whiteBaseball* _wb1 = new whiteBaseball;	//동적할당 해주고
-								//_wb1->init(PointMake(500, 500));			//이닛으로 위치 잡아주고
-								//_vWb.push_back(_wb1);					//위치 잡아준 애를 벡터에 넣음
+	//좀 일정치 않은 놈 뽑으려면 for문 밖에 빼서 해주는 것도 방법
+	//whiteBaseball* _wb1 = new whiteBaseball;	//동적할당 해주고
+	//_wb1->init(PointMake(500, 500));			//이닛으로 위치 잡아주고
+	//_vWb.push_back(_wb1);					//위치 잡아준 애를 벡터에 넣음
 
-	//yellowBaseball
+//yellowBaseball
 	for (int i = 0; i < 2; i++)
 	{
 		yellowBaseball* _yb = new yellowBaseball;
@@ -62,7 +73,7 @@ void enemyManager::setBaseball()
 	{
 		greenBaseball* _gb = new greenBaseball;
 		_gb->init(PointMake(400 + i * 140, -50 + i * 120));
-		_vGb.push_back(_gb);					
+		_vGb.push_back(_gb);
 
 	}
 	//blueBaseball
@@ -74,7 +85,6 @@ void enemyManager::setBaseball()
 
 	}
 }
-
 void enemyManager::updateBaseball()
 {
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
@@ -95,7 +105,6 @@ void enemyManager::updateBaseball()
 	}
 
 }
-
 void enemyManager::renderBaseball()
 {
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
@@ -118,13 +127,15 @@ void enemyManager::renderBaseball()
 
 void enemyManager::playerLocation()
 {
-	//white
+	////////////////
+   //   white    //
+   ///////////////
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		if (!(*_viWb)->isJump)	//점프 = true
 		{
 			//에너미가 플레이어의 오른쪽?
-			
+
 			if (_player->getX() > (*_viWb)->getCenterX())
 			{
 				(*_viWb)->setIsRight(true);
@@ -165,7 +176,9 @@ void enemyManager::playerLocation()
 		}
 
 	}
-	//yellow
+	////////////////
+   //   yellow   //
+   ///////////////
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
 		//에너미가 플레이어의 오른쪽?
@@ -207,7 +220,9 @@ void enemyManager::playerLocation()
 			(*_viYb)->setIsXOverlap(false);
 		}
 	}
-	//green
+	////////////////
+   //    green   //
+   ///////////////
 	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
 	{
 		//에너미가 플레이어의 오른쪽?
@@ -249,7 +264,9 @@ void enemyManager::playerLocation()
 			(*_viGb)->setIsXOverlap(false);
 		}
 	}
-	//blue
+	////////////////
+   //    blue    //
+   ///////////////
 	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
 	{
 		//에너미가 플레이어의 오른쪽?
@@ -291,11 +308,109 @@ void enemyManager::playerLocation()
 			(*_viBb)->setIsXOverlap(false);
 		}
 	}
+	////////////////
+	//     bat   //
+	///////////////
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		if (!(*_viBat)->isJump)	//점프 = true
+		{
+			//에너미가 플레이어의 오른쪽?
+
+			if (_player->getX() > (*_viBat)->getCenterX())
+			{
+				(*_viBat)->setIsRight(true);
+			}
+			//에너미가 플레이어의 왼쪽?
+			if (_player->getX() < (*_viBat)->getCenterX())
+			{
+				(*_viBat)->setIsRight(false);
+			}
+			//에너미가 플레이어의 위?
+			if (_player->getY() > (*_viBat)->getCenterY())
+			{
+				(*_viBat)->setIsDown(true);
+			}
+			//에너미가 플레이어의 아래?
+			if (_player->getY() < (*_viBat)->getCenterY())
+			{
+				(*_viBat)->setIsDown(false);
+			}
+		}
+		//Y떨림방지
+		if ((*_viBat)->getCenterY() < _player->getY() + 3 && (*_viBat)->getCenterY() > _player->getY() - 3)
+		{
+			(*_viBat)->setIsYOverlap(true);
+		}
+		if (!((*_viBat)->getCenterY() < _player->getY() + 3 && (*_viBat)->getCenterY() > _player->getY() - 3))
+		{
+			(*_viBat)->setIsYOverlap(false);
+		}
+		//X떨림방지
+		if ((*_viBat)->getCenterX() < _player->getX() + 3 && (*_viBat)->getCenterX() > _player->getX() - 3)
+		{
+			(*_viBat)->setIsXOverlap(true);
+		}
+		if (!((*_viBat)->getCenterX() < _player->getX() + 3 && (*_viBat)->getCenterX() > _player->getX() - 3))
+		{
+			(*_viBat)->setIsXOverlap(false);
+		}
+	}
+	//////////////////
+	//    glove   ///
+	/////////////////
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		if (!(*_viGlove)->isJump)	//점프 = true
+		{
+			//에너미가 플레이어의 오른쪽?
+
+			if (_player->getX() > (*_viGlove)->getCenterX())
+			{
+				(*_viGlove)->setIsRight(true);
+			}
+			//에너미가 플레이어의 왼쪽?
+			if (_player->getX() < (*_viGlove)->getCenterX())
+			{
+				(*_viGlove)->setIsRight(false);
+			}
+			//에너미가 플레이어의 위?
+			if (_player->getY() > (*_viGlove)->getCenterY())
+			{
+				(*_viGlove)->setIsDown(true);
+			}
+			//에너미가 플레이어의 아래?
+			if (_player->getY() < (*_viGlove)->getCenterY())
+			{
+				(*_viGlove)->setIsDown(false);
+			}
+		}
+		//Y떨림방지
+		if ((*_viGlove)->getCenterY() < _player->getY() + 3 && (*_viGlove)->getCenterY() > _player->getY() - 3)
+		{
+			(*_viGlove)->setIsYOverlap(true);
+		}
+		if (!((*_viGlove)->getCenterY() < _player->getY() + 3 && (*_viGlove)->getCenterY() > _player->getY() - 3))
+		{
+			(*_viGlove)->setIsYOverlap(false);
+		}
+		//X떨림방지
+		if ((*_viGlove)->getCenterX() < _player->getX() + 3 && (*_viGlove)->getCenterX() > _player->getX() - 3)
+		{
+			(*_viGlove)->setIsXOverlap(true);
+		}
+		if (!((*_viGlove)->getCenterX() < _player->getX() + 3 && (*_viGlove)->getCenterX() > _player->getX() - 3))
+		{
+			(*_viGlove)->setIsXOverlap(false);
+		}
+	}
 }
 
 void enemyManager::baseballCollision()
 {
-	//white
+	////////////////
+   //   white    //
+   ///////////////
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		RECT temp;
@@ -308,7 +423,9 @@ void enemyManager::baseballCollision()
 			(*_viWb)->setIsCollisionAttack(false);
 		}
 	}
-	//yellow
+	////////////////
+   //   yellow   //
+   ///////////////
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
 		RECT temp;
@@ -321,7 +438,9 @@ void enemyManager::baseballCollision()
 			(*_viYb)->setIsCollisionAttack(false);
 		}
 	}
-	//green
+	////////////////
+   //   green    //
+   ///////////////
 	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
 	{
 		RECT temp;
@@ -334,7 +453,9 @@ void enemyManager::baseballCollision()
 			(*_viGb)->setIsCollisionAttack(false);
 		}
 	}
-	//blue
+	////////////////
+   //   blue     //
+   ///////////////
 	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
 	{
 		RECT temp;
@@ -348,8 +469,90 @@ void enemyManager::baseballCollision()
 		}
 	}
 }
+void enemyManager::batCollision()
+{
+	////////////////
+   //     bat    //
+   ///////////////
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viBat)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+}
+void enemyManager::gloveCollision()
+{
+	////////////////
+   //    glove   //
+   ///////////////
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viGlove)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viGlove)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+}
 
+void enemyManager::setBat()
+{
+	for (int i = 0; i < 1; i++)
+	{
+		bat* _bat = new bat;
+		_bat->init(PointMake(470 + i * 30, BACKGROUNDY - 500 - i * 250));
+		_vBat.push_back(_bat);
+	}
+}
+void enemyManager::updateBat()
+{
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		(*_viBat)->update();
+	}
+}
+void enemyManager::renderBat()
+{
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		(*_viBat)->render();
+	}
+}
 
+void enemyManager::setGlove()
+{
+	for (int i = 0; i < 2; i++)
+	{
+		glove* _glove = new glove;
+		_glove->init(PointMake(470 + i * 30, BACKGROUNDY - 500 - i * 250));
+		_vGlove.push_back(_glove);
+	}
+}
+void enemyManager::updateGlove()
+{
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		(*_viGlove)->update();
+	}
+}
+void enemyManager::renderGlove()
+{
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		(*_viGlove)->render();
+	}
+}
 
 //////////////////////////////////////////////////
 //			카드 에너미 세팅

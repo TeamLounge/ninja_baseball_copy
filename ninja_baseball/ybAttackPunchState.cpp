@@ -6,7 +6,7 @@
 
 ybState * ybAttackPunchState::inputHandle(yellowBaseball * yellowBaseball)
 {
-	if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
+	if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
 		return new ybIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
@@ -21,15 +21,16 @@ void ybAttackPunchState::update(yellowBaseball * yellowBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				yellowBaseball->setCurrentFrameX(0);
 			}
-			else {
-				_currentFrameX++;
+			else 
+			{
+				yellowBaseball->setCurrentFrameX(yellowBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 1;
+			yellowBaseball->setCurrentFrameY(1);
 		}
 
 		//왼쪽으로 이동
@@ -43,16 +44,16 @@ void ybAttackPunchState::update(yellowBaseball * yellowBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				yellowBaseball->setCurrentFrameX(0);
 			}
 			else
 			{
-				_currentFrameX++;
+				yellowBaseball->setCurrentFrameX(yellowBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 0;
+			yellowBaseball->setCurrentFrameY(0);
 
 		}
 		//move
@@ -77,13 +78,13 @@ void ybAttackPunchState::enter(yellowBaseball * yellowBaseball)
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_punch");
 	if (!yellowBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		yellowBaseball->setCurrentFrameY(1);
 	}
 	if (yellowBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		yellowBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	yellowBaseball->setCurrentFrameX(0);
 
 }
 

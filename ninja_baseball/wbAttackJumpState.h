@@ -13,9 +13,6 @@ public:
 	float jumpPower;
 	float gravity;
 	
-
-
-
 	virtual wbState* inputHandle(whiteBaseball* whiteBaseball);
 	virtual void update(whiteBaseball* whiteBaseball);
 	virtual void enter(whiteBaseball* whiteBaseball);

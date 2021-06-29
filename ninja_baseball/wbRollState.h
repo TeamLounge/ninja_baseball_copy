@@ -16,6 +16,6 @@ public:
 	virtual void enter(whiteBaseball* whiteBaseball);
 	virtual void exit(whiteBaseball* whiteBaseball);
 
-	void wbMove(whiteBaseball* whiteBaseball);
+	void wbStart(whiteBaseball* whiteBaseball);
 
 };

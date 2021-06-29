@@ -1,0 +1,7 @@
+#include "stdafx.h"
+#include "gloveState.h"
+#include "gloveAttackTongueState.h"
+#include "gloveDamagedState.h"
+#include "gloveDeathState.h"
+#include "gloveJumpState.h"
+#include "gloveMoveState.h"

@@ -28,6 +28,8 @@ class whiteBaseball :public gameNode
 {
 
 private:
+	int _currentFrameX;
+	int _currentFrameY;
 
 public:
 
@@ -74,6 +76,13 @@ public:
 	void setIsXOverlap(bool _isXOverlap) { isXOverlap = _isXOverlap; }
 	void setIsYOverlap(bool _isYOverlap) { isYOverlap = _isYOverlap; }
 
+
+	int getCurrentFrameX() { return _currentFrameX; }
+	int getCurrentFrameY() { return _currentFrameY; }
+
+	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
+	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
+	//상호참조 위함
 	//상호참조 위함
 	//void setRedMemoryAddressLink(red* red) { _red = red; }
 

@@ -7,7 +7,7 @@
 
 gbState * gbAttackPunchState::inputHandle(greenBaseball * greenBaseball)
 {
-	if (_currentFrameX == greenBaseball->_greenBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
+	if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
 		return new gbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
@@ -22,15 +22,16 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == greenBaseball->_greenBaseball.img->getMaxFrameX())
+			if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				greenBaseball->setCurrentFrameX(0);
 			}
-			else {
-				_currentFrameX++;
+			else 
+			{
+				greenBaseball->setCurrentFrameX(greenBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 1;
+			greenBaseball->setCurrentFrameY(1);
 		}
 
 		//왼쪽으로 이동
@@ -44,16 +45,16 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == greenBaseball->_greenBaseball.img->getMaxFrameX())
+			if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				greenBaseball->setCurrentFrameX(0);
 			}
 			else
 			{
-				_currentFrameX++;
+				greenBaseball->setCurrentFrameX(greenBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 0;
+			greenBaseball->setCurrentFrameY(0);
 
 		}
 		//move
@@ -78,13 +79,13 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_punch");
 	if (!greenBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		greenBaseball->setCurrentFrameY(1);
 	}
 	if (greenBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		greenBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	greenBaseball->setCurrentFrameX(0);
 
 }
 

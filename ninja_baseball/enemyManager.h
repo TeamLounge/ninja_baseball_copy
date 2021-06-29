@@ -5,6 +5,8 @@
 #include "yellowBaseball.h"
 #include "greenBaseball.h"
 #include "blueBaseball.h"
+#include "bat.h"
+#include "glove.h"
 #include "card.h"
 #include <vector>
 
@@ -13,6 +15,11 @@ class player;
 class enemyManager : public gameNode
 {
 private:
+	player* _player;
+
+	/////////////////////////////////
+	//          베이스볼 에너미
+	/////////////////////////////////
 	typedef vector<whiteBaseball*>				vWhiteBaseball;
 	typedef vector<whiteBaseball*>::iterator	viWhiteBaseball;
 
@@ -37,17 +44,34 @@ private:
 	vBlueBaseball		_vBb;
 	viBlueBaseball		_viBb;
 
-	typedef vector<card*>				vCard;
-	typedef vector<card*>::iterator		viCard;
+	/////////////////////////////////
+	//          배트 에너미
+	/////////////////////////////////
+	typedef vector<bat*>				vBat;
+	typedef vector<bat*>::iterator		viBat;
+
+	vBat	_vBat;
+	viBat	_viBat;
+
+	/////////////////////////////////
+	//          글로브 에너미
+	/////////////////////////////////
+	typedef vector<glove*>				vGlove;
+	typedef vector<glove*>::iterator	viGlove;
+
+	vGlove	_vGlove;
+	viGlove	_viGlove;
 
 	/////////////////////////////////
 	//          카드에너미
 	/////////////////////////////////
+	typedef vector<card*>				vCard;
+	typedef vector<card*>::iterator		viCard;
+
 	vCard _vCard;
 	viCard _viCard;
 
-	player* _player;
-	
+
 public:
 	enemyManager() {};
 	~enemyManager() {};
@@ -56,6 +80,19 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void setPlayerMemoryAddressLink(player* player) { _player = player; }
+
+	/////////////////////////////////
+	//  베이스볼 에너미 관련 함수
+	////////////////////////////////
+
+	void setBaseball();
+	void updateBaseball();
+	void renderBaseball();
+
+	void playerLocation();			//플레이어 위치 찾고 본인 위치와 비교하는 함수(베이스볼, 배트)
+	void baseballCollision();		//베이스볼과의 충돌 함수
 
 	vector<whiteBaseball*> getVWb() { return _vWb; }
 	vector<whiteBaseball*>::iterator getVIWb() { return _viWb; }
@@ -69,14 +106,34 @@ public:
 	vector<blueBaseball*> getVBb() { return _vBb; }
 	vector<blueBaseball*>::iterator getVIBb() { return _viBb; }
 
-	void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
-	void setBaseball();
-	void updateBaseball();
-	void renderBaseball();
+	/////////////////////////////////
+	//   배트 에너미 관련 함수
+	////////////////////////////////
 
-	void playerLocation();			//플레이어 위치 찾고 본인 위치와 비교하는 함수
-	void baseballCollision();		//플레이어와의 충돌 함수
+	void setBat();
+	void updateBat();
+	void renderBat();
+
+	void batCollision();		//배트와의 충돌 함수
+
+
+	vector<bat*> getVBat() { return _vBat; }
+	vector<bat*>::iterator getVIBat() { return _viBat; }
+
+	/////////////////////////////////
+	//   글로브 에너미 관련 함수
+	////////////////////////////////
+
+	void setGlove();
+	void updateGlove();
+	void renderGlove();
+
+	void gloveCollision();		//글로브와의 충돌 함수
+
+
+	vector<glove*> getVGlove() { return _vGlove; }
+	vector<glove*>::iterator getVIGlove() { return _viGlove; }
 
 	/////////////////////////////////
 	//   카드에너미관련 함수
@@ -87,7 +144,7 @@ public:
 
 	void WhereIsCard();
 
-	vector<card*> getVCard()			{ return _vCard; }
+	vector<card*> getVCard() { return _vCard; }
 	vector<card*>::iterator getVICard() { return _viCard; }
 };
 

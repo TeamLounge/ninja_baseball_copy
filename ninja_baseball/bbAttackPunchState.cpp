@@ -6,7 +6,7 @@
 
 bbState * bbAttackPunchState::inputHandle(blueBaseball * blueBaseball)
 {
-	if (_currentFrameX == blueBaseball->_blueBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
+	if (blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
 		return new bbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
@@ -21,15 +21,16 @@ void bbAttackPunchState::update(blueBaseball * blueBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == blueBaseball->_blueBaseball.img->getMaxFrameX())
+			if (blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				blueBaseball->setCurrentFrameX(0);
 			}
-			else {
-				_currentFrameX++;
+			else 
+			{
+				blueBaseball->setCurrentFrameX(blueBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 1;
+			blueBaseball->setCurrentFrameY(1);
 		}
 
 		//왼쪽으로 이동
@@ -43,16 +44,15 @@ void bbAttackPunchState::update(blueBaseball * blueBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == blueBaseball->_blueBaseball.img->getMaxFrameX())
+			if (blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				blueBaseball->setCurrentFrameX(0);
 			}
 			else
 			{
-				_currentFrameX++;
-
+				blueBaseball->setCurrentFrameX(blueBaseball->getCurrentFrameX() + 1);
 			}
-			_currentFrameY = 0;
+			blueBaseball->setCurrentFrameY(0);
 
 		}
 		//move
@@ -77,13 +77,13 @@ void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_punch");
 	if (!blueBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		blueBaseball->setCurrentFrameY(1);
 	}
 	if (blueBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		blueBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	blueBaseball->setCurrentFrameX(0);
 }
 
 void bbAttackPunchState::exit(blueBaseball * blueBaseball)

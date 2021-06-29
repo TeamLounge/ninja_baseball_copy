@@ -44,8 +44,8 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+	isXOverlap = false;
+	isYOverlap = false;
 
 	return S_OK;
 }
@@ -104,11 +104,11 @@ void greenBaseball::render()
 		DeleteObject(myPen);
 		DeleteObject(myBrush);
 	}
-	
+
 	//Rectangle(getMemDC(), _greenBaseball.rcStop);			//등장 충돌 렉트
 
 	_gbShadow.img->render(getMemDC(), _gbShadow.rc.left, _gbShadow.rc.top);
-	_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.x, _greenBaseball.y, _gbState->getCurrentFrameX(), _gbState->getCurrentFrameY());
+	_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.x, _greenBaseball.y, _currentFrameX, _currentFrameY);
 	//_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.rc.left, _greenBaseball.rc.top);
 
 

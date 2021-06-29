@@ -31,15 +31,16 @@ void ybIdleState::update(yellowBaseball * yellowBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				yellowBaseball->setCurrentFrameX(0);
 			}
-			else {
-				_currentFrameX++;
+			else 
+			{
+				yellowBaseball->setCurrentFrameX(yellowBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 1;
+			yellowBaseball->setCurrentFrameY(1);
 		}
 
 		//왼쪽으로 이동
@@ -56,16 +57,16 @@ void ybIdleState::update(yellowBaseball * yellowBaseball)
 		if (frameCount >= 15)
 		{
 			frameCount = 0;
-			if (_currentFrameX == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
 			{
-				_currentFrameX = 0;
+				yellowBaseball->setCurrentFrameX(0);
 			}
 			else
 			{
-				_currentFrameX++;
+				yellowBaseball->setCurrentFrameX(yellowBaseball->getCurrentFrameX() + 1);
 
 			}
-			_currentFrameY = 0;
+			yellowBaseball->setCurrentFrameY(0);
 
 		}
 		//move
@@ -96,13 +97,13 @@ void ybIdleState::enter(yellowBaseball * yellowBaseball)
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_idle");
 	if (!yellowBaseball->isRight)
 	{
-		_currentFrameY = 1;
+		yellowBaseball->setCurrentFrameY(1);
 	}
 	if (yellowBaseball->isRight)
 	{
-		_currentFrameY = 0;
+		yellowBaseball->setCurrentFrameY(0);
 	}
-	_currentFrameX = 0;
+	yellowBaseball->setCurrentFrameX(0);
 
 	timeCount = 0;
 }

@@ -1,0 +1,6 @@
+#include "stdafx.h"
+#include "batState.h"
+#include "batAttackState.h"
+#include "batDamagedState.h"
+#include "batIdleState.h"
+#include "batMoveState.h"

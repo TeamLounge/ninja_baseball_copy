@@ -1,21 +1,20 @@
 #pragma once
 
 #include "gameNode.h"
-#include "ybState.h"
+#include "gloveState.h"
 
-struct YELLOWBASEBALL
+struct GLOVE
 {
 	RECT rc;
 	RECT rcAttackRange;
-	RECT rcStop;
+	//RECT rcStop;
 
 	image* img;
-
+	
 	float x, y;
-
 };
 
-struct YBSHADOW
+struct GLOVESHADOW
 {
 	RECT rc;
 	image* img;
@@ -23,34 +22,37 @@ struct YBSHADOW
 	float x, y;
 };
 
-class yellowBaseball :public gameNode
+class glove :public gameNode
 {
 private:
 	int _currentFrameX;
 	int _currentFrameY;
 
-
 public:
 
 	void InputHandle();
-	ybState* _ybState;
+	gloveState* _gloveState;
 
-	YELLOWBASEBALL _yellowBaseball;
-	YBSHADOW _ybShadow;
+	GLOVE _glove;
+	GLOVESHADOW _gloveShadow;
 
-	bool isCrash;
+	bool isCrash;					//에너미가 감시 범위 밖에서 돌아다니지 않게 하자
 
-	bool isRight;				//에너미가 플레이어의 오른쪽에 있어?
-	bool isDown;				//에너미가 플레이어의 아래에 있어?
-	bool isCollisionAttack;		//에너미 타격범위에 들어왔어?
-	bool isJump;				//점프했어?
+	bool isRight;					//에너미가 플레이어의 오른쪽에 있어?
+	bool isDown;					//에너미가 플레이어의 아래에 있어?
+	bool isCollisionAttack;			//에너미 들어와서 칠거야?
+	bool isJump;					//점프했어?
 	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
 	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
+	bool isLand;					//점프 후 바닥에 도착했냐!!!!
 
 
+	//이미지 좌표 수정 위한 bool값들
+	bool isAttackTongueState;
+	bool isJumpState;
 
-	yellowBaseball() {};
-	~yellowBaseball() {};
+	glove() {};
+	~glove() {};
 
 	virtual HRESULT init();
 	virtual HRESULT init(POINT position);
@@ -60,13 +62,14 @@ public:
 
 	void setImage();
 	void setShadow();
+	void modifiedLocation();
 
-	inline RECT getRect() { return _yellowBaseball.rc; }
-	inline RECT getAttackRect() { return _yellowBaseball.rcAttackRange; }
 
-	float getCenterX() { return (_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2; }
-	float getCenterY() { return (_yellowBaseball.rc.bottom + _yellowBaseball.rc.top) / 2; }
+	inline RECT getRect() { return _glove.rc; }
+	inline RECT getAttackRect() { return _glove.rcAttackRange; }
 
+	float getCenterX() { return (_glove.rc.left + _glove.rc.right) / 2; }
+	float getCenterY() { return (_glove.rc.top + _glove.rc.bottom) / 2; }
 
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
@@ -79,4 +82,6 @@ public:
 
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
+
 };
+

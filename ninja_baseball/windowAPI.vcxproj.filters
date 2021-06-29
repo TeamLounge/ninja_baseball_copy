@@ -181,6 +181,63 @@
     <ClCompile Include="bossState.cpp">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClCompile>
+    <ClCompile Include="glove.cpp">
+      <Filter>playGround\enemy\glove</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveAttackTongueState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveDamagedState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveDeathState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveJumpState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveMoveState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="gloveState.cpp">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClCompile>
+    <ClCompile Include="bat.cpp">
+      <Filter>playGround\enemy\bat</Filter>
+    </ClCompile>
+    <ClCompile Include="batAttackState.cpp">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batDamagedState.cpp">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batIdleState.cpp">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batMoveState.cpp">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="batState.cpp">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dash.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAlt.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAttack.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fall.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fly.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_frontCombo.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -378,6 +435,63 @@
     <ClInclude Include="bossState.h">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClInclude>
+    <ClInclude Include="glove.h">
+      <Filter>playGround\enemy\glove</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveAttackTongueState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveDamagedState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveDeathState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveJumpState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveMoveState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="gloveState.h">
+      <Filter>playGround\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="bat.h">
+      <Filter>playGround\enemy\bat</Filter>
+    </ClInclude>
+    <ClInclude Include="batAttackState.h">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batDamagedState.h">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batIdleState.h">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batMoveState.h">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="batState.h">
+      <Filter>playGround\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dash.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAlt.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAttack.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fall.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fly.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -469,6 +583,18 @@
     </Filter>
     <Filter Include="playGround\enemy\BOSS\bossState">
       <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\glove">
+      <UniqueIdentifier>{33713372-037d-4fba-8475-b2a5e9cb9165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\glove\gloveState">
+      <UniqueIdentifier>{27ebb2b4-f83e-44de-b7b0-ee081cd59073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\bat">
+      <UniqueIdentifier>{65b1b78b-108f-444a-9235-dd97cf4f7b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\bat\batState">
+      <UniqueIdentifier>{8d5b53f8-49d5-4c64-a5c9-091b11a0ba3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

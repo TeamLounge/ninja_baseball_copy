@@ -45,8 +45,8 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+	isXOverlap = false;
+	isYOverlap = false;
 
 	return S_OK;
 }
@@ -72,16 +72,12 @@ void whiteBaseball::update()
 		//그림자
 		_wbShadow.rc = RectMakeCenter((_whiteBaseball.rc.right + _whiteBaseball.rc.left) / 2, _whiteBaseball.rc.bottom, 215, 50);
 		_wbShadow.y = _whiteBaseball.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
-
 	}
 	else   //점프하면
 	{
 		//그림자
 		_wbShadow.rc = RectMakeCenter((_whiteBaseball.rc.right + _whiteBaseball.rc.left) / 2, _wbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
-
-	
-																								
 }
 
 void whiteBaseball::render()
@@ -105,11 +101,10 @@ void whiteBaseball::render()
 		DeleteObject(myPen);
 		DeleteObject(myBrush);
 	}
-	
 	//Rectangle(getMemDC(), _whiteBaseball.rcStop);			//등장 충돌 렉트
 
 	_wbShadow.img->render(getMemDC(), _wbShadow.rc.left, _wbShadow.rc.top);	
-	_whiteBaseball.img->frameRender(getMemDC(), _whiteBaseball.x, _whiteBaseball.y, _wbState->getCurrentFrameX(), _wbState->getCurrentFrameY());
+	_whiteBaseball.img->frameRender(getMemDC(), _whiteBaseball.x, _whiteBaseball.y, _currentFrameX, _currentFrameY);
 	//_whiteBaseball.img->frameRender(getMemDC(), _whiteBaseball.rc.left, _whiteBaseball.rc.top);
 
 	

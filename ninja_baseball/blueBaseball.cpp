@@ -44,8 +44,8 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+	isXOverlap = false;
+	isYOverlap = false;
 
 	return S_OK;
 }
@@ -105,11 +105,11 @@ void blueBaseball::render()
 		DeleteObject(myPen);
 		DeleteObject(myBrush);
 	}
-	
+
 	//Rectangle(getMemDC(), _blueBaseball.rcStop);			//등장 충돌 렉트
 
 	_bbShadow.img->render(getMemDC(), _bbShadow.rc.left, _bbShadow.rc.top);
-	_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.x, _blueBaseball.y, _bbState->getCurrentFrameX(), _bbState->getCurrentFrameY());
+	_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.x, _blueBaseball.y, _currentFrameX, _currentFrameY);
 	//_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.rc.left, _blueBaseball.rc.top);
 
 

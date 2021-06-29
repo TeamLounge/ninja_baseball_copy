@@ -29,6 +29,8 @@ class greenBaseball :public gameNode
 {
 
 private:
+	int _currentFrameX;
+	int _currentFrameY;
 
 public:
 
@@ -74,5 +76,11 @@ public:
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
 	void setIsXOverlap(bool _isXOverlap) { isXOverlap = _isXOverlap; }
 	void setIsYOverlap(bool _isYOverlap) { isYOverlap = _isYOverlap; }
+
+	int getCurrentFrameX() { return _currentFrameX; }
+	int getCurrentFrameY() { return _currentFrameY; }
+
+	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
+	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
 };

@@ -1,21 +1,20 @@
 #pragma once
 
 #include "gameNode.h"
-#include "ybState.h"
+#include "batState.h"
 
-struct YELLOWBASEBALL
+struct BAT
 {
 	RECT rc;
 	RECT rcAttackRange;
 	RECT rcStop;
 
-	image* img;
+	image * img;
 
 	float x, y;
-
 };
 
-struct YBSHADOW
+struct BATSHADOW
 {
 	RECT rc;
 	image* img;
@@ -23,34 +22,31 @@ struct YBSHADOW
 	float x, y;
 };
 
-class yellowBaseball :public gameNode
+class bat :public gameNode
 {
 private:
 	int _currentFrameX;
 	int _currentFrameY;
 
-
 public:
-
 	void InputHandle();
-	ybState* _ybState;
 
-	YELLOWBASEBALL _yellowBaseball;
-	YBSHADOW _ybShadow;
+	batState* _batState;
 
-	bool isCrash;
+	BAT _bat;
+	BATSHADOW _batShadow;
 
 	bool isRight;				//에너미가 플레이어의 오른쪽에 있어?
 	bool isDown;				//에너미가 플레이어의 아래에 있어?
-	bool isCollisionAttack;		//에너미 타격범위에 들어왔어?
-	bool isJump;				//점프했어?
-	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
-	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
+	bool isCollisionAttack;		//에너미 들어와서 칠거야?
+	bool isJump;		
+	bool isXOverlap;			//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
+	bool isYOverlap;			//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
+	bool isAttack;				//쳤어?
+	bool isDamaged;				//맞았어?
 
-
-
-	yellowBaseball() {};
-	~yellowBaseball() {};
+	bat() {};
+	~bat() {};
 
 	virtual HRESULT init();
 	virtual HRESULT init(POINT position);
@@ -61,12 +57,11 @@ public:
 	void setImage();
 	void setShadow();
 
-	inline RECT getRect() { return _yellowBaseball.rc; }
-	inline RECT getAttackRect() { return _yellowBaseball.rcAttackRange; }
+	inline RECT getRect() { return _bat.rc; }
+	inline RECT getAttackRect() { return _bat.rcAttackRange; }
 
-	float getCenterX() { return (_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2; }
-	float getCenterY() { return (_yellowBaseball.rc.bottom + _yellowBaseball.rc.top) / 2; }
-
+	float getCenterX() { return (_bat.rc.left + _bat.rc.right) / 2; }
+	float getCenterY() { return (_bat.rc.top + _bat.rc.bottom) / 2; }
 
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
@@ -80,3 +75,4 @@ public:
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 };
+

@@ -148,6 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="bat.h" />
+    <ClInclude Include="batAttackState.h" />
+    <ClInclude Include="batDamagedState.h" />
+    <ClInclude Include="batIdleState.h" />
+    <ClInclude Include="batMoveState.h" />
+    <ClInclude Include="batState.h" />
     <ClInclude Include="bbAttackPunchState.h" />
     <ClInclude Include="bbIdleState.h" />
     <ClInclude Include="bbLandState.h" />
@@ -173,6 +179,13 @@
     <ClInclude Include="gbIdleState.h" />
     <ClInclude Include="gbLandState.h" />
     <ClInclude Include="gbState.h" />
+    <ClInclude Include="glove.h" />
+    <ClInclude Include="gloveAttackTongueState.h" />
+    <ClInclude Include="gloveDamagedState.h" />
+    <ClInclude Include="gloveDeathState.h" />
+    <ClInclude Include="gloveJumpState.h" />
+    <ClInclude Include="gloveMoveState.h" />
+    <ClInclude Include="gloveState.h" />
     <ClInclude Include="greenBaseball.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
@@ -225,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="bat.cpp" />
+    <ClCompile Include="batAttackState.cpp" />
+    <ClCompile Include="batDamagedState.cpp" />
+    <ClCompile Include="batIdleState.cpp" />
+    <ClCompile Include="batMoveState.cpp" />
+    <ClCompile Include="batState.cpp" />
     <ClCompile Include="bbAttackPunchState.cpp" />
     <ClCompile Include="bbIdleState.cpp" />
     <ClCompile Include="bbLandState.cpp" />
@@ -249,6 +268,13 @@
     <ClCompile Include="gbIdleState.cpp" />
     <ClCompile Include="gbLandState.cpp" />
     <ClCompile Include="gbState.cpp" />
+    <ClCompile Include="glove.cpp" />
+    <ClCompile Include="gloveAttackTongueState.cpp" />
+    <ClCompile Include="gloveDamagedState.cpp" />
+    <ClCompile Include="gloveDeathState.cpp" />
+    <ClCompile Include="gloveJumpState.cpp" />
+    <ClCompile Include="gloveMoveState.cpp" />
+    <ClCompile Include="gloveState.cpp" />
     <ClCompile Include="greenBaseball.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
