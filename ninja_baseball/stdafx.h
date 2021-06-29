@@ -37,8 +37,8 @@ using namespace SUNFL_UTIL;
 #define WINSIZEY 768	//윈도우 세로크기
 #define CAMERAX 960
 #define CAMERAY 768
-#define BACKGROUNDX 4320
-#define BACKGROUNDY 2304
+#define BACKGROUNDX 3360 //배경 중 가로 가장 큰 길이
+#define BACKGROUNDY 2304 //배경 중 세로 가장 큰 길이
 #define WINSTYLE WS_CAPTION | WS_SYSMENU
 
 #define RND				randomFunction::getSingleton()

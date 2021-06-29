@@ -52,9 +52,9 @@ void titleScene::update()
 
 	if (_isTitleStart)
 	{
-		if (_elapsedSec >= 0.25f)
+		if (_elapsedSec >= 0.1f)
 		{
-			_elapsedSec -= 0.25f;
+			_elapsedSec -= 0.1f;
 			if (IMAGEMANAGER->findImage("title_start")->getFrameX() >= IMAGEMANAGER->findImage("title_start")->getMaxFrameX())
 			{
 				_isTitleStart = false;
@@ -70,9 +70,9 @@ void titleScene::update()
 	if (_isTitleStoped)
 	{
 		_textElapsedSec += TIMEMANAGER->getElapsedTime();
-		if (_elapsedSec >= 0.25f)
+		if (_elapsedSec >= 0.1f)
 		{
-			_elapsedSec -= 0.25f;
+			_elapsedSec -= 0.1f;
 			if (IMAGEMANAGER->findImage("title_frame")->getFrameX() >= IMAGEMANAGER->findImage("title_frame")->getMaxFrameX())
 			{
 				IMAGEMANAGER->findImage("title_frame")->setFrameX(0);

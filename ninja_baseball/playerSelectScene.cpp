@@ -95,7 +95,7 @@ void playerSelectScene::update()
 	{
 		if (_elapsedSec >= 3.0f)
 		{
-			SCENEMANAGER->changeScene("stage");
+			SCENEMANAGER->changeScene("start");
 		}
 	}
 	

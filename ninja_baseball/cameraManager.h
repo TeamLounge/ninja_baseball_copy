@@ -11,6 +11,8 @@ private:
 	float y[2];
 	void cameraRange(); //카메라가 배경 밖으로 나가지 않게 만드는 함수
 public:
+	bool _isFixed;
+
 	HRESULT init();
 	void release();
 
@@ -34,6 +36,9 @@ public:
 
 	//플레이어가 카메라에 중심이 아닌 다른 위치에 있고 플레이어에 따라 움직이고 싶을 때 사용)
 	void updateCamera(float x, float y, float ratioX, float ratioY);
+
+	//플레이어가 x축 기준으로 어느정도 비율을 넘어가면 카메라가 움직임(0.5f<ratio<1.0f)
+	void updateCamera(float centerX, float centerY, float ratioX);
 
 	// RECT가 X축, y축으로 어느정도 비율을 넘어가면 카메라가 움직임( 0 < ratio < 1.0f)
 	// 0을 넣으면 그 축 사용 안함

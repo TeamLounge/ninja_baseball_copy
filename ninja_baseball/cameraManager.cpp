@@ -62,6 +62,23 @@ void cameraManager::updateCamera(float x, float y)
 	cameraRange();
 }
 
+void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
+{
+	if (_isFixed) return;
+
+	if (centerX > _cameraBuffer->getX() + ratioX * CAMERAX)
+	{
+		_cameraBuffer->setX(_cameraBuffer->getX() + 5);
+		if (centerX <= _cameraBuffer->getX())
+		{
+			_cameraBuffer->setX(centerX - ratioX * CAMERAX);
+		}
+		x[0] = _cameraBuffer->getX() + ratioX * CAMERAX;
+		x[1] = 0;
+	}
+	cameraRange();
+}
+
 void cameraManager::updateCamera(float x, float y, float ratioX, float ratioY)
 {
 	float cX, cY;

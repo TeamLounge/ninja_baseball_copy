@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "stageScene.h"
 HRESULT stageScene::init()
-{
-	IMAGEMANAGER->addImage("ui_green", "image/6_UI/inGame/green.bmp", 63, 72, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("ui_red", "image/6_UI/inGame/red.bmp", 63, 72, true, RGB(255, 0, 255), false);
-	
+{	
 	IMAGEMANAGER->addImage("stage", "image/1_Map/Stage1.bmp", 4320, 2304, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, BACKGROUNDY - 768);
 
@@ -32,7 +29,19 @@ void stageScene::update()
 	_Ryno->update();
 	_red->update();
 	_em->update();
-	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY());
+	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY(), 0.51f);
+
+	if (KEYMANAGER->isOnceKeyDown('A'))
+	{
+		if (!CAMERAMANAGER->_isFixed)
+		{
+			CAMERAMANAGER->_isFixed = true;
+		}
+		else
+		{
+			CAMERAMANAGER->_isFixed = false;
+		}
+	}
 }
 
 void stageScene::render()
