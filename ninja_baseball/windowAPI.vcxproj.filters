@@ -16,9 +16,6 @@
     <ClCompile Include="endingScene.cpp">
       <Filter>playGound\scene</Filter>
     </ClCompile>
-    <ClCompile Include="enemyManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="gameNode.cpp">
       <Filter>2DGameFramework</Filter>
     </ClCompile>
@@ -253,9 +250,6 @@
     <ClCompile Include="yellowBaseball.cpp">
       <Filter>playGound\enemy\baseballYellow</Filter>
     </ClCompile>
-    <ClCompile Include="glove.cpp">
-      <Filter>playGround\enemy\glove</Filter>
-    </ClCompile>
     <ClCompile Include="gloveAttackTongueState.cpp">
       <Filter>playGround\enemy\glove\gloveState</Filter>
     </ClCompile>
@@ -273,9 +267,6 @@
     </ClCompile>
     <ClCompile Include="gloveState.cpp">
       <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClCompile>
-    <ClCompile Include="bat.cpp">
-      <Filter>playGround\enemy\bat</Filter>
     </ClCompile>
     <ClCompile Include="batAttackState.cpp">
       <Filter>playGround\enemy\bat\batState</Filter>
@@ -310,6 +301,11 @@
     <ClCompile Include="Ryno_frontCombo.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
+    <ClCompile Include="bat.cpp" />
+    <ClCompile Include="glove.cpp" />
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGound\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -329,9 +325,6 @@
     </ClInclude>
     <ClInclude Include="endingScene.h">
       <Filter>playGound\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="enemyManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
     <ClInclude Include="gameNode.h">
       <Filter>2DGameFramework</Filter>
@@ -579,9 +572,6 @@
     <ClInclude Include="yellowBaseball.h">
       <Filter>playGound\enemy\baseballYellow</Filter>
     </ClInclude>
-    <ClInclude Include="glove.h">
-      <Filter>playGround\enemy\glove</Filter>
-    </ClInclude>
     <ClInclude Include="gloveAttackTongueState.h">
       <Filter>playGround\enemy\glove\gloveState</Filter>
     </ClInclude>
@@ -599,9 +589,6 @@
     </ClInclude>
     <ClInclude Include="gloveState.h">
       <Filter>playGround\enemy\glove\gloveState</Filter>
-    </ClInclude>
-    <ClInclude Include="bat.h">
-      <Filter>playGround\enemy\bat</Filter>
     </ClInclude>
     <ClInclude Include="batAttackState.h">
       <Filter>playGround\enemy\bat\batState</Filter>
@@ -635,6 +622,11 @@
     </ClInclude>
     <ClInclude Include="Ryno_frontCombo.h">
       <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="bat.h" />
+    <ClInclude Include="glove.h" />
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGound\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -733,14 +725,8 @@
     <Filter Include="playGound\enemy\baseballYellow\ybState">
       <UniqueIdentifier>{1641877a-2258-4043-b73b-02b4da5d6198}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\glove">
-      <UniqueIdentifier>{33713372-037d-4fba-8475-b2a5e9cb9165}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\enemy\glove\gloveState">
       <UniqueIdentifier>{27ebb2b4-f83e-44de-b7b0-ee081cd59073}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\enemy\bat">
-      <UniqueIdentifier>{65b1b78b-108f-444a-9235-dd97cf4f7b7b}</UniqueIdentifier>
     </Filter>
     <Filter Include="playGround\enemy\bat\batState">
       <UniqueIdentifier>{8d5b53f8-49d5-4c64-a5c9-091b11a0ba3c}</UniqueIdentifier>
