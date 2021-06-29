@@ -71,8 +71,6 @@ void red_homeRunState::update(player* _player)
 			_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 70);
 			_player->_shadow->setY(_player->getY() + 110);
 		}
-		
-
 	}
 }
 

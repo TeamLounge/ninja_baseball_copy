@@ -9,12 +9,12 @@ playerstate * red_jumpState::handleInput(player * _player)
 	{
 		if (_player->isRight == true)
 		{
-			_player->setX(_player->getX() - 30);
+			_player->setX(_player->getX());
 		}
 
 		if (_player->isRight == false)
 		{
-			_player->setX(_player->getX() + 30);
+			_player->setX(_player->getX());
 		}
 		
 		return new red_idleState;
@@ -114,7 +114,7 @@ void red_jumpState::update(player * _player)
 			_count = 0;
 		}
 	}
-	
+		
 }
 
 void red_jumpState::enter(player * _player)
@@ -122,11 +122,11 @@ void red_jumpState::enter(player * _player)
 	_player->setImage(IMAGEMANAGER->findImage("red_jump"));
 	if (_player->isRight == true)
 	{
-		_player->setX(_player->getX() + 30);
+		_player->setX(_player->getX());
 	}
 	if (_player->isRight == false)
 	{
-		_player->setX(_player->getX() - 30);
+		_player->setX(_player->getX());
 	}
 	
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
