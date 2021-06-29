@@ -41,6 +41,7 @@ void player::update()
 	if (_isrun)
 	{
 		_runtime+=0.1;
+
 		if (_runtime <2)
 		{
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) || KEYMANAGER->isOnceKeyDown(VK_LEFT))

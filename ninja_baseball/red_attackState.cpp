@@ -31,6 +31,27 @@ void red_attackState::update(player * _player)
 		{
 			if (_index < 3) _index++;
 
+			//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+			if (_index == 1)
+			{
+				_player->isattack = true;
+
+				if (_player->isRight == true)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 70, 70);
+				}
+				if (_player->isRight == false)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 70, 70);
+				}
+			}
+			else
+			{
+				_player->isattack = false;
+			}
+			//=============================================================
+
 			if (_time < 30) {
 
 				if (KEYMANAGER->isOnceKeyDown('Z'))
@@ -54,6 +75,27 @@ void red_attackState::update(player * _player)
 		if (_count % 2 == 0)
 		{
 			if (_index < 8) _index++;
+
+			//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+			if (_index == 6)
+			{
+				_player->isattack = true;
+
+				if (_player->isRight == true)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 70, 70);
+				}
+				if (_player->isRight == false)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 70, 70);
+				}
+			}
+			else
+			{
+				_player->isattack = false;
+			}
+			//=============================================================
 
 			if (_time < 30)
 			{
@@ -79,6 +121,27 @@ void red_attackState::update(player * _player)
 		{
 			if (_index < 17) _index++;
 
+			//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+			if (_index == 14)
+			{
+				_player->isattack = true;
+
+				if (_player->isRight == true)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY() + 40, 70, 70);
+				}
+				if (_player->isRight == false)
+				{
+					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 30, _player->getY() + 40, 70, 70);
+				}
+			}
+			else
+			{
+				_player->isattack = false;
+			}
+			//=============================================================
+
 			if (_index == 17)
 			{
 				_isend = true;
@@ -87,40 +150,7 @@ void red_attackState::update(player * _player)
 	}
 
 	_player->getImage()->setFrameX(_index);
-
-	//특정 인덱스가 되면 나타나는 렉트
-	if (_player->isRight == true) //플레이어가 오른쪽을 바라볼때
-	{
-		if (_index == 1)
-		{
-			_attackRc1 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-		if (_index == 5)
-		{
-			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-		if (_index == 14)
-		{
-			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-	}
-	if (_player->isRight == false) //플레이어가 왼쪽을 바라볼때
-	{
-		if (_index == 1)
-		{
-			_attackRc1 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-		if (_index == 5)
-		{
-			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-		if (_index == 14)
-		{
-			_attackRc2 = RectMakeCenter(_player->getX() + 50, _player->getY(), 50, 50);
-		}
-	}
 		
-	
 	/*if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		_index = 0;
@@ -166,7 +196,7 @@ void red_attackState::enter(player * _player)
 	_count = _index = _time = 0;
 	_attackCount = 0;
 	_isend = false;
-	
+		
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(_index);
