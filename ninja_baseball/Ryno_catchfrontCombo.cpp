@@ -31,7 +31,6 @@ void Ryno_catchfrontCombo::update(player * player)
 			_index++;
 			if (_index == 2)_Rotation++;
 			if (_Rotation <= 5)_index = 1;
-
 		}
 	}
 	if (_index >= 3)
@@ -43,6 +42,21 @@ void Ryno_catchfrontCombo::update(player * player)
 			if (_index > 6) isend = true;
 		}
 	}
+
+	if (_index == 4 || _index==5)
+	{
+		player->isattack = true;
+		if (player->isRight) {
+			player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY(), 50, 50);
+		}
+		else
+		{
+			player->_attack_rc = RectMakeCenter(player->getX() - 90, player->getY(), 50, 50);
+		}
+	}
+	else
+		player->isattack = false;
+
 
 	if (player->isRight)
 	{

@@ -67,7 +67,7 @@ void player::render()
 	sprintf_s(str, "플레이어 아팟써");
 	char str2[128];
 	sprintf_s(str2, "공격!");
-	//Rectangle(getMemDC(), _playerrc);
+	Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
@@ -124,8 +124,8 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_fly", "image/2_Player/green/green_fly.bmp", 1332, 378, 4, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), false);
-	//IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
-	//IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_givp_up.bmp", 234, 564, 5, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_givp_up.bmp", 234, 564, 5, 2, true, RGB(255, 0, 255),false);
 	//IMAGEMANAGER->addImage("Ryno_escape", "image/2_Player/green/green_escape.bmp", 189, 432, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
 }

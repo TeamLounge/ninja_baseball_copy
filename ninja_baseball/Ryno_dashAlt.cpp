@@ -5,7 +5,6 @@ playerstate * Ryno_dashAlt::handleInput(player * player)
 {
 	if (speed < 0)
 	{
-
 		return new Ryno_idle;
 	}
 	return nullptr;
@@ -26,6 +25,18 @@ void Ryno_dashAlt::update(player * player)
 	
 	if ( 2.f <speed && speed<11.5f)_index = 1;
 	if (speed < 2.f) _index = 2;
+	if (_index == 1)
+	{
+		player->isattack = true;
+		if (player->isRight)
+			player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY() - 30, 50, 140);
+		else
+			player->_attack_rc = RectMakeCenter(player->getX() - 90, player->getY() - 30, 50, 140);
+	}
+	if (_index == 2)
+	{
+		player->isattack = false;
+	}
 	player->getImage()->setFrameX(_index);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 }
