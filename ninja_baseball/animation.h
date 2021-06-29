@@ -52,6 +52,7 @@ public:
 	inline BOOL isPlay() { return _play; }
 
 	inline POINT getFramePos() { return _frameList[_playList[_nowPlayIdx]]; }
+	void setFrameIdx(DWORD nowPlayIdx) { _nowPlayIdx = nowPlayIdx; }
 
 	inline int getFrameWidth() { return _frameWidth; }
 	inline int getFrameHeight() { return _frameHeight; }

@@ -181,6 +181,54 @@
     <ClCompile Include="bossState.cpp">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
     </ClCompile>
+    <ClCompile Include="Ryno_dash.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAlt.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_dashAttack.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fall.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_fly.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryno_frontCombo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bossEntryState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="bossIdleState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="bossWindState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="bossMoveState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingProp.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossShootingReady.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossJabAttackState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossStraightAttackState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="bossUpperCutState.cpp">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h">
@@ -375,8 +423,56 @@
     <ClInclude Include="boss.h">
       <Filter>playGround\enemy\BOSS</Filter>
     </ClInclude>
+    <ClInclude Include="Ryno_dash.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAlt.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_dashAttack.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_fly.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryno_frontCombo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="bossState.h">
       <Filter>playGround\enemy\BOSS\bossState</Filter>
+    </ClInclude>
+    <ClInclude Include="bossIdleState.h">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="bossEntryState.h">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="bossWindState.h">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="bossMoveState.h">
+      <Filter>playGround\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingState.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingReady.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossShootingProp.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossJabAttackState.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossStraightAttackState.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="bossUpperCutState.h">
+      <Filter>playGround\enemy\BOSS\bossState\attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +565,12 @@
     </Filter>
     <Filter Include="playGround\enemy\BOSS\bossState">
       <UniqueIdentifier>{15057f04-54b7-4433-8325-5bdd423a210e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\BOSS\bossState\action">
+      <UniqueIdentifier>{04840746-fa55-4d8d-a416-6e44cb33d603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\BOSS\bossState\attack">
+      <UniqueIdentifier>{0ad43314-d397-4fc7-a93d-17192200e98f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

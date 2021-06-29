@@ -13,7 +13,7 @@ cardState * cardDashAttackState::inputHandle(card * card)
 		return new cardIdleState();
 	}
 
-	return S_OK;
+	return nullptr;
 }
 
 void cardDashAttackState::update(card * card)

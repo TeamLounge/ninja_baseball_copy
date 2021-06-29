@@ -12,7 +12,7 @@ cardState * cardPunchAttackState::inputHandle(card * card)
 		card->_isPunchBullet = false;
 		return new cardIdleState();
 	}
-	return S_OK;
+	return nullptr;
 }
 
 void cardPunchAttackState::update(card * card)

@@ -4,10 +4,9 @@
 
 HRESULT enemyManager::init()
 {
-
-	setBaseball();
-	setCard();
-	
+	//setBaseball();
+	//setCard();
+	setBoss();
 
 	return S_OK;
 }
@@ -18,20 +17,22 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	updateBaseball();
-	playerLocation();
+	//updateBaseball();
+	//playerLocation();
 
-	baseballCollision();	//플레이어 vs wb타격범위렉트
+	//baseballCollision();	//플레이어 vs wb타격범위렉트
 
-	updateCard();
-	WhereIsCard();	
+	//updateCard();
+	//WhereIsCard();	
+
+	updateBoss();
 }
 
 void enemyManager::render()
 {
-
-	renderBaseball();
-	renderCard();
+	//renderBaseball();
+	//renderCard();
+	renderBoss();
 }
 
 
@@ -451,3 +452,181 @@ void enemyManager::WhereIsCard()
 	}
 }
 
+/////////////////////////////////
+//  ######보스 위치 선정 ########
+/////////////////////////////////
+void enemyManager::setBoss()
+{
+	_boss = new boss;
+	_boss->init(PointMake(700, BACKGROUNDY - WINSIZEY + 300));
+}
+
+
+/////////////////////////////////
+// ######보스 업데이트 항목 ########
+/////////////////////////////////
+void enemyManager::updateBoss()
+{
+	_boss->update();
+	WhereIsBoss();				//보스<->플레이어 위치 확인용
+	attackCollision();
+}
+
+
+/////////////////////////////////
+//  ######보스 그리기 ########
+/////////////////////////////////
+void enemyManager::renderBoss()
+{
+	_boss->render();
+}
+
+
+/////////////////////////////////
+//  ######보스 위치잡기 ########
+/////////////////////////////////
+void enemyManager::WhereIsBoss()
+{
+	//플레이어보다 왼쪽에 있을때
+	if (_player->getX() > _boss->_bossShadow.x)
+	{
+		_boss->_isLeft = false;
+	}
+
+	//플레이어보다 오른쪽에 있을때
+	if (_player->getX() < _boss->_bossShadow.x)
+	{
+		_boss->_isLeft = true;
+	}
+
+	//플레이어보다 위에 있을때
+	if (_player->getRect().bottom > _boss->_bossShadow.y)
+	{
+		_boss->_isUpper = true;
+	}
+
+	//플레이어보다 아래에 있을때
+	if (_player->getRect().bottom < _boss->_bossShadow.y)
+	{
+		_boss->_isUpper = false;
+	}
+	
+	//범위 안에 들어오면 흔들림 스탑핏
+
+	if (_player->getX() + 3 > _boss->_bossShadow.x && _player->getX() - 3 < _boss->_bossShadow.x)
+	{
+		_boss->_isMoveStopRangeX = true;
+	}
+
+	if (!(_player->getX() + 3 > _boss->_bossShadow.x && _player->getX() - 3 < _boss->_bossShadow.x))
+	{
+		_boss->_isMoveStopRangeX = false;
+	}
+
+	if (_player->getRect().bottom + 3 > _boss->_bossShadow.y && _player->getRect().bottom - 3 < _boss->_bossShadow.y)
+	{
+		_boss->_isMoveStopRangeY = true;
+	}
+
+	if (!(_player->getRect().bottom + 3 > _boss->_bossShadow.y && _player->getRect().bottom - 3 < _boss->_bossShadow.y))
+	{
+		_boss->_isMoveStopRangeY = false;
+	}
+}
+
+
+
+/////////////////////////////////
+//  ######보스 공격충돌 ########
+/////////////////////////////////
+void enemyManager::attackCollision()
+{
+	///////////////////////////////////////////
+	// #######   보스 원거리 공격   ##########
+	/////////////////////////////////////////// 원거리 공격 성공신호는  isSucceedShootingAttack 입니다.
+
+	_boss->_numAtkPattern = RND->getFromIntTo(0, 6);
+
+	if (PtInRect(&_boss->_longRangeAtkRc,
+		PointMake(_player->getX(), _player->getRect().bottom)) &&
+		!_boss->_isLongRangeCrash && !_boss->_isShootingAttack &&
+		!_boss->_isJabAttack)
+	{
+
+		int Num = _boss->_numAtkPattern;
+
+		_boss->_isLongRangeCrash = true;
+
+		if (Num == 3)
+		{
+			_boss->_isShootingAttack = true; //이건 그냥 상태를 보내기위한 스위치 
+		}
+	}
+
+	if (!PtInRect(&_boss->_longRangeAtkRc,
+		PointMake(_player->getX(), _player->getRect().bottom)))
+	{
+		_boss->_isLongRangeCrash = false;
+	}
+
+	//원거리 공격 성공했을때요
+	if (_boss->_isTrigger && (PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX(), _player->_shadow->getY())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX() + _player->_shadow->getWidth(), _player->_shadow->getY())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->getX(), _player->_shadow->getY() + _player->_shadow->getHeight())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX() + _player->_shadow->getWidth(), _player->_shadow->getY() + _player->_shadow->getHeight()))))
+	{
+		_boss->_isSucceedShootingAttack = true;
+	}
+
+	//원거리 공격 실패했을때요~
+	if (!(_boss->_isTrigger && (PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX(), _player->_shadow->getY())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX() + _player->_shadow->getWidth(), _player->_shadow->getY())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->getX(), _player->_shadow->getY() + _player->_shadow->getHeight())) ||
+		PtInRect(&_boss->_longRangeAtkRc, PointMake(_player->_shadow->getX() + _player->_shadow->getWidth(), _player->_shadow->getY() + _player->_shadow->getHeight())))))
+	{
+		_boss->_isSucceedShootingAttack = false;
+	}
+
+	///////////////////////////////////////////
+	// #######   보스 jab 공격, straight 공격   ##########
+	/////////////////////////////////////////// 잽공격 성공신호는 _isSucceedJabAttack 입니다. 스트레이트공격 성공신호는 _isSucceedStraightAttack 입니다.
+
+	RECT temp;
+	if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()) && !_boss->_isJabAttack
+		&& !_boss->_isShootingAttack && !_boss->_isTrigger && !_boss->_isCrash && !_boss->_isStraightAttack)
+	{
+		int randNum = rand() % 6;
+		if (randNum != 1) _boss->_missCount++;
+		_boss->_isCrash = true;
+
+		if (randNum == 1 || _boss->_missCount > 3)
+		{
+			_boss->_missCount = 0;
+			_boss->_isJabAttack = true;
+		}
+
+		if (randNum == 2)
+		{
+			_boss->_isStraightAttack = true;
+		}
+	}
+
+	if (!(IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect())))
+	{
+		_boss->_isCrash = false;
+	}
+
+	RECT rc = RectMake(_player->_shadow->getX(), _player->_shadow->getY(),
+		_player->_shadow->getWidth(), _player->_shadow->getHeight());
+
+	//잽 공격 성공했을때요~
+	if (_boss->_isJabAttack && IntersectRect(&temp, &_boss->_boss.rc, &rc))
+	{
+		_boss->_isSucceedJabAttack = true;
+	}
+	//잽 공격 실패했을때요~
+	if (!(_boss->_isJabAttack && IntersectRect(&temp, &_boss->_boss.rc, &rc)))
+	{
+		_boss->_isSucceedJabAttack = false;
+	}
+}
