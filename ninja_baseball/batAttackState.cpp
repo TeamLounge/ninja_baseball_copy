@@ -4,6 +4,7 @@
 #include "batDamagedState.h"
 #include "batIdleState.h"
 #include "batMoveState.h"
+#include "batDeathState.h"
 
 batState * batAttackState::inputHandle(bat * bat)
 {

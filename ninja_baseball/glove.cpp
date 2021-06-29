@@ -117,7 +117,6 @@ void glove::setImage()
 
 	IMAGEMANAGER->addImage("glove_Death", "image/3_Enemy/glove/glove_Death.bmp", 240, 300, true, RGB(255, 0, 255), false);
 }
-
 void glove::setShadow()
 {
 
@@ -127,7 +126,7 @@ void glove::setShadow()
 
 void glove::modifiedLocation()
 {
-	//공격 시 좌표 수정 위함
+	//공격 시 이미지 이동됨.... 좌표 수정 위함
 	if (isAttackTongueState)
 	{
 		if (!isRight)
