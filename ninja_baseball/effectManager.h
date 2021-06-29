@@ -28,11 +28,13 @@ public:
 	HRESULT init();
 	void release();
 	void update();
+	void update(float x, float y);
 	void render();
 
 	void addEffect(string effectName, const char* imageName, int imageWidth,
 		int imageHeight, int effectWidth, int effectHeight, int fps, float elapsed, int buffer);
 
 	void play(string effectName, int x, int y);
+	void stop(string effectName);
 };
 

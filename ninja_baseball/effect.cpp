@@ -50,6 +50,18 @@ void effect::update()
 
 }
 
+void effect::update(float speedX, float speedY)
+{
+	if (!_isRunning) return;
+
+	_effectAnimation->frameUpdate(_elapsedTime);
+
+	_x += speedX;
+	_y += speedY;
+	
+	if (!_effectAnimation->isPlay()) killEffect();
+}
+
 void effect::render()
 {
 	if (!_isRunning) return;
@@ -66,6 +78,17 @@ void effect::startEffect(int x, int y)
 
 	_isRunning = true;
 	_effectAnimation->start();
+}
+
+void effect::resumeEffect(int x, int y)
+{
+	if (!_effectImage || !_effectAnimation) return;
+
+	_x = x - (_effectAnimation->getFrameWidth() / 2);
+	_y = y - (_effectAnimation->getFrameHeight() / 2);
+
+	_isRunning = true;
+	_effectAnimation->resume();
 }
 
 void effect::killEffect()

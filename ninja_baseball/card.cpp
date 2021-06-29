@@ -60,6 +60,10 @@ void card::update()
 	_cardState->update(this);
 	
 	_card.rc = RectMake(_card.x + 120, _card.y + 15, 200, 200);
+	_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _card.rc.bottom,
+		_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
+	_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
+	_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
 
 	if (!_isLeft)
 	{
@@ -71,7 +75,7 @@ void card::update()
 		_atkRc = RectMake(_card.x - 400, _card.y + 70, 200, 40);
 	}
 	
-	getGravity();
+	//getGravity();
 	updateBullet();
 }
 
@@ -157,9 +161,12 @@ void card::setCard()
 void card::setCardShadow()
 {
 	_cardShadow.img = IMAGEMANAGER->findImage("card_shadow");
-	_cardShadow.x = _card.x + 20;
-	_cardShadow.y = _card.rc.bottom;
-	_cardShadow.rc = RectMakeCenter(_cardShadow.x, _cardShadow.y, _cardShadow.img->getWidth(), _cardShadow.img->getHeight());
+	_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _card.rc.bottom,
+		_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
+	_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
+	_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
+	_cardShadow.img->setX(_cardShadow.x);
+	_cardShadow.img->setY(_cardShadow.y);
 }
 
 void card::getGravity()

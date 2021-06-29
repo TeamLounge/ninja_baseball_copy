@@ -21,9 +21,11 @@ public:
 	HRESULT init(image* effectImage, int frameW, int frameH, int fps, float elapsedTime);
 	void release();
 	void update();
+	void update(float speedX, float speedY);
 	void render();
 
 	void startEffect(int x, int y);
+	void resumeEffect(int x, int y);
 
 	void killEffect();
 

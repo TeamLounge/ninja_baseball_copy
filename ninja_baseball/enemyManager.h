@@ -8,6 +8,7 @@
 #include "bat.h"
 #include "glove.h"
 #include "card.h"
+#include "boss.h"
 #include <vector>
 
 class player;
@@ -71,6 +72,10 @@ private:
 	vCard _vCard;
 	viCard _viCard;
 
+	/////////////////////////////////
+	// ######  보스 에너미 #########
+	/////////////////////////////////
+	boss* _boss;
 
 public:
 	enemyManager() {};
@@ -146,5 +151,15 @@ public:
 
 	vector<card*> getVCard() { return _vCard; }
 	vector<card*>::iterator getVICard() { return _viCard; }
+
+	/////////////////////////////////
+	//  ######보스 관련 함수 ########
+	/////////////////////////////////
+	void setBoss();
+	void updateBoss();
+	void renderBoss();
+
+	void WhereIsBoss();
+	void attackCollision();
 };
 
