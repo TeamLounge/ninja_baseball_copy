@@ -59,7 +59,7 @@ void Ryno_fly::update(player * player)
 		_actiontime++;
 		next = true;
 		if(player->isRight)
-		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*300, player->getY() + sinf(0.75)*400, 150, 150);
+		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*300, player->getY() + sinf(0.75)*440, 150, 150);
 		else
 			player->_attack_rc = RectMakeCenter(player->getX() + cosf(2.32) * 300, player->getY() + sinf(2.32) * 400, 150, 150);
 		//공격렉트를 이정도 시간동안 띄우고  시간이 지나면 다음 행동으로 넘어가게 합니다. 나머지 안쓸것도 다 0으로 초기화 해주구요
@@ -75,6 +75,11 @@ void Ryno_fly::update(player * player)
 	//그다음 내리찍기부분
 	if (_index == 2)
 	{
+		if(player->isRight)
+			player->_attack_rc = RectMakeCenter(player->getX()+90, player->getY() + (player->getImage()->getFrameHeight() / 2), 80, 50);
+		else
+			player->_attack_rc = RectMakeCenter(player->getX() - 90, player->getY() + (player->getImage()->getFrameHeight() / 2), 80, 50);
+
 		//여기는 카운트를 할 필요가 없었어요 바닥에 닿을때까지 가게합니다
 		//찍을때 아마 공격렉트부분을 또 만들껍니다.
 		if (player->getY()+(player->getImage()->getFrameHeight()/2) < player->_shadow->getY())
@@ -101,6 +106,7 @@ void Ryno_fly::update(player * player)
 	//마지막단계  
 	if (_index == 3)
 	{
+		player->isattack = false;
 		_actiontime++;
 		//마무리를 일단 액션시간으로 가게 했어요 이다음을 어떻게 해야할지모르겟네요
 		//새롭게 falling 상태를 만들어서 떨어지게 하려구요
@@ -149,6 +155,8 @@ void Ryno_fly::update(player * player)
 
 	player->getImage()->setFrameX(_index);
 
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 }
 
@@ -162,7 +170,7 @@ void Ryno_fly::enter(player * player)
 	isend = false;
 	//플레이어의 이미지,렉트,그림자 초기화
 	player->setImage(IMAGEMANAGER->findImage("Ryno_fly"));
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX()  - (player->_shadow->getWidth() / 2));
 	//어디까지 올라가는지 항상 일정하게 하기위해  xx 천장 변수를 만들엇습니다

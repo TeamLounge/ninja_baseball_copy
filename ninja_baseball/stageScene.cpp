@@ -5,6 +5,8 @@ HRESULT stageScene::init()
 	IMAGEMANAGER->addImage("stage", "image/1_Map/Stage1.bmp", 4320, 2304, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, BACKGROUNDY - 768);
 
+	//_em = new enemyManager;
+	//_em->init();
 	_Ryno = new player;
 	_Ryno->init(2);
 
@@ -15,7 +17,7 @@ HRESULT stageScene::init()
 	_em->init();
 
 	_em->setPlayerMemoryAddressLink(_Ryno);
-
+	_Ryno->setEmMemoryAddressLink(_em);
 	return S_OK;
 }
 
@@ -27,9 +29,10 @@ void stageScene::update()
 {
 	RENDERMANAGER->update();
 	_Ryno->update();
-	_red->update();
+	//_red->update();
 	_em->update();
 	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY(), 0.51f);
+
 
 	if (KEYMANAGER->isOnceKeyDown('A'))
 	{
@@ -50,5 +53,5 @@ void stageScene::render()
 	RENDERMANAGER->render(getMemDC());
 	_em->render();
 	_Ryno->render();
-	_red->render();
+//	_red->render();
 }

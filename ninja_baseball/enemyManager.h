@@ -77,6 +77,8 @@ private:
 	/////////////////////////////////
 	boss* _boss;
 
+	bool isdamage;
+	
 public:
 	enemyManager() {};
 	~enemyManager() {};

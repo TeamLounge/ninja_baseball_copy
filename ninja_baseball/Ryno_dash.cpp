@@ -55,7 +55,7 @@ void Ryno_dash::update(player * player)
 		_index++;
 		_count = 0;
 	}
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90);
@@ -67,7 +67,7 @@ void Ryno_dash::enter(player * player)
 	player->_run = false;
 	player->_isrun = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_dash"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	//여기player->setY해라
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));

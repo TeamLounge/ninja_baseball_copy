@@ -10,6 +10,7 @@ wbState * wbAttackPunchState::inputHandle(whiteBaseball * whiteBaseball)
 {	
 	if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 	{
+		whiteBaseball->isattack = false;
 		whiteBaseball->isJump = true;	//점프했음을 알림
 		return new wbAttackJumpState();
 	}
@@ -66,9 +67,12 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 	{
 		whiteBaseball->setCurrentFrameY(0);
 	}
+
 	whiteBaseball->setCurrentFrameX(0);
 
 	whiteBaseball->setImageName("wBaseball_punch");
+	whiteBaseball->isattack = true;
+
 }
 
 void wbAttackPunchState::exit(whiteBaseball * whiteBaseball)

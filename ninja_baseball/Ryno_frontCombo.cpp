@@ -6,6 +6,7 @@ playerstate * Ryno_frontCombo::handleInput(player * player)
 {
 	if (isend)
 	{
+		player->isattack = false;
 		player->setY(player->getY() + 30);
 		return new Ryno_idle;
 	}
@@ -22,7 +23,7 @@ void Ryno_frontCombo::update(player * player)
 		if (_count % 5 == 0) {
 			//마찬가지로 인덱스를 0~4까지만돌려요
 			if (_index < 4) _index++;
-			//여기가 인덱스 5일때 결정하는 시간입니다.
+			//여기가 인덱스 4일때 결정하는 시간입니다.
 			//이떄도 랜더용 카운트를 시간으로 썻습니다..
 			if (_count < 50) {
 				if (_index==4 && KEYMANAGER->isOnceKeyDown('Z'))
@@ -34,9 +35,19 @@ void Ryno_frontCombo::update(player * player)
 			else isend = true;
 			//결정했다면 공격을 계속 이어나갑니다.
 		}
+		if (_index == 4)
+		{
+			player->isattack = true;
+			if (player->isRight)
+				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY()+40, 50, 50);
+			else
+				player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY()+40, 50, 50);
+
+		}
 	}
 	if (_index == 5)
 	{
+		player->isattack = false;
 		_count++;
 		if (_count %  12== 0) {
 			_index++;
@@ -52,15 +63,36 @@ void Ryno_frontCombo::update(player * player)
 		{
 			_index++;
 		}
-		if(player->isRight) player->setX(player->getX() + 3);
-		else player->setX(player->getX() - 3);
+		if (_index == 6)
+		{
+			if (player->isRight) player->setX(player->getX() + 3);
+			else player->setX(player->getX() - 3);
+			player->setY(player->getY() - 7);
+		}
+		if (_index == 7)
+		{
+			player->isattack = true;
+			if (player->isRight)
+			{
+				player->setX(player->getX() + 3);
+				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2)-30, player->getY(), 50, 50);
+
+			}
+			else
+			{
+				player->setX(player->getX() - 3);
+				player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2)+30, player->getY(), 50, 50);
+
+			}
+			player->setY(player->getY() + 7);
+		}
 		if (_index > 7)
 		isend = true;
 
 	}
 
 	player->getImage()->setFrameX(_index);
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 }
 
@@ -72,7 +104,7 @@ void Ryno_frontCombo::enter(player * player)
 	isend = false;
 
 	player->setImage(IMAGEMANAGER->findImage("Ryno_attack_front"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	//여기player->setY해라
 	player->setY(player->_shadow->getY() - 120);

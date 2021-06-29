@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "player.h"
-#include "Ryno_idle.h"
+#include "Ryno_start.h"
 #include "red_idleState.h"
 #include "red_moveState.h"
 #include "enemyManager.h"
@@ -19,16 +19,20 @@ HRESULT player::init(int character)
 	if (character == 2) {
 
 		_shadow = IMAGEMANAGER->findImage("green_shadow");
-		_state = new Ryno_idle;
+		_state = new Ryno_start;
 	}
 
 	isRight = true;
+	isattack = isdamage = iscrawl = iscatch= false;
 	_x = 200;
 	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
 	
 	//RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+
+	_hp = 5;
+	_life = 3;
 
 	return S_OK;
 }
@@ -53,9 +57,10 @@ void player::update()
 			_isrun = false;
 		}
 	}
+
 	handleInput();
 	_state->update(this);
-	
+	collision();
 }
 
 void player::release()
@@ -65,8 +70,12 @@ void player::release()
 
 void player::render()
 {
-	
-	//Rectangle(getMemDC(), _playerrc);
+	char str[128];
+	sprintf_s(str, "hp : %d , life : %d",_hp , _life);
+	char str2[128];
+	sprintf_s(str2, "공격!");
+	Rectangle(getMemDC(), _playerrc);
+
 	//이미지랜더
 	
 	_shadow->render(getMemDC());
@@ -75,6 +84,11 @@ void player::render()
 	if (isattack)
 	{
 		Rectangle(getMemDC(), _attack_rc);
+		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
+	}
+	if (isdamage)
+	{
+		TextOut(getMemDC(), _x - 100, _y - 100, str, strlen(str));
 	}
 
 }
@@ -119,23 +133,50 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138, 216, true, RGB(255, 0, 255), false);
-	//IMAGEMANAGER->addFrameImage("Ryno_hold", "image/2_Player/green/green_hold.bmp", 495, 546, 3, 2, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("Ryno_hold", "image/2_Player/green/green_hold.bmp", 495, 546, 3, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 4, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_alt", "image/2_Player/green/green_dashAttack_alt.bmp", 549, 432, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_ctrl", "image/2_Player/green/green_dashAttack_ctrl.bmp", 219, 330, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_crawl", "image/2_Player/green/green_crawl.bmp", 1008, 294, 4, 2, true, RGB(255, 0, 255),false);
-	//IMAGEMANAGER->addFrameImage("Ryno_catch", "image/2_Player/green/green_catch.bmp", 2784, 576, 8, 2, true, RGB(255, 0, 255));
-	//IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_dash.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Ryno_catch", "image/2_Player/green/green_catch.bmp", 2784, 576, 8, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_catch_frontCombo.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_fly", "image/2_Player/green/green_fly.bmp", 1332, 378, 4, 2, true, RGB(255, 0, 255),false);
-	//IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255));
-	//IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255));
-	//IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_givp_up.bmp", 234, 564, 5, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138 ,216, 1 , 1, true, RGB(255, 0, 255),false);
 	//IMAGEMANAGER->addImage("Ryno_escape", "image/2_Player/green/green_escape.bmp", 189, 432, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
 }
 
 void player::collision()
 {
+	
+	for (int i = 0; i < _em->getVWb().size(); i++)
+	{
+		RECT temp;
+		if (_em->getVWb()[i]->isattack)
+		{
+			if (_shadow->getCenterY() > _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadow->getCenterY() < _em->getVWb()[i]->_wbShadow.rc.bottom)
+			{
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					isdamage = true;
+				}
+			}
+		}
 
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom) {
+				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
 }

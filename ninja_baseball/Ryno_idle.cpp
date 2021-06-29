@@ -6,9 +6,16 @@
 #include "Ryno_attack.h"
 #include "Ryno_crawl.h"
 #include "Ryno_dash.h"
+#include "Ryno_damage.h"
+#include "enemyManager.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
 
+	if (player->isdamage)
+	{
+		player->sethp(player->gethp() - 1);
+		return new Ryno_damage;
+	}
 	if (KEYMANAGER->isStayKeyDown('V'))
 	{
 		return new Ryno_crawl;
@@ -100,7 +107,7 @@ void Ryno_idle::enter(player * player)
 	image* img = IMAGEMANAGER->findImage("Ryno_idle");
 	_count = _index = _time = _Rotation= 0;
 	player->setImage(img);
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140 , 197);
 	player->setRect(rc);
 	player->_shadow->setY(player->getY() + 90);
 	player->setShadowY(player->getY() + 90 + IMAGEMANAGER->findImage("green_shadow")->getHeight()/2);

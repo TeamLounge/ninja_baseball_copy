@@ -8,11 +8,13 @@ playerstate * Ryno_attack::handleInput(player * player)
 	
 	if (isend)
 	{
+		player->isattack = false;
 		return new Ryno_idle;
 	}
 
 	if (isfront)
 	{
+		player->isattack = false;
 		return new Ryno_frontCombo;
 	}
 	return nullptr;
@@ -34,6 +36,15 @@ void Ryno_attack::update(player * player)
 			//사실 이부분은 시간체크용 변수를 따로 생성 한 다음에 
 			//if(_index==2) 일때 시간체크변수++ 형식으로 시간체크를 하셔도됩니다.
 		
+			if (_index==2)
+			{
+				player->isattack = true;
+				if (player->isRight) {
+					player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY()-40, 50, 80);
+				}
+				else
+					player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY()-40, 50, 80);
+			}
 			//현재 인덱스가 2임
 			if (_count < 30) {
 				//z키를누르면서 앞키를 누르면 새로운 공격패턴으로 갑니다.
@@ -50,6 +61,7 @@ void Ryno_attack::update(player * player)
 				{
 					_index++;
 					_count = 0;
+					player->isattack = false;
 				}
 			}
 			//결정할 시간이 지났다면 공격을 끝내버려요 
@@ -63,12 +75,19 @@ void Ryno_attack::update(player * player)
 	if (_index == 3)
 	{
 		_count++;
+		player->isattack = true;
+		if (player->isRight) {
+			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+		}
+		else
+			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
 		//지금도 랜더용카운트를 시간으로 줬는데 어쳐피 지금 상황에선 프레임랜더를 안돌려서도 되서..
 		if (_count < 30)
 		{
 			if (KEYMANAGER->isOnceKeyDown('Z'))
 			{
 				_index++;
+				player->isattack = false;
 				//제가 랜더용카운터를 시간으로 썻기 떄문에 항상 랜더용카운터는 0으로 초기화
 				_count = 0;
 			}
@@ -83,7 +102,13 @@ void Ryno_attack::update(player * player)
 	{
 		//랜더용 카운트
 		_count++;
-		if (_count % 5 == 0)
+		if (_index == 6) player->isattack = true;
+		if (player->isRight) {
+			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+		}
+		else
+			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+		if (_count % 8 == 0)
 		{
 			_index++;
 			//계속 돌리다가 총프레임의 바깥으로 인덱스가 나가면 공격 끝
@@ -103,7 +128,7 @@ void Ryno_attack::enter(player * player)
 	isend = false;
 	isfront = false;
 	player->setImage(IMAGEMANAGER->findImage("Ryno_attack"));
-	_rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));

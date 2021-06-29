@@ -39,11 +39,32 @@ void enemyManager::update()
 
 void enemyManager::render()
 {
+
 	renderBaseball();
 	renderBat();
 	renderGlove();
 	renderCard();
 	renderBoss();
+
+	char str1[126];
+	sprintf_s(str1, "¸Â¾Ñ½á");
+	char str2[125];
+	sprintf_s(str2, "ÀâÇú¾î");
+	char str3[125];
+	sprintf_s(str3, "Ç®·È¾î");
+
+	renderBaseball();
+	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
+	{
+		if ((*_viWb)->isdamage)
+		{
+			TextOut(getMemDC(), (*_viWb)->getRect().left - 100, (*_viWb)->getRect().top - 100, str1, strlen(str1));
+		}
+		if ((*_viWb)->iscatch)
+		{
+			TextOut(getMemDC(), (*_viWb)->getRect().left - 100, (*_viWb)->getRect().top - 100, str2, strlen(str2));
+		}
+	}
 }
 
 
@@ -422,7 +443,28 @@ void enemyManager::baseballCollision()
 		{
 			(*_viWb)->setIsCollisionAttack(false);
 		}
+
+		if (_player->isattack) {
+			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top && 
+				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
+				if (IntersectRect(&temp, &_player->_attack_rc, &(*_viWb)->getRect()))
+				{
+					(*_viWb)->isdamage= true;
+				}
+			}
+		}
+		if (_player->iscrawl && !_player->isattack)
+		{
+			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top &&
+				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
+				if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getRect()))
+				{
+					(*_viWb)->iscatch = true;
+				}
+			}
+		}
 	}
+
 	////////////////
    //   yellow   //
    ///////////////

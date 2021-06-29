@@ -6,7 +6,7 @@
 playerstate * Ryno_jump::handleInput(player * player)
 {
 	//이부분도 나중에 바꿔야할것같음..
-	if (_jumpPower < 0)
+	if (_jumpPower < 0 && player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
 		return new Ryno_fall;
 	}   
@@ -62,20 +62,43 @@ void Ryno_jump::update(player * player)
 			//여기부터가 마지막 인덱스 공격렉트를 띄울부분
 			if (_index >= 4 && (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT)))
 			{
+				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
 				_index = 6;
 			}
 			else if (_index > 5)
 			{
+				player->_attack_rc = RectMakeCenter(player->getX(), player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
 				_index = 5;
 			}
 			//여기까지
-			player->getImage()->setFrameX(_index);
+			if (_index < 4)
+				player->_attack_rc = RectMakeCenter(player->getX(), player->getY(), 50, 50);
+			if (_index == 5) {
+				if (player->isRight)
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() + 30, player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
+				}
+				else
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() - 30, player->getY() + (player->getImage()->getFrameHeight() / 2), 50, 50);
+				}
+			}
+			if (_index == 6) {
+				if (player->isRight)
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY()+80, 50, 50);
+				}
+				else
+				{
+					player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY()+80, 50, 50);
+				}
+			}
 		}
 	}
-
+	player->getImage()->setFrameX(_index);
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
@@ -88,13 +111,12 @@ void Ryno_jump::enter(player * player)
 	_count = _index = 0;
 	
 	_jumpPower = 10.0f;
-	_gravity = 0.2f;
+	_gravity = 0.25f;
 
 	player->isattack = false;
-	
 	//플레이어의 이미지,렉트,그림자 초기화
 	player->setImage(IMAGEMANAGER->findImage("Ryno_jumpAttack"));
-	rc = RectMakeCenter(player->getX(), player->getY(), player->getImage()->getFrameWidth(), player->getImage()->getFrameHeight());
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 90 );
