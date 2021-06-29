@@ -8,7 +8,7 @@ HRESULT enemyManager::init()
 	setBaseball();
 	setCard();
 	
-
+	_player = new player;
 	return S_OK;
 }
 

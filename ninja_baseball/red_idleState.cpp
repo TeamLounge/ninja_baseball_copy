@@ -27,7 +27,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_attackState;
 	}
-
+	if (_player->isdamage)
+	{
+		return new red_damage1State; 
+	}
 	if (_time > 200)
 	{
 		return new red_idleState2;
@@ -96,10 +99,10 @@ void red_idleState::enter(player * _player)
 	}
 	
 	 	
-	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
 	
-	_player->setRect(_rc);*/
+	_player->setRect(_rc);
 
 	_count = _index = _time = 0;
 

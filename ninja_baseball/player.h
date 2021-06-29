@@ -2,10 +2,10 @@
 #include "gameNode.h"
 #include "playerstate.h"
 
+#include "enemyManager.h"
 class playerstate; //이것이 문제였네..
-class enemyManager;
 
-class enemyManager; //enemy들과 충돌 위한 전방선언(상호참조용)
+//class enemyManager; //enemy들과 충돌 위한 전방선언(상호참조용)
 
 class player : public gameNode
 {

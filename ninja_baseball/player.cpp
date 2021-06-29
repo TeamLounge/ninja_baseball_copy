@@ -3,7 +3,7 @@
 #include "Ryno_idle.h"
 #include "red_idleState.h"
 #include "red_moveState.h"
-#include "enemyManager.h"
+//#include "enemyManager.h"
 
 HRESULT player::init(int character)
 {	
@@ -16,8 +16,8 @@ HRESULT player::init(int character)
 		_shadow = IMAGEMANAGER->findImage("red_shadow");
 		_state = new red_idleState;
 	}
-	if (character == 2) {
 
+	if (character == 2) {
 		_shadow = IMAGEMANAGER->findImage("green_shadow");
 		_state = new Ryno_idle;
 	}
@@ -27,6 +27,8 @@ HRESULT player::init(int character)
 	_y = BACKGROUNDY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
 	_state -> enter(this);
+	 
+	_em = new enemyManager;
 
 	isattack = false;
 	isdamage = false;
@@ -60,6 +62,8 @@ void player::update()
 
 	handleInput();
 	_state->update(this);
+
+	collision();
 }
 
 void player::release()
@@ -69,14 +73,22 @@ void player::release()
 
 void player::render()
 {
-	
+	char str[128];
+	sprintf_s(str, " 적 한데 맞앗다 ");
+	char str1[128];
+	sprintf_s(str1, "점");
 	Rectangle(getMemDC(), _playerrc);
 	//이미지랜더
 	_shadow->render(getMemDC());
 	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _shadow->getCenterY() , str1, strlen(str1));
 	if (isattack)
 	{
 		Rectangle(getMemDC(), _attack_rc);
+	}
+	if (isdamage)
+	{
+		TextOut(getMemDC(), _x - 150, _y -150, str, strlen(str));
 	}
 
 }
@@ -139,17 +151,16 @@ void player::addImage()
 
 void player::collision()
 {
-
 	
-	for (int i = 0; _em->getVWb().size(); i++)
+	for (int i = 0; i <_em->getVWb().size(); i++)
 	{
 		RECT temp;
 
-		//플레이어 공격렉트 충돌처리함수
-		if (_em->getVWb()[i]->isCollisionAttack)
+		//플레이어가 에너미한테 맞을때 충돌함수
+		if (_em->getVWb()[i]->isattack)
 		{
-			if (_shadow->getCenterY() > _em->getVWb()[i]->_wbShadow.rc.top&&
-				_shadow->getCenterY() < _em->getVWb()[i]->_wbShadow.rc.bottom)
+			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
 				{

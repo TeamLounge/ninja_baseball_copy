@@ -7,6 +7,7 @@ playerstate* red_damage1State::handleInput(player* _player)
 {
 	if (_time > 100)
 	{
+		_player->isdamage = false;
 		return new red_idleState;
 	}
 
