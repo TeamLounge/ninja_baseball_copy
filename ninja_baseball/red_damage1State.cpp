@@ -5,9 +5,10 @@
 
 playerstate* red_damage1State::handleInput(player* _player)
 {
-	if (_time > 100)
+	if (_time > 50)
 	{
 		_player->isdamage = false;
+		_player->setY(_player->getY() - 90);
 		return new red_idleState;
 	}
 
@@ -21,31 +22,53 @@ playerstate* red_damage1State::handleInput(player* _player)
 
 void red_damage1State::update(player* _player)
 {
-	_time++;
-	_count++;
-
-	if (_count % 10 == 0)
+	if (_isLie) //바닥에 누우면 _time카운트 증가
 	{
-		if (_player->isRight == true)
-		{
-			_player->getImage()->setFrameX(_index);
-			_player->getImage()->setFrameY(0);
-			_index++;
-		}
-
-		if (_player->isRight == false)
-		{
-			_player->getImage()->setFrameX(_index);
-			_player->getImage()->setFrameY(1);
-			_index++;
-		}
-
-		_count = 0;
+		_time++;
 	}
-
+		
 	//그림자 위치
 	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	/*_player->_shadow->setY(_player->getY() + 90);*/
+
+	//플레이어가 적에게 맞고 공중에 띄우는고 바닥에 떨어지게 하는것
+	_jumpPower -= _gravity;
+	_player->setY(_player->getY() - _jumpPower);
+
+	if (_player->isRight == true)
+	{
+		if (!_isLie)
+		{
+			_player->getImage()->setFrameX(0);
+			_player->getImage()->setFrameY(0);
+			_player->setX(_player->getX() - 5);
+		}
+		else
+		{
+			_player->getImage()->setFrameX(1);
+			_player->getImage()->setFrameY(0);
+		}
+	}
+	if (_player->isRight == false)
+	{
+		if (!_isLie)
+		{
+			_player->getImage()->setFrameX(0);
+			_player->getImage()->setFrameY(1);
+			_player->setX(_player->getX() + 5);
+		}
+		else
+		{
+			_player->getImage()->setFrameX(1);
+			_player->getImage()->setFrameY(1);
+		}
+	}
+
+	if (_player->getY() >= _player->_shadow->getY())
+	{
+		_player->setY(_player->_shadow->getY());
+		_isLie = true;
+	}
 }
 
 void red_damage1State::enter(player* _player)
@@ -55,7 +78,12 @@ void red_damage1State::enter(player* _player)
 		_player->getImage()->getMaxFrameY());
 	_player->setRect(_rc);
 
+	//적에게 맞을떄 공중에 띄우기 위해서
+	_jumpPower = 5.0f;
+	_gravity = 0.1f;
+	   	
 	_count = _index = _time = 0;
+	_isLie = false; //적에게 맞고 바닥에 닿았는지 
 
 	if (_player->isRight == true)
 	{
