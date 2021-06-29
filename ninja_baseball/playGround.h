@@ -14,7 +14,6 @@
 class playGround : public gameNode
 {
 private:
-	
 	player* _red;
 	/*player* _Ryno;*/
 
