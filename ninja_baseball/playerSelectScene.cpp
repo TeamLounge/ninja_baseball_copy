@@ -71,6 +71,12 @@ void playerSelectScene::update()
 			sprintf_s(str, "Employed%d", _currentSelect + 1);
 			_character[_currentSelect].imageName = str;
 
+			vector<string> vStr;
+			_itoa_s(_currentSelect + 1, str, 2, 10);
+			vStr.push_back(str);
+			
+			TXTDATA->txtSave("playerData.txt", vStr);
+
 			_isSelect = true;
 		}
 		

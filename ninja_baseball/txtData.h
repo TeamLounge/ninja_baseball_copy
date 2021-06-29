@@ -5,6 +5,9 @@
 
 class txtData : public singletonBase<txtData>
 {
+private:
+	int textSize;
+
 public:
 	txtData();
 	~txtData();

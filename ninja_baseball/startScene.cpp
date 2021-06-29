@@ -130,7 +130,7 @@ void startScene::update()
 		_backgroundHeight -= 4;
 		if (_backgroundHeight < 0)
 		{
-			SCENEMANAGER->changeScene("stage");
+			SCENEMANAGER->changeScene("stage1");
 		}
 	}
 	else

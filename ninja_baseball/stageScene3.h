@@ -6,6 +6,8 @@ class stageScene3 : public gameNode
 private:
 	player* _player;
 
+	vector<string> vText; //텍스트 저장 및 불러오기용 벡터
+
 public:
 	HRESULT init();
 	void release();
