@@ -367,6 +367,9 @@
     <ClCompile Include="gloveState.cpp">
       <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClCompile>
+    <ClCompile Include="txtData.cpp">
+      <Filter>2DGameFramework\txtData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -753,6 +756,9 @@
     <ClInclude Include="gloveState.h">
       <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClInclude>
+    <ClInclude Include="txtData.h">
+      <Filter>2DGameFramework\txtData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">
@@ -867,6 +873,9 @@
     </Filter>
     <Filter Include="playGound\enemy\glove\gloveState">
       <UniqueIdentifier>{39fa768e-1008-4fd3-a03a-518e20d11c27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\txtData">
+      <UniqueIdentifier>{b1cb7d67-1509-4d2c-8f47-5edf46b28ad3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
