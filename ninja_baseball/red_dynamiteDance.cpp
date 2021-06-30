@@ -40,6 +40,23 @@ void red_dynamiteDance::update(player * _player)
 		_time++;
 	}
 
+	//발차기하고 나서 뒤로 날아가게 하려고
+	if (_index >= 30 && _index < _player->getImage()->getMaxFrameX())
+	{
+		_jumpPower -= _gravity;
+
+		_player->setY(_player->getY() - _jumpPower);
+
+		if (_player->isRight == true)
+		{
+			_player->setX(_player->getX() - 20);
+		}
+		if (_player->isRight == false)
+		{
+			_player->setX(_player->getX() + 20);
+		}
+	}
+
 	//그림자 위치
 	if (_player->isRight == true)
 	{
@@ -60,7 +77,9 @@ void red_dynamiteDance::enter(player * _player)
 	_player->setRect(_rc);*/
 
 	_count = _index = _time = 0;
-	
+	_jumpPower = 3.0f;
+	_gravity = 0.15;
+
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(_index);
@@ -76,11 +95,11 @@ void red_dynamiteDance::enter(player * _player)
 	if (_player->isRight == true)
 	{
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 5);
-		_player->_shadow->setY(_player->getY() + 50);
+		_player->_shadow->setY(_player->getY() + 170);
 	}
 	if (_player->isRight == false)
 	{
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 50);
+		_player->_shadow->setY(_player->getY() + 170);
 	}
 }

@@ -8,6 +8,8 @@ private:
 	int _count;
 	int _index;
 	int _time;
+	float _jumpPower;
+	float _gravity;
 	
 public:
 	playerstate* handleInput(player* _player);
