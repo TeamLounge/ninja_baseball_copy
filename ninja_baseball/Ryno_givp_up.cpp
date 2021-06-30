@@ -54,5 +54,5 @@ void Ryno_givp_up::enter(player * player)
 		player->getImage()->setFrameY(1);
 	}
 
-	player->setImageName("Ryno_givp_up");
+	player->setImageName("Ryno_give_up");
 }

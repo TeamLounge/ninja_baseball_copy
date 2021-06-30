@@ -355,19 +355,51 @@
     <ClCompile Include="objectManager.cpp">
       <Filter>playGound\object</Filter>
     </ClCompile>
-    <ClCompile Include="batDeathState.cpp" />
-    <ClCompile Include="bbDamagedState.cpp" />
-    <ClCompile Include="bbDeathState.cpp" />
-    <ClCompile Include="bossDeathState.cpp" />
-    <ClCompile Include="gbDamagedState.cpp" />
-    <ClCompile Include="gbDeathState.cpp" />
-    <ClCompile Include="red_catchState.cpp" />
-    <ClCompile Include="red_dieState.cpp" />
-    <ClCompile Include="red_dynamiteDance.cpp" />
-    <ClCompile Include="wbDamagedState.cpp" />
-    <ClCompile Include="wbDeathState.cpp" />
-    <ClCompile Include="ybDamagedState.cpp" />
-    <ClCompile Include="ybDeathState.cpp" />
+    <ClCompile Include="batDeathState.cpp">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbDeathState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bossDeathState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="gbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbDeathState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_catchState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_dieState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="red_dynamiteDance.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="txtData.cpp">
+      <Filter>2DGameFramework\txtData</Filter>
+    </ClCompile>
+    <ClCompile Include="wbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbDeathState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybDamagedState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybDeathState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -742,19 +774,51 @@
     <ClInclude Include="objectManager.h">
       <Filter>playGound\object</Filter>
     </ClInclude>
-    <ClInclude Include="batDeathState.h" />
-    <ClInclude Include="bbDamagedState.h" />
-    <ClInclude Include="bbDeathState.h" />
-    <ClInclude Include="bossDeathState.h" />
-    <ClInclude Include="gbDamagedState.h" />
-    <ClInclude Include="gbDeathState.h" />
-    <ClInclude Include="red_catchState.h" />
-    <ClInclude Include="red_dieState.h" />
-    <ClInclude Include="red_dynamiteDance.h" />
-    <ClInclude Include="wbDamagedState.h" />
-    <ClInclude Include="wbDeathState.h" />
-    <ClInclude Include="ybDamagedState.h" />
-    <ClInclude Include="ybDeathState.h" />
+    <ClInclude Include="batDeathState.h">
+      <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbDamagedState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbDeathState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bossDeathState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="gbDeathState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbDamagedState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dynamiteDance.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_catchState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dieState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="txtData.h">
+      <Filter>2DGameFramework\txtData</Filter>
+    </ClInclude>
+    <ClInclude Include="wbDamagedState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbDeathState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybDamagedState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybDeathState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">
@@ -872,6 +936,9 @@
     </Filter>
     <Filter Include="playGound\object">
       <UniqueIdentifier>{be9f0c6b-a776-40ca-b63e-7a6272e1a159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\txtData">
+      <UniqueIdentifier>{a0325963-575d-4893-a95c-0b3c7636bcf2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
