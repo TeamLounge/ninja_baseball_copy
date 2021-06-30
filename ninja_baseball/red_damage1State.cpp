@@ -12,8 +12,9 @@ playerstate* red_damage1State::handleInput(player* _player)
 		return new red_idleState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('Z') && _index > _player->getImage()->getMaxFrameX())
+	if (KEYMANAGER->isOnceKeyDown('Z') && _isLie)
 	{
+		_player->isdamage = false;
 		return new red_standUpState;
 	}
 
