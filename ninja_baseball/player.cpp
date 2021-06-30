@@ -145,6 +145,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("red_standUp", "image/2_player/red/red_standUp.bmp", 0, 0, 2016, 576, 7, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_legKick", "image/2_player/red/red_legKick.bmp", 0, 0, 3420, 522, 10, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_throw", "image/2_player/red/red_throw.bmp", 0, 0, 2250, 642, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_dynamiteDance", "image/2_player/red/red_dynamiteDance.bmp", 0, 0, 19440, 780, 36, 2, true, RGB(255, 0, 255), false);
 	//플레이어(레드) 그림자 이미지
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
