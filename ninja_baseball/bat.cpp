@@ -44,6 +44,8 @@ HRESULT bat::init(POINT position)
 	isXOverlap == false;
 	isYOverlap == false;
 
+	_batMode = NORMAL;		//초기 모드 set
+
 	damageCount = 0;	//맞은 횟수
 
 	return S_OK;
@@ -70,6 +72,19 @@ void bat::update()
 	{
 		//그림자
 		_batShadow.rc = RectMakeCenter((_bat.rc.right + _bat.rc.left) / 2, _batShadow.y, 120, 50);	//점프하기 전의 y값을 사용
+	}
+
+	//////////////////////////
+	//		3단 변신			//
+	//////////////////////////
+	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 3) _batMode = NO_CAP;
+		else if (damageCount == 4) _batMode = NO_BAT;
+		else if (damageCount == 5) _batMode = DEATH;
+		else _batMode = NORMAL;
+		isCollisionDamaged = true;
 	}
 
 	InputHandle();
@@ -108,15 +123,18 @@ void bat::setImage()
 		IMAGEMANAGER->addFrameImage("fBat_idle", "image/3_Enemy/bat/fBat_idle.bmp", 1200, 600, 2, 2, true, RGB(255, 0, 255), false);//폴더엔 900*2인데, 600 *2로 짜부돼서도 출력이 되네..개신기하네.......
 		IMAGEMANAGER->addFrameImage("sBat_idle", "image/3_Enemy/bat/sBat_idle.bmp", 1200, 600, 2, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("tBat_idle", "image/3_Enemy/bat/tBat_idle.bmp", 1200, 600, 2, 2, true, RGB(255, 0, 255), false);
+
 		IMAGEMANAGER->addFrameImage("fBat_move", "image/3_Enemy/bat/fBat_move.bmp", 1800, 600, 3, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("sBat_move", "image/3_Enemy/bat/sBat_move.bmp", 1800, 600, 3, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("tBat_move", "image/3_Enemy/bat/tBat_move.bmp", 1800, 600, 3, 2, true, RGB(255, 0, 255), false);
+
 		IMAGEMANAGER->addFrameImage("fBat_attack", "image/3_Enemy/bat/fBat_attack.bmp", 9000, 600, 15, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("sBat_attack", "image/3_Enemy/bat/sBat_attack.bmp", 9000, 600, 15, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("tBat_attack", "image/3_Enemy/bat/tBat_attack.bmp", 9000, 600, 15, 2, true, RGB(255, 0, 255), false);
+
+		IMAGEMANAGER->addFrameImage("fBat_damaged", "image/3_Enemy/bat/fBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("sBat_damaged", "image/3_Enemy/bat/sBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("tBat_damaged", "image/3_Enemy/bat/tBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
-		IMAGEMANAGER->addFrameImage("fBat_damaged", "image/3_Enemy/bat/fBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
 		
 		IMAGEMANAGER->addImage("bat_cap", "image/3_Enemy/bat/bat_cap.bmp", 90, 90, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addImage("bat_bat", "image/3_Enemy/bat/bat_bat.bmp", 165, 255, true, RGB(255, 0, 255), false);

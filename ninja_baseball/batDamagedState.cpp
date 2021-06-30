@@ -87,7 +87,21 @@ void batDamagedState::update(bat * bat)
 
 void batDamagedState::enter(bat * bat)
 {
-	bat->_bat.img = IMAGEMANAGER->findImage("fBat_damaged");
+	switch (bat->_batMode)
+	{
+	case NORMAL:
+		bat->_bat.img = IMAGEMANAGER->findImage("fBat_damaged");
+		break;
+	case NO_CAP:
+		bat->_bat.img = IMAGEMANAGER->findImage("sBat_damaged");
+		break;
+	case NO_BAT:
+		bat->_bat.img = IMAGEMANAGER->findImage("tBat_damaged");
+		break;
+	default:
+		break;
+	}
+	
 	if (!bat->isRight)
 	{
 		bat->setCurrentFrameY(1);
@@ -97,6 +111,8 @@ void batDamagedState::enter(bat * bat)
 		bat->setCurrentFrameY(0);
 	}
 	bat->setCurrentFrameX(0);
+
+	bat->isDamaged = true;
 
 }
 

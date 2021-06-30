@@ -4,10 +4,10 @@
 
 HRESULT enemyManager::init()
 {
-	setBaseball();
+	//setBaseball();
 	setBat();
-	setCard();
-	setGlove();
+	//setCard();
+	//setGlove();
 	setBoss();
 
 	return S_OK;
@@ -530,25 +530,25 @@ void enemyManager::batCollision()
 		}
 	}
 	//Damaged//
-	//for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
-	//{
-	//	RECT temp;
-	//	if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getRect()) && 
-	//		KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-	//	{
-	//		(*_viBat)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-	//		(*_viBat)->damageCount++;
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getRect()) && 
+			KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viBat)->damageCount++;
 
-	//		if ((*_viBat)->damageCount > 5)
-	//		{
-	//			(*_viBat)->damageCount = 0;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
-	//	}
-	//}
+			if ((*_viBat)->damageCount > 5)
+			{
+				(*_viBat)->damageCount = 0;
+			}
+		}
+		else
+		{
+			(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
+		}
+	}
 }
 void enemyManager::gloveCollision()
 {

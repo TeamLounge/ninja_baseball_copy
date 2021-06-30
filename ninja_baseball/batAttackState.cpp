@@ -91,9 +91,22 @@ void batAttackState::update(bat * bat)
 
 void batAttackState::enter(bat * bat)
 {
-	bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
+	switch (bat->_batMode)
+	{
+	case NORMAL:
+		bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
+		break;
+	case NO_CAP:
+		bat->_bat.img = IMAGEMANAGER->findImage("sBat_attack");
+		break;
+	case NO_BAT:
+		bat->_bat.img = IMAGEMANAGER->findImage("tBat_attack");
+		break;
+	default:
+		break;
+	}
 
-	attackCount = 0;
+	//attackCount = 0;
 
 	if (!bat->isRight)
 	{

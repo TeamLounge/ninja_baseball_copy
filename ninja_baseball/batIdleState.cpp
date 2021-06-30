@@ -89,7 +89,21 @@ void batIdleState::update(bat * bat)
 
 void batIdleState::enter(bat * bat)
 {
-	bat->_bat.img = IMAGEMANAGER->findImage("fBat_idle");
+	switch (bat->_batMode)
+	{
+	case NORMAL:
+		bat->_bat.img = IMAGEMANAGER->findImage("fBat_idle");
+		break;
+	case NO_CAP:
+		bat->_bat.img = IMAGEMANAGER->findImage("sBat_idle");
+		break;
+	case NO_BAT:
+		bat->_bat.img = IMAGEMANAGER->findImage("tBat_idle");
+		break;
+	default:
+		break;
+	}
+
 	if (!bat->isRight)
 	{
 		bat->setCurrentFrameY(1);

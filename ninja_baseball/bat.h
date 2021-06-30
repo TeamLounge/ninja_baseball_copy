@@ -3,6 +3,14 @@
 #include "gameNode.h"
 #include "batState.h"
 
+enum BATMODE
+{
+	NORMAL,
+	NO_CAP,
+	NO_BAT,
+	DEATH
+};
+
 struct BAT
 {
 	RECT rc;
@@ -35,6 +43,7 @@ public:
 
 	BAT _bat;
 	BATSHADOW _batShadow;
+	BATMODE _batMode;
 
 	bool isRight;				//에너미가 플레이어의 오른쪽에 있어?
 	bool isDown;				//에너미가 플레이어의 아래에 있어?
