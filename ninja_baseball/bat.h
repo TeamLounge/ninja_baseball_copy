@@ -54,6 +54,7 @@ public:
 	bool isYOverlap;			//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 	bool isAttack;				//쳤어?
 	bool isDamaged;				//맞았어?
+
 	bool isDeath;				//count == 5이고, 그래서 죽었어?
 
 	//배트 단계
@@ -66,6 +67,9 @@ public:
 						//피격			3회 : 1단계 변신<noCap mode>	..모자 날아감;
 						//피격			4회 : 2단계 변신<noBat mode>	..배트 날아감;	(모자랑 배트는 회전 없이 그대로 날아가지만, 카메라 벽 맞고 튕김 + 알파렌더)
 						//피격			5회 : 3단계 변신<death mode>	..죽음;			(360도 회전하며 날아가다가 알파렌더)
+
+	bool iscatch;				//잡혔어?
+
 
 	bat() {};
 	~bat() {};

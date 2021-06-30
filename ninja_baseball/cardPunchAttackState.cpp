@@ -9,6 +9,7 @@ cardState * cardPunchAttackState::inputHandle(card * card)
 {
 	if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 	{
+		card->isattack = false;
 		card->_isPunchBullet = false;
 		return new cardIdleState();
 	}
@@ -62,6 +63,7 @@ void cardPunchAttackState::update(card * card)
 
 void cardPunchAttackState::enter(card * card)
 {
+	card->isattack = true;
 	card->_card.img = IMAGEMANAGER->findImage("card_attack");
 
 	//이미지 프레임 방향 결정

@@ -11,6 +11,7 @@ gbState * gbAttackPunchState::inputHandle(greenBaseball * greenBaseball)
 {
 	if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
+		greenBaseball->isattack = false;
 		return new gbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
 	return nullptr;
@@ -78,6 +79,7 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 
 void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 {
+	greenBaseball->isattack = true;
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_punch");
 	if (!greenBaseball->isRight)
 	{

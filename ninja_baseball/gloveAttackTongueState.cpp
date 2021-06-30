@@ -10,7 +10,9 @@ gloveState * gloveAttackTongueState::inputHandle(glove * glove)
 {
 	if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())		//이미지 한번만 돌고
 	{
+
 		glove->isAttackTongueState = false;		//어택 상태 해제
+
 
 		return new gloveMoveState();
 	}
@@ -41,6 +43,7 @@ void gloveAttackTongueState::update(glove * glove)
 
 void gloveAttackTongueState::enter(glove * glove)
 {
+	glove->isattack = true;
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_attackTongue");
 	if (!glove->isRight)
 	{

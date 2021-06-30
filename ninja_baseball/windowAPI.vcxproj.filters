@@ -355,6 +355,19 @@
     <ClCompile Include="objectManager.cpp">
       <Filter>playGound\object</Filter>
     </ClCompile>
+    <ClCompile Include="batDeathState.cpp" />
+    <ClCompile Include="bbDamagedState.cpp" />
+    <ClCompile Include="bbDeathState.cpp" />
+    <ClCompile Include="bossDeathState.cpp" />
+    <ClCompile Include="gbDamagedState.cpp" />
+    <ClCompile Include="gbDeathState.cpp" />
+    <ClCompile Include="red_catchState.cpp" />
+    <ClCompile Include="red_dieState.cpp" />
+    <ClCompile Include="red_dynamiteDance.cpp" />
+    <ClCompile Include="wbDamagedState.cpp" />
+    <ClCompile Include="wbDeathState.cpp" />
+    <ClCompile Include="ybDamagedState.cpp" />
+    <ClCompile Include="ybDeathState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -729,6 +742,19 @@
     <ClInclude Include="objectManager.h">
       <Filter>playGound\object</Filter>
     </ClInclude>
+    <ClInclude Include="batDeathState.h" />
+    <ClInclude Include="bbDamagedState.h" />
+    <ClInclude Include="bbDeathState.h" />
+    <ClInclude Include="bossDeathState.h" />
+    <ClInclude Include="gbDamagedState.h" />
+    <ClInclude Include="gbDeathState.h" />
+    <ClInclude Include="red_catchState.h" />
+    <ClInclude Include="red_dieState.h" />
+    <ClInclude Include="red_dynamiteDance.h" />
+    <ClInclude Include="wbDamagedState.h" />
+    <ClInclude Include="wbDeathState.h" />
+    <ClInclude Include="ybDamagedState.h" />
+    <ClInclude Include="ybDeathState.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">

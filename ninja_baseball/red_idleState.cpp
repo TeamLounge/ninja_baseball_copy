@@ -4,10 +4,12 @@
 #include "red_moveState.h"
 #include "red_attackState.h"
 #include "red_idleState2.h"
+#include "red_dynamiteDance.h"
 //=====================================
 #include "red_damage1State.h"
 #include "red_damage2State.h"
 #include "red_downAttackState.h"
+#include "red_dieState.h"
 //=====================================
 
 playerstate * red_idleState::handleInput(player * _player)
@@ -35,6 +37,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_idleState2;
 	}
+	if (KEYMANAGER->isOnceKeyDown('V'))
+	{
+		return new red_dynamiteDance;
+	}
 
 	//=============================================================================
 	//잘 되는지 확인하려고 키설정한 것-> 나중에 삭제할 예정
@@ -51,6 +57,11 @@ playerstate * red_idleState::handleInput(player * _player)
 	if (KEYMANAGER->isOnceKeyDown('J'))
 	{
 		return new red_downAttackState; //몸이 누웠을 때 내려찍기
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('K'))
+	{
+		return new red_dieState; //피가 떨어져서 죽었음
 	}
 	//================================================================================
 
@@ -84,18 +95,28 @@ void red_idleState::update(player * _player)
 void red_idleState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_idle"));
+	_player->setImageName("red_idle");
+
+	_player->sethp(_player->gethp());
+	_player->setlife(_player->getlife());
 	
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
+		_player->_shadow->setY(_player->getY() + 90);*/
+
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
-		_player->_shadow->setY(_player->getY() + 90);
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
+		_player->_shadow->setY(_player->getY() + 90);*/
+
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 	
 	 	
@@ -111,6 +132,7 @@ void red_idleState::enter(player * _player)
 		_rc = RectMakeCenter(_player->getX() - 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
 	}
 	
+
 	_player->setRect(_rc);
 
 	_count = _index = _time = 0;

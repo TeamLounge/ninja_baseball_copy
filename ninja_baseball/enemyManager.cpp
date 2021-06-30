@@ -22,12 +22,13 @@ void enemyManager::update()
 	//updateBaseball();
 	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
-	//updateBat();
-	//batCollision();
 
-	//updateGlove();
-	//gloveCollision();
+	updateBat();
+	batCollision();
 
+	updateGlove();
+	gloveCollision();
+	
 	playerLocation();
 
 	updateCard();
@@ -450,10 +451,11 @@ void enemyManager::baseballCollision()
 				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
 				if (IntersectRect(&temp, &_player->_attack_rc, &(*_viWb)->getRect()))
 				{
-					(*_viWb)->isdamage= true;
+					(*_viWb)->isdamage = true;
 				}
 			}
 		}
+
 		if (_player->iscrawl && !_player->isattack)
 		{
 			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top &&

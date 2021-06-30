@@ -41,13 +41,19 @@ HRESULT bat::init(POINT position)
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+
 	isDeath = false;
 
 	_batMode = NORMAL;		//초기 모드 set
 
 	damageCount = 0;	//맞은 횟수
+
+	isXOverlap = false;
+	isYOverlap = false;
+	isAttack = false;				//쳤어?
+	isDamaged = false;				//맞았어?
+	iscatch = false;				//잡혔어?
+
 
 	return S_OK;
 }

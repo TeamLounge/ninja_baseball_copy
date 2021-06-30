@@ -72,8 +72,14 @@ void batDamagedState::update(bat * bat)
 		bat->_bat.rcAttackRange = RectMakeCenter(bat->_bat.x + 360, bat->_bat.y + 200, 250, 50);
 	}
 
+
 	//move (up, down)
 	if (!bat->isYOverlap)//떨림방지	//isOverlap이 false일 때.. 즉, 구간 밖일 때(평소)	//반대로 중점이 구간 내라면 그 땐 y좌표는 움직이지 않는다.
+
+	frameCount++;
+
+	if (frameCount >= 8)
+
 	{
 		if (!bat->isDown)	//위쪽이면
 		{
@@ -112,6 +118,8 @@ void batDamagedState::enter(bat * bat)
 	{
 		bat->setCurrentFrameY(0);
 	}
+		
+
 	bat->setCurrentFrameX(0);
 }
 

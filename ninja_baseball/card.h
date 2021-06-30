@@ -82,6 +82,10 @@ public:
 	int numPattern;
 	bool _isCrash;
 
+	bool isattack;              //에너미가 공격했어??
+	bool isdamage;				//에너미가 데미지 받았어??							
+	bool iscatch;				//에저미가 잡혔어??
+
 	card();
 	~card();
 

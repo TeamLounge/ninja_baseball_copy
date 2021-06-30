@@ -3,9 +3,13 @@
 
 class blueBaseball;
 
+
 class bbDamagedState :public bbState
 {
 public:
+
+
+
 
 	int frameCount;
 

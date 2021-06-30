@@ -10,6 +10,7 @@ batState * batAttackState::inputHandle(bat * bat)
 {
 	if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())		//한 동작 끝나면 idle로 가라
 	{
+		bat->isAttack = false;
 		return new batIdleState();
 	}
 	if (bat->isDeath)
@@ -91,6 +92,7 @@ void batAttackState::update(bat * bat)
 
 void batAttackState::enter(bat * bat)
 {
+
 	switch (bat->_batMode)
 	{
 	case NORMAL:
@@ -108,6 +110,9 @@ void batAttackState::enter(bat * bat)
 	default:
 		break;
 	}
+
+	bat->isAttack = true;
+	
 
 	//attackCount = 0;
 

@@ -6,6 +6,7 @@ playerstate* red_standUpState::handleInput(player* _player)
 {
 	if (_time > 15)
 	{
+		_player->setY(_player->getY() + 30);
 		return new red_idleState;
 	}
 
@@ -31,8 +32,26 @@ void red_standUpState::update(player* _player)
 			_player->getImage()->setFrameY(1);
 			_index++;
 		}
-
 		_count = 0;
+	}
+
+	//에너미와 충돌할 렉트 생성
+	if (_index == 5)
+	{
+		_player->isattack = true;
+
+		if (_player->isRight == true)
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX(), _player->getY() - 20, 300, 80);
+		}
+		if (_player->isRight == false)
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX(), _player->getY() - 20, 300, 80);
+		}
+	}
+	else
+	{
+		_player->isattack = false;
 	}
 
 	if (_index > _player->getImage()->getMaxFrameX())
@@ -41,16 +60,18 @@ void red_standUpState::update(player* _player)
 	}
 
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 15);
+	_player->_shadow->setY(_player->getY() + 120);
 }
 
 void red_standUpState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_standUp"));
+	_player->setY(_player->getY() - 120);
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);
+	
+	/*_player->setRect(_rc);*/
 
 	_count = _index = _time = 0;
 

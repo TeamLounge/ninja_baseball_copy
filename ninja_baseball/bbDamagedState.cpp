@@ -6,6 +6,9 @@
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
 
+
+
+
 bbState * bbDamagedState::inputHandle(blueBaseball * blueBaseball)
 {
 	return nullptr;
@@ -13,6 +16,7 @@ bbState * bbDamagedState::inputHandle(blueBaseball * blueBaseball)
 
 void bbDamagedState::update(blueBaseball * blueBaseball)
 {
+
 	if (!blueBaseball->isRight)		//왼쪽 바라보면
 	{
 		//frame
@@ -80,11 +84,18 @@ void bbDamagedState::update(blueBaseball * blueBaseball)
 			blueBaseball->_blueBaseball.y += 0.7f;
 		}
 	}
+
+
 }
 
 void bbDamagedState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_damaged");
+
+	
+	frameCount = 0;
+
+
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);

@@ -23,7 +23,7 @@
     <ProjectGuid>{5FF87F12-A659-4CCA-BB35-A5853F8FDDA9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>windowAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -206,10 +206,13 @@
     <ClInclude Include="greenBaseball.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="objectManager.h" />
+    <ClInclude Include="red_catchState.h" />
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
     <ClInclude Include="red_dashAttackState.h" />
+    <ClInclude Include="red_dieState.h" />
     <ClInclude Include="red_downAttackState.h" />
+    <ClInclude Include="red_dynamiteDance.h" />
     <ClInclude Include="red_gripState.h" />
     <ClInclude Include="red_homeRunState.h" />
     <ClInclude Include="red_idleState2.h" />
@@ -340,10 +343,13 @@
     <ClCompile Include="greenBaseball.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="objectManager.cpp" />
+    <ClCompile Include="red_catchState.cpp" />
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />
     <ClCompile Include="red_dashAttackState.cpp" />
+    <ClCompile Include="red_dieState.cpp" />
     <ClCompile Include="red_downAttackState.cpp" />
+    <ClCompile Include="red_dynamiteDance.cpp" />
     <ClCompile Include="red_gripState.cpp" />
     <ClCompile Include="red_homeRunState.cpp" />
     <ClCompile Include="red_idleState2.cpp" />

@@ -10,6 +10,7 @@ ybState * ybAttackPunchState::inputHandle(yellowBaseball * yellowBaseball)
 {
 	if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
+		yellowBaseball->isattack = false;
 		return new ybIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
 	return nullptr;
@@ -77,6 +78,7 @@ void ybAttackPunchState::update(yellowBaseball * yellowBaseball)
 
 void ybAttackPunchState::enter(yellowBaseball * yellowBaseball)
 {
+	yellowBaseball->isattack = true;
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_punch");
 	if (!yellowBaseball->isRight)
 	{

@@ -10,6 +10,7 @@ bbState * bbAttackPunchState::inputHandle(blueBaseball * blueBaseball)
 {
 	if (blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
 	{
+		blueBaseball->isattack = false;
 		return new bbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
 
@@ -77,6 +78,7 @@ void bbAttackPunchState::update(blueBaseball * blueBaseball)
 
 void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 {
+	blueBaseball->isattack = true;
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_punch");
 	if (!blueBaseball->isRight)
 	{

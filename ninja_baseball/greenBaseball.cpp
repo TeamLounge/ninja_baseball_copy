@@ -47,6 +47,10 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isXOverlap = false;
 	isYOverlap = false;
 
+	isattack = false;				//에너미가 공격했어??
+	isdamage = false;				//에너미가 데미지 받았어??							
+	iscatch = false;				//에저미가 잡혔어??
+
 	return S_OK;
 }
 

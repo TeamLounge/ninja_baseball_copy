@@ -11,12 +11,17 @@ batState * batIdleState::inputHandle(bat * bat)
 	if (bat->isCollisionAttack)		//충돌했으면 attack해!
 	{
 		//bat->isCollisionAttack = true;
+		
 		return new batAttackState();
 	}
+
 	if (bat->isDeath)
 	{
 		return new batDeathState();
 	}
+
+		
+
 
 	return nullptr;
 }
@@ -38,6 +43,7 @@ void batIdleState::update(bat * bat)
 				bat->setCurrentFrameX(bat->getCurrentFrameX() + 1);
 
 			}
+
 			bat->setCurrentFrameY(1);
 		}
 
