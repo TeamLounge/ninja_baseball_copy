@@ -19,15 +19,14 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	updateBaseball();
-	baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	//updateBaseball();
+	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
-	updateBat();
-	batCollision();
+	//updateBat();
+	//batCollision();
 
-	updateGlove();
-	gloveCollision();
-
+	//updateGlove();
+	//gloveCollision();
 
 	playerLocation();
 
@@ -40,9 +39,9 @@ void enemyManager::update()
 void enemyManager::render()
 {
 
-	renderBaseball();
-	renderBat();
-	renderGlove();
+	//renderBaseball();
+	//renderBat();
+	//renderGlove();
 	renderCard();
 	renderBoss();
 
@@ -53,7 +52,6 @@ void enemyManager::render()
 	char str3[125];
 	sprintf_s(str3, "풀렸어");
 
-	renderBaseball();
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		if ((*_viWb)->isdamage)
@@ -67,10 +65,9 @@ void enemyManager::render()
 	}
 }
 
-
 void enemyManager::setBaseball()
 {
-	//whiteBaseball
+	//WHITE
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
@@ -82,22 +79,22 @@ void enemyManager::setBaseball()
 	//_wb1->init(PointMake(500, 500));			//이닛으로 위치 잡아주고
 	//_vWb.push_back(_wb1);					//위치 잡아준 애를 벡터에 넣음
 
-//yellowBaseball
+	//YELLOW
 	for (int i = 0; i < 2; i++)
 	{
 		yellowBaseball* _yb = new yellowBaseball;
 		_yb->init(PointMake(500 + i * 180, -50 + i * 160));		//x좌표 동일하게 하지 말자!!!!! 겹쳐보인다!! 0번쨰 없어보인다!!!
 		_vYb.push_back(_yb);
 	}
-	//greenBaseball
-	for (int i = 0; i < 2; i++)
+	//GREEN
+	for (int i = 0; i < 3; i++)
 	{
 		greenBaseball* _gb = new greenBaseball;
 		_gb->init(PointMake(400 + i * 140, -50 + i * 120));
 		_vGb.push_back(_gb);
 
 	}
-	//blueBaseball
+	//BLUE
 	for (int i = 0; i < 2; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
@@ -432,8 +429,11 @@ void enemyManager::baseballCollision()
 	////////////////
    //   white    //
    ///////////////
+
+	//ATTACK
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
+		//ATTACK
 		RECT temp;
 		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
@@ -444,6 +444,7 @@ void enemyManager::baseballCollision()
 			(*_viWb)->setIsCollisionAttack(false);
 		}
 
+		//DAMAGED_(종혁씨가 만든)
 		if (_player->isattack) {
 			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top && 
 				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
@@ -516,10 +517,11 @@ void enemyManager::batCollision()
 	////////////////
    //     bat    //
    ///////////////
+	//Attack//
 	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
 	{
 		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
 			(*_viBat)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
 		}
@@ -528,12 +530,33 @@ void enemyManager::batCollision()
 			(*_viBat)->setIsCollisionAttack(false);		//아니면 false로 전환
 		}
 	}
+	//Damaged//
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getRect()) && 
+			KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viBat)->damageCount++;
+
+			if ((*_viBat)->damageCount > 5)
+			{
+				(*_viBat)->damageCount = 0;
+			}
+		}
+		else
+		{
+			(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
+		}
+	}
 }
 void enemyManager::gloveCollision()
 {
 	////////////////
    //    glove   //
    ///////////////
+    //Attack glove가 공격하면//
 	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
 	{
 		RECT temp;
@@ -546,14 +569,41 @@ void enemyManager::gloveCollision()
 			(*_viGlove)->setIsCollisionAttack(false);		//아니면 false로 전환
 		}
 	}
+	//Damaged glove가 맞으면//
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viGlove)->getRect()) &&
+			KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->damageCount++;
+			(*_viGlove)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+
+			if ((*_viGlove)->damageCount < 5)
+			{
+				(*_viGlove)->isDamaged = true;
+				(*_viGlove)->isDeath = false;
+			}
+			if ((*_viGlove)->damageCount == 5)
+			{
+				(*_viGlove)->isDamaged = false;
+				(*_viGlove)->isDeath = true;
+				(*_viGlove)->damageCount = 0;				//5대 맞으면 카운트 죽이고 죽어
+			}
+		}
+		else
+		{
+			(*_viGlove)->setIsCollisionDamaged(false);		//아니면 false로 전환
+		}
+	}
 }
 
 void enemyManager::setBat()
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		bat* _bat = new bat;
-		_bat->init(PointMake(470 + i * 30, BACKGROUNDY - 500 - i * 250));
+		_bat->init(PointMake(470 + i * 130, WINSIZEY - 300 - i * 150));
 		_vBat.push_back(_bat);
 	}
 }
@@ -572,12 +622,12 @@ void enemyManager::renderBat()
 	}
 }
 
-void enemyManager::setGlove()
+void enemyManager::setGlove()	//태어나는 좌표
 {
 	for (int i = 0; i < 2; i++)
 	{
 		glove* _glove = new glove;
-		_glove->init(PointMake(470 + i * 30, BACKGROUNDY - 500 - i * 250));
+		_glove->init(PointMake(470 + i * 30, WINSIZEY - 500 - i * 150));
 		_vGlove.push_back(_glove);
 	}
 }
@@ -702,7 +752,7 @@ void enemyManager::WhereIsCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(700, BACKGROUNDY - WINSIZEY + 300));
+	_boss->init(PointMake(700, WINSIZEY / 2 - 200));
 }
 
 
@@ -789,7 +839,7 @@ void enemyManager::attackCollision()
 	// #######   보스 원거리 공격   ##########
 	/////////////////////////////////////////// 원거리 공격 성공신호는  isSucceedShootingAttack 입니다.
 
-	_boss->_numAtkPattern = RND->getFromIntTo(0, 6);
+	_boss->_numAtkPattern = RND->getFromIntTo(0, 4);
 
 	if (PtInRect(&_boss->_longRangeAtkRc,
 		PointMake(_player->getX(), _player->getRect().bottom)) &&
@@ -836,8 +886,8 @@ void enemyManager::attackCollision()
 	/////////////////////////////////////////// 잽공격 성공신호는 _isSucceedJabAttack 입니다. 스트레이트공격 성공신호는 _isSucceedStraightAttack 입니다.
 
 	RECT temp;
-	if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()) && !_boss->_isJabAttack
-		&& !_boss->_isShootingAttack && !_boss->_isTrigger && !_boss->_isCrash && !_boss->_isStraightAttack)
+	if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()) && _boss->_isMoveState &&
+		!_boss->_isCrash)
 	{
 		int randNum = rand() % 6;
 		if (randNum != 1) _boss->_missCount++;

@@ -62,6 +62,7 @@ public:
 	// 연습용 불값
 	//////////////////////////////
 	bool _isAttacked;
+	///////////////////////////////
 
 	//현재 프레임 확인용
 	int _currentFrameX, _currentFrameY;
@@ -107,6 +108,14 @@ public:
 	//데미지가 들어온 상태인지 확인
 	bool _isDamaged;
 	bool _isDamagedState;
+	//현재 무브상태인지 확인
+	bool _isMoveState;
+	//현재 무슨상태인지 확인
+	bool _isIdleState, _isShootingState, _isDeathState;
+	string _imageName;
+	//렌더 위치잡이용
+	float _imageX, _imageY;
+
 
 	void InputHandle();
 
@@ -119,6 +128,9 @@ public:
 	void setImage();
 	void setBoss();
 	void setBossShadow();
+	void renderAdjust();
+	void smokeEffect();
+	void imgLocation();
 
 	//게터 설정
 	bool getIsUpper() { return _isUpper; }
@@ -128,5 +140,6 @@ public:
 
 
 	//세터설정 == 필요없긴하지 ㅎ;
+	void setImageName(string imgName) { _imageName = imgName; }
 };
 

@@ -9,6 +9,7 @@
 #include "bossJabAttackState.h"
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossEntryState::inputHandle(boss * boss)
@@ -42,6 +43,7 @@ void bossEntryState::update(boss * boss)
 void bossEntryState::enter(boss * boss)
 {
 	boss->_boss.img = IMAGEMANAGER->findImage("boss_entry");
+	boss->_imageName = "boss_entry";
 
 	boss->_currentFrameX = 0;
 	boss->_currentFrameY = 0;

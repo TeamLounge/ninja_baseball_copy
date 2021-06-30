@@ -27,5 +27,5 @@ void Ryno_start::enter(player * player)
 	player->getImage()->setFrameX(0);
 	player->getImage()->setFrameY(0);
 
-	
+	player->setImageName("Ryno_start");
 }

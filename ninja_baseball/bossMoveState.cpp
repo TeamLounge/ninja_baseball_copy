@@ -10,27 +10,34 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossMoveState::inputHandle(boss * boss)
 {
-	if (boss->_isShootingAttack && !boss->_isJabAttack)
+	if (boss->_isShootingAttack)
 	{
-		return new bossShootingReady();
+		if (boss->_bossForm == DEFAULT || boss->_bossForm == NO_WING) return new bossShootingReady();
+		else boss->_isShootingAttack = false;
 	}
 
-	if (boss->_isJabAttack && !boss->_isShootingAttack)
+	if (boss->_isJabAttack)
 	{
-		return new bossJabAttackState();
+		if (boss->_bossForm == DEFAULT ||
+			boss->_bossForm == NO_WING ||
+			boss->_bossForm == NO_WING_PROP) return new bossJabAttackState();
+		else boss->_isJabAttack = false;
 	}
 
 	if (boss->_isStraightAttack)
 	{
-		return new bossStraightAttackState();
+		if (boss->_bossForm != NO_ARM) return new bossStraightAttackState();
+		else boss->_isStraightAttack = false;
 	}
 
 	if (boss->_isDamaged)
 	{
+		boss->_isJump = true;
 		return new bossDamagedState();
 	}
 
@@ -90,18 +97,23 @@ void bossMoveState::enter(boss * boss)
 	{
 	case DEFAULT:
 		boss->_boss.img = IMAGEMANAGER->findImage("boss_idle");
+		boss->_imageName = "boss_idle";
 		break;
 	case NO_WING:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWing_idle");
+		boss->_imageName = "noWing_idle";
 		break;
 	case NO_WING_PROP:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWingProp_idle");
+		boss->_imageName = "noWingProp_idle";
 		break;
 	case NO_ONE_ARM:
 		boss->_boss.img = IMAGEMANAGER->findImage("noOneArm_idle");
+		boss->_imageName = "noOneArm_idle";
 		break;
 	case NO_ARM:
-		boss->_boss.img = IMAGEMANAGER->findImage("noArm_move");
+		boss->_boss.img = IMAGEMANAGER->findImage("noArm_idle");
+		boss->_imageName = "noArm_idle";
 		break;
 	}
 
@@ -116,6 +128,8 @@ void bossMoveState::enter(boss * boss)
 		boss->_currentFrameX = 0;
 		boss->_currentFrameY = 0;
 	}
+
+	boss->_isMoveState = true;
 }
 
 void bossMoveState::exit(boss * boss)

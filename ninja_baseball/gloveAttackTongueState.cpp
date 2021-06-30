@@ -8,11 +8,15 @@
 
 gloveState * gloveAttackTongueState::inputHandle(glove * glove)
 {
-	if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
+	if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())		//이미지 한번만 돌고
 	{
-		glove->isAttackTongueState = false;
+		glove->isAttackTongueState = false;		//어택 상태 해제
 
 		return new gloveMoveState();
+	}
+	if (glove->isDeath)
+	{
+		return new gloveDeathState();
 	}
 	return nullptr;
 }
@@ -21,10 +25,10 @@ void gloveAttackTongueState::update(glove * glove)
 {
 	//frame
 	frameCount++;
-	if (frameCount >= 15)
+	if (frameCount >= 25)
 	{
 		frameCount = 0;
-		if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
+		if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())			//프레임 한 바퀴만 돌아
 		{
 			glove->setCurrentFrameX(glove->_glove.img->getMaxFrameX());
 		}

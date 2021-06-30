@@ -3,6 +3,12 @@
 
 class blueBaseball;
 
-class bbLandState
+class bbLandState :public bbState
 {
+	int frameCount;
+
+	virtual bbState* inputHandle(blueBaseball* blueBaseball);
+	virtual void update(blueBaseball* blueBaseball);
+	virtual void enter(blueBaseball* blueBaseball);
+	virtual void exit(blueBaseball* blueBaseball);
 };

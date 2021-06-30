@@ -5,6 +5,8 @@ class yellowBaseball;
 
 class ybAttackPunchState :public ybState
 {
+public:
+
 	int frameCount;
 
 	virtual ybState* inputHandle(yellowBaseball* yellowBaseball);

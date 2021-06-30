@@ -4,6 +4,8 @@
 #include "gbHangState.h"
 #include "gbLandState.h"
 #include "gbAttackPunchState.h"
+#include "gbDamagedState.h"
+#include "gbDeathState.h"
 
 gbState * gbAttackPunchState::inputHandle(greenBaseball * greenBaseball)
 {

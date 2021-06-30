@@ -3,6 +3,8 @@
 #include "bbIdleState.h"
 #include "bbLandState.h"
 #include "bbAttackPunchState.h"
+#include "bbDamagedState.h"
+#include "bbDeathState.h"
 
 bbState * bbIdleState::inputHandle(blueBaseball * blueBaseball)
 {

@@ -15,6 +15,10 @@ gloveState * gloveJumpState::inputHandle(glove * glove)
 
 		return new gloveMoveState();		//new!!!!!!!!!new!!!!!!!!!new!!!!!!!!!!!Àû¾î!!!!!!!!!!!
 	}
+	if (glove->isDeath)
+	{
+		return new gloveDeathState();
+	}
 	return nullptr;
 }
 

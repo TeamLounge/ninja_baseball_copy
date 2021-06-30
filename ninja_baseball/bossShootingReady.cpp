@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossShootingReady::inputHandle(boss * boss)
@@ -41,10 +42,12 @@ void bossShootingReady::enter(boss * boss)
 	switch (boss->_bossForm)
 	{
 	case DEFAULT:
-		boss->_boss.img = IMAGEMANAGER->findImage("boss_shootingReady");
+		boss->_boss.img = IMAGEMANAGER->findImage("boss_shootingR");
+		boss->_imageName = "boss_shootingR";
 		break;
 	case NO_WING:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWing_shootingReady");
+		boss->_imageName = "noWing_shootingReady";
 		break;
 	}
 
@@ -59,6 +62,8 @@ void bossShootingReady::enter(boss * boss)
 		boss->_currentFrameX = 0;
 		boss->_currentFrameY = 0;
 	}
+
+	boss->_isMoveState = false;
 }
 
 void bossShootingReady::exit(boss * boss)

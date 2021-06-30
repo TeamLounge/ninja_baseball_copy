@@ -5,6 +5,8 @@
 #include "wbIdleState.h"
 #include "wbAttackJumpState.h"
 #include "wbAttackPunchState.h"
+#include "wbDamagedState.h"
+#include "wbDeathState.h"
 
 wbState * wbAttackJumpState::inputHandle(whiteBaseball * whiteBaseball)
 {
