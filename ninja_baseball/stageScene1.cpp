@@ -30,10 +30,14 @@ void stageScene1::release()
 void stageScene1::update()
 {
 	RENDERMANAGER->update();
+	CAMERAMANAGER->update();
 	_player->update();
 	_em->update();
 
-	if (KEYMANAGER->isOnceKeyDown('A'))
+
+	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+
+	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
 		if (!CAMERAMANAGER->_isFixed)
 		{
@@ -44,10 +48,6 @@ void stageScene1::update()
 			CAMERAMANAGER->_isFixed = false;
 		}
 	}
-
-	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
-
-	
 
 	if (KEYMANAGER->isOnceKeyDown('S'))
 	{

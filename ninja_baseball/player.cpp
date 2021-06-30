@@ -93,8 +93,8 @@ void player::render()
 
 	//이미지랜더
 	
-	_shadow->render(getMemDC());
-	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+	//_shadow->render(getMemDC());
+	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
 
 	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _shadow->getCenterY() , str1, strlen(str1));
 
