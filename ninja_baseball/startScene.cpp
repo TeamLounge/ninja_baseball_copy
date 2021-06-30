@@ -52,6 +52,10 @@ void startScene::update()
 		if (_dialogTextNum[2] >= 17 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForFrame += TIMEMANAGER->getElapsedTime();
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				_isFirstDialogEnd = true;
+			}
 			if (IMAGEMANAGER->findImage("stolen")->getFrameX() >= IMAGEMANAGER->findImage("stolen")->getMaxFrameX())
 			{
 				if (_elapsedSecForFrame >= 1.0f)
@@ -130,7 +134,7 @@ void startScene::update()
 		_backgroundHeight -= 4;
 		if (_backgroundHeight < 0)
 		{
-			SCENEMANAGER->changeScene("stage");
+			SCENEMANAGER->changeScene("stage1");
 		}
 	}
 	else

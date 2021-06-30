@@ -32,6 +32,8 @@ private:
 	int _currentFrameX;
 	int _currentFrameY;
 
+	string _imgName;
+
 public:
 
 	void InputHandle();
@@ -91,4 +93,5 @@ public:
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
+	void setImageName(string s) { _imgName = s; }
 };

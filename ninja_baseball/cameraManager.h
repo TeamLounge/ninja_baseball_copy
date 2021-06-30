@@ -12,10 +12,11 @@ private:
 	void cameraRange(); //카메라가 배경 밖으로 나가지 않게 만드는 함수
 public:
 	bool _isFixed;
+	bool _isHaveToMove;
 
 	HRESULT init();
 	void release();
-
+	void update();
 	void render(image* backBuffer, HDC frontDC);
 
 	//카메라를 중점좌표로 설정

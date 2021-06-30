@@ -266,6 +266,8 @@
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="titleScene.h" />
+    <ClInclude Include="txtData.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="wbAttackJumpState.h" />
     <ClInclude Include="wbAttackPunchState.h" />
@@ -403,6 +405,8 @@
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="titleScene.cpp" />
+    <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="wbAttackJumpState.cpp" />
     <ClCompile Include="wbAttackPunchState.cpp" />

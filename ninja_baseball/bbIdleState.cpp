@@ -108,6 +108,8 @@ void bbIdleState::enter(blueBaseball * blueBaseball)
 	blueBaseball->setCurrentFrameX(0);
 
 	timeCount = 0;
+
+	blueBaseball->setImageName("bBaseball_idle");
 }
 
 void bbIdleState::exit(blueBaseball * blueBaseball)

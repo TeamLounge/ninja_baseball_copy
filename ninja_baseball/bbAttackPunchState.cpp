@@ -89,6 +89,8 @@ void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 		blueBaseball->setCurrentFrameY(0);
 	}
 	blueBaseball->setCurrentFrameX(0);
+
+	blueBaseball->setImageName("bBaseball_punch");
 }
 
 void bbAttackPunchState::exit(blueBaseball * blueBaseball)

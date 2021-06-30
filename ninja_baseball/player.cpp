@@ -6,7 +6,7 @@
 #include "enemyManager.h"
 
 HRESULT player::init(int character)
-{	
+{
 
 	addImage();
 	_character = character;
@@ -23,20 +23,27 @@ HRESULT player::init(int character)
 	}
 
 	isRight = true;
-	isattack = isdamage = iscrawl = iscatch= false;
+	isattack = isdamage = iscrawl = iscatch = false;
 	_x = 200;
 	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
-	_state -> enter(this);
-	 
+	_state->enter(this);
+
 	_em = new enemyManager;
 
 	isattack = false;
 	isdamage = false;
 	iscatch = false;
 	iscrawl = false;
-	
-	//RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+
+	if (character == 1)
+	{
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
+	}
+	else if (character == 2)
+	{
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+	}
 
 	_hp = 5;
 	_life = 3;
@@ -93,8 +100,8 @@ void player::render()
 
 	//이미지랜더
 	
-	_shadow->render(getMemDC());
-	_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
+	//_shadow->render(getMemDC());
+	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
 
 	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _shadow->getCenterY() , str1, strlen(str1));
 
@@ -168,7 +175,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_givp_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_give_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138 ,216, 1 , 1, true, RGB(255, 0, 255),false);
 	//IMAGEMANAGER->addImage("Ryno_escape", "image/2_Player/green/green_escape.bmp", 189, 432, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);

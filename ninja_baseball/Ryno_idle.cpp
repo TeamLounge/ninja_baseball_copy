@@ -120,8 +120,8 @@ void Ryno_idle::enter(player * player)
 	}
 	else
 	{
-		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2)+15);
-		player->setShadowX(player->getX() + (player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("green_shadow")->getWidth()/2);
+		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) + 15);
+		player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("green_shadow")->getWidth()/2);
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}

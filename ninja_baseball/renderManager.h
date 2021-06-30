@@ -16,7 +16,7 @@ private:
 		float* shadowY;
 		float* bodyX;
 		float *bodyY;
-		bool isHaveFrame;
+		bool isPlayer;
 	}OBJ;
 
 	typedef vector<OBJ>						arrObj;

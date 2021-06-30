@@ -32,7 +32,7 @@ void stageScene::update()
 	_Ryno->update();
 	//_red->update();
 	_em->update();
-	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY(), 0.51f);
+	CAMERAMANAGER->updateCamera(_Ryno->getX(), WINSIZEY / 2);
 
 
 	if (KEYMANAGER->isOnceKeyDown('A'))

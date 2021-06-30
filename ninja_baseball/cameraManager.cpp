@@ -26,6 +26,14 @@ void cameraManager::release()
 	SAFE_DELETE(_cameraBuffer);
 }
 
+void cameraManager::update()
+{
+	if (_isFixed)
+	{
+		_isHaveToMove = true;
+	}
+}
+
 
 void cameraManager::render(image* backBuffer, HDC frontDC)
 {
@@ -52,6 +60,11 @@ void cameraManager::render(image* backBuffer, HDC frontDC)
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		TIMEMANAGER->render(cameraDC);
+		char str[128];
+		sprintf_s(str, "_isFixed: %d", _isFixed);
+		TextOut(cameraDC, 0, 100, str, strlen(str));
+		sprintf_s(str, "_isHaveToMove: %d", _isHaveToMove);
+		TextOut(cameraDC, 0, 120, str, strlen(str));
 	}
 	_cameraBuffer->render(frontDC, 0, 0);
 }
@@ -66,17 +79,25 @@ void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
 {
 	if (_isFixed) return;
 
-	if (centerX > _cameraBuffer->getX() + ratioX * CAMERAX)
+	if (centerX >= _cameraBuffer->getX() + ratioX * CAMERAX)
 	{
-		_cameraBuffer->setX(_cameraBuffer->getX() + 5);
-		if (centerX <= _cameraBuffer->getX())
+		if (_isHaveToMove)
+		{
+			_cameraBuffer->setX(_cameraBuffer->getX() + 10);
+			if (centerX <= _cameraBuffer->getX() + ratioX * CAMERAX)
+			{
+				_cameraBuffer->setX(centerX - ratioX * CAMERAX);
+				_isHaveToMove = false;
+			}
+		}
+		else
 		{
 			_cameraBuffer->setX(centerX - ratioX * CAMERAX);
 		}
-		x[0] = _cameraBuffer->getX() + ratioX * CAMERAX;
-		x[1] = 0;
 	}
 	cameraRange();
+	x[0] = _cameraBuffer->getX() + ratioX * CAMERAX;
+	x[1] = 0;
 }
 
 void cameraManager::updateCamera(float x, float y, float ratioX, float ratioY)

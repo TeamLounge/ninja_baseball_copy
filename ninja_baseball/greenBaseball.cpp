@@ -51,6 +51,10 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
 
+	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "wBaseball_shadow",
+		&_greenBaseball.x, &_greenBaseball.y, &_gbShadow.x, &_gbShadow.y,
+		&_currentFrameX, &_currentFrameY);
+
 	return S_OK;
 }
 

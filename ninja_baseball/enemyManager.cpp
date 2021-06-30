@@ -19,8 +19,8 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	//updateBaseball();
-	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	updateBaseball();
+	baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
 
 	updateBat();

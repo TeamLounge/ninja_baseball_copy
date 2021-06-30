@@ -6,8 +6,10 @@
 class stageScene1 : public gameNode
 {
 private:
-	player* _red;
-	player* _Ryno;
+	player* _player;
+
+	int _playerSelect; //현재 선택된 플레이어 저장
+	vector<string> vText; //텍스트로부터 받아온 데이터 저장 및 텍스트로 나가도록 하는 벡터 
 
 	enemyManager* _em;
 	objectManager* _obj;

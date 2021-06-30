@@ -108,6 +108,8 @@ void gbIdleState::enter(greenBaseball * greenBaseball)
 	greenBaseball->setCurrentFrameX(0);
 
 	timeCount = 0;
+
+	greenBaseball->setImageName("gBaseball_idle");
 }
 
 void gbIdleState::exit(greenBaseball * greenBaseball)

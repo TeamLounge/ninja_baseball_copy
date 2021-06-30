@@ -51,6 +51,10 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
 
+	RENDERMANAGER->addObj("blueBaseball", _imgName.c_str(), "wBaseball_shadow",
+		&_blueBaseball.x, &_blueBaseball.y, &_bbShadow.x, &_bbShadow.y,
+		&_currentFrameX, &_currentFrameY);
+
 	return S_OK;
 }
 
