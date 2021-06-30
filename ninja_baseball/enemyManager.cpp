@@ -448,7 +448,7 @@ void enemyManager::baseballCollision()
 				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
 				if (IntersectRect(&temp, &_player->_attack_rc, &(*_viWb)->getRect()))
 				{
-					(*_viWb)->isdamage= true;
+					(*_viWb)->isdamage = true;
 				}
 			}
 		}

@@ -155,6 +155,7 @@
     <ClInclude Include="batMoveState.h" />
     <ClInclude Include="batState.h" />
     <ClInclude Include="bbAttackPunchState.h" />
+    <ClInclude Include="bbDamagedState.h" />
     <ClInclude Include="bbIdleState.h" />
     <ClInclude Include="bbLandState.h" />
     <ClInclude Include="bbState.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
     <ClInclude Include="red_dashAttackState.h" />
+    <ClInclude Include="red_dieState.h" />
     <ClInclude Include="red_downAttackState.h" />
     <ClInclude Include="red_dynamiteDance.h" />
     <ClInclude Include="red_gripState.h" />
@@ -280,6 +282,7 @@
     <ClCompile Include="batMoveState.cpp" />
     <ClCompile Include="batState.cpp" />
     <ClCompile Include="bbAttackPunchState.cpp" />
+    <ClCompile Include="bbDamagedState.cpp" />
     <ClCompile Include="bbIdleState.cpp" />
     <ClCompile Include="bbLandState.cpp" />
     <ClCompile Include="bbState.cpp" />
@@ -326,6 +329,7 @@
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />
     <ClCompile Include="red_dashAttackState.cpp" />
+    <ClCompile Include="red_dieState.cpp" />
     <ClCompile Include="red_downAttackState.cpp" />
     <ClCompile Include="red_dynamiteDance.cpp" />
     <ClCompile Include="red_gripState.cpp" />

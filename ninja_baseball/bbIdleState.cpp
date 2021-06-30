@@ -19,6 +19,7 @@ bbState * bbIdleState::inputHandle(blueBaseball * blueBaseball)
 	{
 		timeCount = 0;
 	}
+				
 	return nullptr;
 }
 

@@ -46,8 +46,7 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isJump = false;
 	isXOverlap = false;
 	isYOverlap = false;
-
-
+	
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
@@ -83,9 +82,6 @@ void blueBaseball::update()
 		//그림자
 		_bbShadow.rc = RectMakeCenter((_blueBaseball.rc.right + _blueBaseball.rc.left) / 2, _bbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
-
-
-
 }
 
 void blueBaseball::render()
@@ -116,8 +112,6 @@ void blueBaseball::render()
 	_bbShadow.img->render(getMemDC(), _bbShadow.rc.left, _bbShadow.rc.top);
 	_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.x, _blueBaseball.y, _currentFrameX, _currentFrameY);
 	//_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.rc.left, _blueBaseball.rc.top);
-
-
 }
 
 void blueBaseball::setImage()

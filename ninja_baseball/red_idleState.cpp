@@ -90,6 +90,9 @@ void red_idleState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_idle"));
 	_player->setImageName("red_idle");
+
+	_player->sethp(_player->gethp());
+	_player->setlife(_player->getlife());
 	
 	//그림자 위치
 	if (_player->isRight == true)

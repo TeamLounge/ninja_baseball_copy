@@ -43,9 +43,11 @@ void red_dynamiteDance::update(player * _player)
 	//발차기하고 나서 뒤로 날아가게 하려고
 	if (_index >= 30 && _index < _player->getImage()->getMaxFrameX())
 	{
+		/*_jumpPower = 3.0f;
+		_gravity = 0.15;
 		_jumpPower -= _gravity;
 
-		_player->setY(_player->getY() - _jumpPower);
+		_player->setY(_player->getY() - _jumpPower);*/
 
 		if (_player->isRight == true)
 		{
@@ -61,10 +63,12 @@ void red_dynamiteDance::update(player * _player)
 	if (_player->isRight == true)
 	{
 		_player->_shadow->setY(_player->getY() + 170);
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 5);
 	}
 	if (_player->isRight == false)
 	{
 		_player->_shadow->setY(_player->getY() + 170);
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
 	}
 }
 

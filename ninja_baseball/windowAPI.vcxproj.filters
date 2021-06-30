@@ -373,6 +373,12 @@
     <ClCompile Include="red_dynamiteDance.cpp">
       <Filter>playGound\player\red</Filter>
     </ClCompile>
+    <ClCompile Include="bbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="red_dieState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -763,6 +769,12 @@
       <Filter>playGound\player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_dynamiteDance.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="bbDamagedState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_dieState.h">
       <Filter>playGound\player\red</Filter>
     </ClInclude>
   </ItemGroup>
