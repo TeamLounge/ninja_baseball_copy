@@ -41,8 +41,11 @@ HRESULT bat::init(POINT position)
 	isDown = false;
 	isCollisionAttack = false;
 	isJump = false;
-	isXOverlap == false;
-	isYOverlap == false;
+	isXOverlap = false;
+	isYOverlap = false;
+	isAttack = false;				//ÃÆ¾î?
+	isDamaged = false;				//¸Â¾Ò¾î?
+	iscatch = false;				//ÀâÇû¾î?
 
 	return S_OK;
 }

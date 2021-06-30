@@ -10,6 +10,7 @@ cardState * cardDashAttackState::inputHandle(card * card)
 	if (_atkCount >= 1)
 	{
 		card->_isDash = false;
+		card->isattack = false;
 		return new cardIdleState();
 	}
 
@@ -57,6 +58,7 @@ void cardDashAttackState::update(card * card)
 
 void cardDashAttackState::enter(card * card)
 {
+	card->isattack = true;
 	card->_card.img = IMAGEMANAGER->findImage("card_dashAttack");
 
 	//이미지 프레임 방향 결정

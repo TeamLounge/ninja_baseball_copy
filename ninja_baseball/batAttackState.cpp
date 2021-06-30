@@ -9,6 +9,7 @@ batState * batAttackState::inputHandle(bat * bat)
 {
 	if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())		//한 동작 끝나면 idle로 가라
 	{
+		bat->isAttack = false;
 		return new batIdleState();
 	}
 	//if (true)/*맞았으면*/
@@ -90,6 +91,7 @@ void batAttackState::update(bat * bat)
 
 void batAttackState::enter(bat * bat)
 {
+	bat->isAttack = true;
 	bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
 
 	attackCount = 0;
