@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossWindState::inputHandle(boss * boss)
@@ -65,6 +66,7 @@ void bossWindState::update(boss * boss)
 void bossWindState::enter(boss * boss)
 {
 	boss->_boss.img = IMAGEMANAGER->findImage("boss_wind");
+	boss->_imageName = "boss_wind";
 
 	boss->_currentFrameX = 0;
 	boss->_currentFrameY = 0;

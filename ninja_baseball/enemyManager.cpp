@@ -4,10 +4,10 @@
 
 HRESULT enemyManager::init()
 {
-	setBaseball();
-	setBat();
+	//setBaseball();
+	//setBat();
 	setCard();
-	setGlove();
+	//setGlove();
 	setBoss();
 
 	return S_OK;
@@ -19,17 +19,17 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	updateBaseball();
-	baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	//updateBaseball();
+	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
-	updateBat();
-	batCollision();
+	//updateBat();
+	//batCollision();
 
-	updateGlove();
-	gloveCollision();
+	//updateGlove();
+	//gloveCollision();
 
 
-	playerLocation();
+	//playerLocation();
 
 	updateCard();
 	WhereIsCard();	
@@ -40,9 +40,9 @@ void enemyManager::update()
 void enemyManager::render()
 {
 
-	renderBaseball();
-	renderBat();
-	renderGlove();
+	//renderBaseball();
+	//renderBat();
+	//renderGlove();
 	renderCard();
 	renderBoss();
 
@@ -702,7 +702,7 @@ void enemyManager::WhereIsCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(700, BACKGROUNDY - WINSIZEY + 300));
+	_boss->init(PointMake(700, WINSIZEY / 2 - 200));
 }
 
 
@@ -789,7 +789,7 @@ void enemyManager::attackCollision()
 	// #######   보스 원거리 공격   ##########
 	/////////////////////////////////////////// 원거리 공격 성공신호는  isSucceedShootingAttack 입니다.
 
-	_boss->_numAtkPattern = RND->getFromIntTo(0, 6);
+	_boss->_numAtkPattern = RND->getFromIntTo(0, 4);
 
 	if (PtInRect(&_boss->_longRangeAtkRc,
 		PointMake(_player->getX(), _player->getRect().bottom)) &&
@@ -836,8 +836,8 @@ void enemyManager::attackCollision()
 	/////////////////////////////////////////// 잽공격 성공신호는 _isSucceedJabAttack 입니다. 스트레이트공격 성공신호는 _isSucceedStraightAttack 입니다.
 
 	RECT temp;
-	if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()) && !_boss->_isJabAttack
-		&& !_boss->_isShootingAttack && !_boss->_isTrigger && !_boss->_isCrash && !_boss->_isStraightAttack)
+	if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()) && _boss->_isMoveState &&
+		!_boss->_isCrash)
 	{
 		int randNum = rand() % 6;
 		if (randNum != 1) _boss->_missCount++;

@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossShootingState::inputHandle(boss * boss)
@@ -40,7 +41,7 @@ void bossShootingState::update(boss * boss)
 	}
 
 	EFFECTMANAGER->play("boss_bullet", (boss->_longRangeAtkRc.left + boss->_longRangeAtkRc.right) / 2 + RND->getFromFloatTo(-100.f, 100.f),
-		(boss->_longRangeAtkRc.top - 50) + RND->getFromFloatTo(-10.f, 10.f));
+		(boss->_longRangeAtkRc.top - 50) + RND->getFromFloatTo(-10.f, 10.f), 15);
 
 	EFFECTMANAGER->update(_fireX, 0);
 
@@ -52,27 +53,30 @@ void bossShootingState::enter(boss * boss)
 	{
 	case DEFAULT:
 		boss->_boss.img = IMAGEMANAGER->findImage("boss_shooting");
+		boss->_imageName = "boss_shooting";
 		break;
 	case NO_WING:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWing_shooting");
+		boss->_imageName = "noWing_shooting";
 		break;
 	}
 
 	boss->_stateCount = 0;
 	boss->_isTrigger = true;
+	boss->_isShootingState = true;
 
 	if (!boss->_isLeft)
 	{
 		boss->_currentFrameX = 0;
 		boss->_currentFrameY = 1;
-		_fireX = 2.7f;
+		_fireX = 2.5f;
 	}
 
 	if (boss->_isLeft)
 	{
 		boss->_currentFrameX = 0;
 		boss->_currentFrameY = 0;
-		_fireX = -2.7f;
+		_fireX = -2.5f;
 	}
 }
 

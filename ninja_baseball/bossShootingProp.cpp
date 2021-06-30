@@ -10,12 +10,14 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossShootingProp::inputHandle(boss * boss)
 {
 	if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
 	{
+		boss->_isShootingState = false;
 		return new bossIdleState();
 	}
 
@@ -41,10 +43,12 @@ void bossShootingProp::enter(boss * boss)
 	switch (boss->_bossForm)
 	{
 	case DEFAULT:
-		boss->_boss.img = IMAGEMANAGER->findImage("boss_shootingProp");
+		boss->_boss.img = IMAGEMANAGER->findImage("boss_shootingP");
+		boss->_imageName = "boss_shootingP";
 		break;
 	case NO_WING:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWing_shootingProp");
+		boss->_imageName = "noWing_shootingProp";
 		break;
 	}
 

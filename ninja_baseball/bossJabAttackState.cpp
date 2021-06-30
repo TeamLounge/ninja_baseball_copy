@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossJabAttackState::inputHandle(boss * boss)
@@ -44,12 +45,16 @@ void bossJabAttackState::enter(boss * boss)
 	{
 	case DEFAULT:
 		boss->_boss.img = IMAGEMANAGER->findImage("boss_oneTwoPunch");
+		//boss->_imageName = "boss_oneTwoPunch";
+		boss->setImageName("boss_oneTwoPunch");
 		break;
 	case NO_WING:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWing_oneTwoPunch");
+		boss->_imageName = "noWing_oneTwoPunch";
 		break;
 	case NO_WING_PROP:
 		boss->_boss.img = IMAGEMANAGER->findImage("noWingProp_oneTwoPunch");
+		boss->_imageName = "noWingProp_oneTwoPunch";
 		break;
 	}
 
@@ -66,6 +71,7 @@ void bossJabAttackState::enter(boss * boss)
 	}
 
 	boss->_isJabState = true;
+	boss->_isMoveState = false;
 }
 
 void bossJabAttackState::exit(boss * boss)

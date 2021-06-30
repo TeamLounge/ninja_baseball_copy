@@ -10,6 +10,7 @@
 #include "bossJabAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
+#include "bossDeathState.h"
 #include "boss.h"
 
 bossState * bossStraightAttackState::inputHandle(boss * boss)
@@ -51,15 +52,19 @@ void bossStraightAttackState::enter(boss * boss)
 	{
 	case DEFAULT:
 		boss->_boss.img = IMAGEMANAGER->findImage("boss_straight");
+		boss->_imageName = "boss_straight";
 		break;
 	case NO_WING:
-
+		boss->_boss.img = IMAGEMANAGER->findImage("noWing_straight");
+		boss->_imageName = "noWing_straight";
 		break;
 	case NO_WING_PROP:
-
+		boss->_boss.img = IMAGEMANAGER->findImage("noWingProp_straight");
+		boss->_imageName = "noWingProp_straight";
 		break;
 	case NO_ONE_ARM:
-
+		boss->_boss.img = IMAGEMANAGER->findImage("noOneArm_straight");
+		boss->_imageName = "noOneArm_straight";
 		break;
 	}
 	if (!boss->_isLeft)
@@ -80,6 +85,7 @@ void bossStraightAttackState::enter(boss * boss)
 
 	boss->_isStraightState = true;
 	readyCount = 0;
+	boss->_isMoveState = false;
 
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "boss.h"
 #include "bossEntryState.h"
+#include "bossIdleState.h"
 
 HRESULT boss::init()
 {
@@ -25,18 +26,26 @@ HRESULT boss::init(POINT position)
 
 	setBoss();
 
-	_bossState = new bossEntryState();
+	_imageName = "noWingProp_oneTwoPunch";
+	RENDERMANAGER->addObj("boss", _imageName.c_str(), "boss_shadow", &_imageX, &_imageY,
+		&_bossShadow.x, &_bossShadow.y, &_currentFrameX, &_currentFrameY);
+
+	_bossState = new bossIdleState(); //new bossEntryState();
+	_isPreWind = true; // 임시방편임
 	_bossState->enter(this);
 
 	_boss.x = position.x;
 	_boss.y = position.y;
 
+	_imageX = _boss.x;
+	_imageY = _boss.y;
+
 	_boss.img->setX(_boss.x);
 	_boss.img->setY(_boss.y);
 
-	_bossPinLight.img = new image;
-
 	setBossShadow();
+
+
 	return S_OK;
 }
 
@@ -49,16 +58,16 @@ void boss::release()
 
 void boss::update()
 {
-	//타격 연습하기 위한 것입니다^^//
-	if (KEYMANAGER->isOnceKeyDown('A') && !_isAttacked)
-	{
-		_count++;
-		if (_count >= 15)
-		{
-			_count = 0;
-		}
+	InputHandle();
+	_bossState->update(this);
+	smokeEffect();
+	renderAdjust();
+	imgLocation();
 
-		_isAttacked = true;
+	//타격 연습하기 위한 것입니다^^//
+	if (KEYMANAGER->isOnceKeyDown('R') && _isMoveState)
+	{
+		_isDamaged = true;
 	}
 
 	if (_count == 0) _bossForm = DEFAULT;
@@ -67,21 +76,21 @@ void boss::update()
 	if (_count == 9) _bossForm = NO_ONE_ARM;
 	if (_count == 12) _bossForm = NO_ARM;
 
+	if (KEYMANAGER->isOnceKeyDown('T') && _isDamagedState)
+	{
+		_isUpperCut = true;
+	}
+
 	//여기까지 타격연습을 위한 것입니다.//
 
-	InputHandle();
-	_bossState->update(this);
-
-
 	_boss.rc = RectMake(_boss.x, _boss.y, 579, 429);
-
 
 	if (!_isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{
 		//그림자
 		_bossShadow.rc = RectMakeCenter((_boss.rc.left + _boss.rc.right) / 2, _boss.rc.bottom,
 			_bossShadow.img->getWidth(), _bossShadow.img->getHeight());
-		_jumpShadowY = _bossShadow.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
+		_jumpShadowY = (_bossShadow.rc.bottom + _bossShadow.rc.top) / 2;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
 	else   //점프하면
@@ -130,16 +139,10 @@ void boss::update()
 
 void boss::render()
 {
-	_bossShadow.img->render(getMemDC(), _bossShadow.rc.left, _bossShadow.rc.top);
+	//보스 상태마다 이미지크기가 달라서 위치를 조정하기 위해 만들었음
+	//_bossShadow.img->render(getMemDC(), _bossShadow.rc.left, _bossShadow.rc.top);
 	if (_isPinLight) _bossPinLight.img->alphaRender(getMemDC(), _boss.x + 100, _boss.y - 150, _alphaIdx);
 
-	if (_isJabState) _boss.img->frameRender(getMemDC(), _boss.x - 100, _boss.y - 162, _currentFrameX, _currentFrameY);
-	if (_isStraightState) _boss.img->frameRender(getMemDC(), _boss.x - 167, _boss.y - 191, _currentFrameX, _currentFrameY);
-
-	if (!_isJabState && !_isStraightState) 	_boss.img->frameRender(getMemDC(), _boss.x, _boss.y, _currentFrameX, _currentFrameY);
-
-	
-	
 	EFFECTMANAGER->render();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
@@ -175,14 +178,15 @@ void boss::setImage()
 	IMAGEMANAGER->addFrameImage("boss_entry", "image/4_Boss/boss_idle(entry).bmp", 2316, 858, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_attacked", "image/4_Boss/boss_attacked.bmp", 2416, 1182, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_shooting", "image/4_Boss/boss_gun.bmp", 2376, 858, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("boss_shootingProp", "image/4_Boss/boss_gun_prop.bmp", 1188, 858, 2, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("boss_shootingReady", "image/4_Boss/boss_gun_ready.bmp", 7722, 858, 13, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("boss_shootingP", "image/4_Boss/boss_gun_prop.bmp", 1188, 858, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("boss_shootingR", "image/4_Boss/boss_gun_ready.bmp", 7722, 858, 13, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_idle", "image/4_Boss/boss_idle(basic).bmp", 2316, 858, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_oneTwoPunch", "image/4_Boss/boss_onetwo.bmp", 11840, 1182, 16, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_straight", "image/4_Boss/boss_straight.bmp", 27900, 1240, 31, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_upperCut", "image/4_Boss/boss_upper_cut.bmp", 6600, 1302, 10, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("boss_wind", "image/4_Boss/boss_wind.bmp", 3462, 860, 6, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWing_attacked", "image/4_Boss/boss_attacked(no_wing).bmp", 2500, 1176, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("noWing_straight", "image/4_Boss/boss_straight(no_wing).bmp", 11700, 1240, 13, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWing_shooting", "image/4_Boss/boss_gun(no_wing).bmp", 2016, 858, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWing_shootingProp", "image/4_Boss/boss_gun_prop(no_wing).bmp", 1002, 858, 2, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWing_shootingReady", "image/4_Boss/boss_gun_ready(no_wing).bmp", 6513, 858, 13, 2, true, RGB(255, 0, 255), false);
@@ -190,13 +194,16 @@ void boss::setImage()
 	IMAGEMANAGER->addFrameImage("noWing_upperCut", "image/4_Boss/boss_upper_cut(no_wing).bmp", 6380, 1302, 10, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWing_oneTwoPunch", "image/4_Boss/sboss_onetwo.bmp", 11100, 1182, 15, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWingProp_attacked", "image/4_Boss/boss_attacked(no_wing_prop).bmp", 2500, 1176, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("noWingProp_straight", "image/4_Boss/boss_straight(no_wing_prop).bmp", 11700, 1240, 13, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWingProp_idle", "image/4_Boss/boss_idle(no_wing_Prop).bmp", 1956, 858, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWingProp_upperCut", "image/4_Boss/boss_upper_cut(no_wing_prop).bmp", 5270, 1302, 10, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noWingProp_oneTwoPunch", "image/4_Boss/tboss_onetwo.bmp", 11840, 1182, 16, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noOneArm_idle", "image/4_Boss/boss_idle(no_one_arm).bmp", 1956, 858, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noOneArm_attacked", "image/4_Boss/boss_attacked(no_one_arm).bmp", 2225, 1092, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("noOneArm_straight", "image/4_Boss/boss_straight(no_one_arm).bmp", 11700, 1240, 13, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("noArm_attacked", "image/4_Boss/boss_attacked(no_arm).bmp", 2225, 1092, 5, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("noArm_move", "image/4_Boss/boss_final.bmp", 742, 1068, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("noArm_idle", "image/4_Boss/boss_final.bmp", 742, 1068, 2, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("noArm_death", "image/4_Boss/boss_death.bmp", 2681, 1168, 7, 2, true, RGB(255, 0, 255), false);
 
 	///////////////////////////////////////////////////////////////////
 	//  ###### 보스 기타 이미지(체력바, 파편, 쉐도우 등) ##########     //
@@ -205,8 +212,6 @@ void boss::setImage()
 	IMAGEMANAGER->addImage("boss_redBar", "image/4_Boss/boss_redBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_yellowBar", "image/4_Boss/boss_yellowBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_yellowBarAttack", "image/4_Boss/boss_yellowBarAttack.bmp", 192, 8, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("boss_leftWing", "image/4_Boss/boss_left_wing.bmp", 231, 216, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("boss_rightWing", "image/4_Boss/boss_right_wing.bmp", 135, 150, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_shadow", "image/4_Boss/boss_shadow.bmp", 300, 85, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_pinLight", "image/4_Boss/boss_pin_light.bmp", 384, 624, true, RGB(255, 0, 255), true);
 
@@ -215,9 +220,22 @@ void boss::setImage()
 	/////////////////////////////////////////
 	EFFECTMANAGER->addEffect("boss_windEffect", "image/4_Boss/boss_windEffect.bmp", 1070, 101, 107, 101, 1.1f, 0.35f, 6);
 	EFFECTMANAGER->addEffect("boss_windEffect2", "image/4_Boss/boss_windEffect.bmp", 1070, 101, 107, 101, 1.1f, 0.35f, 6);
-	EFFECTMANAGER->addEffect("boss_bullet", "image/4_Boss/boss_bullet_effect.bmp", 384, 192, 48, 192, 1.0f, 0.12f, 20);
+	EFFECTMANAGER->addEffect("boss_bullet", "image/4_Boss/boss_bullet_effect.bmp", 384, 192, 48, 192, 1.35f, 0.15f, 20);
+	EFFECTMANAGER->addEffect("boss_smoke_noWing", "image/4_Boss/boss_smoke_effect.bmp", 399, 64, 57, 64, 1.13f, 0.15f, 50);
+	EFFECTMANAGER->addEffect("boss_smoke_noWing2", "image/4_Boss/boss_smoke_effect.bmp", 399, 64, 57, 64, 1.13f, 0.15f, 50);
+	EFFECTMANAGER->addEffect("boss_smoke_noWingProp", "image/4_Boss/boss_smoke_effect.bmp", 399, 64, 57, 64, 1.13f, 0.15f, 50);
+	/*EFFECTMANAGER->addEffect("boss_smoke_noOneArm", "image/4_Boss/boss_smoke_effect.bmp", 399, 64, 57, 64, 1.13f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_left_leftWing", "image/4_Boss/isLeft_leftWing.bmp", 462, 216, 231, 216, 5.0f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_left_rightWing", "image/4_Boss/isLeft_rightWing.bmp", 270, 150, 135, 75, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_right_leftWing", "image/4_Boss/isRight_leftWing.bmp", 462, 216, 231, 216, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_right_rightWing", "image/4_Boss/isRight_rightWing.bmp", 462, 216, 231, 216, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_left_leftArm", "image/4_Boss/isLeft_arm.bmp", 504, 258, 252, 258, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_left_rightArm", "image/4_Boss/isLeft_arm.bmp", 504, 258, 252, 258, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_right_leftArm", "image/4_Boss/boss_isRight_arm.bmp", 504, 258, 252, 258, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_right_rightArm", "image/4_Boss/boss_isRight_arm.bmp", 504, 258, 252, 258, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_left_prop", "image/4_Boss/boss_isRight_prop.bmp", 144, 201, 144, 201, 5.f, 0.15f, 1);
+	EFFECTMANAGER->addEffect("boss_right_prop", "image/4_Boss/boss_isLeft_prop.bmp", 144, 201, 144, 201, 5.f, 0.15f, 1);*/
 }
-
 
 
 /////////////////////////////////////////
@@ -266,6 +284,14 @@ void boss::setBoss()
 	_isDamagedState = false;
 	//연습용불값
 	_isAttacked = false;
+	//무브상태
+	_isMoveState = false;
+	//아이들상태
+	_isIdleState = false;
+	//슈팅상태
+	_isShootingState = false;
+	//죽음의 상태
+	_isDeathState = false;
 }
 
 
@@ -281,6 +307,437 @@ void boss::setBossShadow()
 	_bossShadow.y = (_bossShadow.rc.top + _bossShadow.rc.bottom) / 2;
 	_bossShadow.img->setX(_bossShadow.x);
 	_bossShadow.img->setY(_bossShadow.y);
+}
+
+
+///////////////////////////////////////////
+// ########## 보스 위치실시간조정 ###########
+///////////////////////////////////////////
+void boss::renderAdjust()
+{
+	//나머지 특정조건일때는 이거다~
+
+	if (_isLeft)
+	{
+		switch (_bossForm)
+		{
+		case DEFAULT:
+			if (_isJabState)
+			{
+				_imageX = _boss.x - 65;
+				_imageY = _boss.y - 162;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 160;
+				_imageY = _boss.y - 192;
+			}
+			else if (_isDamagedState)
+			{
+				_imageX = _boss.x + 51;
+				_imageY = _boss.y - 150;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+
+			break;
+
+		case NO_WING:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 55;
+				_imageY = _boss.y - 150;
+			}
+			else if (_isJabState)
+			{
+				_imageX = _boss.x - 80;
+				_imageY = _boss.y - 164;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 165;
+				_imageY = _boss.y - 190;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_WING_PROP:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 20;
+				_imageY = _boss.y - 152;
+			}
+
+			else if (_isJabState)
+			{
+				_imageX = _boss.x - 80;
+				_imageY = _boss.y - 164;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 165;
+				_imageY = _boss.y - 190;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_ONE_ARM:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 103;
+				_imageY = _boss.y - 104;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 165;
+				_imageY = _boss.y - 190;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_ARM:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 103;
+				_imageY = _boss.y - 104;
+			}
+
+			else
+			{
+				_imageX = _boss.x + 105;
+				_imageY = _boss.y - 105;
+			}
+			break;
+		}
+	}
+
+	else
+	{
+		switch (_bossForm)
+		{
+		case DEFAULT:
+			if (_isJabState)
+			{
+				_imageX = _boss.x - 100;
+				_imageY = _boss.y - 162;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 167;
+				_imageY = _boss.y - 191;
+			}
+			else if (_isDamagedState)
+			{
+				_imageX = _boss.x - 72;
+				_imageY = _boss.y - 149;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x - 70;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_WING:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 30;
+				_imageY = _boss.y - 150;
+			}
+			else if (_isJabState)
+			{
+				_imageX = _boss.x - 90;
+				_imageY = _boss.y - 163;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 165;
+				_imageY = _boss.y - 190;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x - 30;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_WING_PROP:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 18;
+				_imageY = _boss.y - 152;
+			}
+			else if (_isJabState)
+			{
+				_imageX = _boss.x - 90;
+				_imageY = _boss.y - 163;
+			}
+			else if (_isStraightState)
+			{
+				_boss.img->frameRender(getMemDC(), _boss.x - 165, _boss.y - 190, _currentFrameX, _currentFrameY);
+				_imageX = _boss.x;
+				_imageY = _boss.y;
+			}
+			else if (_isUpperCutState)
+			{
+				_imageX = _boss.x;
+				_imageY = _boss.y - 222;
+			}
+
+			else
+			{
+				_imageX = _boss.x + 85;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_ONE_ARM:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 20;
+				_imageY = _boss.y - 104;
+			}
+			else if (_isStraightState)
+			{
+				_imageX = _boss.x - 165;
+				_imageY = _boss.y - 190;
+			}
+
+			else
+			{
+				_imageX = _boss.x + 85;
+				_imageY = _boss.y;
+			}
+			break;
+
+		case NO_ARM:
+			if (_isDamagedState)
+			{
+				_imageX = _boss.x + 20;
+				_imageY = _boss.y - 104;
+			}
+
+			else
+			{
+				_imageX = _boss.x + 85;
+				_imageY = _boss.y - 105;
+			}
+			break;
+		}
+	}
+}
+
+
+////////////////////////////////////////////
+// ######## 상태에 따른 스모크효과 ########## 계속 상세하게 처리해해야됨;;;;개오바야
+///////////////////////////////////////////
+void boss::smokeEffect()
+{
+	//좌측을 바라볼때
+	if (_isLeft)
+	{
+		//디폴트가 아니면, 즉 날개가 날라가면
+		if (_bossForm != DEFAULT)
+		{
+			EFFECTMANAGER->play("boss_smoke_noWing", _boss.rc.right - 200, _boss.rc.top + 110, 45);
+			EFFECTMANAGER->play("boss_smoke_noWing2", _boss.rc.right - 180, _boss.rc.top + 210, 45);
+
+			EFFECTMANAGER->update("boss_smoke_noWing", 0, -4.8f);
+			EFFECTMANAGER->update("boss_smoke_noWing2", 0, -4.8f);
+		}
+
+		//프로펠러도 없거나, 한쪽팔이 없거나, 두팔다 없을경우
+		if (_bossForm == NO_WING_PROP || _bossForm == NO_ONE_ARM || _bossForm == NO_ARM)
+		{
+			if (_bossForm == NO_ARM)
+			{
+				EFFECTMANAGER->play("boss_smoke_noWingProp", _boss.rc.left + 150, _boss.rc.top - 35, 45);
+
+				EFFECTMANAGER->update("boss_smoke_noWingProp", 0, -4.8f);
+			}
+
+			else
+			{
+				EFFECTMANAGER->play("boss_smoke_noWingProp", _boss.rc.left + 85, _boss.rc.top + 180, 45);
+
+				EFFECTMANAGER->update("boss_smoke_noWingProp", 0, -4.8f);
+			}
+		}
+
+		//한쪽팔이 없거나, 두팔 다 없을경우
+		if (_bossForm == NO_ONE_ARM || _bossForm == NO_ARM)
+		{
+			EFFECTMANAGER->play("boss_smoke_noOneArm", (_boss.rc.left + _boss.rc.right) / 2,
+				(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+
+			EFFECTMANAGER->update("boss_smoke_noOneArm", 0, -4.8f);
+		}
+
+		//두팔 없을경우
+		if (_bossForm == NO_ARM)
+		{
+			//아이들 상태일때, 무브랑
+			if (_isIdleState || _isMoveState)
+			{
+				EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2 - 40,
+					_boss.rc.top - 30, 45);
+			}
+
+			//데미지를쳐 맞았을때
+			if (_isDamagedState)
+			{
+				if (_currentFrameX == _boss.img->getMaxFrameX())
+				{
+					EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2 + 35,
+						(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+				}
+
+				else
+				{
+					EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2,
+					(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+				}
+			}
+
+			EFFECTMANAGER->update("boss_smoke_noArm", 0, -4.8f);
+		}
+	}
+
+	//우측을 바라볼때
+	else
+	{
+		//디폴트가 아니면, 즉 날개가 날라가면
+		if (_bossForm != DEFAULT)
+		{
+			EFFECTMANAGER->play("boss_smoke_noWing", _boss.rc.left + 200, _boss.rc.top + 110, 45);
+			EFFECTMANAGER->play("boss_smoke_noWing2", _boss.rc.left + 180, _boss.rc.top + 210, 45);
+
+			EFFECTMANAGER->update("boss_smoke_noWing", 0, -4.8f);
+			EFFECTMANAGER->update("boss_smoke_noWing2", 0, -4.8f);
+		}
+
+		//프로펠러도 없거나, 한쪽팔이 없거나, 두팔다 없을경우
+		if (_bossForm == NO_WING_PROP || _bossForm == NO_ONE_ARM || _bossForm == NO_ARM)
+		{
+			if (_bossForm == NO_ARM)
+			{
+				EFFECTMANAGER->play("boss_smoke_noWingProp", _boss.rc.right - 165, _boss.rc.top - 35, 45);
+
+				EFFECTMANAGER->update("boss_smoke_noWingProp", 0, -4.8f);
+			}
+
+			else
+			{
+				EFFECTMANAGER->play("boss_smoke_noWingProp", _boss.rc.right - 85, _boss.rc.top + 180, 45);
+
+				EFFECTMANAGER->update("boss_smoke_noWingProp", 0, -4.8f);
+			}
+			
+		}
+
+		//한쪽팔이 없거나, 두팔 다 없을경우
+		if (_bossForm == NO_ONE_ARM || _bossForm == NO_ARM)
+		{
+			EFFECTMANAGER->play("boss_smoke_noOneArm", (_boss.rc.left + _boss.rc.right) / 2,
+				(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+
+			EFFECTMANAGER->update("boss_smoke_noOneArm", 0, -4.8f);
+		}
+
+		//두팔 없을경우
+		if (_bossForm == NO_ARM)
+		{
+			//아이들 상태일때, 무브랑
+			if (_isIdleState || _isMoveState)
+			{
+				EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2 - 30,
+					_boss.rc.top - 30, 45);
+			}
+
+			//데미지를쳐 맞았을때
+			if (_isDamagedState)
+			{
+				if (_currentFrameX >= _boss.img->getMaxFrameX())
+				{
+					EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2,
+						(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+				}
+
+				else
+				{
+					EFFECTMANAGER->play("boss_smoke_noArm", (_boss.rc.left + _boss.rc.right) / 2,
+						(_boss.rc.top + _boss.rc.bottom) / 2 - 100, 45);
+				}
+			}
+
+			EFFECTMANAGER->update("boss_smoke_noArm", 0, -4.8f);
+		}
+	}
+}
+
+void boss::imgLocation()
+{
+	if (_bossForm == DEFAULT)
+	{
+	}
+
+	if (_bossForm == NO_WING)
+	{
+	}
+
+	if (_bossForm == NO_WING_PROP)
+	{
+	}
+
+	if (_bossForm == NO_ONE_ARM)
+	{
+	}
 }
 
 

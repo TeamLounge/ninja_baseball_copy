@@ -367,6 +367,9 @@
     <ClCompile Include="gloveState.cpp">
       <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClCompile>
+    <ClCompile Include="bossDeathState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -752,6 +755,9 @@
     </ClInclude>
     <ClInclude Include="gloveState.h">
       <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="bossDeathState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

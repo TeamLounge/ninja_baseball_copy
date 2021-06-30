@@ -161,6 +161,7 @@
     <ClInclude Include="blueBaseball.h" />
     <ClInclude Include="boss.h" />
     <ClInclude Include="bossDamagedState.h" />
+    <ClInclude Include="bossDeathState.h" />
     <ClInclude Include="bossEntryState.h" />
     <ClInclude Include="bossIdleState.h" />
     <ClInclude Include="bossJabAttackState.h" />
@@ -284,6 +285,7 @@
     <ClCompile Include="blueBaseball.cpp" />
     <ClCompile Include="boss.cpp" />
     <ClCompile Include="bossDamagedState.cpp" />
+    <ClCompile Include="bossDeathState.cpp" />
     <ClCompile Include="bossEntryState.cpp" />
     <ClCompile Include="bossIdleState.cpp" />
     <ClCompile Include="bossJabAttackState.cpp" />

@@ -20,6 +20,7 @@ private:
 
 private:
 	arrTotalEffect _vTotalEffect;
+	int _count;
 
 public:
 	effectManager();
@@ -29,12 +30,14 @@ public:
 	void release();
 	void update();
 	void update(float x, float y);
+	void update(string effectName, float x, float y);
 	void render();
 
 	void addEffect(string effectName, const char* imageName, int imageWidth,
 		int imageHeight, int effectWidth, int effectHeight, int fps, float elapsed, int buffer);
 
 	void play(string effectName, int x, int y);
+	void play(string effectName, int x, int y, int count);
 	void stop(string effectName);
 };
 

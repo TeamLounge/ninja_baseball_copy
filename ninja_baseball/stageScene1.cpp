@@ -9,15 +9,15 @@ HRESULT stageScene1::init()
 	_Ryno = new player;
 	_Ryno->init(2);
 
-	_red = new player;
-	_red->init(1);
+	//_red = new player;
+	//_red->init(1);
 
 	_em = new enemyManager;
 	_em->init();
 
 	_em->setPlayerMemoryAddressLink(_Ryno);
 	_Ryno->setEmMemoryAddressLink(_em);
-	_red->setEmMemoryAddressLink(_em);
+	//_red->setEmMemoryAddressLink(_em);
 
 	return S_OK;
 }
@@ -25,14 +25,14 @@ HRESULT stageScene1::init()
 void stageScene1::release()
 {
 	_Ryno->release();
-	_red->release();
+	//_red->release();
 }
 
 void stageScene1::update()
 {
 	RENDERMANAGER->update();
 	_Ryno->update();
-	_red->update();
+	//_red->update();
 	_em->update();
 	CAMERAMANAGER->updateCamera(_Ryno->getX(), _Ryno->getY(), 0.51f);
 
@@ -55,5 +55,5 @@ void stageScene1::render()
 	RENDERMANAGER->render(getMemDC());
 	_em->render();
 	_Ryno->render();
-	_red->render();
+	//_red->render();
 }
