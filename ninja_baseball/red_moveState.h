@@ -1,7 +1,7 @@
 #pragma once
 #include "playerstate.h"
 
-#define redSpeed 6
+#define redSpeed 5
 
 class red_moveState : public playerstate
 {
