@@ -42,6 +42,11 @@ void red_dieState::update(player * _player)
 			_count = 0;
 		}
 	}
+
+	else // 4번 돌고나서 플레이어가 쓰러진 이미지
+	{
+		//여기부터 작업하면됨..
+	}
 	
 	
 	//그림자 위치
