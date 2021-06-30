@@ -8,8 +8,10 @@
 
 batState * batDamagedState::inputHandle(bat * bat)
 {
-	
-
+	if (bat->isDeath)
+	{	
+		return new batDamagedState();
+	}
 
 	return nullptr;
 }
@@ -60,7 +62,6 @@ void batDamagedState::update(bat * bat)
 
 			}
 			bat->setCurrentFrameY(0);
-
 		}
 		//move
 		if (!bat->isXOverlap)
@@ -87,7 +88,7 @@ void batDamagedState::update(bat * bat)
 
 void batDamagedState::enter(bat * bat)
 {
-	switch (bat->_batMode)
+	switch (bat->_batMode)	//모드 바꿔서 이미지만 바꿔줄 뿐
 	{
 	case NORMAL:
 		bat->_bat.img = IMAGEMANAGER->findImage("fBat_damaged");
@@ -98,6 +99,7 @@ void batDamagedState::enter(bat * bat)
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_damaged");
 		break;
+	
 	default:
 		break;
 	}
@@ -111,9 +113,6 @@ void batDamagedState::enter(bat * bat)
 		bat->setCurrentFrameY(0);
 	}
 	bat->setCurrentFrameX(0);
-
-	bat->isDamaged = true;
-
 }
 
 void batDamagedState::exit(bat * bat)

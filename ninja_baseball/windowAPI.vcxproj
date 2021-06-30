@@ -151,6 +151,7 @@
     <ClInclude Include="bat.h" />
     <ClInclude Include="batAttackState.h" />
     <ClInclude Include="batDamagedState.h" />
+    <ClInclude Include="batDeathState.h" />
     <ClInclude Include="batIdleState.h" />
     <ClInclude Include="batMoveState.h" />
     <ClInclude Include="batState.h" />
@@ -274,6 +275,7 @@
     <ClCompile Include="bat.cpp" />
     <ClCompile Include="batAttackState.cpp" />
     <ClCompile Include="batDamagedState.cpp" />
+    <ClCompile Include="batDeathState.cpp" />
     <ClCompile Include="batIdleState.cpp" />
     <ClCompile Include="batMoveState.cpp" />
     <ClCompile Include="batState.cpp" />

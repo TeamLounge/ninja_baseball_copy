@@ -5,9 +5,9 @@
 HRESULT enemyManager::init()
 {
 	//setBaseball();
-	setBat();
+	//setBat();
 	//setCard();
-	//setGlove();
+	setGlove();
 	setBoss();
 
 	return S_OK;
@@ -27,7 +27,6 @@ void enemyManager::update()
 
 	updateGlove();
 	gloveCollision();
-
 
 	playerLocation();
 
@@ -53,7 +52,7 @@ void enemyManager::render()
 	char str3[125];
 	sprintf_s(str3, "풀렸어");
 
-	renderBaseball();
+	//renderBaseball();
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		if ((*_viWb)->isdamage)
@@ -67,10 +66,9 @@ void enemyManager::render()
 	}
 }
 
-
 void enemyManager::setBaseball()
 {
-	//whiteBaseball
+	//WHITE
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
@@ -82,14 +80,14 @@ void enemyManager::setBaseball()
 	//_wb1->init(PointMake(500, 500));			//이닛으로 위치 잡아주고
 	//_vWb.push_back(_wb1);					//위치 잡아준 애를 벡터에 넣음
 
-//yellowBaseball
+	//YELLOW
 	for (int i = 0; i < 2; i++)
 	{
 		yellowBaseball* _yb = new yellowBaseball;
 		_yb->init(PointMake(500 + i * 180, -50 + i * 160));		//x좌표 동일하게 하지 말자!!!!! 겹쳐보인다!! 0번쨰 없어보인다!!!
 		_vYb.push_back(_yb);
 	}
-	//greenBaseball
+	//GREEN
 	for (int i = 0; i < 2; i++)
 	{
 		greenBaseball* _gb = new greenBaseball;
@@ -97,7 +95,7 @@ void enemyManager::setBaseball()
 		_vGb.push_back(_gb);
 
 	}
-	//blueBaseball
+	//BLUE
 	for (int i = 0; i < 2; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
@@ -555,6 +553,7 @@ void enemyManager::gloveCollision()
 	////////////////
    //    glove   //
    ///////////////
+    //Attack glove가 공격하면//
 	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
 	{
 		RECT temp;
@@ -567,14 +566,41 @@ void enemyManager::gloveCollision()
 			(*_viGlove)->setIsCollisionAttack(false);		//아니면 false로 전환
 		}
 	}
+	//Damaged glove가 맞으면//
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viGlove)->getRect()) &&
+			KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->damageCount++;
+			(*_viGlove)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+
+			if ((*_viGlove)->damageCount < 5)
+			{
+				(*_viGlove)->isDamaged = true;
+				(*_viGlove)->isDeath = false;
+			}
+			if ((*_viGlove)->damageCount == 5)
+			{
+				(*_viGlove)->isDamaged = false;
+				(*_viGlove)->isDeath = true;
+				(*_viGlove)->damageCount = 0;				//5대 맞으면 카운트 죽이고 죽어
+			}
+		}
+		else
+		{
+			(*_viGlove)->setIsCollisionDamaged(false);		//아니면 false로 전환
+		}
+	}
 }
 
 void enemyManager::setBat()
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		bat* _bat = new bat;
-		_bat->init(PointMake(470 + i * 30, WINSIZEY - 300 - i * 50));
+		_bat->init(PointMake(470 + i * 130, WINSIZEY - 300 - i * 150));
 		_vBat.push_back(_bat);
 	}
 }
@@ -593,12 +619,12 @@ void enemyManager::renderBat()
 	}
 }
 
-void enemyManager::setGlove()
+void enemyManager::setGlove()	//태어나는 좌표
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		glove* _glove = new glove;
-		_glove->init(PointMake(470 + i * 30, BACKGROUNDY - 500 - i * 250));
+		_glove->init(PointMake(470 + i * 30, WINSIZEY - 500 - i * 150));
 		_vGlove.push_back(_glove);
 	}
 }

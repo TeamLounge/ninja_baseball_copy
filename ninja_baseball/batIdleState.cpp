@@ -13,6 +13,10 @@ batState * batIdleState::inputHandle(bat * bat)
 		//bat->isCollisionAttack = true;
 		return new batAttackState();
 	}
+	if (bat->isDeath)
+	{
+		return new batDeathState();
+	}
 
 	return nullptr;
 }
@@ -99,6 +103,9 @@ void batIdleState::enter(bat * bat)
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_idle");
+		break;
+	case DEATH:
+		bat->isDeath = true;
 		break;
 	default:
 		break;

@@ -43,6 +43,7 @@ HRESULT bat::init(POINT position)
 	isJump = false;
 	isXOverlap == false;
 	isYOverlap == false;
+	isDeath = false;
 
 	_batMode = NORMAL;		//초기 모드 set
 
@@ -82,8 +83,12 @@ void bat::update()
 		damageCount++;
 		if (damageCount == 3) _batMode = NO_CAP;
 		else if (damageCount == 4) _batMode = NO_BAT;
-		else if (damageCount == 5) _batMode = DEATH;
-		else _batMode = NORMAL;
+		else if (damageCount == 5)
+		{
+			_batMode = DEATH;
+			isDeath = true;
+		}
+
 		isCollisionDamaged = true;
 	}
 
@@ -135,6 +140,8 @@ void bat::setImage()
 		IMAGEMANAGER->addFrameImage("fBat_damaged", "image/3_Enemy/bat/fBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("sBat_damaged", "image/3_Enemy/bat/sBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addFrameImage("tBat_damaged", "image/3_Enemy/bat/tBat_damaged.bmp", 2400, 600, 4, 2, true, RGB(255, 0, 255), false);
+
+		IMAGEMANAGER->addFrameImage("bat_burn", "image/3_Enemy/bat/bat_burn.bmp", 3600, 600, 6, 2, true, RGB(255, 0, 255), false);
 		
 		IMAGEMANAGER->addImage("bat_cap", "image/3_Enemy/bat/bat_cap.bmp", 90, 90, true, RGB(255, 0, 255), false);
 		IMAGEMANAGER->addImage("bat_bat", "image/3_Enemy/bat/bat_bat.bmp", 165, 255, true, RGB(255, 0, 255), false);

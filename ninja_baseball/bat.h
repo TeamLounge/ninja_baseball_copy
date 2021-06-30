@@ -54,6 +54,7 @@ public:
 	bool isYOverlap;			//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 	bool isAttack;				//쳤어?
 	bool isDamaged;				//맞았어?
+	bool isDeath;				//count == 5이고, 그래서 죽었어?
 
 	//배트 단계
 	bool noCap;			//step1 : 모자 벗어짐

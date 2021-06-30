@@ -46,8 +46,10 @@ public:
 	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
 	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 	bool isLand;					//점프 후 바닥에 도착했냐!!!!
+	bool isDamaged;					//맞았어?
+	bool isDeath;					//count == 5이고, 그래서 죽었어?
 
-	int DamageCount;				//맞은 횟수 
+	int damageCount;				//맞은 횟수
 
 
 	//이미지 좌표 수정 위한 bool값들

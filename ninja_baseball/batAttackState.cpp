@@ -12,10 +12,10 @@ batState * batAttackState::inputHandle(bat * bat)
 	{
 		return new batIdleState();
 	}
-	//if (true)/*맞았으면*/
-	//{
-	//	return new batDamagedState();
-	//}
+	if (bat->isDeath)
+	{
+		return new batDeathState();
+	}
 	return nullptr;
 }
 
@@ -101,6 +101,9 @@ void batAttackState::enter(bat * bat)
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_attack");
+		break;
+	case DEATH:
+		bat->isDeath = true;
 		break;
 	default:
 		break;

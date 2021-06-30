@@ -14,6 +14,10 @@ batState * batMoveState::inputHandle(bat * bat)
 	{
 		return new batIdleState();
 	}
+	if (bat->isDeath)
+	{
+		return new batDeathState();
+	}
 
 	return nullptr;
 }
@@ -96,6 +100,9 @@ void batMoveState::enter(bat * bat)
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_move");
+		break;
+	case DEATH:
+		bat->isDeath = true;
 		break;
 	default:
 		break;
