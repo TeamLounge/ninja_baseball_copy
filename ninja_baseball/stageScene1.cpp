@@ -6,8 +6,8 @@ HRESULT stageScene1::init()
 	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, 0);
 
-	//_Ryno = new player;
-	//_Ryno->init(2);
+	_Ryno = new player;
+	_Ryno->init(2);
 
 	//_red = new player;
 	//_red->init(1);
