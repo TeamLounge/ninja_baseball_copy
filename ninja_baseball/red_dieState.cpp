@@ -44,8 +44,6 @@ void red_dieState::update(player * _player)
 	}
 	
 	
-	
-	
 	//그림자 위치
 	if (_player->isRight == true)
 	{

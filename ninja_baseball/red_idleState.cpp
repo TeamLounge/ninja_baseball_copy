@@ -9,6 +9,7 @@
 #include "red_damage1State.h"
 #include "red_damage2State.h"
 #include "red_downAttackState.h"
+#include "red_dieState.h"
 //=====================================
 
 playerstate * red_idleState::handleInput(player * _player)
@@ -56,6 +57,11 @@ playerstate * red_idleState::handleInput(player * _player)
 	if (KEYMANAGER->isOnceKeyDown('J'))
 	{
 		return new red_downAttackState; //¸öÀÌ ´©¿üÀ» ¶§ ³»·ÁÂï±â
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('K'))
+	{
+		return new red_dieState; //ÇÇ°¡ ¶³¾îÁ®¼­ Á×¾úÀ½
 	}
 	//================================================================================
 
