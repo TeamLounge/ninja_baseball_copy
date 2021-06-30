@@ -35,6 +35,11 @@ playerstate * Ryno_move::handleInput(player * player)
 void Ryno_move::update(player * player)
 {
 	_count++;
+	
+	if (player->_shadow->getY() < 432)
+	{
+		player->setY(337);
+	}
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		LEFT = true;
@@ -47,6 +52,7 @@ void Ryno_move::update(player * player)
 		player->isRight = true;
 		player->setX(player->getX() + 5);
 	}
+	
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		UP = true;
@@ -57,7 +63,7 @@ void Ryno_move::update(player * player)
 		DOWN = true;
 		player->setY(player->getY() + 5);
 	}
-
+	
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT)) LEFT = false;
 	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT)) RIGHT = false;
 	if (KEYMANAGER->isOnceKeyUp(VK_UP)) UP = false;

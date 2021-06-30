@@ -11,8 +11,6 @@ HRESULT baseball::init(POINT position)
 	_obj._shadowY = position.y+_obj._img->getHeight()/2;
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 59, 53);
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
-	_obj._img->setCenter(_obj._x , _obj._y);
-	_obj._shadow->setCenter(_obj._shadowX, _obj._shadowY);
 
 	ishold = isattack = false;
 
@@ -21,6 +19,7 @@ HRESULT baseball::init(POINT position)
 
 void baseball::release()
 {
+
 }
 
 void baseball::update(bool Right)
@@ -47,8 +46,8 @@ void baseball::render()
 {
 	Rectangle(getMemDC(), _obj._obj_rc);
 	Rectangle(getMemDC(), _obj._shadow_rc);
-	_obj._shadow->render(getMemDC());
-	_obj._img->render(getMemDC());
+	_obj._shadow->render(getMemDC() , _obj._shadow_rc.left, _obj._shadow_rc.top);
+	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }
 
 HRESULT trashCan::init(POINT position)
@@ -58,14 +57,17 @@ HRESULT trashCan::init(POINT position)
 
 void trashCan::release()
 {
+
 }
 
 void trashCan::update()
 {
+
 }
 
 void trashCan::render()
 {
+
 }
 
 HRESULT banana::init(POINT position)
@@ -75,12 +77,15 @@ HRESULT banana::init(POINT position)
 
 void banana::release()
 {
+
 }
 
 void banana::update()
 {
+
 }
 
 void banana::render()
 {
+
 }

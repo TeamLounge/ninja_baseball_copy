@@ -87,7 +87,7 @@ void player::render()
 
 	sprintf_s(str, " 적 한데 맞앗다 ");
 	char str1[128];
-	sprintf_s(str1, "점");
+	sprintf_s(str1, "x: %f , y: %f", _x , _y);
 
 	Rectangle(getMemDC(), _playerrc);
 
