@@ -3,6 +3,8 @@
 #include "ybMoveState.h"
 #include "ybIdleState.h"
 #include "ybAttackPunchState.h"
+#include "ybDamagedState.h"
+#include "ybDeathState.h"
 
 ybState * ybIdleState::inputHandle(yellowBaseball * yellowBaseball)
 {

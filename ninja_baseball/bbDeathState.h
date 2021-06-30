@@ -3,8 +3,10 @@
 
 class blueBaseball;
 
-class bbLandState :public bbState
+class bbDeathState :public bbState
 {
+public:
+
 	int frameCount;
 
 	virtual bbState* inputHandle(blueBaseball* blueBaseball);
@@ -12,3 +14,4 @@ class bbLandState :public bbState
 	virtual void enter(blueBaseball* blueBaseball);
 	virtual void exit(blueBaseball* blueBaseball);
 };
+

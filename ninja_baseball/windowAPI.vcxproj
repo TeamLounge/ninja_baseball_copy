@@ -156,6 +156,8 @@
     <ClInclude Include="batMoveState.h" />
     <ClInclude Include="batState.h" />
     <ClInclude Include="bbAttackPunchState.h" />
+    <ClInclude Include="bbDamagedState.h" />
+    <ClInclude Include="bbDeathState.h" />
     <ClInclude Include="bbIdleState.h" />
     <ClInclude Include="bbLandState.h" />
     <ClInclude Include="bbState.h" />
@@ -187,6 +189,8 @@
     <ClInclude Include="enemyManager.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="gbAttackPunchState.h" />
+    <ClInclude Include="gbDamagedState.h" />
+    <ClInclude Include="gbDeathState.h" />
     <ClInclude Include="gbHangState.h" />
     <ClInclude Include="gbIdleState.h" />
     <ClInclude Include="gbLandState.h" />
@@ -259,12 +263,16 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="wbAttackJumpState.h" />
     <ClInclude Include="wbAttackPunchState.h" />
+    <ClInclude Include="wbDamagedState.h" />
+    <ClInclude Include="wbDeathState.h" />
     <ClInclude Include="wbIdleState.h" />
     <ClInclude Include="wbRollState.h" />
     <ClInclude Include="wbState.h" />
     <ClInclude Include="wbStopState.h" />
     <ClInclude Include="whiteBaseball.h" />
     <ClInclude Include="ybAttackPunchState.h" />
+    <ClInclude Include="ybDamagedState.h" />
+    <ClInclude Include="ybDeathState.h" />
     <ClInclude Include="ybIdleState.h" />
     <ClInclude Include="ybMoveState.h" />
     <ClInclude Include="ybState.h" />
@@ -280,6 +288,8 @@
     <ClCompile Include="batMoveState.cpp" />
     <ClCompile Include="batState.cpp" />
     <ClCompile Include="bbAttackPunchState.cpp" />
+    <ClCompile Include="bbDamagedState.cpp" />
+    <ClCompile Include="bbDeathState.cpp" />
     <ClCompile Include="bbIdleState.cpp" />
     <ClCompile Include="bbLandState.cpp" />
     <ClCompile Include="bbState.cpp" />
@@ -310,6 +320,8 @@
     <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="gbAttackPunchState.cpp" />
+    <ClCompile Include="gbDamagedState.cpp" />
+    <ClCompile Include="gbDeathState.cpp" />
     <ClCompile Include="gbHangState.cpp" />
     <ClCompile Include="gbIdleState.cpp" />
     <ClCompile Include="gbLandState.cpp" />
@@ -382,6 +394,8 @@
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="wbAttackJumpState.cpp" />
     <ClCompile Include="wbAttackPunchState.cpp" />
+    <ClCompile Include="wbDamagedState.cpp" />
+    <ClCompile Include="wbDeathState.cpp" />
     <ClCompile Include="wbIdleState.cpp" />
     <ClCompile Include="wbRollState.cpp" />
     <ClCompile Include="wbState.cpp" />
@@ -389,6 +403,8 @@
     <ClCompile Include="whiteBaseball.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="ybAttackPunchState.cpp" />
+    <ClCompile Include="ybDamagedState.cpp" />
+    <ClCompile Include="ybDeathState.cpp" />
     <ClCompile Include="ybIdleState.cpp" />
     <ClCompile Include="ybMoveState.cpp" />
     <ClCompile Include="ybState.cpp" />

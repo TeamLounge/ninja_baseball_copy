@@ -370,6 +370,30 @@
     <ClCompile Include="batDeathState.cpp">
       <Filter>playGound\enemy\bat\batState</Filter>
     </ClCompile>
+    <ClCompile Include="bbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="bbDeathState.cpp">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="gbDeathState.cpp">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbDamagedState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="wbDeathState.cpp">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybDamagedState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
+    <ClCompile Include="ybDeathState.cpp">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -758,6 +782,30 @@
     </ClInclude>
     <ClInclude Include="batDeathState.h">
       <Filter>playGound\enemy\bat\batState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbDeathState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="bbDamagedState.h">
+      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbDamagedState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="gbDeathState.h">
+      <Filter>playGound\enemy\baseballGreen\gbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbDamagedState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="wbDeathState.h">
+      <Filter>playGound\enemy\baseballWhite\wbState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybDamagedState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="ybDeathState.h">
+      <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

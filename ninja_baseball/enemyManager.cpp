@@ -4,10 +4,10 @@
 
 HRESULT enemyManager::init()
 {
-	//setBaseball();
+	setBaseball();
 	//setBat();
 	//setCard();
-	setGlove();
+	//setGlove();
 	setBoss();
 
 	return S_OK;
@@ -88,7 +88,7 @@ void enemyManager::setBaseball()
 		_vYb.push_back(_yb);
 	}
 	//GREEN
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		greenBaseball* _gb = new greenBaseball;
 		_gb->init(PointMake(400 + i * 140, -50 + i * 120));
@@ -430,8 +430,11 @@ void enemyManager::baseballCollision()
 	////////////////
    //   white    //
    ///////////////
+
+	//ATTACK
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
+		//ATTACK
 		RECT temp;
 		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
@@ -442,6 +445,7 @@ void enemyManager::baseballCollision()
 			(*_viWb)->setIsCollisionAttack(false);
 		}
 
+		//DAMAGED_(종혁씨가 만든)
 		if (_player->isattack) {
 			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top && 
 				_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
@@ -621,7 +625,7 @@ void enemyManager::renderBat()
 
 void enemyManager::setGlove()	//태어나는 좌표
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		glove* _glove = new glove;
 		_glove->init(PointMake(470 + i * 30, WINSIZEY - 500 - i * 150));

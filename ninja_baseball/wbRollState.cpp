@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "whiteBaseball.h"
-#include "wbRollState.h"
 #include "wbStopState.h"
+#include "wbRollState.h"
 #include "wbIdleState.h"
 #include "wbAttackJumpState.h"
 #include "wbAttackPunchState.h"
+#include "wbDamagedState.h"
+#include "wbDeathState.h"
+
 
 wbState * wbRollState::inputHandle(whiteBaseball * whiteBaseball)		//상태에 따른 변경들 추가하자. 상태끼리 왔다갔다 작용
 {

@@ -8,26 +8,12 @@
 #include "wbDamagedState.h"
 #include "wbDeathState.h"
 
-
-wbState * wbIdleState::inputHandle(whiteBaseball * whiteBaseball)
+wbState * wbDamagedState::inputHandle(whiteBaseball * whiteBaseball)
 {
-	if (whiteBaseball->isCollisionAttack)
-	{
-		timeCount++;
-		if (timeCount >= 70)
-		{
-			timeCount = 0;
-			return new wbAttackPunchState();
-		}
-	}
-	else
-	{	
-		timeCount = 0;
-	}
 	return nullptr;
 }
 
-void wbIdleState::update(whiteBaseball * whiteBaseball)
+void wbDamagedState::update(whiteBaseball * whiteBaseball)
 {
 	if (!whiteBaseball->isRight)		//왼쪽 바라보면
 	{
@@ -40,7 +26,8 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 			{
 				whiteBaseball->setCurrentFrameX(0);
 			}
-			else {
+			else
+			{
 				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
 			}
@@ -66,12 +53,13 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 			{
 				whiteBaseball->setCurrentFrameX(0);
 			}
-			else 
+			else
 			{
 				whiteBaseball->setCurrentFrameX(whiteBaseball->getCurrentFrameX() + 1);
 
 			}
 			whiteBaseball->setCurrentFrameY(0);
+
 		}
 		//move
 		if (!whiteBaseball->isXOverlap)
@@ -96,9 +84,9 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 	}
 }
 
-void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
+void wbDamagedState::enter(whiteBaseball * whiteBaseball)
 {
-	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_idle");
+	whiteBaseball-> _whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_damaged");
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -109,11 +97,8 @@ void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
 	}
 	whiteBaseball->setCurrentFrameX(0);
 
-	timeCount = 0;
-
-	whiteBaseball->setImageName("wBaseball_idle");
 }
 
-void wbIdleState::exit(whiteBaseball * whiteBaseball)
+void wbDamagedState::exit(whiteBaseball * whiteBaseball)
 {
 }
