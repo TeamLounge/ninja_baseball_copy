@@ -2,6 +2,7 @@
 #include "enemyManager.h"
 #include "player.h"
 
+//林籍 瘤况林技夸
 HRESULT enemyManager::init()
 {
 	setBaseball();
