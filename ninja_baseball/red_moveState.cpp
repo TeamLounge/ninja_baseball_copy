@@ -6,10 +6,11 @@
 #include "red_runState.h"
 #include "red_gripState.h"
 #include "red_damage1State.h"
+#include "red_catchState.h"
 
 playerstate* red_moveState::handleInput(player* _player)
 {
-	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 5) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 5) ||
+	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 4) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 4) ||
 		KEYMANAGER->isOnceKeyUp(VK_UP) || KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{
 		return new red_idleState;
@@ -39,6 +40,11 @@ playerstate* red_moveState::handleInput(player* _player)
 	if (_player->isdamage)
 	{
 		return new red_damage1State;
+	}
+
+	if (_player->iscatch) //에너미를 잡았을 때
+	{
+		return new red_catchState;
 	}
 	
 	return nullptr;
@@ -88,7 +94,7 @@ void red_moveState::update(player * _player)
 		_runTime++;
 	}
 
-	if (_runTime < 4)
+	if (_runTime < 3)
 	{
 		_isRun = true;
 	}
