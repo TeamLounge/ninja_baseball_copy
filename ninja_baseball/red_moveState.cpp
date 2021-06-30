@@ -128,6 +128,7 @@ void red_moveState::update(player * _player)
 			_count = 0;
 		}
 	}
+
 	//그림자 위치
 	if (_player->isRight == true)
 	{

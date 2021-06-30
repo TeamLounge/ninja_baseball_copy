@@ -10,8 +10,10 @@ batState * batIdleState::inputHandle(bat * bat)
 	if (bat->isCollisionAttack)		//충돌했으면 attack해!
 	{
 		//bat->isCollisionAttack = true;
+		
 		return new batAttackState();
 	}
+		
 
 	return nullptr;
 }

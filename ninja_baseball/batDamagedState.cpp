@@ -44,6 +44,7 @@ void batDamagedState::update(bat * bat)
 
 void batDamagedState::enter(bat * bat)
 {
+	bat->isDamaged = true;
 	bat->_bat.img = IMAGEMANAGER->findImage("fBat_damaged");
 	bat->setCurrentFrameX(0);
 	bat->setCurrentFrameY(1);
