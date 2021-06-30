@@ -26,6 +26,7 @@ void batDamagedState::update(bat * bat)
 	}
 	
 	frameCount++;
+
 	if (frameCount >= 8)
 	{
 		frameCount = 0;

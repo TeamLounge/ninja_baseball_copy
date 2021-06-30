@@ -11,6 +11,7 @@ gloveState * gloveAttackTongueState::inputHandle(glove * glove)
 	if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
 	{
 		glove->isAttackTongueState = false;
+		glove->isattack = false;
 
 		return new gloveMoveState();
 	}
@@ -37,6 +38,7 @@ void gloveAttackTongueState::update(glove * glove)
 
 void gloveAttackTongueState::enter(glove * glove)
 {
+	glove->isattack = true;
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_attackTongue");
 	if (!glove->isRight)
 	{

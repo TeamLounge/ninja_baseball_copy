@@ -35,6 +35,7 @@ void batIdleState::update(bat * bat)
 				bat->setCurrentFrameX(bat->getCurrentFrameX() + 1);
 
 			}
+
 			bat->setCurrentFrameY(1);
 		}
 

@@ -50,6 +50,10 @@ HRESULT glove::init(POINT position)
 	isYOverlap = false;
 	isLand = false;
 
+	isattack = false;              //에너미가 공격했어??
+	isdamage = false;				//에너미가 데미지 받았어??							
+	iscatch = false;				//에저미가 잡혔어??
+
 	return S_OK;
 }
 

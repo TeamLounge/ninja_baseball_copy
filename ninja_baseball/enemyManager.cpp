@@ -27,8 +27,7 @@ void enemyManager::update()
 
 	updateGlove();
 	gloveCollision();
-
-
+	
 	playerLocation();
 
 	updateCard();
@@ -453,6 +452,7 @@ void enemyManager::baseballCollision()
 				}
 			}
 		}
+
 		if (_player->iscrawl && !_player->isattack)
 		{
 			if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top &&
