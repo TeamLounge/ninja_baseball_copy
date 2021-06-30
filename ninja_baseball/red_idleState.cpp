@@ -4,6 +4,7 @@
 #include "red_moveState.h"
 #include "red_attackState.h"
 #include "red_idleState2.h"
+#include "red_dynamiteDance.h"
 //=====================================
 #include "red_damage1State.h"
 #include "red_damage2State.h"
@@ -34,6 +35,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	if (_time > 200)
 	{
 		return new red_idleState2;
+	}
+	if (KEYMANAGER->isOnceKeyDown('V'))
+	{
+		return new red_dynamiteDance;
 	}
 
 	//=============================================================================
