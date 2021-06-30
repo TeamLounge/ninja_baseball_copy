@@ -8,20 +8,22 @@ HRESULT playerSelectScene::init()
 	
 	//캐릭터
 	//red
-	IMAGEMANAGER->addImage("Drafted1", "image/6_UI/playerSelect/red_select1.bmp", 240, 300, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("Employed1", "image/6_UI/playerSelect/red_select2.bmp", 240, 288, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Drafted1", "image/6_UI/playerSelect/red_select1.bmp", 480, 300, 2, 1, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Employed1", "image/6_UI/playerSelect/red_select2.bmp", 480, 288, 2, 1, true, RGB(255, 0, 255), false);
 	
 	//green
-	IMAGEMANAGER->addImage("Drafted2", "image/6_UI/playerSelect/green_select1.bmp", 240, 300, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("Employed2", "image/6_UI/playerSelect/green_select2.bmp", 240, 288, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Drafted2", "image/6_UI/playerSelect/green_select1.bmp", 480, 300, 2, 1, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Employed2", "image/6_UI/playerSelect/green_select2.bmp", 480, 288, 2, 1, true, RGB(255, 0, 255), false);
 	
 	//yellow
-	IMAGEMANAGER->addImage("Drafted3", "image/6_UI/playerSelect/yellow_select1.bmp", 240, 300, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("Employed3", "image/6_UI/playerSelect/yellow_select2.bmp", 240, 288, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Drafted3", "image/6_UI/playerSelect/yellow_select1.bmp", 480, 300, 2, 1, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Employed3", "image/6_UI/playerSelect/yellow_select2.bmp", 480, 288, 2, 1, true, RGB(255, 0, 255), false);
 	
 	//blue
-	IMAGEMANAGER->addImage("Drafted4", "image/6_UI/playerSelect/blue_select1.bmp", 240, 300, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("Employed4", "image/6_UI/playerSelect/blue_select2.bmp", 240, 288, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Drafted4", "image/6_UI/playerSelect/blue_select1.bmp", 480, 300, 2, 1, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Employed4", "image/6_UI/playerSelect/blue_select2.bmp", 480, 288, 2, 1, true, RGB(255, 0, 255), false);
+
+	//플레이어 선택 커서
 	IMAGEMANAGER->addFrameImage("cursor", "image/6_UI/playerSelect/cursor_frame.bmp", 96, 93, 2, 1, true, RGB(255, 0, 255), false);
 
 	//카메라설정
@@ -39,6 +41,8 @@ HRESULT playerSelectScene::init()
 
 	_currentSelect = 0;
 	_elapsedSec = 0;
+
+	_characterFrameSec = 0;
 
 	_isSelect = false;
 	return S_OK;
@@ -67,9 +71,11 @@ void playerSelectScene::update()
 			_character[_currentSelect].rc.top -= 100;
 			_character[_currentSelect].rc.bottom -= 100;
 
+			int currentframeX = IMAGEMANAGER->findImage(_character[_currentSelect].imageName)->getFrameX();
 			char str[128];
 			sprintf_s(str, "Employed%d", _currentSelect + 1);
 			_character[_currentSelect].imageName = str;
+			IMAGEMANAGER->findImage(_character[_currentSelect].imageName)->setFrameX(currentframeX);
 
 			vector<string> vStr;
 			_itoa_s(_currentSelect + 1, str, 2, 10);
@@ -84,9 +90,9 @@ void playerSelectScene::update()
 	_elapsedSec += TIMEMANAGER->getElapsedTime();
 	if (!_isSelect)
 	{
-		if (_elapsedSec >= 0.5)
+		if (_elapsedSec >= 0.5f)
 		{
-			_elapsedSec -= 0.5;
+			_elapsedSec -= 0.5f;
 			if (IMAGEMANAGER->findImage("cursor")->getFrameX() >= IMAGEMANAGER->findImage("cursor")->getMaxFrameX())
 			{
 				IMAGEMANAGER->findImage("cursor")->setFrameX(0);
@@ -105,6 +111,23 @@ void playerSelectScene::update()
 		}
 	}
 	
+	_characterFrameSec += TIMEMANAGER->getElapsedTime();
+	if (_characterFrameSec >= 0.5f)
+	{
+		_characterFrameSec -= 0.5f;
+		for (int i = 0; i < 4; i++)
+		{
+			if (IMAGEMANAGER->findImage(_character[i].imageName)->getFrameX() >= IMAGEMANAGER->findImage(_character[i].imageName)->getMaxFrameX())
+			{
+				IMAGEMANAGER->findImage(_character[i].imageName)->setFrameX(0);
+			}
+			else
+			{
+				IMAGEMANAGER->findImage(_character[i].imageName)->setFrameX(IMAGEMANAGER->findImage(_character[i].imageName)->getFrameX() + 1);
+			}
+		}
+	}
+
 }
 
 void playerSelectScene::render()
@@ -113,7 +136,7 @@ void playerSelectScene::render()
 	for (int i = 0; i < 4; i++)
 	{
 		//Rectangle(getMemDC(), _character[i].rc);
-		IMAGEMANAGER->findImage(_character[i].imageName)->render(getMemDC(), _character[i].rc.left, _character[i].rc.top);
+		IMAGEMANAGER->findImage(_character[i].imageName)->frameRender(getMemDC(), _character[i].rc.left, _character[i].rc.top);
 		//Rectangle(getMemDC(), _cursor[i]);
 	}
 

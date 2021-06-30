@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-struct tagCharaterSelect
+struct tagCharacterSelect
 {
 	RECT rc;
 	string imageName;
@@ -12,10 +12,12 @@ private:
 	int _currentSelect; //현재 선택한 캐릭터
 
 	float _elapsedSec;
+
+	float _characterFrameSec;
 	
 	bool _isSelect; //선택했는지 확인
 
-	tagCharaterSelect _character[4]; //캐릭터 이미지 렉트
+	tagCharacterSelect _character[4]; //캐릭터 이미지 렉트
 public:
 	HRESULT init();
 	void release();
