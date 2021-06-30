@@ -52,6 +52,10 @@ void startScene::update()
 		if (_dialogTextNum[2] >= 17 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForFrame += TIMEMANAGER->getElapsedTime();
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				_isFirstDialogEnd = true;
+			}
 			if (IMAGEMANAGER->findImage("stolen")->getFrameX() >= IMAGEMANAGER->findImage("stolen")->getMaxFrameX())
 			{
 				if (_elapsedSecForFrame >= 1.0f)

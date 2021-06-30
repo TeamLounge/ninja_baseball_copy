@@ -47,6 +47,10 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isXOverlap = false;
 	isYOverlap = false;
 
+	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "wBaseball_shadow",
+		&_greenBaseball.x, &_greenBaseball.y, &_gbShadow.x, &_gbShadow.y,
+		&_currentFrameX, &_currentFrameY);
+
 	return S_OK;
 }
 

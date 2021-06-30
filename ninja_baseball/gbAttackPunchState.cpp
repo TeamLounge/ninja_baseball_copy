@@ -86,7 +86,8 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 		greenBaseball->setCurrentFrameY(0);
 	}
 	greenBaseball->setCurrentFrameX(0);
-
+	
+	greenBaseball->setImageName("gBaseball_punch");
 }
 
 void gbAttackPunchState::exit(greenBaseball * greenBaseball)

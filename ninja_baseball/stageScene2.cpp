@@ -39,11 +39,11 @@ void stageScene2::release()
 
 void stageScene2::update()
 {
-	_y -= 15;
+	_y -= 30;
 	CAMERAMANAGER->updateCamera(WINSIZEX / 2, _y - _distance);
 	if (_y < CAMERAMANAGER->getCameraCenterY() + _distance)
 	{
-		_y = CAMERAMANAGER->getCameraCenterY() + _distance;
+
 		SCENEMANAGER->changeScene("stage3");
 	}
 }

@@ -32,7 +32,6 @@ void stageScene1::update()
 	RENDERMANAGER->update();
 	_player->update();
 	_em->update();
-	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 
 	if (KEYMANAGER->isOnceKeyDown('A'))
 	{
@@ -45,6 +44,10 @@ void stageScene1::update()
 			CAMERAMANAGER->_isFixed = false;
 		}
 	}
+
+	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+
+	
 
 	if (KEYMANAGER->isOnceKeyDown('S'))
 	{
@@ -67,9 +70,7 @@ void stageScene1::update()
 		vText.push_back(temp);
 
 		TXTDATA->txtSave("playerData.txt", vText);
-	}
-	if (KEYMANAGER->isOnceKeyDown('D'))
-	{
+
 		SCENEMANAGER->changeScene("stage2");
 	}
 }
@@ -77,7 +78,7 @@ void stageScene1::update()
 void stageScene1::render()
 {
 	IMAGEMANAGER->findImage("stage_1")->render(getMemDC(), 0, 0);
-	RENDERMANAGER->render(getMemDC());
 	_em->render();
 	_player->render();
+	RENDERMANAGER->render(getMemDC());
 }

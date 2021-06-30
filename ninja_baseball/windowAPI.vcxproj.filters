@@ -370,6 +370,9 @@
     <ClCompile Include="txtData.cpp">
       <Filter>2DGameFramework\txtData</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -758,6 +761,9 @@
     </ClInclude>
     <ClInclude Include="txtData.h">
       <Filter>2DGameFramework\txtData</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

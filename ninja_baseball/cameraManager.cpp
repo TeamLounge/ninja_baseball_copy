@@ -52,13 +52,25 @@ void cameraManager::render(image* backBuffer, HDC frontDC)
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		TIMEMANAGER->render(cameraDC);
+		char str[128];
+		sprintf_s(str, "_isFixed: %d", _isFixed);
+		TextOut(cameraDC, 0, 100, str, strlen(str));
 	}
 	_cameraBuffer->render(frontDC, 0, 0);
 }
 
 void cameraManager::updateCamera(float x, float y)
 {
-	_cameraBuffer->setCenter(x, y);
+	if (_isFixed) return;
+
+	if (x > _cameraBuffer->getCenterX())
+	{
+		_cameraBuffer->setX(_cameraBuffer->getX() + 5);
+	}
+	else
+	{
+		_cameraBuffer->setCenter(x, y);
+	}
 	cameraRange();
 }
 

@@ -52,4 +52,6 @@ void Ryno_death::enter(player * player)
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
+
+	player->setImageName("Ryno_death");
 }

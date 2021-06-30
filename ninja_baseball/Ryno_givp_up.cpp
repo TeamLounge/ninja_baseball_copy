@@ -26,7 +26,7 @@ void Ryno_givp_up::update(player * player)
 
 void Ryno_givp_up::enter(player * player)
 {
-	image* img = IMAGEMANAGER->findImage("Ryno_givp_up");
+	image* img = IMAGEMANAGER->findImage("Ryno_give_up");
 	_count = 0;
 	player->setImage(img);
 	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
@@ -44,4 +44,5 @@ void Ryno_givp_up::enter(player * player)
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
+	player->setImageName("Ryno_give_up");
 }

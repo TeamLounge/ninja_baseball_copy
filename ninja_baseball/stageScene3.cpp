@@ -25,7 +25,7 @@ void stageScene3::update()
 	_player->update();
 
 	//카메라 무빙 수정 필요
-	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+	CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2);
 	if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
 	{
 		CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);

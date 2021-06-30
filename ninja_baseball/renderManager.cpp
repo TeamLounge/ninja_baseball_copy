@@ -20,7 +20,7 @@ void renderManager::render(HDC hdc)
 {
 	for (int i = 0; i < _arrObj.size(); i++)
 	{
-		if (!_arrObj[i].isHaveFrame)
+		if (_arrObj[i].isPlayer)
 		{
 			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
 				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
@@ -49,7 +49,7 @@ void renderManager::addObj(string strKey, const char* bodyImageName, const char*
 	object.bodyY = bodyY;
 	object.shadowX = shadowX;
 	object.shadowY = shadowY;
-	object.isHaveFrame = false;
+	object.isPlayer = true;
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{
 		if (iter->first == strKey)
@@ -74,7 +74,7 @@ void renderManager::addObj(string strKey, const char* bodyImageName, const char*
 	object.shadowY = shadowY;
 	object.currentFrameX = currentFrameX;
 	object.currentFrameY = currentFrameY;
-	object.isHaveFrame = true;
+	object.isPlayer = false;
 
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{

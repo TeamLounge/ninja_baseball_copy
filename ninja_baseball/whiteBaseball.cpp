@@ -47,11 +47,12 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isXOverlap = false;
 	isYOverlap = false;
 
-
+	
 	RENDERMANAGER->addObj("whiteBaseball", _imgName.c_str(), "wBaseball_shadow", 
 		&_whiteBaseball.x, &_whiteBaseball.y, &_wbShadow.x, &_wbShadow.y, 
 		&_currentFrameX, &_currentFrameY);
-
+	
+	
 	isattack = false;
 	isdamage = false;
 	iscatch = false;

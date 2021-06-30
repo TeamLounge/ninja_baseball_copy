@@ -47,6 +47,10 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isXOverlap = false;
 	isYOverlap = false;
 
+	RENDERMANAGER->addObj("blueBaseball", _imgName.c_str(), "wBaseball_shadow",
+		&_blueBaseball.x, &_blueBaseball.y, &_bbShadow.x, &_bbShadow.y,
+		&_currentFrameX, &_currentFrameY);
+
 	return S_OK;
 }
 

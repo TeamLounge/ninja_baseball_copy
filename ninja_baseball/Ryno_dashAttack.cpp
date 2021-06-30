@@ -56,4 +56,6 @@ void Ryno_dashAttack::enter(player * player)
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
+
+	player->setImageName("Ryno_dashAttack_ctrl");
 }
