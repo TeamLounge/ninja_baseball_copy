@@ -95,6 +95,8 @@ void Ryno_fall::update(player * player)
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+
 }
 
 void Ryno_fall::enter(player * player)
@@ -109,6 +111,8 @@ void Ryno_fall::enter(player * player)
 	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
+
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
 
 	//ÁÂ¿ì±¸ºÐ
 	if (player->isRight)

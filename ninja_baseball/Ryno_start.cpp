@@ -24,6 +24,10 @@ void Ryno_start::enter(player * player)
 	player->setRect(_rc);
 	player->_shadow->setY(player->getY() + 90);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) - 15);
+
+	player->setShadowX(player->getY() + 90 + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	player->setShadowY(player->getX() - (player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
+
 	player->getImage()->setFrameX(0);
 	player->getImage()->setFrameY(0);
 

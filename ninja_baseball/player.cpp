@@ -6,7 +6,7 @@
 #include "enemyManager.h"
 
 HRESULT player::init(int character)
-{	
+{
 
 	addImage();
 	_character = character;
@@ -23,20 +23,27 @@ HRESULT player::init(int character)
 	}
 
 	isRight = true;
-	isattack = isdamage = iscrawl = iscatch= false;
+	isattack = isdamage = iscrawl = iscatch = false;
 	_x = 200;
 	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
-	_state -> enter(this);
-	 
+	_state->enter(this);
+
 	_em = new enemyManager;
 
 	isattack = false;
 	isdamage = false;
 	iscatch = false;
 	iscrawl = false;
-	
-	RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+
+	if (character == 1)
+	{
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
+	}
+	else if (character == 2)
+	{
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+	}
 
 	_hp = 5;
 	_life = 3;

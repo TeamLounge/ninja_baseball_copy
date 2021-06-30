@@ -32,6 +32,8 @@ void Ryno_dashAttack::update(player * player)
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
+
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
 }
 
 void Ryno_dashAttack::enter(player * player)
@@ -45,6 +47,9 @@ void Ryno_dashAttack::enter(player * player)
 	player->setY(player->_shadow->getY() - 60);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 60);
+
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	player->setShadowY(player->getY() + 60 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
 
 	if (player->isRight)
 	{

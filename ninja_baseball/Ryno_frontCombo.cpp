@@ -111,6 +111,9 @@ void Ryno_frontCombo::enter(player * player)
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));
 	player->_shadow->setY(player->getY() + 120);
 
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	player->setShadowY(player->getY() + 120 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
+
 	if (player->isRight)
 	{
 		player->getImage()->setFrameX(0);
