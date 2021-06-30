@@ -45,10 +45,14 @@ public:
 	
 	bool isRight;				//에너미가 플레이어의 오른쪽에 있어?
 	bool isDown;				//에너미가 플레이어의 아래에 있어?
-	bool isCollisionAttack;		//에너미 들어와서 칠거야?
+	bool isCollisionAttack;		//에너미 들어와서 공격했어?
+	bool isCollisionDamaged;	//에너미 들어와서 맞았어?
 	bool isJump;				//점프했어?
-	bool isXOverlap;				//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
-	bool isYOverlap;				//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
+	bool isXOverlap;			//에너미와 플레이어 중점이 X범위 안에서 비슷해? (떨림방지용)
+	bool isYOverlap;			//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
+
+	bool isDamaged;				//맞았어?
+	int damageCount;			//맞은 횟수
 
 	bool isattack;
 	bool isdamage;
@@ -76,6 +80,7 @@ public:
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
+	void setIsCollisionDamaged(bool _isCollisionDamaged) { isCollisionDamaged = _isCollisionDamaged; }
 	void setIsXOverlap(bool _isXOverlap) { isXOverlap = _isXOverlap; }
 	void setIsYOverlap(bool _isYOverlap) { isYOverlap = _isYOverlap; }
 

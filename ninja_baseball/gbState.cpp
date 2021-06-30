@@ -4,3 +4,5 @@
 #include "gbHangState.h"
 #include "gbLandState.h"
 #include "gbAttackPunchState.h"
+#include "gbDamagedState.h"
+#include "gbDeathState.h"

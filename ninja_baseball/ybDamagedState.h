@@ -3,7 +3,7 @@
 
 class yellowBaseball;
 
-class ybAttackPunchState :public ybState
+class ybDamagedState : public ybState
 {
 public:
 
@@ -14,3 +14,4 @@ public:
 	virtual void enter(yellowBaseball* yellowBaseball);
 	virtual void exit(yellowBaseball* yellowBaseball);
 };
+

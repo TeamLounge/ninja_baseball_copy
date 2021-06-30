@@ -4,6 +4,7 @@
 #include "batDamagedState.h"
 #include "batIdleState.h"
 #include "batMoveState.h"
+#include "batDeathState.h"
 
 batState * batIdleState::inputHandle(bat * bat)
 {
@@ -11,6 +12,10 @@ batState * batIdleState::inputHandle(bat * bat)
 	{
 		//bat->isCollisionAttack = true;
 		return new batAttackState();
+	}
+	if (bat->isDeath)
+	{
+		return new batDeathState();
 	}
 
 	return nullptr;
@@ -88,7 +93,24 @@ void batIdleState::update(bat * bat)
 
 void batIdleState::enter(bat * bat)
 {
-	bat->_bat.img = IMAGEMANAGER->findImage("fBat_idle");
+	switch (bat->_batMode)
+	{
+	case NORMAL:
+		bat->_bat.img = IMAGEMANAGER->findImage("fBat_idle");
+		break;
+	case NO_CAP:
+		bat->_bat.img = IMAGEMANAGER->findImage("sBat_idle");
+		break;
+	case NO_BAT:
+		bat->_bat.img = IMAGEMANAGER->findImage("tBat_idle");
+		break;
+	case DEATH:
+		bat->isDeath = true;
+		break;
+	default:
+		break;
+	}
+
 	if (!bat->isRight)
 	{
 		bat->setCurrentFrameY(1);

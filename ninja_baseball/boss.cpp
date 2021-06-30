@@ -502,7 +502,7 @@ void boss::renderAdjust()
 
 			else
 			{
-				_imageX = _boss.x;
+				_imageX = _boss.x + 85;
 				_imageY = _boss.y;
 			}
 			break;

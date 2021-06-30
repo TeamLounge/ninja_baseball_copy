@@ -4,6 +4,7 @@
 #include "batDamagedState.h"
 #include "batIdleState.h"
 #include "batMoveState.h"
+#include "batDeathState.h"
 
 batState * batAttackState::inputHandle(bat * bat)
 {
@@ -11,10 +12,10 @@ batState * batAttackState::inputHandle(bat * bat)
 	{
 		return new batIdleState();
 	}
-	//if (true)/*맞았으면*/
-	//{
-	//	return new batDamagedState();
-	//}
+	if (bat->isDeath)
+	{
+		return new batDeathState();
+	}
 	return nullptr;
 }
 
@@ -90,9 +91,25 @@ void batAttackState::update(bat * bat)
 
 void batAttackState::enter(bat * bat)
 {
-	bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
+	switch (bat->_batMode)
+	{
+	case NORMAL:
+		bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
+		break;
+	case NO_CAP:
+		bat->_bat.img = IMAGEMANAGER->findImage("sBat_attack");
+		break;
+	case NO_BAT:
+		bat->_bat.img = IMAGEMANAGER->findImage("tBat_attack");
+		break;
+	case DEATH:
+		bat->isDeath = true;
+		break;
+	default:
+		break;
+	}
 
-	attackCount = 0;
+	//attackCount = 0;
 
 	if (!bat->isRight)
 	{

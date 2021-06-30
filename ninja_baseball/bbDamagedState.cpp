@@ -6,28 +6,16 @@
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
 
-bbState * bbIdleState::inputHandle(blueBaseball * blueBaseball)
+bbState * bbDamagedState::inputHandle(blueBaseball * blueBaseball)
 {
-	if (blueBaseball->isCollisionAttack)
-	{
-		timeCount++;
-		if (timeCount >= 60)
-		{
-			timeCount = 0;
-			return new bbAttackPunchState();
-		}
-	}
-	else
-	{
-		timeCount = 0;
-	}
 	return nullptr;
 }
 
-void bbIdleState::update(blueBaseball * blueBaseball)
+void bbDamagedState::update(blueBaseball * blueBaseball)
 {
-	if (!blueBaseball->isRight)		//왼쪽 보고 있으면
+	if (!blueBaseball->isRight)		//왼쪽 바라보면
 	{
+		//frame
 		frameCount++;
 		if (frameCount >= 15)
 		{
@@ -36,7 +24,7 @@ void bbIdleState::update(blueBaseball * blueBaseball)
 			{
 				blueBaseball->setCurrentFrameX(0);
 			}
-			else 
+			else
 			{
 				blueBaseball->setCurrentFrameX(blueBaseball->getCurrentFrameX() + 1);
 
@@ -44,15 +32,16 @@ void bbIdleState::update(blueBaseball * blueBaseball)
 			blueBaseball->setCurrentFrameY(1);
 		}
 
-		//왼쪽으로 이동
+		//move
 		if (!blueBaseball->isXOverlap)
 		{
 			blueBaseball->_blueBaseball.x -= 0.7f;
 		}
-		//탐지 범위 왼쪽으로
+		//감지 범위 => 왼쪽으로 생김
 		blueBaseball->_blueBaseball.rcAttackRange = RectMakeCenter(blueBaseball->_blueBaseball.x, blueBaseball->_blueBaseball.y + 200, 250, 50);
+
 	}
-	if (blueBaseball->isRight)			//오른쪽 보면
+	if (blueBaseball->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
 		if (frameCount >= 15)
@@ -93,9 +82,9 @@ void bbIdleState::update(blueBaseball * blueBaseball)
 	}
 }
 
-void bbIdleState::enter(blueBaseball * blueBaseball)
+void bbDamagedState::enter(blueBaseball * blueBaseball)
 {
-	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_idle");
+	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_damaged");
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);
@@ -105,10 +94,8 @@ void bbIdleState::enter(blueBaseball * blueBaseball)
 		blueBaseball->setCurrentFrameY(0);
 	}
 	blueBaseball->setCurrentFrameX(0);
-
-	timeCount = 0;
 }
 
-void bbIdleState::exit(blueBaseball * blueBaseball)
+void bbDamagedState::exit(blueBaseball * blueBaseball)
 {
 }

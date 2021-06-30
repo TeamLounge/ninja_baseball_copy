@@ -3,12 +3,11 @@
 
 class bat;
 
-class batDamagedState :public batState
+class batDeathState :public batState
 {
 public:
 
 	int frameCount;
-	
 
 	virtual batState* inputHandle(bat* bat);
 	virtual void update(bat* bat);

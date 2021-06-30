@@ -8,11 +8,24 @@
 
 gloveState * gloveMoveState::inputHandle(glove * glove)
 {	
+	//glove가 때리면
 	if (glove->isCollisionAttack)
 	{
-		return new gloveAttackTongueState();
+		return new gloveAttackTongueState();		//그럼 어택텅 가서 모션 보여줄거고, 행동은 player쪽에서 하고
 	}
-	return nullptr;
+	//glove가 맞으면
+	if (glove->isCollisionDamaged)
+	{
+		if (glove->damageCount < 5)
+		{
+			return new gloveDamagedState();
+		}
+		if (glove->damageCount == 5)
+		{
+			return new gloveDeathState();
+		}
+	}
+		return nullptr;
 }
 
 void gloveMoveState::update(glove * glove)
@@ -58,10 +71,8 @@ void gloveMoveState::update(glove * glove)
 			else
 			{
 				glove->setCurrentFrameX(glove->getCurrentFrameX() + 1);
-
 			}
 			glove->setCurrentFrameY(0);
-
 		}
 		//move
 		if (!glove->isXOverlap)

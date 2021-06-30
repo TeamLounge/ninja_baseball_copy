@@ -7,19 +7,16 @@
 #include "gbDamagedState.h"
 #include "gbDeathState.h"
 
-gbState * gbAttackPunchState::inputHandle(greenBaseball * greenBaseball)
+gbState * gbDamagedState::inputHandle(greenBaseball * greenBaseball)
 {
-	if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())	//펀치 프레임이 다 돌고 나면		//나중에 특정 조건 또 추가해주자 ex) 펀치 날렸고 + 맞으면, 안맞으면
-	{
-		return new gbIdleState();	//디폴트(안맞으면)로 idle 상태
-	}
 	return nullptr;
 }
 
-void gbAttackPunchState::update(greenBaseball * greenBaseball)
+void gbDamagedState::update(greenBaseball * greenBaseball)
 {
-	if (!greenBaseball->isRight)		//왼쪽 보고 있으면
+	if (!greenBaseball->isRight)		//왼쪽 바라보면
 	{
+		//frame
 		frameCount++;
 		if (frameCount >= 15)
 		{
@@ -28,7 +25,7 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 			{
 				greenBaseball->setCurrentFrameX(0);
 			}
-			else 
+			else
 			{
 				greenBaseball->setCurrentFrameX(greenBaseball->getCurrentFrameX() + 1);
 
@@ -36,12 +33,16 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 			greenBaseball->setCurrentFrameY(1);
 		}
 
-		//왼쪽으로 이동
-		greenBaseball->_greenBaseball.x -= 0.7f;
-		//탐지 범위 왼쪽으로
+		//move
+		if (!greenBaseball->isXOverlap)
+		{
+			greenBaseball->_greenBaseball.x -= 0.7f;
+		}
+		//감지 범위 => 왼쪽으로 생김
 		greenBaseball->_greenBaseball.rcAttackRange = RectMakeCenter(greenBaseball->_greenBaseball.x, greenBaseball->_greenBaseball.y + 200, 250, 50);
+
 	}
-	if (greenBaseball->isRight)			//오른쪽 보면
+	if (greenBaseball->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
 		if (frameCount >= 15)
@@ -60,25 +61,31 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 
 		}
 		//move
-		greenBaseball->_greenBaseball.x += 0.7f;
+		if (!greenBaseball->isXOverlap)
+		{
+			greenBaseball->_greenBaseball.x += 0.7f;
+		}
 		//감지 범위 => 오른쪽으로 생김
 		greenBaseball->_greenBaseball.rcAttackRange = RectMakeCenter(greenBaseball->_greenBaseball.x + 360, greenBaseball->_greenBaseball.y + 200, 250, 50);
 	}
 
 	//move (up, down)
-	if (!greenBaseball->isDown)	//위쪽이면
+	if (!greenBaseball->isYOverlap)//떨림방지	//isOverlap이 false일 때.. 즉, 구간 밖일 때(평소)	//반대로 중점이 구간 내라면 그 땐 y좌표는 움직이지 않는다.
 	{
-		greenBaseball->_greenBaseball.y -= 0.7f;
-	}
-	if (greenBaseball->isDown)	//아래쪽이면
-	{
-		greenBaseball->_greenBaseball.y += 0.7f;
+		if (!greenBaseball->isDown)	//위쪽이면
+		{
+			greenBaseball->_greenBaseball.y -= 0.7f;
+		}
+		if (greenBaseball->isDown)	//아래쪽이면
+		{
+			greenBaseball->_greenBaseball.y += 0.7f;
+		}
 	}
 }
 
-void gbAttackPunchState::enter(greenBaseball * greenBaseball)
+void gbDamagedState::enter(greenBaseball * greenBaseball)
 {
-	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_punch");
+	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_damaged");
 	if (!greenBaseball->isRight)
 	{
 		greenBaseball->setCurrentFrameY(1);
@@ -88,9 +95,8 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 		greenBaseball->setCurrentFrameY(0);
 	}
 	greenBaseball->setCurrentFrameX(0);
-
 }
 
-void gbAttackPunchState::exit(greenBaseball * greenBaseball)
+void gbDamagedState::exit(greenBaseball * greenBaseball)
 {
 }

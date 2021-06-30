@@ -25,7 +25,6 @@ HRESULT glove::init(POINT position)
 
 	setShadow();
 
-	isJump = true;	//true
 
 	_gloveState = new gloveJumpState();		//점프로 등장
 	_gloveState->enter(this);
@@ -39,16 +38,21 @@ HRESULT glove::init(POINT position)
 
 	//에너미
 	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 300, 232);
-
 	//그림자
-	_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
+	_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.				//배트엔 없는데.. 없애도 되나..? 있어야 함. 왜지........
 
+	isJump = true;	//true
 	isRight = false;
 	isDown = false;
 	isCollisionAttack = false;
+	isCollisionDamaged = false;
 	isXOverlap = false;
 	isYOverlap = false;
 	isLand = false;
+	isDamaged = false;
+	isDeath = false;
+
+	damageCount = 0;
 
 	return S_OK;
 }
@@ -61,7 +65,6 @@ void glove::release()
 void glove::update()
 {
 
-	InputHandle();
 
 	//에너미
 	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 300, 232);
@@ -78,6 +81,8 @@ void glove::update()
 		_gloveShadow.rc = RectMakeCenter((_glove.rc.right + _glove.rc.left) / 2, _gloveShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
 
+
+	InputHandle();
 	_gloveState->update(this);
 }
 
@@ -96,7 +101,7 @@ void glove::render()
 
 		Rectangle(getMemDC(), _glove.rcAttackRange);	//공격 범위 렉트
 		Rectangle(getMemDC(), _glove.rc);				//에너미 렉트
-		Rectangle(getMemDC(), _gloveShadow.rc);					//그림자 렉트
+		Rectangle(getMemDC(), _gloveShadow.rc);			//그림자 렉트
 
 		SelectObject(getMemDC(), oldBrush);
 		DeleteObject(myPen);
@@ -104,20 +109,19 @@ void glove::render()
 	}
 
 	_gloveShadow.img->render(getMemDC(), _gloveShadow.rc.left, _gloveShadow.rc.top);
+	_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 50, _currentFrameX, _currentFrameY);
 	
 }
 
 void glove::setImage()
 {
 	IMAGEMANAGER->addFrameImage("glove_attackTongue", "image/3_Enemy/glove/glove_attackTongue.bmp", 2320, 520, 8, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("glove_damaged", "image/3_Enemy/glove/glove_damaged.bmp", 2380, 510, 7, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("glove_damaged", "image/3_Enemy/glove/glove_damaged.bmp", 1360, 510, 4, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("glove_death", "image/3_Enemy/glove/glove_death.bmp", 1020, 510, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("glove_jump", "image/3_Enemy/glove/glove_jump.bmp", 1440, 600, 6, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("glove_move", "image/3_Enemy/glove/glove_move.bmp", 1260, 510, 6, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("glove_deathRing", "image/3_Enemy/glove/glove_deathRing.bmp", 288, 96, 3, 1, true, RGB(255, 0, 255), false);
-
-	IMAGEMANAGER->addImage("glove_Death", "image/3_Enemy/glove/glove_Death.bmp", 240, 300, true, RGB(255, 0, 255), false);
 }
-
 void glove::setShadow()
 {
 
@@ -125,9 +129,9 @@ void glove::setShadow()
 	_gloveShadow.img = IMAGEMANAGER->findImage("glove_shadow");
 }
 
+//공격 시 이미지 이동됨.... 좌표 수정 위함
 void glove::modifiedLocation()
 {
-	//공격 시 좌표 수정 위함
 	if (isAttackTongueState)
 	{
 		if (!isRight)

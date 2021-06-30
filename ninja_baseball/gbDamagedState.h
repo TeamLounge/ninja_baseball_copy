@@ -1,10 +1,9 @@
 #pragma once
-
 #include "gbState.h"
 
 class greenBaseball;
 
-class gbLandState :public gbState
+class gbDamagedState :public gbState
 {
 public:
 
@@ -15,3 +14,4 @@ public:
 	virtual void enter(greenBaseball* greenBaseball);
 	virtual void exit(greenBaseball* greenBaseball);
 };
+
