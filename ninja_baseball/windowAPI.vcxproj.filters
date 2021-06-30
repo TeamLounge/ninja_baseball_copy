@@ -367,6 +367,9 @@
     <ClCompile Include="gloveState.cpp">
       <Filter>playGound\enemy\glove\gloveState</Filter>
     </ClCompile>
+    <ClCompile Include="red_catchState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -752,6 +755,9 @@
     </ClInclude>
     <ClInclude Include="gloveState.h">
       <Filter>playGound\enemy\glove\gloveState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_catchState.h">
+      <Filter>playGound\player\red</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

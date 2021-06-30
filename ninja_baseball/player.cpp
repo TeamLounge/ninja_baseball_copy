@@ -236,4 +236,152 @@ void player::collision()
 			}
 		}
 	}
+
+	//===========================================
+	//여기부터 작업했음....
+	// =========================================
+
+	//yellowBaseball 충돌
+	for (int i = 0; i < _em->getVBb().size(); i++)
+	{
+		RECT temp;
+
+		//플레이어가 yellowBaseball한테 맞을때 충돌함수
+		if (_em->getVYb()[i]->isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVYb()[i]->_ybShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVYb()[i]->_ybShadow.rc.bottom)
+			{
+				RECT t1 = _playerrc;
+				RECT t2 = _em->getVYb()[i]->getRect();
+				if (IntersectRect(&temp, &t1, &t2))
+				{
+					isdamage = true;
+				}
+			}
+		}
+
+		//yellowBaseball과 잡기상태 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVYb()[i]->_ybShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVYb()[i]->_ybShadow.rc.bottom)
+			{
+				RECT t3 = _playerrc;
+				RECT t4 = _em->getVYb()[i]->getRect();
+				if (IntersectRect(&temp, &t3, &t4))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
+
+	//greenBaseball 충돌
+	for (int i = 0; i < _em->getVGb().size(); i++)
+	{
+		RECT temp;
+
+		//플레이어가 greenBaseball한테 맞을때 충돌함수
+		if (_em->getVGb()[i]->isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVGb()[i]->_gbShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVGb()[i]->_gbShadow.rc.bottom)
+			{
+				RECT t1 = _playerrc;
+				RECT t2 = _em->getVGb()[i]->getRect();
+				if (IntersectRect(&temp, &t1, &t2))
+				{
+					isdamage = true;
+				}
+			}
+		}
+
+		//greenBaseball과 잡기상태 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVGb()[i]->_gbShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVGb()[i]->_gbShadow.rc.bottom)
+			{
+				RECT t3 = _playerrc;
+				RECT t4 = _em->getVGb()[i]->getRect();
+				if (IntersectRect(&temp, &t3, &t4))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
+
+	//batMan 충돌
+	for (int i = 0; i < _em->getVBat().size(); i++)
+	{
+		RECT temp;
+
+		//플레이어가 greenBaseball한테 맞을때 충돌함수
+		if (_em->getVBat()[i]->isAttack)
+		{
+			if (_shadow->getCenterY() >= _em->getVBat()[i]->_batShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVBat()[i]->_batShadow.rc.bottom)
+			{
+				RECT t1 = _playerrc;
+				RECT t2 = _em->getVBat()[i]->getRect();
+				if (IntersectRect(&temp, &t1, &t2))
+				{
+					isdamage = true;
+				}
+			}
+		}
+
+		//greenBaseball과 잡기상태 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVBat()[i]->_batShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVBat()[i]->_batShadow.rc.bottom)
+			{
+				RECT t3 = _playerrc;
+				RECT t4 = _em->getVBat()[i]->getRect();
+				if (IntersectRect(&temp, &t3, &t4))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
+
+	//card 충돌
+	for (int i = 0; i < _em->getVCard().size(); i++)
+	{
+		RECT temp;
+
+		//플레이어가 greenBaseball한테 맞을때 충돌함수
+		if (_em->getVCard()[i]->isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
+			{
+				RECT t1 = _playerrc;
+				RECT t2 = _em->getVCard()[i]->getAtkCardRc();
+				if (IntersectRect(&temp, &t1, &t2))
+				{
+					isdamage = true;
+				}
+			}
+		}
+
+		//greenBaseball과 잡기상태 충돌처리함수
+		if (iscrawl && !isattack)
+		{
+			if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
+				_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
+			{
+				RECT t3 = _playerrc;
+				RECT t4 = _em->getVCard()[i]->getAtkCardRc();
+				if (IntersectRect(&temp, &t3, &t4))
+				{
+					iscatch = true;
+				}
+			}
+		}
+	}
 }

@@ -198,6 +198,7 @@
     <ClInclude Include="gloveMoveState.h" />
     <ClInclude Include="gloveState.h" />
     <ClInclude Include="greenBaseball.h" />
+    <ClInclude Include="red_catchState.h" />
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
     <ClInclude Include="red_dashAttackState.h" />
@@ -320,6 +321,7 @@
     <ClCompile Include="gloveMoveState.cpp" />
     <ClCompile Include="gloveState.cpp" />
     <ClCompile Include="greenBaseball.cpp" />
+    <ClCompile Include="red_catchState.cpp" />
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />
     <ClCompile Include="red_dashAttackState.cpp" />
