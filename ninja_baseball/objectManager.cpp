@@ -92,10 +92,13 @@ void objectManager::setBaseBall()
 
 void objectManager::setTrahCan()
 {
+
 }
 
 void objectManager::setBanana()
 {
+
+
 }
 
 void objectManager::collsion()
@@ -113,17 +116,67 @@ void objectManager::collsion()
 			}
 		}
 	}
-	for (int i = 0; i < _em->getVBb().size(); i++) {
-		if (_ball->isattack)
+
+	//ball 던진다!
+	if(_ball->isattack){
+		//Whtie baseball
+		for (int i = 0; i < _em->getVWb().size(); i++) {
+			if (_ball->getShadowY() < _em->getVWb()[i]->getRect().bottom &&
+				_ball->getShadowY() > _em->getVWb()[i]->getRect().top)
+			{
+				if (IntersectRect(&temp, &_em->getVWb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					_em->getVWb()[i]->isdamage = true;
+				}
+			}
+		}
+		//bule baseball
+		for (int i = 0; i < _em->getVBb().size(); i++)
 		{
-			if (_ball->getShadowY() < _em->getVBb()[i]->getCenterY() &&
-				_ball->getShadowY() > _em->getVBb()[i]->getCenterY())
+			
+			if (_ball->getShadowY() < _em->getVBb()[i]->getRect().bottom &&
+				_ball->getShadowY() > _em->getVBb()[i]->getRect().top)
 			{
 				if (IntersectRect(&temp, &_em->getVBb()[i]->getRect(), &_ball->getRect()))
 				{
 					_ball->isattack = false;
+					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
 				}
 			}
+
+		}
+
+		//Green Baseball
+		for (int i = 0; i < _em->getVGb().size(); i++)
+		{
+			if (_ball->getShadowY() < _em->getVBb()[i]->getRect().bottom &&
+				_ball->getShadowY() > _em->getVBb()[i]->getRect().top)
+			{
+				if (IntersectRect(&temp, &_em->getVBb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					//_em->getVBb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
+				}
+			}
+		
+		}
+
+		//Yello Baseball
+		for (int i = 0; i < _em->getVYb().size(); i++)
+		{
+			if (_ball->getShadowY() < _em->getVYb()[i]->getRect().bottom &&
+				_ball->getShadowY() > _em->getVYb()[i]->getRect().top)
+			{
+				if (IntersectRect(&temp, &_em->getVYb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
+				}
+			}
+
 		}
 	}
+
+
 }
