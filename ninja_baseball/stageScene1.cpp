@@ -18,7 +18,7 @@ HRESULT stageScene1::init()
 	_player->init(_playerSelect, true);
 
 	_em = new enemyManager;
-	_em->init();
+	//_em->init();
 
 	_obj = new objectManager;
 	_obj->init();
@@ -37,6 +37,21 @@ HRESULT stageScene1::init()
 	
 	_angle = getAngle(2307, WINSIZEY, 2001, WINSIZEY - 306);
 
+	//SET baseBall
+	_em->setBlueBaseball();
+	_em->setGreenBaseball();
+	_em->setWhiteBaseball();
+	_em->setYellowBaseball();
+	//////////////////////////
+
+	//SET bat
+	_em->setBat1();
+	/////////////////////////
+
+	//SET glove
+	_em->setGlove();
+	////////////////////////
+
 	return S_OK;
 }
 
@@ -52,8 +67,21 @@ void stageScene1::update()
 
 	_player->update();
 	shutterCollison();
-	_em->update();
+	//_em->update();
 	_obj->update();
+
+
+	//UPDATE baseBall////////////
+	//_em->updateBlueBaseball();
+	//_em->updateGreenBaseball();
+	//_em->updateWhiteBaseball();
+	//_em->updateYellowBaseball();
+	/////////////////////////////
+
+	//_em->updateBat();
+
+	//_em->updateGlove();
+	
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 	CAMERAMANAGER->update();
@@ -101,7 +129,6 @@ void stageScene1::update()
 
 	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
-
 }
 
 void stageScene1::render()
@@ -112,7 +139,18 @@ void stageScene1::render()
 
 	_player->render();
 	_obj->render();
-	_em->render();
+	//_em->render();
+
+	////RENDER baseBall////////////
+	//_em->renderBlueBaseball();
+	//_em->renderGreenBaseball();
+	//_em->renderWhiteBaseball();
+	//_em->renderGreenBaseball();
+	///////////////////////////////
+	//
+	//_em->renderBat();
+	//
+	//_em->renderGlove();
 
 	IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
 	IMAGEMANAGER->findImage("shutter_pixel")->render(getMemDC());

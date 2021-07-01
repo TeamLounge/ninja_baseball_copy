@@ -31,6 +31,7 @@ HRESULT stageScene3::init()
 
 	_em = new enemyManager;
 	_em->init();
+	_em->setBat2();
 
 	return S_OK;
 }
@@ -44,6 +45,8 @@ void stageScene3::update()
 	_player->update();
 
 	_em->update();
+
+	
 
 	_elapsedTime += TIMEMANAGER->getElapsedTime();
 

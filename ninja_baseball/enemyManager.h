@@ -99,8 +99,16 @@ public:
 	void setGreenBaseball();
 	void setWhiteBaseball();
 	void setYellowBaseball();
-	void updateBaseball();
-	void renderBaseball();
+
+	void updateBlueBaseball();
+	void updateGreenBaseball();
+	void updateWhiteBaseball();
+	void updateYellowBaseball();
+
+	void renderBlueBaseball();
+	void renderGreenBaseball();
+	void renderWhiteBaseball();
+	void renderYellowBaseball();
 
 	void playerLocation();			//플레이어 위치 찾고 본인 위치와 비교하는 함수(베이스볼, 배트)
 	void baseballCollision();		//베이스볼과의 충돌 함수
@@ -122,7 +130,8 @@ public:
 	//   배트 에너미 관련 함수
 	////////////////////////////////
 
-	void setBat();
+	void setBat1();
+	void setBat2();
 	void updateBat();
 	void renderBat();
 
