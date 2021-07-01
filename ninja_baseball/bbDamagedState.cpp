@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "blueBaseball.h"
 #include "bbIdleState.h"
-#include "bbLandState.h"
 #include "bbAttackPunchState.h"
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
@@ -11,6 +10,10 @@
 
 bbState * bbDamagedState::inputHandle(blueBaseball * blueBaseball)
 {
+	if (blueBaseball->isDeath)
+	{
+		return new bbDeathState();
+	}
 	return nullptr;
 }
 
@@ -91,6 +94,7 @@ void bbDamagedState::update(blueBaseball * blueBaseball)
 void bbDamagedState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_damaged");
+	blueBaseball->setImageName("bBaseball_damaged");
 
 	
 	frameCount = 0;

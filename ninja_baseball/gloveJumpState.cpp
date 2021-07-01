@@ -55,6 +55,8 @@ void gloveJumpState::update(glove * glove)
 void gloveJumpState::enter(glove * glove)
 {
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_jump");
+	glove->setImageName("glove_jump");
+
 	glove->setCurrentFrameX(0);
 	glove->setCurrentFrameY(1);
 

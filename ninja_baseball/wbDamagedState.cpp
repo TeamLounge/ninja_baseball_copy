@@ -10,6 +10,10 @@
 
 wbState * wbDamagedState::inputHandle(whiteBaseball * whiteBaseball)
 {
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
+	}
 	return nullptr;
 }
 
@@ -87,6 +91,8 @@ void wbDamagedState::update(whiteBaseball * whiteBaseball)
 void wbDamagedState::enter(whiteBaseball * whiteBaseball)
 {
 	whiteBaseball-> _whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_damaged");
+	whiteBaseball->setImageName("wBaseball_damaged");
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);

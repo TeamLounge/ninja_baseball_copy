@@ -14,6 +14,10 @@ wbState * wbAttackJumpState::inputHandle(whiteBaseball * whiteBaseball)
 	{
 		return new wbStopState();
 	}
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
+	}
 
 
 	return nullptr;
@@ -67,6 +71,8 @@ void wbAttackJumpState::update(whiteBaseball * whiteBaseball)
 void wbAttackJumpState::enter(whiteBaseball * whiteBaseball)
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_roll");
+	whiteBaseball->setImageName("wBaseball_roll");
+	
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -81,7 +87,6 @@ void wbAttackJumpState::enter(whiteBaseball * whiteBaseball)
 	jumpPower =21.0f;
 	gravity = 0.58f;
 
-	whiteBaseball->setImageName("wBaseball_roll");
 	
 }
 

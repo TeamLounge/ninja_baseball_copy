@@ -25,6 +25,7 @@ HRESULT glove::init(POINT position)
 
 	setShadow();
 
+	_imgName = "glove_attackTongue";
 
 	_gloveState = new gloveJumpState();		//점프로 등장
 	_gloveState->enter(this);
@@ -58,6 +59,10 @@ HRESULT glove::init(POINT position)
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
 
+	RENDERMANAGER->addObj("glove", _imgName.c_str(), "glove_shadow",
+		&_glove.x, &_glove.y, &_gloveShadow.x, &_gloveShadow.y,
+		&_currentFrameX, &_currentFrameY);
+
 	return S_OK;
 }
 
@@ -77,6 +82,7 @@ void glove::update()
 	{
 		//그림자
 		_gloveShadow.rc = RectMakeCenter((_glove.rc.right + _glove.rc.left) / 2, _glove.rc.bottom, 215, 50);
+		_gloveShadow.x = (_glove.rc.right + _glove.rc.left) / 2;	//점프하기 전까지의 y값을 계속 저장중.
 		_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 	}
 	else   //점프하면
@@ -112,8 +118,8 @@ void glove::render()
 		DeleteObject(myBrush);
 	}
 
-	_gloveShadow.img->render(getMemDC(), _gloveShadow.rc.left, _gloveShadow.rc.top);
-	_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 50, _currentFrameX, _currentFrameY);
+	//_gloveShadow.img->render(getMemDC(), _gloveShadow.rc.left, _gloveShadow.rc.top);
+	//_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 50, _currentFrameX, _currentFrameY);
 	
 }
 

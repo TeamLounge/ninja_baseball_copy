@@ -20,10 +20,13 @@ wbState * wbIdleState::inputHandle(whiteBaseball * whiteBaseball)
 			return new wbAttackPunchState();
 		}
 	}
-	else
-	{	
-		timeCount = 0;
+	else timeCount = 0;
+
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
 	}
+
 	return nullptr;
 }
 
@@ -99,6 +102,8 @@ void wbIdleState::update(whiteBaseball * whiteBaseball)
 void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_idle");
+	whiteBaseball->setImageName("wBaseball_idle");
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -111,7 +116,6 @@ void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
 
 	timeCount = 0;
 
-	whiteBaseball->setImageName("wBaseball_idle");
 }
 
 void wbIdleState::exit(whiteBaseball * whiteBaseball)

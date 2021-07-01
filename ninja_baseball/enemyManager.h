@@ -95,7 +95,10 @@ public:
 	//  베이스볼 에너미 관련 함수
 	////////////////////////////////
 
-	void setBaseball();
+	void setBlueBaseball();
+	void setGreenBaseball();
+	void setWhiteBaseball();
+	void setYellowBaseball();
 	void updateBaseball();
 	void renderBaseball();
 

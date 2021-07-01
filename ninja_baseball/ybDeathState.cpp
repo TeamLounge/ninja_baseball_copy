@@ -31,6 +31,8 @@ void ybDeathState::update(yellowBaseball * yellowBaseball)
 void ybDeathState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_spin");
+	yellowBaseball->setImageName("yBaseball_spin");
+
 	if (!yellowBaseball->isRight)
 	{
 		yellowBaseball->setCurrentFrameY(1);

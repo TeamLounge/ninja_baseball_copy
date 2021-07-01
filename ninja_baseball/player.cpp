@@ -36,6 +36,8 @@ HRESULT player::init(int character)
 	iscatch = false;
 	iscrawl = false;
 
+	_playerImgName = "Ryno_catch_frontCombo";
+
 	if (character == 1)
 	{
 		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
@@ -252,7 +254,7 @@ void player::collision()
 	// =========================================
 
 	//yellowBaseball Ãæµ¹
-	for (int i = 0; i < _em->getVBb().size(); i++)
+	for (int i = 0; i < _em->getVYb().size(); i++)
 	{
 		RECT temp;
 

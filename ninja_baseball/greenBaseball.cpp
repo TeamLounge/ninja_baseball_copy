@@ -50,8 +50,11 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isattack = false;				//에너미가 공격했어??
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
+	isDeath = false;
 
-	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "wBaseball_shadow",
+	damageCount = 0;
+
+	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "gBaseball_shadow",
 		&_greenBaseball.x, &_greenBaseball.y, &_gbShadow.x, &_gbShadow.y,
 		&_currentFrameX, &_currentFrameY);
 
@@ -78,6 +81,7 @@ void greenBaseball::update()
 	{
 		//그림자
 		_gbShadow.rc = RectMakeCenter((_greenBaseball.rc.right + _greenBaseball.rc.left) / 2, _greenBaseball.rc.bottom, 215, 50);
+		_gbShadow.x = (_greenBaseball.rc.right + _greenBaseball.rc.left) / 2;	//점프하기 전까지의 y값을 계속 저장중.
 		_gbShadow.y = _greenBaseball.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
@@ -87,6 +91,38 @@ void greenBaseball::update()
 		_gbShadow.rc = RectMakeCenter((_greenBaseball.rc.right + _greenBaseball.rc.left) / 2, _gbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
 
+	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 5)
+		{
+			isDeath = true;
+		}
+
+		isCollisionDamaged = true;
+	}
+	else
+	{
+		isDeath = false;
+		isCollisionDamaged = false;
+	}
+
+	//충돌 여부에 따른 죽음 판정
+	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 5)
+		{
+			isDeath = true;
+		}
+
+		isCollisionDamaged = true;
+	}
+	else
+	{
+		isDeath = false;
+		isCollisionDamaged = false;
+	}
 
 
 }
@@ -115,8 +151,8 @@ void greenBaseball::render()
 
 	//Rectangle(getMemDC(), _greenBaseball.rcStop);			//등장 충돌 렉트
 
-	_gbShadow.img->render(getMemDC(), _gbShadow.rc.left, _gbShadow.rc.top);
-	_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.x, _greenBaseball.y, _currentFrameX, _currentFrameY);
+	//_gbShadow.img->render(getMemDC(), _gbShadow.rc.left, _gbShadow.rc.top);
+	//_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.x, _greenBaseball.y, _currentFrameX, _currentFrameY);
 	//_greenBaseball.img->frameRender(getMemDC(), _greenBaseball.rc.left, _greenBaseball.rc.top);
 
 

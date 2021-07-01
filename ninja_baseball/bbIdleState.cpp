@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "blueBaseball.h"
 #include "bbIdleState.h"
-#include "bbLandState.h"
 #include "bbAttackPunchState.h"
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
@@ -20,6 +19,11 @@ bbState * bbIdleState::inputHandle(blueBaseball * blueBaseball)
 	else
 	{
 		timeCount = 0;
+	}
+
+	if (blueBaseball->isDeath)
+	{
+		return new bbDeathState();
 	}
 				
 	return nullptr;
@@ -97,6 +101,8 @@ void bbIdleState::update(blueBaseball * blueBaseball)
 void bbIdleState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_idle");
+	blueBaseball->setImageName("bBaseball_idle");
+
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);
@@ -109,7 +115,6 @@ void bbIdleState::enter(blueBaseball * blueBaseball)
 
 	timeCount = 0;
 
-	blueBaseball->setImageName("bBaseball_idle");
 }
 
 void bbIdleState::exit(blueBaseball * blueBaseball)

@@ -9,6 +9,7 @@
 
 gbState * gbDeathState::inputHandle(greenBaseball * greenBaseball)
 {
+
 	return nullptr;
 }
 
@@ -32,6 +33,8 @@ void gbDeathState::update(greenBaseball * greenBaseball)
 void gbDeathState::enter(greenBaseball * greenBaseball)
 {
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_spin");
+	greenBaseball->setImageName("gBaseball_spin");
+
 	if (!greenBaseball->isRight)
 	{
 		greenBaseball->setCurrentFrameY(1);

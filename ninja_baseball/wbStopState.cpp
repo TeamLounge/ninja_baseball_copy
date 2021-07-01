@@ -16,6 +16,11 @@ wbState * wbStopState::inputHandle(whiteBaseball * whiteBaseball)
 		return new wbIdleState();
 	}
 
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
+	}
+
 	return nullptr;
 }
 
@@ -83,6 +88,8 @@ void wbStopState::update(whiteBaseball * whiteBaseball)
 void wbStopState::enter(whiteBaseball * whiteBaseball)
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_stop");
+	whiteBaseball->setImageName("wBaseball_stop");
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -96,7 +103,6 @@ void wbStopState::enter(whiteBaseball * whiteBaseball)
 	speed = 3.0f;
 	friction = 0.07f;
 
-	whiteBaseball->setImageName("wBaseball_stop");
 }
 
 void wbStopState::exit(whiteBaseball * whiteBaseball)

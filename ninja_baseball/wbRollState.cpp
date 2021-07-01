@@ -17,6 +17,10 @@ wbState * wbRollState::inputHandle(whiteBaseball * whiteBaseball)		//상태에 따른
 	{
 		return new wbStopState();
 	}
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
+	}
 	return nullptr;
 }
 
@@ -43,12 +47,10 @@ void wbRollState::update(whiteBaseball * whiteBaseball)
 void wbRollState::enter(whiteBaseball * whiteBaseball)	//init!!!!
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_roll");
-	whiteBaseball->setCurrentFrameX(0);
-	whiteBaseball->setCurrentFrameY(1);
-
 	whiteBaseball->setImageName("wBaseball_roll");
 
-
+	whiteBaseball->setCurrentFrameX(0);
+	whiteBaseball->setCurrentFrameY(1);
 
 	return;
 }

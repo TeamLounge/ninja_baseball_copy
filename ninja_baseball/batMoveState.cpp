@@ -94,12 +94,15 @@ void batMoveState::enter(bat * bat)
 	{
 	case NORMAL:
 		bat->_bat.img = IMAGEMANAGER->findImage("fBat_move");
+		bat->setImageName("fBat_move");
 		break;
 	case NO_CAP:
 		bat->_bat.img = IMAGEMANAGER->findImage("sBat_move");
+		bat->setImageName("sBat_move");
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_move");
+		bat->setImageName("tBat_move");
 		break;
 	case DEATH:
 		bat->isDeath = true;

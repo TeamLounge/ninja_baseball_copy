@@ -29,6 +29,7 @@ private:
 	int _currentFrameX;
 	int _currentFrameY;
 
+	string _imgName;
 
 public:
 
@@ -49,6 +50,7 @@ public:
 	bool isYOverlap;			//에너미와 플레이어 중점이 Y범위 안에서 비슷해? (떨림방지용)
 
 	bool isDamaged;				//맞았어?
+	bool isDeath;				//죽었나?
 	int damageCount;			//맞은 횟수
 
 	bool isattack;              //에너미가 공격했어??
@@ -87,4 +89,6 @@ public:
 
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
+
+	void setImageName(string s) { _imgName = s; }
 };

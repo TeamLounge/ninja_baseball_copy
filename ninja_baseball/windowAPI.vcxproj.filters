@@ -34,9 +34,6 @@
     <ClCompile Include="playerSelectScene.cpp">
       <Filter>playGound\scene</Filter>
     </ClCompile>
-    <ClCompile Include="playGround.cpp">
-      <Filter>playGound</Filter>
-    </ClCompile>
     <ClCompile Include="red_attackState.cpp">
       <Filter>playGound\player\red</Filter>
     </ClCompile>
@@ -161,9 +158,6 @@
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClCompile>
     <ClCompile Include="bbIdleState.cpp">
-      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
-    <ClCompile Include="bbLandState.cpp">
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClCompile>
     <ClCompile Include="bbState.cpp">
@@ -400,6 +394,9 @@
     <ClCompile Include="ybDeathState.cpp">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClCompile>
+    <ClCompile Include="playGround.cpp">
+      <Filter>playGound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -419,9 +416,6 @@
     </ClInclude>
     <ClInclude Include="endingScene.h">
       <Filter>playGound\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="gameNode.h">
-      <Filter>2DGameFramework</Filter>
     </ClInclude>
     <ClInclude Include="image.h">
       <Filter>2DGameFramework\image</Filter>
@@ -577,9 +571,6 @@
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClInclude>
     <ClInclude Include="bbIdleState.h">
-      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="bbLandState.h">
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClInclude>
     <ClInclude Include="bbState.h">
@@ -818,6 +809,9 @@
     </ClInclude>
     <ClInclude Include="ybDeathState.h">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>playGound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

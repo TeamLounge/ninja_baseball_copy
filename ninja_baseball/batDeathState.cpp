@@ -32,6 +32,7 @@ void batDeathState::update(bat * bat)
 void batDeathState::enter(bat * bat)
 {
 	bat->_bat.img = IMAGEMANAGER->findImage("bat_burn");
+	bat->setImageName("bat_burn");
 
 	if (!bat->isRight)
 	{

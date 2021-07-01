@@ -46,14 +46,18 @@ HRESULT bat::init(POINT position)
 
 	_batMode = NORMAL;		//초기 모드 set
 
-	damageCount = 0;	//맞은 횟수
+	damageCount = 0;		//맞은 횟수
 
 	isXOverlap = false;
 	isYOverlap = false;
 	isAttack = false;				//쳤어?
 	isDamaged = false;				//맞았어?
 	iscatch = false;				//잡혔어?
+	isCrash = false;
 
+	RENDERMANAGER->addObj("bat", _imgName.c_str(), "bat_shadow",
+		&_bat.x, &_bat.y, &_batShadow.x, &_batShadow.y,
+		&_currentFrameX, &_currentFrameY);
 
 	return S_OK;
 }
@@ -72,6 +76,7 @@ void bat::update()
 	{
 		//그림자
 		_batShadow.rc = RectMakeCenter((_bat.rc.right + _bat.rc.left) / 2, _bat.rc.bottom, 120, 50);
+		_batShadow.x = (_bat.rc.right + _bat.rc.left) / 2;
 		_batShadow.y = _bat.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
@@ -84,18 +89,27 @@ void bat::update()
 	//////////////////////////
 	//		3단 변신			//
 	//////////////////////////
-	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
-	{
-		damageCount++;
-		if (damageCount == 3) _batMode = NO_CAP;
-		else if (damageCount == 4) _batMode = NO_BAT;
-		else if (damageCount == 5)
-		{
-			_batMode = DEATH;
-			isDeath = true;
-		}
+	//if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	//{
+	//	damageCount++;
+	//	if (damageCount == 3) _batMode = NO_CAP;
+	//	else if (damageCount == 4) _batMode = NO_BAT;
+	//	else if (damageCount == 5)
+	//	{
+	//		_batMode = DEATH;
+	//		isDeath = true;
+	//	}
 
-		isCollisionDamaged = true;
+	//	isCollisionDamaged = true;
+	//}
+
+
+	if (damageCount == 3) _batMode = NO_CAP;
+	else if (damageCount == 4) _batMode = NO_BAT;
+	else if (damageCount == 5)
+	{
+		_batMode = DEATH;
+		isDeath = true;
 	}
 
 	InputHandle();
@@ -124,8 +138,8 @@ void bat::render()
 		DeleteObject(myBrush);
 	}
 
-	_batShadow.img->render(getMemDC(), _batShadow.rc.left, _batShadow.rc.top);
-	_bat.img->frameRender(getMemDC(), _bat.x, _bat.y, _currentFrameX, _currentFrameY);
+	//_batShadow.img->render(getMemDC(), _batShadow.rc.left, _batShadow.rc.top);
+	//_bat.img->frameRender(getMemDC(), _bat.x, _bat.y, _currentFrameX, _currentFrameY);
 
 }
 
