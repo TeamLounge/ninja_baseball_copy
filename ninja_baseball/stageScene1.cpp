@@ -85,7 +85,7 @@ void stageScene1::update()
 void stageScene1::render()
 {
 	IMAGEMANAGER->findImage("stage_1")->render(getMemDC(), 0, 0);
-	_em->render();
+	//_em->render();
 
 	_player->render();
 	_obj->render();

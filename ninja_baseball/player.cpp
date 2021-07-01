@@ -35,7 +35,7 @@ HRESULT player::init(int character)
 	isdamage = false;
 	iscatch = false;
 	iscrawl = false;
-
+	isfly = false;
 	if (character == 1)
 	{
 		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
@@ -47,6 +47,11 @@ HRESULT player::init(int character)
 
 	_hp = 5;
 	_life = 3;
+
+	_effect = IMAGEMANAGER->findImage("effect");
+	_effect1 = IMAGEMANAGER->findImage("effect1");
+	_effect2 = IMAGEMANAGER->findImage("effect2");
+	_effect3 = IMAGEMANAGER->findImage("effect3");
 
 	return S_OK;
 }
@@ -98,7 +103,6 @@ void player::render()
 	Rectangle(getMemDC(), _playerrc);
 
 	//이미지랜더
-	
 	//_shadow->render(getMemDC());
 	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
 
@@ -109,15 +113,17 @@ void player::render()
 		Rectangle(getMemDC(), _attack_rc);
 		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
 	}
+	if (isfly)
+	{
+		_effect->render(getMemDC());
+		_effect1->render(getMemDC());
+		_effect2->render(getMemDC());
+		_effect3->render(getMemDC());
+	}
 	if (isdamage)
 	{
 		TextOut(getMemDC(), _x - 100, _y - 100, str, strlen(str));
 	}
-	if (isdamage)
-	{
-		TextOut(getMemDC(), _x - 150, _y -150, str, strlen(str));
-	}
-
 }
 
 void player::handleInput()
