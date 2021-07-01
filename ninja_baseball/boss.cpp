@@ -3,6 +3,7 @@
 #include "bossEntryState.h"
 #include "bossIdleState.h"
 
+
 HRESULT boss::init()
 {
 	return S_OK;
