@@ -42,33 +42,27 @@ void objectManager::render()
 	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++)
 	{
 		(*_vitrash)->render();
-		if ((*_vitrash)->_present == 0 && (*_vitrash)->iscrush)
+		if ((*_vitrash)->_present == 0 && (*_vitrash)->iscrush && !(_ball->isrend))
 		{
 			_ball->isrend = true;
+			_ball->isappear = true;
+			_ball->addrendmanager();
+			(*_vitrash)->deleteRender(0);
 		}
-		if ((*_vitrash)->_present == 1 && (*_vitrash)->iscrush)
+		if ((*_vitrash)->_present == 1 && (*_vitrash)->iscrush && !(_banana->isrend))
 		{
 			_banana->isrend = true;
+			_banana->isappear = true;
+			_banana->addrendmanager();
+			(*_vitrash)->deleteRender(0);
 		}
-		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush)
+		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush && !(_cereal->isrend))
 		{
 			_cereal->isrend = true;
+			_cereal->isappear = true;
+			_cereal->addrendmanager();
+			(*_vitrash)->deleteRender(0);
 		}
-	}
-	if (_ball->isrend){
-		_ball->isrend = false;
-		_ball->isappear = true;
-		_ball->addrendmanager();
-	}
-	if (_banana->isrend) {
-		_banana->isrend = false;
-		_banana->isappear = true;
-		_banana->addrendmanager();
-	}
-	if (_cereal->isrend) {
-		_cereal->isrend = false;
-		_cereal->isappear = true;
-		_cereal->addrendmanager();
 	}
 }
 
@@ -195,6 +189,7 @@ void objectManager::updateCereal()
 		_cereal->ishold = false;
 		_cereal->iseat = true;
 		_cereal->isappear = false;
+		_cereal->deleteRendermanager();
 	}
 }
 
