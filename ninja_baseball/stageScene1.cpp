@@ -110,7 +110,6 @@ void stageScene1::render()
 
 	EFFECTMANAGER->render();
 
-	_player->render();
 	_obj->render();
 	_em->render();
 
@@ -120,6 +119,7 @@ void stageScene1::render()
 	RENDERMANAGER->render(getMemDC());
 	_playerUI->render();
 	_timerUI->render();
+	_player->render();
 	IMAGEMANAGER->findImage("±âµÕ")->render(getMemDC(), BACKGROUNDX - 1032, 0);
 
 

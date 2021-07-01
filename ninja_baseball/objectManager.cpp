@@ -64,18 +64,6 @@ void objectManager::render()
 	if (_cereal->isappear) {
 		_cereal->render();
 	}
-	if (_ball->ishold)
-	{
-		sprintf_s(str, " ÀâÇú½îÈ÷À×");
-		TextOut(getMemDC(), _ball->getX()-10, _ball->getY()-10,str, strlen(str));
-	}
-	if (_banana->iseat)
-	{
-		sprintf_s(str1, " ¸ÔÇû¾îÈ÷À×");
-		TextOut(getMemDC(), _banana->getX() +100, _banana->getY() - 100, str1, strlen(str1));
-	}
-	if (_cereal->iseat)
-		TextOut(getMemDC(), _cereal->getX() + 100, _cereal->getY() - 100, str1, strlen(str1));
 }
 
 void objectManager::setBaseBall()
@@ -208,21 +196,21 @@ void objectManager::collsion()
 	
 	if (KEYMANAGER->isStayKeyDown('X') && KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		if (!(_ball->ishold)&& IntersectRect(&temp, &_player->getRect(), &_ball->getRect())) {
+		if (_ball->isappear&&!(_ball->ishold)&& IntersectRect(&temp, &_player->getRect(), &_ball->getRect())) {
 			if ( _ball->getShadowY() > _player->_shadow->getY() &&
 				_ball->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight() / 2);
 			{
 				_ball->ishold = true;
 			}
 		}
-		if (!(_banana->ishold)&& IntersectRect(&temp, &_player->getRect(), &_banana->getRect())) {
+		if (_banana->isappear &&!(_banana->ishold)&& IntersectRect(&temp, &_player->getRect(), &_banana->getRect())) {
 			if (_banana->getShadowY() > _player->_shadow->getY() &&
 				_banana->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
 			{
 				_banana->ishold = true;	
 			}
 		}
-		if (!(_cereal->ishold) && IntersectRect(&temp, &_player->getRect(), &_cereal->getRect())) {
+		if (_cereal->isappear &&!(_cereal->ishold) && IntersectRect(&temp, &_player->getRect(), &_cereal->getRect())) {
 			if (_cereal->getShadowY() > _player->_shadow->getY() &&
 				_cereal->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
 			{
@@ -232,7 +220,7 @@ void objectManager::collsion()
 	}
 
 	//ball ´øÁø´Ù!
-	if(_ball->isattack){
+	if(_ball->isappear && _ball->isattack){
 		//Whtie baseball
 		for (int i = 0; i < _em->getVWb().size(); i++) {
 			if (_ball->getShadowY() < _em->getVWb()[i]->_wbShadow.rc.bottom &&

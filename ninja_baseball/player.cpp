@@ -104,34 +104,6 @@ void player::release()
 
 void player::render()
 {
-	char str[128];
-
-	sprintf_s(str, "hp : %d , life : %d",_hp , _life);
-	char str2[128];
-	sprintf_s(str2, "공격!");
-	char str1[128];
-	sprintf_s(str1, "x: %f , y: %f", _x , _y);
-	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 100, _shadow->getCenterY() - 300, str1, strlen(str1));
-	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 120, _shadow->getCenterY() + 20, str, strlen(str));
-	Rectangle(getMemDC(), _playerrc);
-
-	//이미지랜더
-	//_shadow->render(getMemDC());
-	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
-
-
-	if (isattack) //적을 때림
-	{
-		Rectangle(getMemDC(), _attack_rc);
-		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
-	}
-
-	//적에게 맞음
-	if (isdamage)
-	{
-		TextOut(getMemDC(), _x - 100, _y - 100, str, strlen(str));
-	}
-
 	if (isfly)
 	{
 		_effect->render(getMemDC());
@@ -139,7 +111,6 @@ void player::render()
 		_effect2->render(getMemDC());
 		_effect3->render(getMemDC());
 	}
-
 }
 
 void player::handleInput()

@@ -47,8 +47,6 @@ void baseball::update(bool Right)
 
 void baseball::render()
 {
-	//Rectangle(getMemDC(), _obj._obj_rc);
-	//Rectangle(getMemDC(), _obj._shadow_rc);
 	_obj._shadow->render(getMemDC() , _obj._shadow_rc.left, _obj._shadow_rc.top);
 	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }
@@ -110,11 +108,7 @@ void trashCan::update()
 
 void trashCan::render()
 {
-	char str[128];
-	sprintf_s(str, "¸Â¾Ñ´Ù! : %d , ¸î´ë¸Â¾Ñ³ª? : %d , present : %d , peice1Y: %f", isdamage, damagecount ,_present,peice1->getCenterY());
 	if (!iscrush) {
-		Rectangle(getMemDC(), _obj._obj_rc);
-		Rectangle(getMemDC(), _obj._shadow_rc);
 		_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
 		_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 	}
@@ -124,7 +118,6 @@ void trashCan::render()
 		peice2->render(getMemDC());
 		peice3->render(getMemDC());
 	}
-	TextOut(getMemDC(), _obj._obj_rc.left -300, _obj._obj_rc.top - 40, str, strlen(str));
 }
 
 HRESULT banana::init(POINT position)
@@ -155,8 +148,7 @@ void banana::update()
 
 void banana::render()
 {
-	//Rectangle(getMemDC(), _obj._obj_rc);
-	//Rectangle(getMemDC(), _obj._shadow_rc);
+
 	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
 	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }
@@ -188,8 +180,6 @@ void cereal::update()
 
 void cereal::render()
 {
-	//Rectangle(getMemDC(), _obj._obj_rc);
-	//Rectangle(getMemDC(), _obj._shadow_rc);
 	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
 	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }
