@@ -47,6 +47,8 @@ HRESULT stageScene1::init()
 	////////////////////////
 	_em->setCard();
 
+	setShutter();
+
 	return S_OK;
 }
 
@@ -71,7 +73,7 @@ void stageScene1::update()
 	
 	_em->updateCard();
 
-
+	updateShutter();
 	//UPDATE baseBall////////////
 	//_em->updateBlueBaseball();
 	//_em->updateGreenBaseball();
@@ -157,8 +159,17 @@ void stageScene1::render()
 	if (!_shutter.isCrush)
 	{
 		IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
+		Rectangle(getMemDC(), _shutter.rc);
 	}
-
+	else if (IMAGEMANAGER->findImage("shutterParticle1")->getY()+ IMAGEMANAGER->findImage("shutterParticle1")->getHeight() < WINSIZEY)
+	{
+		IMAGEMANAGER->findImage("shutterParticle1")->render(getMemDC());
+		IMAGEMANAGER->findImage("shutterParticle2")->render(getMemDC());
+		IMAGEMANAGER->findImage("shutterParticle3")->render(getMemDC());
+		IMAGEMANAGER->findImage("shutterParticle4")->render(getMemDC());
+		IMAGEMANAGER->findImage("shutterParticle5")->render(getMemDC());
+		IMAGEMANAGER->findImage("shutterParticle6")->render(getMemDC());
+	}
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -179,7 +190,7 @@ void stageScene1::render()
 
 void stageScene1::shutterCollison()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_DOWN)) return;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) return;
 
 	float right = BACKGROUNDX;
 	float top = 0;
@@ -231,12 +242,15 @@ void stageScene1::setImage()
 
 void stageScene1::setShutter()
 {
-	char str[128];
-	for (int i = 1; i <= 6; i++)
-	{
-		sprintf_s(str, "shutterPiece%d", i);
-		_shutter.sutterParticle.push_back(str);
-	}
+	_shutter.rc = RectMake(2001, 200, IMAGEMANAGER->findImage("╪еем")->getWidth(), 500);
+	_down = 100.f;
+	_gravity = 10.f;
+	IMAGEMANAGER->findImage("shutterParticle1")->setCenter(2001+ 30, WINSIZEY/2);
+	IMAGEMANAGER->findImage("shutterParticle2")->setCenter(2001 + 30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle3")->setCenter(2001 + 30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle4")->setCenter(2001 + 30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle5")->setCenter(2001 +30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle6")->setCenter(2001 +30, WINSIZEY / 2);
 }
 
 void stageScene1::updateShutter()
@@ -248,5 +262,15 @@ void stageScene1::updateShutter()
 		{
 			_shutter.isCrush = true;
 		}
+	}
+	if (_shutter.isCrush)
+	{
+		IMAGEMANAGER->findImage("shutterParticle1")->setCenter(IMAGEMANAGER->findImage("shutterParticle1")->getCenterX()+ 5 , IMAGEMANAGER->findImage("shutterParticle1")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle2")->setCenter(IMAGEMANAGER->findImage("shutterParticle2")->getCenterX() + 10, IMAGEMANAGER->findImage("shutterParticle2")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle3")->setCenter(IMAGEMANAGER->findImage("shutterParticle3")->getCenterX() + 15, IMAGEMANAGER->findImage("shutterParticle3")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle4")->setCenter(IMAGEMANAGER->findImage("shutterParticle4")->getCenterX() - 5, IMAGEMANAGER->findImage("shutterParticle4")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle5")->setCenter(IMAGEMANAGER->findImage("shutterParticle5")->getCenterX() - 7, IMAGEMANAGER->findImage("shutterParticle5")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle6")->setCenter(IMAGEMANAGER->findImage("shutterParticle6")->getCenterX() - 13, IMAGEMANAGER->findImage("shutterParticle6")->getCenterY() - _down);
+		_down -= _gravity;
 	}
 }

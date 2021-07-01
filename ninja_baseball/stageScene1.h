@@ -12,7 +12,6 @@ struct tagShutter
 	//셔터
 	RECT rc; //타격 범위 rc
 	bool isCrush;
-	vector<string> sutterParticle;
 };
 
 class stageScene1 : public gameNode
@@ -33,7 +32,7 @@ private:
 	timerUI* _timerUI;
 
 	tagShutter _shutter;
-
+	float  _down, _gravity;
 public:
 	HRESULT init();
 	void release();
