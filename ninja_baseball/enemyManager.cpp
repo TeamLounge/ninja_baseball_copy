@@ -6,11 +6,11 @@ HRESULT enemyManager::init()
 {
 	
 	//setBlueBaseball();		
-	setGreenBaseball();
+	//setGreenBaseball();
 	//setWhiteBaseball();			
 	//setYellowBaseball();		//데스로 못가네
 	
-	//setBat();					
+	setBat();					
 	//setCard();
 	//setGlove();				
 	//setBoss();				
@@ -46,7 +46,7 @@ void enemyManager::update()
 void enemyManager::render()
 {
 
-	renderBaseball();
+	//renderBaseball();
 	//renderGlove();
 	//renderCard();
 	//renderBoss();
@@ -741,13 +741,7 @@ void enemyManager::updateCard()
 
 	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
 	{
-
 		(*_viCard)->update();
-
-		//if (550 > getDistance(_player->getX(), _player->getY(), (*_viCard)->getCenterX(), (*_viCard)->getCenterY()))
-		//{
-		//	
-		//}
 	}
 }
 
@@ -919,7 +913,7 @@ void enemyManager::assultedCollisionCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(700, WINSIZEY / 2 - 200));
+	_boss->init(PointMake(1600, 150));
 }
 
 
@@ -931,6 +925,7 @@ void enemyManager::updateBoss()
 	_boss->update();
 	WhereIsBoss();				//보스<->플레이어 위치 확인용
 	attackCollision();
+	assultedCollisionBoss();
 }
 
 

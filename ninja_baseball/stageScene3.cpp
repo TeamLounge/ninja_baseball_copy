@@ -34,6 +34,9 @@ HRESULT stageScene3::init()
 
 	_em->setBoss();
 
+	_em->setPlayerMemoryAddressLink(_player);
+	_player->setEmMemoryAddressLink(_em);
+
 	return S_OK;
 }
 
