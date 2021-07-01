@@ -7,11 +7,11 @@ HRESULT stageScene::init()
 	CAMERAMANAGER->setCamera(0, BACKGROUNDY - 768);
 
 	_Ryno = new player;
-	_Ryno->init(2);
+	_Ryno->init(2, true);
 
 
 	_red = new player;
-	_red->init(1);
+	_red->init(1, true);
 
 	_em = new enemyManager;
 	_em->init();

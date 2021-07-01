@@ -4,13 +4,14 @@
 HRESULT stageScene1::init()
 {
 	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("기둥", "image/1_Map/stage1-1기둥.bmp",  72, 768, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, 0);
 	vText = TXTDATA->txtLoad("playerData.txt");
 
 	_playerSelect = atoi(vText[0].c_str());
 
 	_player = new player;
-	_player->init(_playerSelect);
+	_player->init(_playerSelect, true);
 
 	_em = new enemyManager;
 	_em->init();
@@ -68,7 +69,7 @@ void stageScene1::update()
 		//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
 		vText.clear();
 
-		//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값 순으로 텍스트에 저장
+		//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
 		char temp[128];
 		_itoa_s(_playerSelect, temp, 10);
 		vText.push_back(temp);
@@ -108,6 +109,8 @@ void stageScene1::render()
 	_playerUI->render();
 	_timerUI->render();
 	
+	IMAGEMANAGER->findImage("기둥")->render(getMemDC(), BACKGROUNDX - 1032, 0);
+
 	//EFFECTMANAGER->render();
 	
 }

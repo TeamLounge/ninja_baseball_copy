@@ -10,7 +10,7 @@ HRESULT stageScene3::init()
 	vText = TXTDATA->txtLoad("playerData.txt");
 
 	_player = new player;
-	_player->init(atoi(vText[0].c_str()));
+	_player->init(atoi(vText[0].c_str()), false);
 
 	_player->setX(WINSIZEX - (BACKGROUNDX-atoi(vText[3].c_str())));
 	_player->setY(atoi(vText[4].c_str()));
@@ -18,6 +18,8 @@ HRESULT stageScene3::init()
 	_player->sethp(atoi(vText[2].c_str()));
 	_player->setlife(atoi(vText[1].c_str()));
 
+	_player->isRight = (bool)atoi(vText[5].c_str());
+	
 	_elapsedTime = 0;
 
 	_playerUI = new playerUI;
@@ -54,7 +56,7 @@ void stageScene3::update()
 	}
 
 	//카메라 무빙 수정 필요
-	CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2);
+	CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2, 0.51f);
 	if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
 	{
 		CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);

@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "player.h"
 #include "Ryno_start.h"
+#include "Ryno_idle.h"
 #include "red_idleState.h"
 #include "red_moveState.h"
 #include "enemyManager.h"
 
-HRESULT player::init(int character)
+HRESULT player::init(int character, bool isStart)
 {
 
 	addImage();
@@ -18,11 +19,19 @@ HRESULT player::init(int character)
 	}
 
 	if (character == 2) {
-		_shadow = IMAGEMANAGER->findImage("green_shadow");
-		_state = new Ryno_start;
+		if (isStart)
+		{
+			isRight = true;
+			_shadow = IMAGEMANAGER->findImage("green_shadow");
+			_state = new Ryno_start;
+		}
+		else
+		{
+			_shadow = IMAGEMANAGER->findImage("green_shadow");
+			_state = new Ryno_idle;
+		}
 	}
 
-	isRight = true;
 	isattack = isdamage = iscrawl = iscatch = false;
 	_x = 200;
 	_y = WINSIZEY - 200;
@@ -38,11 +47,11 @@ HRESULT player::init(int character)
 
 	if (character == 1)
 	{
-		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY, true);
 	}
 	else if (character == 2)
 	{
-		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY);
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY, true);
 	}
 
 	_hp = 5;

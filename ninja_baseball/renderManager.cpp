@@ -20,12 +20,22 @@ void renderManager::render(HDC hdc)
 {
 	for (int i = 0; i < _arrObj.size(); i++)
 	{
-		if (_arrObj[i].isPlayer)
+		if (_arrObj[i].isNotHaveCurrentFrame)
 		{
+			if (_arrObj[i].isFrameImage)
+			{
+				IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameWidth() / 2), 
+					*_arrObj[i].bodyY - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameHeight() / 2));
+			}
+			else
+			{
+				IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->render(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getWidth() / 2),
+					*_arrObj[i].bodyY - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getHeight() / 2));
+			}
 			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
 				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
 				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
-			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameWidth() / 2), *_arrObj[i].bodyY - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameHeight() / 2));
+			
 		}
 		else
 		{
@@ -43,7 +53,7 @@ void renderManager::render(HDC hdc)
 	}
 }
 
-void renderManager::addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY)
+void renderManager::addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, bool isFrameImage)
 {
 	OBJ object;
 	object.bodyImageName = bodyImageName;
@@ -52,7 +62,9 @@ void renderManager::addObj(string strKey, const char* bodyImageName, const char*
 	object.bodyY = bodyY;
 	object.shadowX = shadowX;
 	object.shadowY = shadowY;
-	object.isPlayer = true;
+	object.isNotHaveCurrentFrame = true;
+	object.isFrameImage = isFrameImage;
+
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{
 		if (iter->first == strKey)
@@ -77,7 +89,8 @@ void renderManager::addObj(string strKey, const char* bodyImageName, const char*
 	object.shadowY = shadowY;
 	object.currentFrameX = currentFrameX;
 	object.currentFrameY = currentFrameY;
-	object.isPlayer = false;
+	object.isNotHaveCurrentFrame = false;
+	object.isFrameImage = true;
 
 	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
 	{

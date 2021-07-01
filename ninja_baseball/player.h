@@ -42,7 +42,7 @@ public:
 
 	//함수를 선언하려면 여기에다
 	//겟터와 셋터는 따로따로 밑에 다 선언 해주세요
-	virtual HRESULT init(int character);
+	virtual HRESULT init(int character, bool isStart);
 	virtual void update();
 	virtual void release();
 	virtual void render();

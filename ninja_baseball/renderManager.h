@@ -16,7 +16,8 @@ private:
 		float* shadowY;
 		float* bodyX;
 		float *bodyY;
-		bool isPlayer;
+		bool isNotHaveCurrentFrame;
+		bool isFrameImage;
 	}OBJ;
 
 	typedef vector<OBJ>						arrObj;
@@ -35,7 +36,7 @@ public :
 	void update();
 	void render(HDC hdc);
 
-	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY);
+	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, bool isFrameImage);
 
 	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, int* currentFrameX, int* currentFrameY);
 
