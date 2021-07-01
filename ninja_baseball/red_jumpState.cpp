@@ -15,7 +15,12 @@ playerstate * red_jumpState::handleInput(player * _player)
 		{
 			_player->setX(_player->getX());
 		}
-				
+		
+		if (_isJumpAttack)
+		{
+			_player->setY(_player->getY() + 60);
+		}
+		
 		return new red_idleState;
 	}
 	
@@ -58,7 +63,7 @@ void red_jumpState::update(player * _player)
 	{
 		_isJumpAttack = true;
 	}
-
+		
 	if (_jumpPower < 0)
 	{
 		_isJump = true;
@@ -130,19 +135,7 @@ void red_jumpState::enter(player * _player)
 	{
 		_player->setX(_player->getX());
 	}
-		
-	//이걸로 점프어택 문제해결!!
-	if (_isJumpAttack)
-	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
-		_player->_shadow->setY(_player->getY() + 180);
-	}
-	else
-	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
-		_player->_shadow->setY(_player->getY() + 120);
-	}
-
+	
 	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
 	_player->setShadowY(_player->getY() + 100 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
 	
@@ -168,4 +161,11 @@ void red_jumpState::enter(player * _player)
 		_player->getImage()->setFrameY(1);
 	}
 		
+	if (!_isJumpAttack)
+	{
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
+		_player->_shadow->setY(_player->getY() + 120);
+	}
+
+	
 }
