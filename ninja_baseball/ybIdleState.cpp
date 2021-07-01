@@ -21,6 +21,11 @@ ybState * ybIdleState::inputHandle(yellowBaseball * yellowBaseball)
 	{
 		timeCount = 0;
 	}
+
+	if (yellowBaseball->isDeath)
+	{
+		return new ybDeathState();
+	}
 	return nullptr;
 }
 
@@ -97,6 +102,8 @@ void ybIdleState::update(yellowBaseball * yellowBaseball)
 void ybIdleState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_idle");
+	yellowBaseball->setImageName("yBaseball_idle");
+
 	if (!yellowBaseball->isRight)
 	{
 		yellowBaseball->setCurrentFrameY(1);

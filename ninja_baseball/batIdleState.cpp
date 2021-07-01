@@ -10,18 +10,25 @@ batState * batIdleState::inputHandle(bat * bat)
 {
 	if (bat->isCollisionAttack)		//충돌했으면 attack해!
 	{
-		//bat->isCollisionAttack = true;
-		
-		return new batAttackState();
+		bat->timeCount++;
+		if (bat->timeCount >= 65)
+		{
+			bat->timeCount = 0;
+			return new batAttackState();
+		}
 	}
+	else bat->timeCount = 0;
 
-	if (bat->isDeath)
+	//if (bat->isDeath)
+	//{
+	//	return new batDeathState();
+	//}
+
+	if (bat->isCollisionDamaged)
 	{
-		return new batDeathState();
+		bat->damageCount++;
+		return new batDamagedState();
 	}
-
-		
-
 
 	return nullptr;
 }
@@ -103,12 +110,15 @@ void batIdleState::enter(bat * bat)
 	{
 	case NORMAL:
 		bat->_bat.img = IMAGEMANAGER->findImage("fBat_idle");
+		bat->setImageName("fBat_idle");
 		break;
 	case NO_CAP:
 		bat->_bat.img = IMAGEMANAGER->findImage("sBat_idle");
+		bat->setImageName("sBat_idle");
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_idle");
+		bat->setImageName("tBat_idle");
 		break;
 	case DEATH:
 		bat->isDeath = true;
@@ -127,7 +137,7 @@ void batIdleState::enter(bat * bat)
 	}
 	bat->setCurrentFrameX(0);
 
-	timeCount = 0;
+	bat->timeCount = 0;
 }
 
 void batIdleState::exit(bat * bat)

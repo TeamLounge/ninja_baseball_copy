@@ -34,6 +34,7 @@ void gloveDeathState::update(glove * glove)
 void gloveDeathState::enter(glove * glove)
 {
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_death");
+	glove->setImageName("glove_death");
 
 	if (!glove->isRight)
 	{

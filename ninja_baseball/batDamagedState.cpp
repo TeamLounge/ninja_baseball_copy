@@ -8,9 +8,17 @@
 
 batState * batDamagedState::inputHandle(bat * bat)
 {
-	if (bat->isDeath)
+	if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX() &&
+		bat->isDeath)
 	{	
-		return new batDamagedState();
+		return new batDeathState();
+	}
+
+	if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX()
+		&& !bat->isDeath)
+	{
+		bat->isCollisionDamaged = false;
+		return new batIdleState();
 	}
 
 	return nullptr;
@@ -22,7 +30,7 @@ void batDamagedState::update(bat * bat)
 	{
 		//frame
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 5)
 		{
 			frameCount = 0;
 			if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())
@@ -49,7 +57,7 @@ void batDamagedState::update(bat * bat)
 	if (bat->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 5)
 		{
 			frameCount = 0;
 			if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())
@@ -98,12 +106,15 @@ void batDamagedState::enter(bat * bat)
 	{
 	case NORMAL:
 		bat->_bat.img = IMAGEMANAGER->findImage("fBat_damaged");
+		bat->setImageName("fBat_damaged");
 		break;
 	case NO_CAP:
 		bat->_bat.img = IMAGEMANAGER->findImage("sBat_damaged");
+		bat->setImageName("sBat_damaged");
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_damaged");
+		bat->setImageName("tBat_damaged");
 		break;
 	
 	default:
@@ -119,7 +130,6 @@ void batDamagedState::enter(bat * bat)
 		bat->setCurrentFrameY(0);
 	}
 		
-
 	bat->setCurrentFrameX(0);
 }
 

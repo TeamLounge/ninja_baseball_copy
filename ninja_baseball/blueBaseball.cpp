@@ -27,6 +27,8 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	setShadow();
 
+	_imgName = "bBaseball_damaged";	//string 크게 잡아주자 뻑나지 않게
+
 	_bbState = new bbIdleState();
 	_bbState->enter(this);
 
@@ -46,12 +48,15 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isJump = false;
 	isXOverlap = false;
 	isYOverlap = false;
+	isDeath = false;
+
+	damageCount = 0;
 	
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							
-	bool iscatch;				//에저미가 잡혔어??
+	bool iscatch;				//에너미가 잡혔어??
 
-	RENDERMANAGER->addObj("blueBaseball", _imgName.c_str(), "wBaseball_shadow",
+	RENDERMANAGER->addObj("blueBaseball", _imgName.c_str(), "bBaseball_shadow",
 		&_blueBaseball.x, &_blueBaseball.y, &_bbShadow.x, &_bbShadow.y,
 		&_currentFrameX, &_currentFrameY);
 
@@ -78,6 +83,7 @@ void blueBaseball::update()
 	{
 		//그림자
 		_bbShadow.rc = RectMakeCenter((_blueBaseball.rc.right + _blueBaseball.rc.left) / 2, _blueBaseball.rc.bottom, 215, 50);
+		_bbShadow.x = (_blueBaseball.rc.right + _blueBaseball.rc.left) / 2;					// 빼먹지말자!! 이것도 있어야 제자리에 그림자 생기지
 		_bbShadow.y = _blueBaseball.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
@@ -86,6 +92,23 @@ void blueBaseball::update()
 		//그림자
 		_bbShadow.rc = RectMakeCenter((_blueBaseball.rc.right + _blueBaseball.rc.left) / 2, _bbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
+
+	//충돌 여부에 따른 죽음 판정
+	/*if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 5)
+		{
+			isDeath = true;
+		}
+
+		isCollisionDamaged = true;
+	}
+	else
+	{
+		isDeath = false;
+		isCollisionDamaged = false;
+	}*/
 }
 
 void blueBaseball::render()
@@ -112,9 +135,10 @@ void blueBaseball::render()
 	}
 
 	//Rectangle(getMemDC(), _blueBaseball.rcStop);			//등장 충돌 렉트
-
-	_bbShadow.img->render(getMemDC(), _bbShadow.rc.left, _bbShadow.rc.top);
-	_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.x, _blueBaseball.y, _currentFrameX, _currentFrameY);
+	
+	//렌더매니저 쓰니까 필요없음.
+	//_bbShadow.img->render(getMemDC(), _bbShadow.rc.left, _bbShadow.rc.top);
+	//_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.x, _blueBaseball.y, _currentFrameX, _currentFrameY);
 	//_blueBaseball.img->frameRender(getMemDC(), _blueBaseball.rc.left, _blueBaseball.rc.top);
 }
 
@@ -125,7 +149,6 @@ void blueBaseball::setImage()
 	IMAGEMANAGER->addFrameImage("bBaseball_damaged", "image/3_Enemy/baseball/bBaseball_damaged.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("bBaseball_hang", "image/3_Enemy/baseball/bBaseball_hang.bmp", 360, 600, 1, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("bBaseball_kick", "image/3_Enemy/baseball/bBaseball_kick.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("bBaseball_land", "image/3_Enemy/baseball/bBaseball_land.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("bBaseball_punch", "image/3_Enemy/baseball/bBaseball_punch.bmp", 720, 600, 2, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("bBaseball_roll", "image/3_Enemy/baseball/bBaseball_roll.bmp", 4320, 600, 12, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("bBaseball_spin", "image/3_Enemy/baseball/bBaseball_spin.bmp", 1440, 600, 4, 2, true, RGB(255, 0, 255), false);

@@ -28,6 +28,8 @@ private:
 	int _currentFrameX;
 	int _currentFrameY;
 
+	string _imgName;
+
 public:
 
 	void InputHandle();
@@ -50,10 +52,11 @@ public:
 	bool isDeath;					//count == 5이고, 그래서 죽었어?
 
 	int damageCount;				//맞은 횟수
+	int timeCount;					//공격 인터벌 주기 위함
 
-	bool isattack;              //에너미가 공격했어??
-	bool isdamage;				//에너미가 데미지 받았어??							
-	bool iscatch;				//에저미가 잡혔어??
+	bool isattack;					//에너미가 공격했어??
+	bool isdamage;					//에너미가 데미지 받았어??							
+	bool iscatch;					//에저미가 잡혔어??
 
 
 	//이미지 좌표 수정 위한 bool값들
@@ -93,5 +96,6 @@ public:
 	void setCurrentFrameX(int currentX) { _currentFrameX = currentX; }
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
+	void setImageName(string s) { _imgName = s; }
 };
 

@@ -8,6 +8,10 @@
 
 ybState * ybDamagedState::inputHandle(yellowBaseball * yellowBaseball)
 {
+	if (yellowBaseball->isDeath)
+	{
+		return new ybDeathState();
+	}
 	return nullptr;
 }
 
@@ -85,6 +89,8 @@ void ybDamagedState::update(yellowBaseball * yellowBaseball)
 void ybDamagedState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_damaged");
+	yellowBaseball->setImageName("yBaseball_damaged");
+
 	if (!yellowBaseball->isRight)
 	{
 		yellowBaseball->setCurrentFrameY(1);

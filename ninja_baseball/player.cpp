@@ -256,7 +256,7 @@ void player::collision()
 	// =========================================
 
 	//yellowBaseball Ãæµ¹
-	for (int i = 0; i < _em->getVBb().size(); i++)
+	for (int i = 0; i < _em->getVYb().size(); i++)
 	{
 		RECT temp;
 

@@ -97,12 +97,15 @@ void batAttackState::enter(bat * bat)
 	{
 	case NORMAL:
 		bat->_bat.img = IMAGEMANAGER->findImage("fBat_attack");
+		bat->setImageName("fBat_attack");
 		break;
 	case NO_CAP:
 		bat->_bat.img = IMAGEMANAGER->findImage("sBat_attack");
+		bat->setImageName("sBat_attack");
 		break;
 	case NO_BAT:
 		bat->_bat.img = IMAGEMANAGER->findImage("tBat_attack");
+		bat->setImageName("tBat_attack");
 		break;
 	case DEATH:
 		bat->isDeath = true;

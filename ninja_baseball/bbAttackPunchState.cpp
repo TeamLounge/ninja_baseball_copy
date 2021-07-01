@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "blueBaseball.h"
 #include "bbIdleState.h"
-#include "bbLandState.h"
 #include "bbAttackPunchState.h"
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
@@ -12,6 +11,11 @@ bbState * bbAttackPunchState::inputHandle(blueBaseball * blueBaseball)
 	{
 		blueBaseball->isattack = false;
 		return new bbIdleState();	//디폴트(안맞으면)로 idle 상태
+	}
+
+	if (blueBaseball->isDeath)
+	{
+		return new bbDeathState();
 	}
 
 	return nullptr;
@@ -80,6 +84,8 @@ void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->isattack = true;
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_punch");
+	blueBaseball->setImageName("bBaseball_punch");
+
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);
@@ -90,7 +96,6 @@ void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 	}
 	blueBaseball->setCurrentFrameX(0);
 
-	blueBaseball->setImageName("bBaseball_punch");
 }
 
 void bbAttackPunchState::exit(blueBaseball * blueBaseball)

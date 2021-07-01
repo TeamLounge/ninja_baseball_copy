@@ -9,6 +9,11 @@
 
 gbState * gbDamagedState::inputHandle(greenBaseball * greenBaseball)
 {
+
+	if (greenBaseball->isDeath)
+	{
+		return new gbDeathState();
+	}
 	return nullptr;
 }
 
@@ -86,6 +91,8 @@ void gbDamagedState::update(greenBaseball * greenBaseball)
 void gbDamagedState::enter(greenBaseball * greenBaseball)
 {
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_damaged");
+	greenBaseball->setImageName("gBaseball_damaged");
+
 	if (!greenBaseball->isRight)
 	{
 		greenBaseball->setCurrentFrameY(1);

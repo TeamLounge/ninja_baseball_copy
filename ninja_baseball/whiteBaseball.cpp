@@ -46,6 +46,9 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isJump = false;
 	isXOverlap = false;
 	isYOverlap = false;
+	isDeath = false;
+
+	damageCount = 0;
 
 	
 	RENDERMANAGER->addObj("whiteBaseball", _imgName.c_str(), "wBaseball_shadow", 
@@ -90,6 +93,23 @@ void whiteBaseball::update()
 		_wbShadow.x = (_whiteBaseball.rc.right + _whiteBaseball.rc.left) / 2;
 		_wbShadow.rc = RectMakeCenter(_wbShadow.x, _wbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 		
+	}
+
+	//충돌 여부에 따른 죽음 판정
+	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 5)
+		{
+			isDeath = true;
+		}
+
+		isCollisionDamaged = true;
+	}
+	else
+	{
+		isDeath = false;
+		isCollisionDamaged = false;
 	}
 }
 
