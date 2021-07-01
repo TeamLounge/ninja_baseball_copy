@@ -47,9 +47,15 @@ private:
 	Object _obj;
 
 public:
-	bool iscrush;
+	
+	bool iscrush , isdamage;
+	int damagecount , _present;
+	float pasty,presenty;
+	float jumppower,gravity;
+	image *peice1 , *peice2, *peice3;
 
-	virtual HRESULT init(POINT position);
+
+	virtual HRESULT init(POINT position, int present);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -83,11 +89,12 @@ private:
 public:
 
 
-	virtual HRESULT init(POINT position);
+	virtual HRESULT init(POINT position );
 	virtual void release();
 	virtual void update();
 	virtual void render();
 
+	bool ishold , iseat;
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }

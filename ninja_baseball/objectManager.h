@@ -14,11 +14,11 @@ private:
 	typedef vector<trashCan*> vTrashCan;
 	typedef vector<trashCan*>::iterator viTrashCan;
 
-	typedef vector<banana*> vBanana;
-	typedef vector<banana*>::iterator viBanana;
+	vTrashCan _vtrash;
+	viTrashCan _vitrash;
 
 	baseball* _ball;
-
+	banana* _banana;
 
 public:
 	virtual HRESULT init();
@@ -30,6 +30,8 @@ public:
 	void setTrahCan();
 	void setBanana();
 
+	void updateBall();
+	void updateBanana();
 	void collsion();
 
 	void setLinkPlayer(player* player) { _player = player; }
