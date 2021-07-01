@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "red_catchState.h"
 #include "red_idleState.h"
+#include "red_catchAttackState.h"
 
 playerstate* red_catchState::handleInput(player* _player)
 {
@@ -8,6 +9,11 @@ playerstate* red_catchState::handleInput(player* _player)
 	{
 		_player->iscatch = false;
 		return new red_idleState;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('Z')); //에너미를 잡은 상태에서 때리기
+	{
+		return new red_catchAttackState;
 	}
 
 	return nullptr;
