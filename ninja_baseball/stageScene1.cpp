@@ -220,6 +220,7 @@ void stageScene1::shutterCollison()
 	{
 		_player->setShadowY(_player->getShadowY() - (_player->getShadowY() + _player->_shadow->getHeight() / 2 - bottom));
 		_player->setY(_player->getShadowY() - _player->_shadow->getHeight() / 2 - 90);
+	
 	}
 	*/
 	
