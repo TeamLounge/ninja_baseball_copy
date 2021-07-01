@@ -5,6 +5,8 @@
 #include "objectManager.h"
 #include "progressBar.h"
 #include "playerUI.h"
+#include "timerUI.h"
+
 class stageScene1 : public gameNode
 {
 private:
@@ -17,7 +19,8 @@ private:
 	objectManager* _obj;
 
 	playerUI* _playerUI;
-
+	
+	timerUI* _timerUI;
 public:
 	HRESULT init();
 	void release();

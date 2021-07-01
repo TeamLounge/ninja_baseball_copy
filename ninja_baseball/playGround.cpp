@@ -32,16 +32,16 @@ HRESULT playGround::init()
 	IMAGEMANAGER->addImage("yellow_8", "image/8_Dialog/yellowdialog/yellow_8.bmp", 24, 24, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("yellow_9", "image/8_Dialog/yellowdialog/yellow_9.bmp", 24, 24, true, RGB(255, 0, 255), false);
 
-	IMAGEMANAGER->addImage("timer_0", "image/6_UI/inGame/timer_0.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_1", "image/6_UI/inGame/timer_1.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_2", "image/6_UI/inGame/timer_2.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_3", "image/6_UI/inGame/timer_3.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_4", "image/6_UI/inGame/timer_4.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_5", "image/6_UI/inGame/timer_5.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_6", "image/6_UI/inGame/timer_6.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_7", "image/6_UI/inGame/timer_7.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_8", "image/6_UI/inGame/timer_8.bmp", 45, 45, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("timer_9", "image/6_UI/inGame/timer_9.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_0", "image/6_UI/inGame/time_0.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_1", "image/6_UI/inGame/time_1.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_2", "image/6_UI/inGame/time_2.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_3", "image/6_UI/inGame/time_3.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_4", "image/6_UI/inGame/time_4.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_5", "image/6_UI/inGame/time_5.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_6", "image/6_UI/inGame/time_6.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_7", "image/6_UI/inGame/time_7.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_8", "image/6_UI/inGame/time_8.bmp", 45, 45, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("timer_9", "image/6_UI/inGame/time_9.bmp", 45, 45, true, RGB(255, 0, 255), false);
 
 	SCENEMANAGER->addScene("title", new titleScene);
 	SCENEMANAGER->addScene("start", new startScene);

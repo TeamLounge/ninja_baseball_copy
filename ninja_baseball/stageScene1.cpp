@@ -28,6 +28,9 @@ HRESULT stageScene1::init()
 	_playerUI = new playerUI;
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _playerSelect, _player->gethp(), _player->gethp(), _player->getlife());
 
+	_timerUI = new timerUI;
+	_timerUI->init(99, 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
 	return S_OK;
 }
 
@@ -79,6 +82,8 @@ void stageScene1::update()
 		vText.push_back(temp);
 		_itoa_s((bool)(_player->isRight), temp, 10);
 		vText.push_back(temp);
+		_itoa_s(_timerUI->getTime(), temp, 10);
+		vText.push_back(temp);
 
 		TXTDATA->txtSave("playerData.txt", vText);
 
@@ -86,6 +91,8 @@ void stageScene1::update()
 	}
 
 	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
+
+	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 }
 
 void stageScene1::render()
@@ -96,8 +103,11 @@ void stageScene1::render()
 	_player->render();
 	_obj->render();
 	_em->render();
-	_playerUI->render();
+	
 	RENDERMANAGER->render(getMemDC());
+	_playerUI->render();
+	_timerUI->render();
+	
 	//EFFECTMANAGER->render();
 	
 }

@@ -151,12 +151,12 @@ void startScene::update()
 	}
 
 	//장면 효과
-	if (_dialogTextNum[4] == 1 || _dialogTextNum[5] == 4 || _dialogTextNum[6] == 12)
+	if ((_dialogTextNum[4] >= 1 && _dialogTextNum[4] < 18) || (_dialogTextNum[5] >= 4 && _dialogTextNum[5] < 23) || _dialogTextNum[6] >= 12)
 	{
 		_faceImgName = "face_blue";
 		_dBackgroundName = "start_dialog_background";
 	}
-	if (_dialogTextNum[4] == 18 || _dialogTextNum[5] == 23)
+	if ((_dialogTextNum[4] >= 18 && _dialogTextNum[5] < 4) || (_dialogTextNum[5] >= 23 && _dialogTextNum[6] < 12))
 	{
 		_faceImgName = "face_red";
 		_dBackgroundName = "start_dialog_background2";

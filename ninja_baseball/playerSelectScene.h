@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "timerUI.h"
 struct tagCharacterSelect
 {
 	RECT rc;
@@ -18,6 +19,8 @@ private:
 	bool _isSelect; //선택했는지 확인
 
 	tagCharacterSelect _character[4]; //캐릭터 이미지 렉트
+
+	timerUI* _timerUI;
 public:
 	HRESULT init();
 	void release();

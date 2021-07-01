@@ -34,6 +34,8 @@ HRESULT stageScene2::init()
 	_playerUI = new playerUI;
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[0].c_str()), 5, atoi(vText[2].c_str()), atoi(vText[1].c_str()));
 
+	_timerUI = new timerUI;
+	_timerUI->init(atoi(vText[6].c_str()), 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 	return S_OK;
 }
@@ -63,4 +65,5 @@ void stageScene2::render()
 		_y - IMAGEMANAGER->findImage(_imageName)->getFrameHeight() / 2);
 
 	_playerUI->render();
+	_timerUI->render();
 }

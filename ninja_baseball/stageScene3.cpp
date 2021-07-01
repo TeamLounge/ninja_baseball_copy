@@ -15,7 +15,18 @@ HRESULT stageScene3::init()
 	_player->setX(WINSIZEX - (BACKGROUNDX-atoi(vText[3].c_str())));
 	_player->setY(atoi(vText[4].c_str()));
 
+	_player->sethp(atoi(vText[2].c_str()));
+	_player->setlife(atoi(vText[1].c_str()));
+
 	_elapsedTime = 0;
+
+	_playerUI = new playerUI;
+	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10,
+		atoi(vText[0].c_str()), 5, _player->gethp(), _player->getlife());
+
+	_timerUI = new timerUI;
+	_timerUI->init(atoi(vText[6].c_str()), 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
 	return S_OK;
 }
 
@@ -50,6 +61,9 @@ void stageScene3::update()
 	}
 
 	RENDERMANAGER->update();
+
+	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[0].c_str()), 5, _player->gethp(), _player->getlife());
+	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 }
 
 void stageScene3::render()
@@ -59,5 +73,8 @@ void stageScene3::render()
 	_player->render();
 
 	RENDERMANAGER->render(getMemDC());
+
+	_playerUI->render();
+	_timerUI->render();
 	
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "playerUI.h"
+#include "timerUI.h"
+
 class stageScene2 : public gameNode
 {
 private:
@@ -12,6 +14,8 @@ private:
 	float _distance; //_y와 화면 중심 사이의 거리
 
 	playerUI* _playerUI;
+
+	timerUI* _timerUI;
 
 public:
 	HRESULT init();

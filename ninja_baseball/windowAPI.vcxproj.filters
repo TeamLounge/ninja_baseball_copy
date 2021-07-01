@@ -403,7 +403,9 @@
     <ClCompile Include="playerUI.cpp">
       <Filter>playGound\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TimerUI.cpp" />
+    <ClCompile Include="timerUI.cpp">
+      <Filter>playGound\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -826,7 +828,9 @@
     <ClInclude Include="playerUI.h">
       <Filter>playGound\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TimerUI.h" />
+    <ClInclude Include="timerUI.h">
+      <Filter>playGound\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">

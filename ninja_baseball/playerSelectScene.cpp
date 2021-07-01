@@ -45,6 +45,9 @@ HRESULT playerSelectScene::init()
 	_characterFrameSec = 0;
 
 	_isSelect = false;
+
+	_timerUI = new timerUI;
+	_timerUI->init(20, 1, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 81);
 	return S_OK;
 }
 
@@ -87,6 +90,39 @@ void playerSelectScene::update()
 		}
 		
 	}
+
+	if (_timerUI->getTime() == 0)
+	{
+		if (!_isSelect)
+		{
+			_currentSelect = RND->getInt(2);
+
+			_character[_currentSelect].rc.top -= 100;
+			_character[_currentSelect].rc.bottom -= 100;
+
+			int currentframeX = IMAGEMANAGER->findImage(_character[_currentSelect].imageName)->getFrameX();
+			char str[128];
+			sprintf_s(str, "Employed%d", _currentSelect + 1);
+			_character[_currentSelect].imageName = str;
+			IMAGEMANAGER->findImage(_character[_currentSelect].imageName)->setFrameX(currentframeX);
+
+			vector<string> vStr;
+			_itoa_s(_currentSelect + 1, str, 2, 10);
+			vStr.push_back(str);
+
+			TXTDATA->txtSave("playerData.txt", vStr);
+
+			_isSelect = true;
+		}
+	}
+	else
+	{
+		if (!_isSelect)
+		{
+			_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 81);
+		}
+	}
+
 	_elapsedSec += TIMEMANAGER->getElapsedTime();
 	if (!_isSelect)
 	{
@@ -127,7 +163,6 @@ void playerSelectScene::update()
 			}
 		}
 	}
-
 }
 
 void playerSelectScene::render()
@@ -145,4 +180,6 @@ void playerSelectScene::render()
 		IMAGEMANAGER->findImage("cursor")->frameRender(getMemDC(), _cursor[_currentSelect].left, _cursor[_currentSelect].top,
 			IMAGEMANAGER->findImage("cursor")->getFrameX(), 0);
 	}
+
+	_timerUI->render();
 }
