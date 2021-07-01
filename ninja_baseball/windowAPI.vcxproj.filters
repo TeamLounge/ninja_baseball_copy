@@ -400,6 +400,9 @@
     <ClCompile Include="ybDeathState.cpp">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClCompile>
+    <ClCompile Include="red_catchAttackState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -818,6 +821,9 @@
     </ClInclude>
     <ClInclude Include="ybDeathState.h">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="red_catchAttackState.h">
+      <Filter>playGound\player\red</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
