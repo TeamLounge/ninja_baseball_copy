@@ -1,19 +1,14 @@
 #pragma once
 #include "playerstate.h"
 
-#define redSpeed 7
-
-class red_jumpState :  public playerstate
+class red_fallState : public playerstate
 {
 private:
 	RECT _rc;
-	int _count;
 	int _index;
 	float _jumpPower;
-	float _grivity;
-	bool _isJumpAttack;
-	bool _isJump;
-		
+	float _gravity;
+
 public:
 	playerstate* handleInput(player* _player);
 	void update(player* _player);

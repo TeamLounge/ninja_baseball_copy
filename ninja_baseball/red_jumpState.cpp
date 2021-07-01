@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "red_jumpState.h"
 #include "red_idleState.h"
-#include "red_jumpAttackState.h"
 
 playerstate * red_jumpState::handleInput(player * _player)
 {
-	if(_jumpPower < 0 && _player->getY() + _player->getImage()->getFrameHeight()/2 >= _player->_shadow->getY()) //뭐가 문제일까??
+	if(_isJump==true && _player->getY() + _player->getImage()->getFrameHeight() / 2 >= _player->_shadow->getY())
 	{
-		if (_player->isRight == true) //점프할때랑 떨어질때랑 상태를 나누어서 작업
+		if (_player->isRight == true) 
 		{
 			_player->setX(_player->getX());
 		}
@@ -19,12 +18,7 @@ playerstate * red_jumpState::handleInput(player * _player)
 		
 		return new red_idleState;
 	}
-
-	/*if (KEYMANAGER->isOnceKeyDown('Z'))
-	{
-		return new red_jumpAttackState;
-	}*/
-
+	
 	return nullptr;
 }
 
@@ -49,13 +43,13 @@ void red_jumpState::update(player * _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));*/
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 
 	if (_player->isRight == false)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));*/
+		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 
@@ -65,8 +59,11 @@ void red_jumpState::update(player * _player)
 		_isJumpAttack = true;
 	}
 
-	
-
+	if (_jumpPower < 0)
+	{
+		_isJump = true;
+	}
+		
 	
 	if (_isJumpAttack)
 	{
@@ -133,6 +130,12 @@ void red_jumpState::enter(player * _player)
 	{
 		_player->setX(_player->getX());
 	}
+
+	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
+	_player->_shadow->setY(_player->getY() + 120);
+
+	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	_player->setShadowY(_player->getY() + 100 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
 	
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
@@ -141,6 +144,7 @@ void red_jumpState::enter(player * _player)
 	_jumpPower = 13.0f;
 	_grivity = 0.5f;
 	_isJumpAttack = false;
+	_isJump = false;
 	
 	_count = _index = 0;
 
@@ -154,4 +158,5 @@ void red_jumpState::enter(player * _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
+		
 }
