@@ -21,7 +21,6 @@ private:
 	banana* _banana;
 	cereal* _cereal;
 
-	shutter* _shutter;
 
 	int catchtime;
 public:

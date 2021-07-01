@@ -44,38 +44,32 @@ void objectManager::render()
 		(*_vitrash)->render();
 		if ((*_vitrash)->_present == 0 && (*_vitrash)->iscrush)
 		{
-			_ball->isappear = true;
+			_ball->isrend = true;
 		}
 		if ((*_vitrash)->_present == 1 && (*_vitrash)->iscrush)
 		{
-			_banana->isappear = true;
+			_banana->isrend = true;
 		}
 		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush)
 		{
-			_cereal->isappear = true;
+			_cereal->isrend = true;
 		}
 	}
-	if (_ball->isappear){
-		_ball->render();
+	if (_ball->isrend){
+		_ball->isrend = false;
+		_ball->isappear = true;
+		_ball->addrendmanager();
 	}
-	if (_banana->isappear) {
-		_banana->render();
+	if (_banana->isrend) {
+		_banana->isrend = false;
+		_banana->isappear = true;
+		_banana->addrendmanager();
 	}
-	if (_cereal->isappear) {
-		_cereal->render();
+	if (_cereal->isrend) {
+		_cereal->isrend = false;
+		_cereal->isappear = true;
+		_cereal->addrendmanager();
 	}
-	if (_ball->ishold)
-	{
-		sprintf_s(str, " 잡혓쏘히잉");
-		TextOut(getMemDC(), _ball->getX()-10, _ball->getY()-10,str, strlen(str));
-	}
-	if (_banana->iseat)
-	{
-		sprintf_s(str1, " 먹혔어히잉");
-		TextOut(getMemDC(), _banana->getX() +100, _banana->getY() - 100, str1, strlen(str1));
-	}
-	if (_cereal->iseat)
-		TextOut(getMemDC(), _cereal->getX() + 100, _cereal->getY() - 100, str1, strlen(str1));
 }
 
 void objectManager::setBaseBall()
@@ -102,6 +96,7 @@ void objectManager::setTrahCan()
 			_trashCan->init(PointMake(3239, 408), i);
 		}
 		_vtrash.push_back(_trashCan);
+
 	}
 }
 
@@ -187,6 +182,7 @@ void objectManager::updateBanana()
 		_banana->ishold = false;
 		_banana->iseat = true;
 		_banana->isappear = false;
+		_banana->deleteRendermanager();
 	}
 }
 
@@ -208,21 +204,21 @@ void objectManager::collsion()
 	
 	if (KEYMANAGER->isStayKeyDown('X') && KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		if (!(_ball->ishold)&& IntersectRect(&temp, &_player->getRect(), &_ball->getRect())) {
+		if (_ball->isappear&&!(_ball->ishold)&& IntersectRect(&temp, &_player->getRect(), &_ball->getRect())) {
 			if ( _ball->getShadowY() > _player->_shadow->getY() &&
 				_ball->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight() / 2);
 			{
 				_ball->ishold = true;
 			}
 		}
-		if (!(_banana->ishold)&& IntersectRect(&temp, &_player->getRect(), &_banana->getRect())) {
+		if (_banana->isappear &&!(_banana->ishold)&& IntersectRect(&temp, &_player->getRect(), &_banana->getRect())) {
 			if (_banana->getShadowY() > _player->_shadow->getY() &&
 				_banana->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
 			{
 				_banana->ishold = true;	
 			}
 		}
-		if (!(_cereal->ishold) && IntersectRect(&temp, &_player->getRect(), &_cereal->getRect())) {
+		if (_cereal->isappear &&!(_cereal->ishold) && IntersectRect(&temp, &_player->getRect(), &_cereal->getRect())) {
 			if (_cereal->getShadowY() > _player->_shadow->getY() &&
 				_cereal->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
 			{
@@ -232,7 +228,7 @@ void objectManager::collsion()
 	}
 
 	//ball 던진다!
-	if(_ball->isattack){
+	if(_ball->isappear && _ball->isattack){
 		//Whtie baseball
 		for (int i = 0; i < _em->getVWb().size(); i++) {
 			if (_ball->getShadowY() < _em->getVWb()[i]->_wbShadow.rc.bottom &&
@@ -242,6 +238,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					_em->getVWb()[i]->isdamage = true;
 				}
 			}
@@ -257,6 +254,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
 				}
 			}
@@ -273,6 +271,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVYb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
 				}
 			}
@@ -289,6 +288,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVYb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
 				}
 			}

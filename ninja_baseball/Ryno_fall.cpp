@@ -88,6 +88,10 @@ void Ryno_fall::update(player * player)
 			}
 		}
 	}
+	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
+	{
+		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
+	}
 	player->getImage()->setFrameX(_index);
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
@@ -102,7 +106,7 @@ void Ryno_fall::update(player * player)
 void Ryno_fall::enter(player * player)
 {
 	_count = 0;
-	_index = player->getImage()->getFrameX();
+	_index = 0;
 	_jumpPower = 0.0f;
 	_gravity = 0.2f;
 	
