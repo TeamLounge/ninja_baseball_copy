@@ -12,6 +12,11 @@ private:
 	int _playerSelect; //현재 선택한 캐릭터
 
 	int _life; //플레이어 목숨 개수
+
+	bool _isAttacked;
+
+	float _elapsedSec;
+	float _count;
 public:
 	HRESULT init(float x, float y, int playerSelect, int maxHP, int currentHP, int life);
 	void release();
