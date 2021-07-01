@@ -31,6 +31,20 @@ void Ryno_damage::update(player * player)
 	else isend = true;
 	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
+
+	player->_shadow->setY(player->getY() + 90);
+	player->setShadowY(player->getY() + 90 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);
+	
+	if (player->isRight)
+	{
+		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) - 15);
+		player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	}
+	else
+	{
+		player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2) + 15);
+		player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
+	}
 }
 
 void Ryno_damage::enter(player * player)

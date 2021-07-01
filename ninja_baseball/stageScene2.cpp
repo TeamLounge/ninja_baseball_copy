@@ -55,6 +55,7 @@ void stageScene2::update()
 	}
 
 	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[2].c_str()), atoi(vText[1].c_str()));
+	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 }
 
 void stageScene2::render()

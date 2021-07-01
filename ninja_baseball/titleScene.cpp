@@ -36,16 +36,16 @@ void titleScene::update()
 	}
 	else
 	{
-		_silhouette.top -= 5;
+		_silhouette.top -= 15;
 		_silhouette.bottom = _silhouette.top + IMAGEMANAGER->findImage("silhouette")->getHeight();
 	}
 
 	if (_silhouette.top == WINSIZEY / 2 - 90 - IMAGEMANAGER->findImage("silhouette")->getHeight() / 2)
 	{	
 		_elapsedSec += TIMEMANAGER->getElapsedTime();
-		if (_elapsedSec >= 2.0f)
+		if (_elapsedSec >= 0.5f)
 		{
-			_elapsedSec -= 2.0f;
+			_elapsedSec -= 0.5f;
 			_isTitleStart = true;
 		}
 	}
@@ -82,9 +82,9 @@ void titleScene::update()
 				IMAGEMANAGER->findImage("title_frame")->setFrameX(IMAGEMANAGER->findImage("title_frame")->getFrameX() + 1);
 			}
 		}
-		if (_textElapsedSec >= 1.0f)
+		if (_textElapsedSec >= 0.5f)
 		{
-			_textElapsedSec -= 1.0f;
+			_textElapsedSec -= 0.5f;
 			if (_textBlend == 255)
 			{
 				_textBlend = 0;
