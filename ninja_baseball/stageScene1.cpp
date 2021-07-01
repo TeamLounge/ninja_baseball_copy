@@ -3,10 +3,8 @@
 
 HRESULT stageScene1::init()
 {
-	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("±âµÕ", "image/1_Map/stage1-1±âµÕ.bmp",  72, 768, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("¼ÅÅÍ", "image/9_Object/shutter.bmp", 327, 768, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("shutter_pixel", "image/9_Object/shutter_pixel.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
+	setImage();
+
 	CAMERAMANAGER->setCamera(0, 0);
 	vText = TXTDATA->txtLoad("playerData.txt");
 
@@ -47,7 +45,6 @@ void stageScene1::update()
 	RENDERMANAGER->update();
 	shutterCollison();
 	_player->update();
-	shutterCollison();
 	_em->update();
 	_obj->update();
 
@@ -164,5 +161,29 @@ void stageScene1::shutterCollison()
 	{
 		_player->setShadowX(_player->getShadowX() - (_player->getShadowX() + _player->_shadow->getWidth() / 2 - right) + 6);
 		_player->setX(_player->getShadowX());
+	}
+}
+
+void stageScene1::setImage()
+{
+	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("±âµÕ", "image/1_Map/stage1-1±âµÕ.bmp", 72, 768, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("¼ÅÅÍ", "image/9_Object/shutter.bmp", 327, 768, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutter_pixel", "image/9_Object/shutter_pixel.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle1", "image/9_Object/shutter_particle1.bmp", 236, 215, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle2", "image/9_Object/shutter_particle2.bmp", 188, 263, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle3", "image/9_Object/shutter_particle3.bmp", 206, 301, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle4", "image/9_Object/shutter_particle4.bmp", 143, 278, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle5", "image/9_Object/shutter_particle5.bmp", 227, 240, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("shutterParticle6", "image/9_Object/shutter_particle6.bmp", 191, 260, true, RGB(255, 0, 255), false);
+}
+
+void stageScene1::setShutter()
+{
+	char str[128];
+	for (int i = 1; i <= 6; i++)
+	{
+		sprintf_s(str, "shutterPiece%d", i);
+		_sutterParticle.push_back(str);
 	}
 }

@@ -9,6 +9,8 @@ private:
 	player* _Ryno;
 
 	enemyManager* _em;
+
+	
 public:
 	HRESULT init();
 	void release();

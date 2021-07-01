@@ -29,7 +29,11 @@ private:
 	
 	timerUI* _timerUI;
 
-	vector<tagXY> _guide;
+	//º≈≈Õ
+	RECT rc; //≈∏∞› π¸¿ß rc
+	bool _isCrush;
+	vector<string> _sutterParticle;
+
 public:
 	HRESULT init();
 	void release();
@@ -38,5 +42,9 @@ public:
 
 	//º≈≈Õ «»ºø√Êµπ
 	void shutterCollison();
+
+	void setImage();
+
+	void setShutter();
 };
 
