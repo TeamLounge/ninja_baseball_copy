@@ -85,12 +85,10 @@ void red_legKickState::update(player * _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);*/
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 	if (_player->isRight == false)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);*/
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 }

@@ -32,22 +32,15 @@ void red_catchState::enter(player* _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30);
-		_player->_shadow->setY(_player->getY() + 90);*/
-
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 
 	if (_player->isRight == false)
 	{
-		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30);
-		_player->_shadow->setY(_player->getY() + 90);*/
-
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
-
 
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());*/
