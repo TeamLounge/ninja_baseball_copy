@@ -13,7 +13,7 @@ playerstate * red_attackState::handleInput(player * _player)
 
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
-		return new red_homeRunState; //홈런공격?
+		return new red_homeRunState; //홈런공격
 	}
 	
 	return nullptr;
@@ -150,44 +150,14 @@ void red_attackState::update(player * _player)
 	}
 
 	_player->getImage()->setFrameX(_index);
-		
-	/*if (KEYMANAGER->isOnceKeyDown('Z'))
-	{
-		_index = 0;
-	}
-
-	_count++;
 	
-	if (_count % 5 == 0)
-	{
-		if (_player->isRight == true)
-		{
-			_index++;
-			_attackCount++;
-			if (_index < 3)
-			{
-				_player->getImage()->setFrameX(_index);
-				_player->getImage()->setFrameY(0);
-			}
-		}
-		if (_player->isRight == false)
-		{
-			_index++;
-			_attackCount++;
-			if (_index < 3)
-			{
-				_player->getImage()->setFrameX(_index);
-				_player->getImage()->setFrameY(1);
-			}
-		}
-
-			_count = 0;
-	}*/
 }
 
 void red_attackState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_attack"));
+	_player->setImageName("red_attack");
+
 	_player->setY(_player->getY() - 40);
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());

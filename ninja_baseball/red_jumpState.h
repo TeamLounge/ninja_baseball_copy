@@ -11,12 +11,9 @@ private:
 	int _index;
 	float _jumpPower;
 	float _grivity;
-	bool _isJump;
 	bool _isJumpAttack;
-
-	float _x; //점프했던 위치를 저장하기 위한 변수
-	float _y;
-
+	bool _isJump;
+		
 public:
 	playerstate* handleInput(player* _player);
 	void update(player* _player);

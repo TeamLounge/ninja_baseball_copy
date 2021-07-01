@@ -211,6 +211,7 @@
     <ClInclude Include="objectManager.h" />
     <ClInclude Include="playerUI.h" />
     <ClInclude Include="progressBar.h" />
+    <ClInclude Include="red_catchAttackState.h" />
     <ClInclude Include="red_catchState.h" />
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
@@ -355,6 +356,7 @@
     <ClCompile Include="objectManager.cpp" />
     <ClCompile Include="playerUI.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="red_catchAttackState.cpp" />
     <ClCompile Include="red_catchState.cpp" />
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />

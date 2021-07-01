@@ -8,24 +8,26 @@ playerstate* red_dashAttackState::handleInput(player* _player)
 	{
 		return new red_idleState;
 	}
+
 	return nullptr;
 }
 
 void red_dashAttackState::update(player* _player)
 {
 	_time++;
-
+	
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(0);
+
 		if (_time < 20)
 		{
 			_player->setX(_player->getX() + 25);
 		}
 
 		//공격할때 에너미랑 충돌한 렉트 생성
-			//=========================================================
+		//============================================================
 		if (_time < 20)
 		{
 			_player->isattack = true;
@@ -62,13 +64,14 @@ void red_dashAttackState::update(player* _player)
 	}
 
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	_player->_shadow->setY(_player->getY() + 90);
+	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+	_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 }
 
 void red_dashAttackState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_dashAttack"));
+	_player->setImageName("red_dashAttack");
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());

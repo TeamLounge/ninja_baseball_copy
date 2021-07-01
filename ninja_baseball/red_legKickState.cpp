@@ -4,7 +4,7 @@
 
 playerstate * red_legKickState::handleInput(player * _player)
 {
-	if (_time > 30)
+	if (_time > 10)
 	{
 		return new red_idleState;
 	}
@@ -61,24 +61,43 @@ void red_legKickState::update(player * _player)
 	{
 		_time++;
 	}
+
+	//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+	if (_index > 3 && _player->getImage()->getMaxFrameX() >= _index)
+	{
+		_player->isattack = true;
+
+		if (_player->isRight == true)
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY() + 40, 70, 70);
+		}
+		if (_player->isRight == false)
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY() + 40, 70, 70);
+		}
+	}
+	else
+	{
+		_player->isattack = false;
+	}
 	
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		/*_player->_shadow->setY(_player->getY() + 90);*/
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		/*_player->_shadow->setY(_player->getY() + 90);*/
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 }
 
 void red_legKickState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_legKick"));
-	
+	_player->setImageName("red_legKick");
+		
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	_player->getImage()->getFrameHeight());
 	_player->setRect(_rc);

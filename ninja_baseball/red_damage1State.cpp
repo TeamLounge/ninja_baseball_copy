@@ -35,8 +35,8 @@ void red_damage1State::update(player* _player)
 	}
 		
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-	/*_player->_shadow->setY(_player->getY() + 90);*/
+	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+	
 
 	//플레이어가 적에게 맞고 공중에 띄우는고 바닥에 떨어지게 하는것
 	_jumpPower -= _gravity;
@@ -82,6 +82,8 @@ void red_damage1State::update(player* _player)
 void red_damage1State::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_damage1"));
+	_player->setImageName("red_damage1");
+
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getMaxFrameY());
 	_player->setRect(_rc);

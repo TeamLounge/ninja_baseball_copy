@@ -10,29 +10,29 @@
 
 playerstate* red_moveState::handleInput(player* _player)
 {
-	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 4) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 4) ||
+	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 3) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 3) ||
 		KEYMANAGER->isOnceKeyUp(VK_UP) || KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{
 		return new red_idleState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('X')) //점프
+	if (KEYMANAGER->isOnceKeyDown('C')) //점프
 	{
 		return new red_jumpState;
 	}
 
 	if (KEYMANAGER->isOnceKeyDown('Z')) //점프 공격
 	{
-		return new red_attackState;
+		return new red_attackState; 
 	}
 
-	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && _isRun == true)
-		|| KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _isRun == true) //달리기
+	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && _isRun == true && _isLeft)
+		|| KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _isRun == true && _isRight) //달리기
 	{
 		return new red_runState;
 	}
 
-	if (KEYMANAGER->isStayKeyDown('Z')) //공격준비자세?
+	if (KEYMANAGER->isStayKeyDown('Z')) //잡으려고 준비하는 자세??
 	{
 		return new red_gripState;
 	}
@@ -56,6 +56,7 @@ void red_moveState::update(player * _player)
 	{
 		_player->setX(_player->getX() - redSpeed);
 		_player->isRight = false;
+		_isLeft = true;
 		_runTimeStart = true;
 	}
 
@@ -70,6 +71,7 @@ void red_moveState::update(player * _player)
 	{
 		_player->setX(_player->getX() + redSpeed);
 		_player->isRight = true;
+		_isRight = true;
 		_runTimeStart = true;
 	}
 
@@ -132,15 +134,15 @@ void red_moveState::update(player * _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 5);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 5 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
-
+	
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());*/
 	
@@ -161,6 +163,7 @@ void red_moveState::update(player * _player)
 void red_moveState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_walk"));
+	_player->setImageName("red_walk");
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
@@ -170,6 +173,8 @@ void red_moveState::enter(player * _player)
 	_runTime = 0;
 	_runTimeStart = false;
 	_isRun = false;
+	_isRight = false;
+	_isLeft = false;
 
 	if (_player->isRight == true)
 	{

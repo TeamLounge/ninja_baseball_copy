@@ -118,19 +118,19 @@ void player::render()
 
 	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _shadow->getCenterY() , str1, strlen(str1));
 
-	if (isattack)
+	if (isattack) //적을 때림
 	{
 		Rectangle(getMemDC(), _attack_rc);
 		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
 	}
-	if (isdamage)
+	if (isdamage) //적에게 맞음
 	{
 		TextOut(getMemDC(), _x - 100, _y - 100, str, strlen(str));
 	}
-	if (isdamage)
-	{
-		TextOut(getMemDC(), _x - 150, _y -150, str, strlen(str));
-	}
+	//if (isdamage) 
+	//{
+	//	TextOut(getMemDC(), _x - 150, _y -150, str, strlen(str));
+	//}
 
 }
 
@@ -259,10 +259,7 @@ void player::collision()
 			}
 		}
 	}
-
-	//===========================================
-	//여기부터 작업했음....
-	// =========================================
+		
 
 	//yellowBaseball 충돌
 	for (int i = 0; i < _em->getVYb().size(); i++)

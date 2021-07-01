@@ -39,24 +39,24 @@ void red_throw::update(player * _player)
 	{
 		_time++;
 	}
-
-
+	
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
-		_player->_shadow->setY(_player->getY() + 90);
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 }
 
 void red_throw::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_throw"));
+	_player->setImageName("red_throw");
 
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());

@@ -60,13 +60,15 @@ void red_standUpState::update(player* _player)
 	}
 
 	//그림자 위치
-	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 15);
-	_player->_shadow->setY(_player->getY() + 120);
+	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+	_player->setShadowY(_player->getY() + 120 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 }
 
 void red_standUpState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_standUp"));
+	_player->setImageName("red_standUp");
+
 	_player->setY(_player->getY() - 120);
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
