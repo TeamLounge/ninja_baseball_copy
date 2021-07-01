@@ -37,7 +37,7 @@ public:
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
 	float _runtime;
-
+	image *effect, *effect1, *effect2, *effect3;
 	enemyManager* _em; //애너미정보가져오기
 
 	//함수를 선언하려면 여기에다

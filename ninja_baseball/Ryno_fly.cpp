@@ -56,10 +56,15 @@ void Ryno_fly::update(player * player)
 	//이거는 공격했다면 공격렉트를 쏠겁니다
 	if (_index<2 && player->isattack)
 	{
+		player->effect = IMAGEMANAGER->findImage("effect");
+		player->effect1 = IMAGEMANAGER->findImage("effect1");
+		player->effect2 = IMAGEMANAGER->findImage("effect2");
+		player->effect3 = IMAGEMANAGER->findImage("effect3");
 		_actiontime++;
 		next = true;
 		if(player->isRight)
 		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*300, player->getY() + sinf(0.75)*440, 150, 150);
+		
 		else
 			player->_attack_rc = RectMakeCenter(player->getX() + cosf(2.32) * 300, player->getY() + sinf(2.32) * 400, 150, 150);
 		//공격렉트를 이정도 시간동안 띄우고  시간이 지나면 다음 행동으로 넘어가게 합니다. 나머지 안쓸것도 다 0으로 초기화 해주구요
