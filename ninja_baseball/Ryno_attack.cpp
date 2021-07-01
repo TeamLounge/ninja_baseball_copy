@@ -9,6 +9,10 @@ playerstate * Ryno_attack::handleInput(player * player)
 	if (isend)
 	{
 		player->isattack = false;
+		player->_isGreenAttackState = false;
+		player->_isGreenAttack1 = false;
+		player->_isGreenAttack2 = false;
+		player->_isGreenAttack3 = false;
 		return new Ryno_idle;
 	}
 
@@ -38,6 +42,7 @@ void Ryno_attack::update(player * player)
 		
 			if (_index==2)
 			{
+				player->_isGreenAttack1 = true;
 				player->isattack = true;
 				if (player->isRight) {
 					player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY()-40, 50, 80);
@@ -76,6 +81,8 @@ void Ryno_attack::update(player * player)
 	{
 		_count++;
 		player->isattack = true;
+		player->_isGreenAttack2 = true;
+		player->_isGreenAttack1 = false;
 		if (player->isRight) {
 			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
 		}
@@ -102,6 +109,8 @@ void Ryno_attack::update(player * player)
 	{
 		//랜더용 카운트
 		_count++;
+		player->_isGreenAttack3 = true;
+		player->_isGreenAttack2 = false;
 		if (_index == 6) player->isattack = true;
 		if (player->isRight) {
 			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
@@ -149,4 +158,6 @@ void Ryno_attack::enter(player * player)
 	}
 
 	player->setImageName("Ryno_attack");
+
+	player->_isGreenAttackState = true;
 }

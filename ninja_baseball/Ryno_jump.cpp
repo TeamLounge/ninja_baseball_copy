@@ -8,10 +8,12 @@ playerstate * Ryno_jump::handleInput(player * player)
 	//이부분도 나중에 바꿔야할것같음..
 	if (_jumpPower < 0 && player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
+		player->_isGreenJumpAttack = false;
 		return new Ryno_fall;
 	}   
 	if (KEYMANAGER->isOnceKeyDown('X')&&KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
+		player->_isGreenJumpAttack = false;
 		return new Ryno_fly;
 	}
  	return nullptr;
@@ -40,6 +42,7 @@ void Ryno_jump::update(player * player)
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		player->isattack = true;
+		player->_isGreenJumpAttack = true;
 	}
 	//좌우 구분하기위해서
 	if (player->isRight)

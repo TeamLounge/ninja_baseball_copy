@@ -400,6 +400,18 @@
     <ClCompile Include="ybDeathState.cpp">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClCompile>
+    <ClCompile Include="bossSmallDamagedState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="cardSmallDamagedState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardHeavyDamagedState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardDeathState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -818,6 +830,18 @@
     </ClInclude>
     <ClInclude Include="ybDeathState.h">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
+    </ClInclude>
+    <ClInclude Include="bossSmallDamagedState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="cardSmallDamagedState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardHeavyDamagedState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardDeathState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

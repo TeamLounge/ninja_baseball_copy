@@ -6,6 +6,7 @@ playerstate * Ryno_fly::handleInput(player * player)
 	if (isend)
 	{
 		player->isattack = false;
+		player->_isGreenJumpPowerAttack = false;
 		return new Ryno_fall;
 	}
 	return nullptr;
@@ -29,6 +30,7 @@ void Ryno_fly::update(player * player)
 				if (KEYMANAGER->isOnceKeyDown('X')&& (player->getY() < _top))
 				{
 					player->isattack = true;
+					player->_isGreenJumpPowerAttack = true;
 				}
 			}
 			//커맨드 시간안에 공격키 안누르면 끝!

@@ -36,6 +36,8 @@ HRESULT player::init(int character)
 	iscatch = false;
 	iscrawl = false;
 
+	_playerImgName = "Ryno_catch_frontCombo";
+
 	if (character == 1)
 	{
 		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY);
@@ -47,6 +49,8 @@ HRESULT player::init(int character)
 
 	_hp = 5;
 	_life = 3;
+
+	isStateSet();
 
 	return S_OK;
 }
@@ -430,4 +434,17 @@ void player::collision()
 			}
 		}
 	}
+}
+
+void player::isStateSet()
+{
+	_isGreenAttackState = _isGreenAttack1 = _isGreenAttack2 = _isGreenAttack3 = false; // 리노 기본공격스테이트
+
+	_isGreenAttackFrontCombo1 = _isGreenAttackFrontCombo2 = false; // 리노 프론트콤보 공격
+
+	_isGreenDashAlt = _isGreenDashAttack = false; //달려가다가 대쉬 공격
+
+	_isGreenJumpAttack = _isGreenJumpPowerAttack = false; //점프어택 약공격 강공격
+
+	_isGreenCatchFrontCombo = _isGreenCatchBackAttack = _isGreenCatchAttack = false;  //캐치 공격 ㅇㅇ
 }

@@ -151,6 +151,7 @@ public:
 	void renderCard();
 
 	void WhereIsCard();
+	void assultedCollisionCard();
 
 	vector<card*> getVCard() { return _vCard; }
 	vector<card*>::iterator getVICard() { return _viCard; }
@@ -164,5 +165,6 @@ public:
 
 	void WhereIsBoss();
 	void attackCollision();
+	void assultedCollisionBoss();
 };
 

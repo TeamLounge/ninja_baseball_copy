@@ -2,14 +2,13 @@
 #include "enemyManager.h"
 #include "player.h"
 
-//주석 지워주세요
 HRESULT enemyManager::init()
 {
-	setBaseball();
-	setBat();
+	//setBaseball();
+	//setBat();
 	setCard();
-	setGlove();
-	setBoss();
+	//setGlove();
+	//setBoss();
 
 	return S_OK;
 }
@@ -35,7 +34,8 @@ void enemyManager::update()
 	updateCard();
 	WhereIsCard();	
 
-	updateBoss();
+	//updateBoss();
+	//assultedCollisionBoss();
 }
 
 void enemyManager::render()
@@ -45,7 +45,7 @@ void enemyManager::render()
 	//renderBat();
 	//renderGlove();
 	renderCard();
-	renderBoss();
+	//renderBoss();
 
 	char str1[126];
 	sprintf_s(str1, "맞앗써");
@@ -749,6 +749,94 @@ void enemyManager::WhereIsCard()
 	}
 }
 
+
+//////////////////////////////////////////////////
+//			카드 피격 충돌
+/////////////////////////////////////////////////
+void enemyManager::assultedCollisionCard()
+{
+	/*for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
+	{
+		if ((*_viCard)->_isMoveState && _player->isattack)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+			{
+				if (_player->_isGreenAttack1 || _player->_isGreenAttack2 ||
+					_player->_isGreenAttack3 || _player->_isGreenDashAttack ||
+					_player->_isGreenJumpAttack)
+				{
+					_boss->_isSmallDamaged = true;
+				}
+
+				if (_player->_isGreenDashAlt || _player->_isGreenJumpPowerAttack)
+				{
+					_boss->_isDamaged = true;
+				}
+			}
+		}
+
+		if (_boss->_isSmallDamagedState && _player->isattack)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+			{
+				if (_player->_isGreenAttack1)
+				{
+					_boss->_isSmallDamaged = true;
+				}
+
+				if (_player->_isGreenAttack2 || _player->_isGreenAttackFrontCombo1)
+				{
+					_boss->_isGreenAttack12 = true;
+				}
+
+				if (_player->_isGreenAttack3 || _player->_isGreenAttackFrontCombo2)
+				{
+					_boss->_isGreenAttack3 = true;
+				}
+			}
+		}
+
+		if (_boss->_isMoveState && _player->iscrawl)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
+			{
+				_player->iscatch = true;
+				_boss->_isGreenCatch = true;
+				_boss->_isSmallDamaged = true;
+			}
+		}
+
+		if (!_player->iscatch)
+		{
+			_boss->_isGreenCatch = false;
+		}
+
+		if (_player->_isGreenCatchAttack && _player->iscatch)
+		{
+			_boss->_isGreenCatchAttack = true;
+			_player->_isGreenCatchAttack = false;
+			_player->_isGreenCatchBackAttack = false;
+		}
+
+		if (_player->_isGreenCatchBackAttack && _player->iscatch)
+		{
+			_boss->_isGreenCatchBackAttack = true;
+			_player->_isGreenCatchAttack = false;
+		}
+
+		if (_player->_isGreenCatchFrontCombo && _player->iscatch)
+		{
+			_boss->_isGreenCatchFrontCombo = true;
+			_player->_isGreenCatchFrontCombo = false;
+		}
+	}*/
+
+}
+
+
 /////////////////////////////////
 //  ######보스 위치 선정 ########
 /////////////////////////////////
@@ -785,47 +873,47 @@ void enemyManager::renderBoss()
 void enemyManager::WhereIsBoss()
 {
 	//플레이어보다 왼쪽에 있을때
-	if (_player->getX() > _boss->_bossShadow.x)
+	if (_player->_shadow->getCenterX() > _boss->_bossShadow.x)
 	{
 		_boss->_isLeft = false;
 	}
 
 	//플레이어보다 오른쪽에 있을때
-	if (_player->getX() < _boss->_bossShadow.x)
+	if (_player->_shadow->getCenterX() < _boss->_bossShadow.x)
 	{
 		_boss->_isLeft = true;
 	}
 
 	//플레이어보다 위에 있을때
-	if (_player->getRect().bottom > _boss->_bossShadow.y)
+	if (_player->_shadow->getCenterY() > _boss->_bossShadow.y)
 	{
 		_boss->_isUpper = true;
 	}
 
 	//플레이어보다 아래에 있을때
-	if (_player->getRect().bottom < _boss->_bossShadow.y)
+	if (_player->_shadow->getCenterY() < _boss->_bossShadow.y)
 	{
 		_boss->_isUpper = false;
 	}
 	
 	//범위 안에 들어오면 흔들림 스탑핏
 
-	if (_player->getX() + 3 > _boss->_bossShadow.x && _player->getX() - 3 < _boss->_bossShadow.x)
+	if (_player->_shadow->getCenterX() + 150 > _boss->_bossShadow.x && _player->_shadow->getCenterX() - 150 < _boss->_bossShadow.x)
 	{
 		_boss->_isMoveStopRangeX = true;
 	}
 
-	if (!(_player->getX() + 3 > _boss->_bossShadow.x && _player->getX() - 3 < _boss->_bossShadow.x))
+	if (!(_player->_shadow->getCenterX() + 150 > _boss->_bossShadow.x && _player->_shadow->getCenterX() - 150 < _boss->_bossShadow.x))
 	{
 		_boss->_isMoveStopRangeX = false;
 	}
 
-	if (_player->getRect().bottom + 3 > _boss->_bossShadow.y && _player->getRect().bottom - 3 < _boss->_bossShadow.y)
+	if (_player->_shadow->getCenterY() + 10 > _boss->_bossShadow.y && _player->_shadow->getCenterY() - 10 < _boss->_bossShadow.y)
 	{
 		_boss->_isMoveStopRangeY = true;
 	}
 
-	if (!(_player->getRect().bottom + 3 > _boss->_bossShadow.y && _player->getRect().bottom - 3 < _boss->_bossShadow.y))
+	if (!(_player->_shadow->getCenterY() + 10 > _boss->_bossShadow.y &&_player->_shadow->getCenterY() - 10 < _boss->_bossShadow.y))
 	{
 		_boss->_isMoveStopRangeY = false;
 	}
@@ -925,5 +1013,105 @@ void enemyManager::attackCollision()
 	if (!(_boss->_isJabAttack && IntersectRect(&temp, &_boss->_boss.rc, &rc)))
 	{
 		_boss->_isSucceedJabAttack = false;
+	}
+
+	/////////////////////////////////////////////
+	// #######  보스 어퍼컷 공격 ##########     //
+	/////////////////////////////////////////////
+	if (_boss->_isDamagedState)
+	{
+		if (IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect()))
+		{
+			_boss->_isUpperCut = true;
+			_boss->_isCrash = false;
+		}
+
+		if (!(IntersectRect(&temp, &_boss->_boss.rc, &_player->getRect())))
+		{
+			_boss->_isUpperCut = false;
+		}
+	}
+}
+
+/////////////////////////////////
+//  ######보스 피격충돌 ########
+///////////////////////////////// 공격 당했을때 //
+void enemyManager::assultedCollisionBoss()
+{
+	//타격 z연습하기zzz 위한 것입니다^^//
+	if (_boss->_isMoveState && _player->isattack)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+		{
+			if (_player->_isGreenAttack1 ||	_player->_isGreenAttack2 ||
+				_player->_isGreenAttack3 || _player->_isGreenDashAttack ||
+				_player->_isGreenJumpAttack)
+			{
+				_boss->_isSmallDamaged = true;
+			}
+
+			if (_player->_isGreenDashAlt || _player->_isGreenJumpPowerAttack)
+			{
+				_boss->_isDamaged = true;
+			}
+		}
+	}
+
+	if (_boss->_isSmallDamagedState && _player->isattack)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+		{
+			if (_player->_isGreenAttack1)
+			{
+				_boss->_isSmallDamaged = true;
+			}
+
+			if (_player->_isGreenAttack2 || _player->_isGreenAttackFrontCombo1)
+			{
+				_boss->_isGreenAttack12 = true;
+			}
+
+			if (_player->_isGreenAttack3 || _player->_isGreenAttackFrontCombo2)
+			{
+				_boss->_isGreenAttack3 = true;
+			}
+		}
+	}
+
+	if (_boss->_isMoveState && _player->iscrawl)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
+		{
+			_player->iscatch = true;
+			_boss->_isGreenCatch = true;
+			_boss->_isSmallDamaged = true;
+		}
+	}
+
+	if (!_player->iscatch)
+	{
+		_boss->_isGreenCatch = false;
+	}
+
+	if (_player->_isGreenCatchAttack && _player->iscatch)
+	{
+		_boss->_isGreenCatchAttack = true;
+		_player->_isGreenCatchAttack = false;
+		_player->_isGreenCatchBackAttack = false;
+	}
+
+	if (_player->_isGreenCatchBackAttack && _player->iscatch)
+	{
+		_boss->_isGreenCatchBackAttack = true;
+		_player->_isGreenCatchAttack = false;
+	}
+
+	if (_player->_isGreenCatchFrontCombo && _player->iscatch)
+	{
+		_boss->_isGreenCatchFrontCombo = true;
+		_player->_isGreenCatchFrontCombo = false;
 	}
 }

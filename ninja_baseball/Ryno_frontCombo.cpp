@@ -7,6 +7,8 @@ playerstate * Ryno_frontCombo::handleInput(player * player)
 	if (isend)
 	{
 		player->isattack = false;
+		player->_isGreenAttackFrontCombo1 = false;
+		player->_isGreenAttackFrontCombo2 = false;
 		player->setY(player->getY() + 30);
 		return new Ryno_idle;
 	}
@@ -37,6 +39,7 @@ void Ryno_frontCombo::update(player * player)
 		}
 		if (_index == 4)
 		{
+			player->_isGreenAttackFrontCombo1 = true;
 			player->isattack = true;
 			if (player->isRight)
 				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY()+40, 50, 50);
@@ -72,6 +75,8 @@ void Ryno_frontCombo::update(player * player)
 		if (_index == 7)
 		{
 			player->isattack = true;
+			player->_isGreenAttackFrontCombo2 = true;
+			player->_isGreenAttackFrontCombo1 = false;
 			if (player->isRight)
 			{
 				player->setX(player->getX() + 3);

@@ -46,6 +46,7 @@ void Ryno_catchfrontCombo::update(player * player)
 	if (_index == 4 || _index==5)
 	{
 		player->isattack = true;
+		player->_isGreenCatchFrontCombo = true;
 		if (player->isRight) {
 			player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY(), 50, 50);
 		}

@@ -11,6 +11,7 @@
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossStraightAttackState::inputHandle(boss * boss)
@@ -27,21 +28,44 @@ bossState * bossStraightAttackState::inputHandle(boss * boss)
 
 void bossStraightAttackState::update(boss * boss)
 {
-	frameCount++;
-	if (frameCount >= 3)
+	if (boss->_bossForm == DEFAULT)
 	{
-		frameCount = 0;
-		if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+		frameCount++;
+		if (frameCount >= 3)
 		{
-			boss->_currentFrameX = boss->_boss.img->getMaxFrameX();
-			readyCount = 0;
-		}
-		else
-		{
-			boss->_currentFrameX++;
-			readyCount++;
+			frameCount = 0;
+			if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+			{
+				boss->_currentFrameX = boss->_boss.img->getMaxFrameX();
+				readyCount = 0;
+			}
+			else
+			{
+				boss->_currentFrameX++;
+				readyCount++;
+			}
 		}
 	}
+
+	else
+	{
+		frameCount++;
+		if (frameCount >= 7)
+		{
+			frameCount = 0;
+			if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+			{
+				boss->_currentFrameX = boss->_boss.img->getMaxFrameX();
+				readyCount = 0;
+			}
+			else
+			{
+				boss->_currentFrameX++;
+				readyCount++;
+			}
+		}
+	}
+
 
 	move(boss);
 }
@@ -95,9 +119,21 @@ void bossStraightAttackState::exit(boss * boss)
 
 void bossStraightAttackState::move(boss * boss)
 {
-	if (readyCount >= 18)
+	if (boss->_bossForm == DEFAULT)
 	{
-		boss->_boss.x -= dashPower;
-		dashPower -= friction;
+		if (readyCount >= 18)
+		{
+			boss->_boss.x -= dashPower;
+			dashPower -= friction;
+		}
+	}
+
+	else
+	{
+		if (readyCount >= 8)
+		{
+			boss->_boss.x -= dashPower;
+			dashPower -= friction;
+		}
 	}
 }

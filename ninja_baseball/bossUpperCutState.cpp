@@ -11,6 +11,7 @@
 #include "bossJabAttackState.h"
 #include "bossDamagedState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossUpperCutState::inputHandle(boss * boss)
@@ -19,6 +20,7 @@ bossState * bossUpperCutState::inputHandle(boss * boss)
 		!boss->_isJump)
 	{
 		boss->_isUpperCutState = false;
+		boss->_isUpperCut = false;
 		return new bossIdleState();
 	}
 
@@ -98,6 +100,8 @@ void bossUpperCutState::jump(boss * boss)
 	{
 		boss->_boss.y -= jumpPower;
 		jumpPower -= gravity;
+		if (boss->_currentFrameY == 0) boss->_boss.x -= 10.5f;
+		else boss->_boss.x += 10.5f;
 	}
 
 	if ((boss->_bossShadow.rc.bottom + boss->_bossShadow.rc.top) / 2 < boss->_boss.rc.bottom)
