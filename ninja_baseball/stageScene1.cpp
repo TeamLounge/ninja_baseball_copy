@@ -51,6 +51,7 @@ HRESULT stageScene1::init()
 	//SET glove
 	_em->setGlove();
 	////////////////////////
+	_em->setCard();
 
 	return S_OK;
 }
@@ -69,6 +70,8 @@ void stageScene1::update()
 	shutterCollison();
 	//_em->update();
 	_obj->update();
+	
+	_em->updateCard();
 
 
 	//UPDATE baseBall////////////
@@ -151,6 +154,8 @@ void stageScene1::render()
 	//_em->renderBat();
 	//
 	//_em->renderGlove();
+	_em->render();
+	//_em->renderCard();
 
 	IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
 	IMAGEMANAGER->findImage("shutter_pixel")->render(getMemDC());

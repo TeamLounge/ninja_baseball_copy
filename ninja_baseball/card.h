@@ -136,6 +136,8 @@ public:
 	RECT getAtkCardRc() { return _atkRc; }
 	float getCenterX() { return (_card.rc.left + _card.rc.right) / 2; }
 	float getCenterY() { return (_card.rc.top + _card.rc.bottom) / 2; }
+	float getShadowX() { return _cardShadow.x; }
+	float getShadowY() { return _cardShadow.y; }
 	bool getIsUpper() { return _isUpper; }
 	bool getIsLeft() { return _isLeft; }
 	bool getIsDash() { return _isDash; }

@@ -33,6 +33,11 @@ HRESULT stageScene3::init()
 	_em->init();
 	_em->setBat2();
 
+	_em->setBoss();
+
+	_em->setPlayerMemoryAddressLink(_player);
+	_player->setEmMemoryAddressLink(_em);
+
 	return S_OK;
 }
 
@@ -47,6 +52,7 @@ void stageScene3::update()
 	_em->update();
 
 	
+	_em->updateBoss();
 
 	_elapsedTime += TIMEMANAGER->getElapsedTime();
 
