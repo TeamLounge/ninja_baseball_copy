@@ -5,7 +5,7 @@
 
 playerstate * red_jumpState::handleInput(player * _player)
 {
-	if (_player->getY() + 90 >= _player->_shadow->getY())
+	if(_player->getY() + _player->getImage()->getFrameHeight()/2 >= _player->_shadow->getY()) //뭐가 문제일까??
 	{
 		if (_player->isRight == true)
 		{
@@ -134,11 +134,11 @@ void red_jumpState::enter(player * _player)
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());
 	_player->setRect(_rc);*/
-
+	
 	_jumpPower = 13.0f;
 	_grivity = 0.5f;
 	_isJumpAttack = false;
-	
+	   
 	_count = _index = 0;
 
 	if (_player->isRight == true)
