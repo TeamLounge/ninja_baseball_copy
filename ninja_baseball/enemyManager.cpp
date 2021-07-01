@@ -6,11 +6,10 @@ HRESULT enemyManager::init()
 {
 	
 	//setBlueBaseball();		
-	setGreenBaseball();
+	//setGreenBaseball();
 	//setWhiteBaseball();			
 	//setYellowBaseball();		//데스로 못가네
 	
-	//setBat();					
 	//setCard();
 	//setGlove();				
 	//setBoss();				
@@ -28,8 +27,8 @@ void enemyManager::update()
 	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
 
-	updateBat();
-	batCollision();
+	//updateBat();
+	//batCollision();
 
 	//updateGlove();
 	//gloveCollision();
@@ -46,21 +45,30 @@ void enemyManager::update()
 void enemyManager::render()
 {
 
-	renderBaseball();
 	//renderGlove();
-	renderCard();
+
+	//renderCard();
+	//renderBoss();
+
+	char str1[126];
+	sprintf_s(str1, "맞앗써");
+	char str2[125];
+	sprintf_s(str2, "잡혓어");
+	char str3[125];
+	sprintf_s(str3, "풀렸어");
 
 	//renderBoss();
 	
 }
 
+//SET BaseBall
 void enemyManager::setBlueBaseball()
 {
 	//BLUE
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
-		_bb->init(PointMake(300 + i * 100, -50 + i * 80));
+		_bb->init(PointMake(1200, 450));
 		_vBb.push_back(_bb);
 
 	}
@@ -68,11 +76,20 @@ void enemyManager::setBlueBaseball()
 void enemyManager::setGreenBaseball()
 {
 	//GREEN
-	for (int i = 0; i < 3; i++)
+	//STAGE1
+	for (int i = 0; i < 1; i++)
 	{
-		greenBaseball* _gb = new greenBaseball;
-		_gb->init(PointMake(400 + i * 140, -100 + i * 120));
-		_vGb.push_back(_gb);
+		greenBaseball* _gb1 = new greenBaseball;
+		_gb1->init(PointMake(1200, 250));
+		_vGb.push_back(_gb1);
+	}
+
+	//STAGE2
+	for (int i = 0; i < 2; i++)
+	{
+		greenBaseball* _gb2 = new greenBaseball;
+		_gb2->init(PointMake(2500 + i * 400, -200));
+		_vGb.push_back(_gb2);
 
 	}
 }
@@ -82,7 +99,7 @@ void enemyManager::setWhiteBaseball()
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
-		_wb->init(PointMake(WINSIZEX + i * 220, BACKGROUNDY - 400 - 50 + i * 200));			//이닛으로 위치 잡아주고
+		_wb->init(PointMake(1900 + i * 100, 30 + i * 200));			//이닛으로 위치 잡아주고
 		_vWb.push_back(_wb);					//위치 잡아준 애를 벡터에 넣음
 	}
 	//좀 일정치 않은 놈 뽑으려면 for문 밖에 빼서 해주는 것도 방법
@@ -96,49 +113,73 @@ void enemyManager::setYellowBaseball()
 	for (int i = 0; i < 2; i++)
 	{
 		yellowBaseball* _yb = new yellowBaseball;
-		_yb->init(PointMake(500 + i * 180, -50 + i * 160));		//x좌표 동일하게 하지 말자!!!!! 겹쳐보인다!! 0번쨰 없어보인다!!!
+		_yb->init(PointMake(850 + i * 180, 150 + i * 160));		//x좌표 동일하게 하지 말자!!!!! 겹쳐보인다!! 0번쨰 없어보인다!!!
 		_vYb.push_back(_yb);
 	}
 }
-void enemyManager::updateBaseball()
+
+//UPDATE BaseBall
+void enemyManager::updateBlueBaseball()
+{
+	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
+	{
+		(*_viBb)->update();
+	}
+}
+void enemyManager::updateGreenBaseball()
+{
+
+	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
+	{
+		(*_viGb)->update();
+	}
+}
+void enemyManager::updateWhiteBaseball()
 {
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		(*_viWb)->update();		//너 업데이트로 가
 	}
+}
+void enemyManager::updateYellowBaseball()
+{
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
 		(*_viYb)->update();
 	}
-	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
-	{
-		(*_viGb)->update();
-	}
-	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
-	{
-		(*_viBb)->update();
-	}
-
 }
-void enemyManager::renderBaseball()
+
+//RENDER BaseBall
+void enemyManager::renderBlueBaseball()
 {
-	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
-	{
-		(*_viWb)->render();		//너 렌더로 가
-	}
-	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
-	{
-		(*_viYb)->render();
-	}
-	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
-	{
-		(*_viGb)->render();
-	}
 	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
 	{
 		(*_viBb)->render();
 	}
 }
+void enemyManager::renderGreenBaseball()
+{
+	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
+	{
+		(*_viGb)->render();
+	}
+}
+void enemyManager::renderWhiteBaseball()
+{
+	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
+	{
+		(*_viWb)->render();		//너 렌더로 가
+	}
+}
+void enemyManager::renderYellowBaseball()
+{
+	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
+	{
+		(*_viYb)->render();
+	}
+}
+
+
 
 void enemyManager::playerLocation()
 {
@@ -651,12 +692,23 @@ void enemyManager::gloveCollision()
 	
 }
 
-void enemyManager::setBat()
+void enemyManager::setBat1()
 {
+	//STAGE1
+	for (int i = 0; i < 2; i++)
+	{
+		bat* _bat = new bat;
+		_bat->init(PointMake(1350 + i * 300, 380 + i * 100));
+		_vBat.push_back(_bat);
+	}
+}
+void enemyManager::setBat2()
+{
+	//STAGE3
 	for (int i = 0; i < 3; i++)
 	{
 		bat* _bat = new bat;
-		_bat->init(PointMake(470 + i * 130, WINSIZEY - 300 - i * 150));
+		_bat->init(PointMake(80 + i * 50, 350 + i * 150));
 		_vBat.push_back(_bat);
 	}
 }
@@ -680,7 +732,7 @@ void enemyManager::setGlove()	//태어나는 좌표
 	for (int i = 0; i < 2; i++)
 	{
 		glove* _glove = new glove;
-		_glove->init(PointMake(470 + i * 30, WINSIZEY - 500 - i * 150));
+		_glove->init(PointMake(2300 + i * 200, -150));
 		_vGlove.push_back(_glove);
 	}
 }
@@ -708,7 +760,7 @@ void enemyManager::setCard()
 	{
 		card* _cd;
 		_cd = new card;
-		_cd->init(PointMake(-50 + i * 700, 300));
+		_cd->init(PointMake(2650 + i * 120, 220 + i * 100));
 		_vCard.push_back(_cd);
 	}
 }
@@ -719,6 +771,9 @@ void enemyManager::setCard()
 /////////////////////////////////////////////////
 void enemyManager::updateCard()
 {
+	//카드 업데이트
+	WhereIsCard();
+
 	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
 	{
 		(*_viCard)->update();
@@ -748,25 +803,25 @@ void enemyManager::WhereIsCard()
 		if (!(*_viCard)->getIsDash() && !(*_viCard)->getIsBullet())
 		{
 			//플레이어보다 왼쪽에 있을때
-			if (_player->getX() > (*_viCard)->getCenterX())
+			if (_player->_shadow->getCenterX() > (*_viCard)->getShadowX())
 			{
 				(*_viCard)->setIsLeft(false);
 			}
 
 			//플레이어보다 오른쪽에 있을때
-			if (_player->getX() < (*_viCard)->getCenterX())
+			if (_player->_shadow->getCenterX() < (*_viCard)->getShadowX())
 			{
 				(*_viCard)->setIsLeft(true);
 			}
 
 			//플레이어보다 위에 있을때
-			if (_player->getY() > (*_viCard)->getCenterY())
+			if (_player->_shadow->getCenterY() > (*_viCard)->getShadowY())
 			{
 				(*_viCard)->setIsUpper(true);
 			}
 
 			//플레이어보다 아래에 있을때
-			if (_player->getY() < (*_viCard)->getCenterY())
+			if (_player->_shadow->getCenterY() < (*_viCard)->getShadowY())
 			{
 				(*_viCard)->setIsUpper(false);
 			}
@@ -893,7 +948,7 @@ void enemyManager::assultedCollisionCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(700, WINSIZEY / 2 - 200));
+	_boss->init(PointMake(1600, 150));
 }
 
 
@@ -905,6 +960,7 @@ void enemyManager::updateBoss()
 	_boss->update();
 	WhereIsBoss();				//보스<->플레이어 위치 확인용
 	attackCollision();
+	assultedCollisionBoss();
 }
 
 

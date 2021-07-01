@@ -112,13 +112,13 @@ void cardDashAttackState::dashMove(card* card)
 	}
 
 	if (_isRightDash && card->_card.img->getFrameX() > 0 &&
-		card->_card.rc.right >= WINSIZEX)
+		card->_card.rc.right >= BACKGROUNDX)
 	{
 		_isRightWall = true;
 	}
 
 	if (_isLeftDash && card->_card.img->getFrameX() > 0 &&
-		card->_card.rc.left <= 0)
+		card->_card.rc.left <= BACKGROUNDX - CAMERAX)
 	{
 		_isLeftWall = true;
 	}

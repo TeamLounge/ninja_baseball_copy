@@ -163,9 +163,6 @@
     <ClCompile Include="bbIdleState.cpp">
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClCompile>
-    <ClCompile Include="bbLandState.cpp">
-      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
-    </ClCompile>
     <ClCompile Include="bbState.cpp">
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClCompile>
@@ -406,6 +403,21 @@
     <ClCompile Include="timerUI.cpp">
       <Filter>playGound\UI</Filter>
     </ClCompile>
+    <ClCompile Include="red_catchAttackState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
+    <ClCompile Include="bossSmallDamagedState.cpp">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClCompile>
+    <ClCompile Include="cardDeathState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardHeavyDamagedState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
+    <ClCompile Include="cardSmallDamagedState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -583,9 +595,6 @@
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClInclude>
     <ClInclude Include="bbIdleState.h">
-      <Filter>playGound\enemy\baseballBlue\bbState</Filter>
-    </ClInclude>
-    <ClInclude Include="bbLandState.h">
       <Filter>playGound\enemy\baseballBlue\bbState</Filter>
     </ClInclude>
     <ClInclude Include="bbState.h">
@@ -830,6 +839,21 @@
     </ClInclude>
     <ClInclude Include="timerUI.h">
       <Filter>playGound\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="red_catchAttackState.h">
+      <Filter>playGound\player\red</Filter>
+    </ClInclude>
+    <ClInclude Include="bossSmallDamagedState.h">
+      <Filter>playGound\enemy\BOSS\bossState\action</Filter>
+    </ClInclude>
+    <ClInclude Include="cardDeathState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardHeavyDamagedState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardSmallDamagedState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

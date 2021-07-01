@@ -52,7 +52,8 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("stage3", new stageScene3);
 	SCENEMANAGER->addScene("ending", new endingScene);
 
-	SCENEMANAGER->changeScene("playerSelect");
+
+	SCENEMANAGER->changeScene("title");
 	
 	return S_OK;
 }

@@ -27,7 +27,6 @@ void cardSmallDamagedState::update(card * card)
 			{
 				card->_currentFrameX = card->_card.img->getMaxFrameX();
 			}
-
 		}
 
 		else card->_currentFrameX++;
