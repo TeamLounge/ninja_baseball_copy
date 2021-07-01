@@ -31,19 +31,23 @@ public:
 	//이 렉트는 player가 공격중이다 하면 상태클래스내에서 꺼낼 렉트를 미리 생성해두는겁니다.
 	RECT _attack_rc;
 	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 , 공격을했는지 안했는지 판단하기위해서 쓰는 bool변수 , 맞았는지 안맞았는지 판단하는 bool 변수
-	//기어다니는지 아닌지 판단하는 bool변수 , 잡앗는지 안 잡았는지 확인하는 bool 변수
+	//기어다니는지 아닌지 판단하는 bool변수 , 잡앗는지 안 잡았는지 확인하는 bool 변수, 날때 전기쏘기 bool변수
 	bool isRight, isattack, isdamage;
-	bool iscrawl , iscatch;
+	bool iscrawl , iscatch ,isfly;
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
 	float _runtime;
-
 	//플레이어 스테이트 상태 확인
 	bool _isGreenAttackState, _isGreenAttack1, _isGreenAttack2, _isGreenAttack3;
 	bool _isGreenAttackFrontCombo1, _isGreenAttackFrontCombo2;
 	bool _isGreenDashAlt, _isGreenDashAttack;
 	bool _isGreenJumpAttack, _isGreenJumpPowerAttack;
 	bool _isGreenCatchFrontCombo, _isGreenCatchAttack, _isGreenCatchBackAttack;
+
+	image* _effect; // 번개이미지1
+	image* _effect1; // 번개이미지2
+	image* _effect2; // 번개이미지3
+	image* _effect3; // 번개이미지4
 
 	enemyManager* _em; //애너미정보가져오기
 

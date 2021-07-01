@@ -25,7 +25,6 @@ HRESULT stageScene1::init()
 
 	_obj->setLinkPlayer(_player);
 	_obj->setLinkEnemyManager(_em);
-	//_red->setEmMemoryAddressLink(_em);
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
@@ -108,6 +107,7 @@ void stageScene1::update()
 void stageScene1::render()
 {
 	IMAGEMANAGER->findImage("stage_1")->render(getMemDC(), 0, 0);
+
 	EFFECTMANAGER->render();
 
 	_player->render();

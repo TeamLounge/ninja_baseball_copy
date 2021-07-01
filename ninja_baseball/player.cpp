@@ -44,8 +44,9 @@ HRESULT player::init(int character, bool isStart)
 	isdamage = false;
 	iscatch = false;
 	iscrawl = false;
-
+	isfly = false;
 	_playerImgName = "Ryno_catch_frontCombo";
+
 
 	if (character == 1)
 	{
@@ -58,6 +59,10 @@ HRESULT player::init(int character, bool isStart)
 
 	_hp = 5;
 	_life = 3;
+	_effect = IMAGEMANAGER->findImage("effect");
+	_effect1 = IMAGEMANAGER->findImage("effect1");
+	_effect2 = IMAGEMANAGER->findImage("effect2");
+	_effect3 = IMAGEMANAGER->findImage("effect3");
 
 	isStateSet();
 
@@ -104,33 +109,37 @@ void player::render()
 	sprintf_s(str, "hp : %d , life : %d",_hp , _life);
 	char str2[128];
 	sprintf_s(str2, "공격!");
-
-	sprintf_s(str, " 적 한데 맞앗다 ");
 	char str1[128];
 	sprintf_s(str1, "x: %f , y: %f", _x , _y);
-
+	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 100, _shadow->getCenterY() + 40, str1, strlen(str1));
+	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 120, _shadow->getCenterY() + 20, str, strlen(str));
 	Rectangle(getMemDC(), _playerrc);
 
 	//이미지랜더
-	
 	//_shadow->render(getMemDC());
 	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
 
-	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _shadow->getCenterY() , str1, strlen(str1));
+	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2)-100, _shadow->getCenterY()+40 , str1, strlen(str1));
 
 	if (isattack) //적을 때림
 	{
 		Rectangle(getMemDC(), _attack_rc);
 		TextOut(getMemDC(), _x - 100, _y - 100, str2, strlen(str2));
 	}
-	if (isdamage) //적에게 맞음
+
+	//적에게 맞음
+	if (isdamage)
 	{
 		TextOut(getMemDC(), _x - 100, _y - 100, str, strlen(str));
 	}
-	//if (isdamage) 
-	//{
-	//	TextOut(getMemDC(), _x - 150, _y -150, str, strlen(str));
-	//}
+
+	if (isfly)
+	{
+		_effect->render(getMemDC());
+		_effect1->render(getMemDC());
+		_effect2->render(getMemDC());
+		_effect3->render(getMemDC());
+	}
 
 }
 
@@ -177,7 +186,6 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255), false);
-	//IMAGEMANAGER->addFrameImage("Ryno_hold", "image/2_Player/green/green_hold.bmp", 495, 546, 3, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 4, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_alt", "image/2_Player/green/green_dashAttack_alt.bmp", 549, 432, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_ctrl", "image/2_Player/green/green_dashAttack_ctrl.bmp", 219, 330, 1, 2, true, RGB(255, 0, 255), false);
@@ -190,8 +198,11 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_give_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138 ,216, 1 , 1, true, RGB(255, 0, 255),false);
-	//IMAGEMANAGER->addImage("Ryno_escape", "image/2_Player/green/green_escape.bmp", 189, 432, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("effect" , "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("effect1", "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("effect2", "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("effect3", "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
 }
 
 void player::collision()
@@ -200,7 +211,7 @@ void player::collision()
 	for (int i = 0; i <_em->getVWb().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 whiteBaseball한테 맞을때 충돌함수
 		if (_em->getVWb()[i]->isattack)
 		{
@@ -213,7 +224,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//whiteBaseball와 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -227,12 +238,12 @@ void player::collision()
 			}
 		}
 	}
-
+	
 	//blueBaseball 충돌
 	for (int i = 0; i < _em->getVBb().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 blueBaseball한테 맞을때 충돌함수
 		if (_em->getVBb()[i]->isattack)
 		{
@@ -245,7 +256,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//blueBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -259,13 +270,18 @@ void player::collision()
 			}
 		}
 	}
-		
+
+	
+	//===========================================
+	//여기부터 작업했음....
+	// =========================================
+	
 
 	//yellowBaseball 충돌
 	for (int i = 0; i < _em->getVYb().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 yellowBaseball한테 맞을때 충돌함수
 		if (_em->getVYb()[i]->isattack)
 		{
@@ -280,7 +296,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//yellowBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -296,12 +312,12 @@ void player::collision()
 			}
 		}
 	}
-
+	
 	//greenBaseball 충돌
 	for (int i = 0; i < _em->getVGb().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 greenBaseball한테 맞을때 충돌함수
 		if (_em->getVGb()[i]->isattack)
 		{
@@ -316,7 +332,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//greenBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -332,12 +348,12 @@ void player::collision()
 			}
 		}
 	}
-
+	
 	//batMan 충돌
 	for (int i = 0; i < _em->getVBat().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 batMan한테 맞을때 충돌함수
 		if (_em->getVBat()[i]->isAttack)
 		{
@@ -352,7 +368,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//batMan과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -368,12 +384,12 @@ void player::collision()
 			}
 		}
 	}
-
+	
 	//card 충돌
 	for (int i = 0; i < _em->getVCard().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 card한테 맞을때 충돌함수
 		if (_em->getVCard()[i]->isattack)
 		{
@@ -388,7 +404,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//card과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
@@ -404,12 +420,12 @@ void player::collision()
 			}
 		}
 	}
-
+	
 	//glove 충돌
 	for (int i = 0; i < _em->getVGlove().size(); i++)
 	{
 		RECT temp;
-
+	
 		//플레이어가 glove한테 맞을때 충돌함수
 		if (_em->getVGlove()[i]->isattack)
 		{
@@ -424,7 +440,7 @@ void player::collision()
 				}
 			}
 		}
-
+	
 		//glove과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{

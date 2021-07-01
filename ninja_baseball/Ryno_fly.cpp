@@ -60,13 +60,27 @@ void Ryno_fly::update(player * player)
 	{
 		_actiontime++;
 		next = true;
+		player->isfly = true;
 		if(player->isRight)
-		player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75)*300, player->getY() + sinf(0.75)*440, 150, 150);
+		{
+			player->_effect->setCenter((player->getX() + (player->getRect().right - player->getRect().left) / 2) + cosf(0.75) * 2, (player->getY() + (player->getRect().bottom - player->getRect().top) / 2) + sinf(0.75) * 2);
+			player->_effect1->setCenter(player->_effect->getCenterX() + cosf(0.75) * 10 , player->_effect->getCenterY() +sinf(0.75) * 10);
+			player->_effect2->setCenter(player->_effect1->getCenterX() + cosf(0.75) * 15, player->_effect1->getCenterY() + sinf(0.75) * 15);
+			player->_effect3->setCenter(player->_effect2->getCenterX() + cosf(0.75) * 20, player->_effect2->getCenterY() + sinf(0.75) * 20);
+			player->_attack_rc = RectMakeCenter(player->getX() + cosf(0.75) * 300, player->getY() + sinf(0.75) * 440, 150, 150);
+		}
 		else
+		{
+			player->_effect->setCenter((player->getX() - (player->getRect().right - player->getRect().left) / 2) + cosf(2.32) * 3, (player->getY() + (player->getRect().bottom - player->getRect().top) / 2) + sinf(2.32) * 3);
+			player->_effect1->setCenter(player->_effect->getCenterX() + cosf(2.32) * 3, player->_effect->getCenterY() + sinf(2.32) * 3);
+			player->_effect2->setCenter(player->_effect1->getCenterX() + cosf(2.32) * 4, player->_effect1->getCenterY() + sinf(2.32) * 4);
+			player->_effect3->setCenter(player->_effect2->getCenterX() + cosf(2.32) * 5, player->_effect2->getCenterY() + sinf(2.32) * 5);
 			player->_attack_rc = RectMakeCenter(player->getX() + cosf(2.32) * 300, player->getY() + sinf(2.32) * 400, 150, 150);
+		}
 		//공격렉트를 이정도 시간동안 띄우고  시간이 지나면 다음 행동으로 넘어가게 합니다. 나머지 안쓸것도 다 0으로 초기화 해주구요
 		if (_actiontime > 50)
 		{
+			player->isfly = false;
 			_index++;
 			_actiontime = 0;
 			_commandTime = 0;
