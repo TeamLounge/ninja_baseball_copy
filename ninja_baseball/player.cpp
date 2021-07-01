@@ -111,7 +111,7 @@ void player::render()
 	sprintf_s(str2, "공격!");
 	char str1[128];
 	sprintf_s(str1, "x: %f , y: %f", _x , _y);
-	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 100, _shadow->getCenterY() + 40, str1, strlen(str1));
+	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 100, _shadow->getCenterY() - 300, str1, strlen(str1));
 	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2) - 120, _shadow->getCenterY() + 20, str, strlen(str));
 	Rectangle(getMemDC(), _playerrc);
 
@@ -119,7 +119,6 @@ void player::render()
 	//_shadow->render(getMemDC());
 	//_playerimg->frameRender(getMemDC(), _x - (_playerimg->getFrameWidth() / 2), _y - (_playerimg->getFrameHeight() / 2) );
 
-	TextOut(getMemDC(), _x - (_playerimg->getFrameWidth() / 2)-100, _shadow->getCenterY()+40 , str1, strlen(str1));
 
 	if (isattack) //적을 때림
 	{

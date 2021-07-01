@@ -60,6 +60,18 @@ void Ryno_crawl::update(player * player)
 		if (_count % 5 == 0)
 		_index++;
 	}
+	if (player->_shadow->getY() < 432)
+	{
+		player->setY( player->getY() + 432-player->_shadow->getY());
+	}
+	if (player->_shadow->getY() + player->_shadow->getHeight() > WINSIZEY)
+	{
+		player->setY(player->getY()-((player->_shadow->getY() + player->_shadow->getHeight()) -WINSIZEY));
+	}
+	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
+	{
+		player->setX(player->getX()+CAMERAMANAGER->getCameraLEFT()-player->getRect().left);
+	}
 
 	if (_index > 4) _index = 0;
 	player->getImage()->setFrameX(_index);

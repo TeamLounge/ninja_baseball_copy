@@ -23,7 +23,10 @@ void Ryno_dashAlt::update(player * player)
 		player->setX(player->getX() - speed);
 		speed -= inertia;
 	}
-	
+	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
+	{
+		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
+	}
 	if ( 2.f <speed && speed<11.5f)_index = 1;
 	if (speed < 2.f) _index = 2;
 	if (_index == 1)

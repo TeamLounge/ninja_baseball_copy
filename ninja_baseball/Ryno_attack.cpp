@@ -113,10 +113,10 @@ void Ryno_attack::update(player * player)
 		player->_isGreenAttack2 = false;
 		if (_index == 6) player->isattack = true;
 		if (player->isRight) {
-			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+			player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY() - 20, 50, 50);
 		}
 		else
-			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
+			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY() - 20, 50, 50);
 		if (_count % 8 == 0)
 		{
 			_index++;
