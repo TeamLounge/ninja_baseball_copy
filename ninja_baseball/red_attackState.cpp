@@ -183,6 +183,19 @@ void red_attackState::update(player * _player)
 
 			_count = 0;
 	}*/
+
+	////±×¸²ÀÚ
+	//if (_player->isRight == true)
+	//{
+	//	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+	//	_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	//}
+	//if (_player->isRight == false)
+	//{
+	//	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+	//	_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	//}
+	
 }
 
 void red_attackState::enter(player * _player)

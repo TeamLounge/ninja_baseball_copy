@@ -63,13 +63,17 @@ void red_homeRunState::update(player* _player)
 		//그림자 위치
 		if (_player->isRight == true)
 		{
-			_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 70);
-			_player->_shadow->setY(_player->getY() + 110);
+			/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 70);
+			_player->_shadow->setY(_player->getY() + 110);*/
+			_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 70 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+			_player->setShadowY(_player->getY() + 110 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 		}
 		if (_player->isRight == false)
 		{
-			_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 70);
-			_player->_shadow->setY(_player->getY() + 110);
+			/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) + 70);
+			_player->_shadow->setY(_player->getY() + 110);*/
+			_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 70 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+			_player->setShadowY(_player->getY() + 110 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 		}
 	}
 }

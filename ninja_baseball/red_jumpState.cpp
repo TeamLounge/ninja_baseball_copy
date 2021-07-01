@@ -49,14 +49,14 @@ void red_jumpState::update(player * _player)
 	//그림자 위치
 	if (_player->isRight == true)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
-		
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));*/
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 
 	if (_player->isRight == false)
 	{
-		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));
-		
+		/*_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2));*/
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
 
 	//점프 공격
@@ -72,7 +72,7 @@ void red_jumpState::update(player * _player)
 		if (_count % 4 == 0)
 		{
 			_player->setImage(IMAGEMANAGER->findImage("red_jumpAttack"));
-
+			_player->setImageName("red_jumpAttack");
 			if (_player->isRight == true)
 			{
 				_player->getImage()->setFrameX(_index);
