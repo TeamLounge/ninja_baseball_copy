@@ -188,6 +188,8 @@ void red_attackState::update(player * _player)
 void red_attackState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_attack"));
+	_player->setImageName("red_attack");
+
 	_player->setY(_player->getY() - 40);
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());

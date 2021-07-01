@@ -69,6 +69,7 @@ void red_dashAttackState::update(player* _player)
 void red_dashAttackState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_dashAttack"));
+	_player->setImageName("red_dashAttack");
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());

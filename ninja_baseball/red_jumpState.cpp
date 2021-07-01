@@ -120,6 +120,8 @@ void red_jumpState::update(player * _player)
 void red_jumpState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_jump"));
+	_player->setImageName("red_jump");
+
 	if (_player->isRight == true)
 	{
 		_player->setX(_player->getX());

@@ -75,6 +75,8 @@ void red_slidingState::update(player* _player)
 void red_slidingState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_sliding"));
+	_player->setImageName("red_sliding");
+
 	_player->setY(_player->getY() + 40);
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),

@@ -33,6 +33,7 @@ void red_downAttackState::update(player* _player)
 void red_downAttackState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_downAttack"));
+	_player->setImageName("red_downAttack");
 
 	//그림자 위치
 	_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);

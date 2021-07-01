@@ -67,6 +67,8 @@ void red_standUpState::update(player* _player)
 void red_standUpState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_standUp"));
+	_player->setImageName("red_standUp");
+
 	_player->setY(_player->getY() - 120);
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());

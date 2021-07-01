@@ -78,6 +78,7 @@ void red_legKickState::update(player * _player)
 void red_legKickState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_legKick"));
+	_player->setImageName("red_legKick");
 	
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	_player->getImage()->getFrameHeight());

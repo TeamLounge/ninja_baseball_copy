@@ -20,6 +20,8 @@ void red_damage2State::update(player* _player)
 void red_damage2State::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_damage2"));
+	_player->setImageName("red_damage2");
+
 	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getMaxFrameY());
 	_player->setRect(_rc);

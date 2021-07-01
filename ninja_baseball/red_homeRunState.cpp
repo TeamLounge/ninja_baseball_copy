@@ -77,7 +77,8 @@ void red_homeRunState::update(player* _player)
 void red_homeRunState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_homerun"));
-
+	_player->setImageName("red_homerun");
+	
 	_player->setY(_player->getY() + 20);
 	if (_player->isRight == true)
 	{

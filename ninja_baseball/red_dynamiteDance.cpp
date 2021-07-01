@@ -75,6 +75,8 @@ void red_dynamiteDance::update(player * _player)
 void red_dynamiteDance::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_dynamiteDance"));
+	_player->setImageName("red_dynamiteDance");
+
 	_player->setY(_player->getY() - 80);
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 		_player->getImage()->getFrameHeight());

@@ -97,6 +97,7 @@ void red_gripState::update(player* _player)
 void red_gripState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_grip2"));
+	_player->setImageName("red_grip2");
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
