@@ -30,6 +30,11 @@ HRESULT stageScene2::init()
 		IMAGEMANAGER->findImage(_imageName)->setFrameY(1);
 	}
 	_distance = _y - (BACKGROUNDY - WINSIZEY / 2);
+
+	_playerUI = new playerUI;
+	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[0].c_str()), 5, atoi(vText[2].c_str()), atoi(vText[1].c_str()));
+
+
 	return S_OK;
 }
 
@@ -46,6 +51,8 @@ void stageScene2::update()
 
 		SCENEMANAGER->changeScene("stage3");
 	}
+
+	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[2].c_str()), atoi(vText[1].c_str()));
 }
 
 void stageScene2::render()
@@ -54,4 +61,6 @@ void stageScene2::render()
 	IMAGEMANAGER->findImage(_imageName)->frameRender(getMemDC(),
 		_x - IMAGEMANAGER->findImage(_imageName)->getFrameWidth() / 2,
 		_y - IMAGEMANAGER->findImage(_imageName)->getFrameHeight() / 2);
+
+	_playerUI->render();
 }

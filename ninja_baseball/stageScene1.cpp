@@ -5,7 +5,6 @@ HRESULT stageScene1::init()
 {
 	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, 0);
-
 	vText = TXTDATA->txtLoad("playerData.txt");
 
 	_playerSelect = atoi(vText[0].c_str());
@@ -26,24 +25,28 @@ HRESULT stageScene1::init()
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
 
+	_playerUI = new playerUI;
+	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _playerSelect, _player->gethp(), _player->gethp(), _player->getlife());
+
 	return S_OK;
 }
 
 void stageScene1::release()
 {
 	_player->release();
+	_obj->release();
 }
 
 void stageScene1::update()
 {
 	RENDERMANAGER->update();
 
-	CAMERAMANAGER->update();
 	_player->update();
 	_em->update();
 	_obj->update();
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+	CAMERAMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
@@ -81,6 +84,8 @@ void stageScene1::update()
 
 		SCENEMANAGER->changeScene("stage2");
 	}
+
+	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
 }
 
 void stageScene1::render()
@@ -91,6 +96,7 @@ void stageScene1::render()
 	_player->render();
 	_obj->render();
 	_em->render();
+	_playerUI->render();
 	RENDERMANAGER->render(getMemDC());
 	//EFFECTMANAGER->render();
 	

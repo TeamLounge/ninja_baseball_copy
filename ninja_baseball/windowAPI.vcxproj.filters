@@ -382,9 +382,6 @@
     <ClCompile Include="red_dynamiteDance.cpp">
       <Filter>playGound\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="txtData.cpp">
       <Filter>2DGameFramework\txtData</Filter>
     </ClCompile>
@@ -400,6 +397,13 @@
     <ClCompile Include="ybDeathState.cpp">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClCompile>
+    <ClCompile Include="progressBar.cpp">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="playerUI.cpp">
+      <Filter>playGound\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -801,9 +805,6 @@
     <ClInclude Include="red_dieState.h">
       <Filter>playGound\player\red</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="txtData.h">
       <Filter>2DGameFramework\txtData</Filter>
     </ClInclude>
@@ -819,6 +820,13 @@
     <ClInclude Include="ybDeathState.h">
       <Filter>playGound\enemy\baseballYellow\ybState</Filter>
     </ClInclude>
+    <ClInclude Include="progressBar.h">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="playerUI.h">
+      <Filter>playGound\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="windowAPI.ico">
@@ -939,6 +947,12 @@
     </Filter>
     <Filter Include="2DGameFramework\txtData">
       <UniqueIdentifier>{a0325963-575d-4893-a95c-0b3c7636bcf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DGameFramework\progressBar">
+      <UniqueIdentifier>{448a7e80-7c18-481b-80e0-7704d0344fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGound\UI">
+      <UniqueIdentifier>{8858443e-4717-4f21-917d-363850e6d4f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

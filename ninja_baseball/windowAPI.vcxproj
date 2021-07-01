@@ -206,6 +206,8 @@
     <ClInclude Include="greenBaseball.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="objectManager.h" />
+    <ClInclude Include="playerUI.h" />
+    <ClInclude Include="progressBar.h" />
     <ClInclude Include="red_catchState.h" />
     <ClInclude Include="red_damage1State.h" />
     <ClInclude Include="red_damage2State.h" />
@@ -265,9 +267,9 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="TimerUI.h" />
     <ClInclude Include="titleScene.h" />
     <ClInclude Include="txtData.h" />
-    <ClInclude Include="UIManager.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="wbAttackJumpState.h" />
     <ClInclude Include="wbAttackPunchState.h" />
@@ -345,6 +347,8 @@
     <ClCompile Include="greenBaseball.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="objectManager.cpp" />
+    <ClCompile Include="playerUI.cpp" />
+    <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="red_catchState.cpp" />
     <ClCompile Include="red_damage1State.cpp" />
     <ClCompile Include="red_damage2State.cpp" />
@@ -404,9 +408,9 @@
     </ClCompile>
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
+    <ClCompile Include="TimerUI.cpp" />
     <ClCompile Include="titleScene.cpp" />
     <ClCompile Include="txtData.cpp" />
-    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="wbAttackJumpState.cpp" />
     <ClCompile Include="wbAttackPunchState.cpp" />

@@ -3,6 +3,8 @@
 #include "player.h"
 #include "enemyManager.h"
 #include "objectManager.h"
+#include "progressBar.h"
+#include "playerUI.h"
 class stageScene1 : public gameNode
 {
 private:
@@ -13,6 +15,8 @@ private:
 
 	enemyManager* _em;
 	objectManager* _obj;
+
+	playerUI* _playerUI;
 
 public:
 	HRESULT init();

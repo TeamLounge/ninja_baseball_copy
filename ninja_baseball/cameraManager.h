@@ -10,10 +10,11 @@ private:
 	float x[2];
 	float y[2];
 	void cameraRange(); //카메라가 배경 밖으로 나가지 않게 만드는 함수
-public:
-	bool _isFixed;
-	bool _isHaveToMove;
 
+	bool _isHaveToMove; //카메라 고정이 풀려서 움직여야하는지
+public:
+	bool _isFixed; //카메라가 고정되었는지
+	
 	HRESULT init();
 	void release();
 	void update();

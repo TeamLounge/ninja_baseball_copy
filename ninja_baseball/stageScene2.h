@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "player.h"
+#include "playerUI.h"
 class stageScene2 : public gameNode
 {
 private:
@@ -10,6 +10,8 @@ private:
 	float _x, _y; //이미지 중점 x, y좌표
 
 	float _distance; //_y와 화면 중심 사이의 거리
+
+	playerUI* _playerUI;
 
 public:
 	HRESULT init();
