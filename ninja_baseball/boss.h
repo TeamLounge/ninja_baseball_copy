@@ -113,6 +113,7 @@ public:
 	//현재 무슨상태인지 확인
 	bool _isIdleState, _isShootingState, _isDeathState;
 	string _imageName;
+	string _shadowName;
 	//렌더 위치잡이용
 	float _imageX, _imageY;
 

@@ -24,14 +24,17 @@ HRESULT boss::init(POINT position)
 	setImage();
 	_boss.img = new image();
 
+	_bossPinLight.img = IMAGEMANAGER->findImage("boss_pinLight");
+
 	setBoss();
 
 	_imageName = "noWingProp_oneTwoPunch";
-	RENDERMANAGER->addObj("boss", _imageName.c_str(), "boss_shadow", &_imageX, &_imageY,
+	_shadowName = "boss_shadow";
+	RENDERMANAGER->addObj("boss", _imageName.c_str(), _shadowName.c_str(), &_imageX, &_imageY,
 		&_bossShadow.x, &_bossShadow.y, &_currentFrameX, &_currentFrameY);
 
-	_bossState = new bossIdleState(); //new bossEntryState();
-	_isPreWind = true; // 임시방편임
+	_bossState = new bossEntryState(); //new bossEntryState();
+	//_isPreWind = true; // 임시방편임
 	_bossState->enter(this);
 
 	_boss.x = position.x;
@@ -132,8 +135,27 @@ void boss::update()
 			_alphaCnt = 0;
 		}
 
-		if (_isAlpha && _alphaCnt % 8 == 0) _alphaIdx = 0;
-		if (_isAlpha && _alphaCnt % 8 != 0) _alphaIdx = 255;
+		if (_isAlpha && _alphaCnt % 8 == 0)
+		{
+			_alphaIdx = 0;
+		}
+		if (_isAlpha && _alphaCnt % 8 != 0)
+		{
+			_alphaIdx = 255;
+		}
+
+		if (_alphaIdx == 255)
+		{
+			_shadowName = "";
+		}
+		else
+		{
+			_shadowName = "boss_shadow";
+		}
+	}
+	else
+	{
+		_shadowName = "boss_shadow";
 	}
 }
 
@@ -142,8 +164,6 @@ void boss::render()
 	//보스 상태마다 이미지크기가 달라서 위치를 조정하기 위해 만들었음
 	//_bossShadow.img->render(getMemDC(), _bossShadow.rc.left, _bossShadow.rc.top);
 	if (_isPinLight) _bossPinLight.img->alphaRender(getMemDC(), _boss.x + 100, _boss.y - 150, _alphaIdx);
-
-	EFFECTMANAGER->render();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{

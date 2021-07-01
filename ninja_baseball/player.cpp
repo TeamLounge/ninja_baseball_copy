@@ -81,7 +81,7 @@ void player::update()
 
 void player::release()
 {
-	//RENDERMANAGER->deleteObj("player", 0);
+	RENDERMANAGER->deleteObj("player", 0);
 }
 
 void player::render()

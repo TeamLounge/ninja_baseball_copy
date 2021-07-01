@@ -29,10 +29,13 @@ void renderManager::render(HDC hdc)
 		}
 		else
 		{
-			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
-				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
-				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
+			if (strcmp(_arrObj[i].shadowImageName, ""))
+			{
+				IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
+					*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
+					*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
 
+			}
 			IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc,
 				*_arrObj[i].bodyX,
 				*_arrObj[i].bodyY, *_arrObj[i].currentFrameX, *_arrObj[i].currentFrameY);
@@ -90,16 +93,22 @@ void renderManager::addObj(string strKey, const char* bodyImageName, const char*
 
 }
 
-void renderManager::deleteObj(string strKey, int i)
+bool renderManager::deleteObj(string strKey, int i)
 {
-	for (mapObjIter iter = _mObjList.begin(); iter != _mObjList.end(); iter++)
+
+	mapObjIter key = _mObjList.find(strKey);
+
+	if (key != _mObjList.end())
 	{
-		if (iter->first == strKey)
+		key->second.erase(key->second.begin() + i);
+		if (key->second.empty())
 		{
-			iter->second.erase(iter->second.begin()+i);
-			return;
+			_mObjList.erase(key);
 		}
+		return true;
 	}
+
+	return false;
 }
 
 void renderManager::setObjArray()
@@ -149,6 +158,10 @@ void renderManager::quickSort(int left, int right)
 	}
 	quickSort(left, j - 1);
 	quickSort(j + 1, right);
+}
+
+void renderManager::deleteAll()
+{
 }
 
 

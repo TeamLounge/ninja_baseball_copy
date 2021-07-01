@@ -39,10 +39,12 @@ public :
 
 	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, int* currentFrameX, int* currentFrameY);
 
-	void deleteObj(string strKey, int i);
+	bool deleteObj(string strKey, int i);
 
 	void setObjArray();
 
 	void quickSort(int left, int right);
+
+	void deleteAll();
 };
 

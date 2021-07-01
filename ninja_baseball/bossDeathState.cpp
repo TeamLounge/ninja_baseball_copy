@@ -18,6 +18,7 @@ bossState * bossDeathState::inputHandle(boss * boss)
 	if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
 	{
 		boss->_isDeathState = true;
+		RENDERMANAGER->deleteObj("boss", 0);
 	}
 
 	return nullptr;
