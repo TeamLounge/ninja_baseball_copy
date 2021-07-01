@@ -12,6 +12,8 @@ private:
 	int _runTime;
 	bool _runTimeStart;
 	bool _isRun;
+	bool _isRight;
+	bool _isLeft;
 
 public:
 	playerstate* handleInput(player* _player);

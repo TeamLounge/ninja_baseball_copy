@@ -8,24 +8,26 @@ playerstate* red_dashAttackState::handleInput(player* _player)
 	{
 		return new red_idleState;
 	}
+
 	return nullptr;
 }
 
 void red_dashAttackState::update(player* _player)
 {
 	_time++;
-
+	
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(0);
+
 		if (_time < 20)
 		{
 			_player->setX(_player->getX() + 25);
 		}
 
 		//공격할때 에너미랑 충돌한 렉트 생성
-			//=========================================================
+		//============================================================
 		if (_time < 20)
 		{
 			_player->isattack = true;

@@ -26,13 +26,13 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_attackState;
 	}
 
-	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && _isRun == true)
-		|| KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _isRun == true) //달리기
+	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && _isRun == true && _isLeft)
+		|| KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _isRun == true && _isRight) //달리기
 	{
 		return new red_runState;
 	}
 
-	if (KEYMANAGER->isStayKeyDown('Z')) //공격준비자세?
+	if (KEYMANAGER->isStayKeyDown('Z')) //잡으려고 준비하는 자세??
 	{
 		return new red_gripState;
 	}
@@ -56,6 +56,7 @@ void red_moveState::update(player * _player)
 	{
 		_player->setX(_player->getX() - redSpeed);
 		_player->isRight = false;
+		_isLeft = true;
 		_runTimeStart = true;
 	}
 
@@ -70,6 +71,7 @@ void red_moveState::update(player * _player)
 	{
 		_player->setX(_player->getX() + redSpeed);
 		_player->isRight = true;
+		_isRight = true;
 		_runTimeStart = true;
 	}
 
@@ -175,6 +177,8 @@ void red_moveState::enter(player * _player)
 	_runTime = 0;
 	_runTimeStart = false;
 	_isRun = false;
+	_isRight = false;
+	_isLeft = false;
 
 	if (_player->isRight == true)
 	{
