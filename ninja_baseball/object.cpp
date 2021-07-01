@@ -124,7 +124,7 @@ void trashCan::render()
 		peice2->render(getMemDC());
 		peice3->render(getMemDC());
 	}
-	TextOut(getMemDC(), _obj._obj_rc.left - 40, _obj._obj_rc.top - 40, str, strlen(str));
+	TextOut(getMemDC(), _obj._obj_rc.left -300, _obj._obj_rc.top - 40, str, strlen(str));
 }
 
 HRESULT banana::init(POINT position)
@@ -135,7 +135,7 @@ HRESULT banana::init(POINT position)
 	_obj._y = position.y;
 	_obj._shadowX = position.x;
 	_obj._shadowY = position.y + _obj._img->getHeight() / 2 -10;
-	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 138, 105);
+	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
 
 	ishold = iseat = isappear = false;
@@ -154,6 +154,39 @@ void banana::update()
 }
 
 void banana::render()
+{
+	//Rectangle(getMemDC(), _obj._obj_rc);
+	//Rectangle(getMemDC(), _obj._shadow_rc);
+	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
+	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+}
+
+HRESULT cereal::init(POINT position)
+{
+	_obj._img = IMAGEMANAGER->addImage("cereal", "image/5_Item/cereal.bmp", 170, 131, true, RGB(255, 0, 255), false);
+	_obj._shadow = IMAGEMANAGER->addImage("cerealshadow", "image/5_Item/cerealshadow.bmp", 95, 23, true, RGB(255, 0, 255), false);
+	_obj._x = position.x;
+	_obj._y = position.y;
+	_obj._shadowX = position.x;
+	_obj._shadowY = position.y + _obj._img->getHeight() / 2 - 10;
+	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
+	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
+
+	ishold = iseat = isappear = false;
+
+	return S_OK;
+}
+
+void cereal::release()
+{
+}
+
+void cereal::update()
+{
+
+}
+
+void cereal::render()
 {
 	//Rectangle(getMemDC(), _obj._obj_rc);
 	//Rectangle(getMemDC(), _obj._shadow_rc);

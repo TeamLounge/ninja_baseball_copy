@@ -19,6 +19,7 @@ private:
 
 	baseball* _ball;
 	banana* _banana;
+	cereal* _cereal;
 
 	int catchtime;
 public:
@@ -30,9 +31,11 @@ public:
 	void setBaseBall();
 	void setTrahCan();
 	void setBanana();
+	void setCereal();
 
 	void updateBall();
 	void updateBanana();
+	void updateCereal();
 	void collsion();
 
 	void setLinkPlayer(player* player) { _player = player; }

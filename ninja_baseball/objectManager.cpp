@@ -6,6 +6,7 @@ HRESULT objectManager::init()
 	setTrahCan();
 	setBaseBall();
 	setBanana();
+	setCereal();
 	catchtime = 0;
 	return S_OK;
 }
@@ -30,6 +31,7 @@ void objectManager::update()
 	collsion();
 	updateBall();
 	updateBanana();
+	updateCereal();
 }
 
 void objectManager::render()
@@ -50,7 +52,7 @@ void objectManager::render()
 		}
 		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush)
 		{
-			_banana->isappear = true;
+			_cereal->isappear = true;
 		}
 	}
 	if (_ball->isappear){
@@ -59,7 +61,9 @@ void objectManager::render()
 	if (_banana->isappear) {
 		_banana->render();
 	}
-
+	if (_cereal->isappear) {
+		_cereal->render();
+	}
 	if (_ball->ishold)
 	{
 		sprintf_s(str, " ÀâÇú½îÈ÷À×");
@@ -70,6 +74,8 @@ void objectManager::render()
 		sprintf_s(str1, " ¸ÔÇû¾îÈ÷À×");
 		TextOut(getMemDC(), _banana->getX() +100, _banana->getY() - 100, str1, strlen(str1));
 	}
+	if (_cereal->iseat)
+		TextOut(getMemDC(), _cereal->getX() + 100, _cereal->getY() - 100, str1, strlen(str1));
 }
 
 void objectManager::setBaseBall()
@@ -104,6 +110,12 @@ void objectManager::setBanana()
 	_banana = new banana;
 	_banana->init(PointMake((int)_vtrash[1]->getX(), (int)_vtrash[1]->getShadowRect().top-30));
 
+}
+
+void objectManager::setCereal()
+{
+	_cereal = new cereal;
+	_cereal->init(PointMake((int)_vtrash[2]->getX(), (int)_vtrash[2]->getShadowRect().top - 30));
 }
 
 void objectManager::updateBall()
@@ -178,6 +190,18 @@ void objectManager::updateBanana()
 	}
 }
 
+void objectManager::updateCereal()
+{
+	if (_cereal->ishold && !_cereal->iseat)
+	{
+		if (_player->gethp() != 5)
+			_player->sethp(_player->gethp() + 1);
+		_cereal->ishold = false;
+		_cereal->iseat = true;
+		_cereal->isappear = false;
+	}
+}
+
 void objectManager::collsion()
 {
 	RECT temp;
@@ -196,6 +220,13 @@ void objectManager::collsion()
 				_banana->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
 			{
 				_banana->ishold = true;	
+			}
+		}
+		if (!(_cereal->ishold) && IntersectRect(&temp, &_player->getRect(), &_cereal->getRect())) {
+			if (_cereal->getShadowY() < _player->_shadow->getY() &&
+				_cereal->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
+			{
+				_cereal->ishold = true;
 			}
 		}
 	}
