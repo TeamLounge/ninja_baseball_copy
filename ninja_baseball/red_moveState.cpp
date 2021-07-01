@@ -16,7 +16,7 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_idleState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('X')) //점프
+	if (KEYMANAGER->isOnceKeyDown('C')) //점프
 	{
 		return new red_jumpState;
 	}

@@ -13,17 +13,16 @@ HRESULT stageScene1::init()
 	_player = new player;
 	_player->init(_playerSelect);
 
-	//_em = new enemyManager;
-	//_em->init();
+	_em = new enemyManager;
+	_em->init();
 
 	_obj = new objectManager;
 	_obj->init();
 
 	_obj->setLinkPlayer(_player);
 	_obj->setLinkEnemyManager(_em);
-	//_red->setEmMemoryAddressLink(_em);
 
-	//_em->setPlayerMemoryAddressLink(_player);
+	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
 
 	return S_OK;
@@ -40,7 +39,7 @@ void stageScene1::update()
 
 	CAMERAMANAGER->update();
 	_player->update();
-	//_em->update();
+	_em->update();
 	_obj->update();
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
@@ -86,7 +85,7 @@ void stageScene1::update()
 void stageScene1::render()
 {
 	IMAGEMANAGER->findImage("stage_1")->render(getMemDC(), 0, 0);
-	//_em->render();
+	_em->render();
 
 	_player->render();
 	_obj->render();

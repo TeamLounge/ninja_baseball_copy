@@ -12,7 +12,7 @@ HRESULT baseball::init(POINT position)
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 59, 53);
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
 
-	ishold = isattack = false;
+	ishold = isattack = isappear = isfire =false;
 
 	return S_OK;
 }
@@ -26,10 +26,12 @@ void baseball::update(bool Right)
 {
 	if (isattack)
 	{
-		if (Right)
-			_obj._x += 8;
-		else
-			_obj._x -= 8;
+		if (Right&& isfire)
+			speed = 8;
+		else if(!Right&&isfire)
+			speed = -8;
+		isfire = false;
+		_obj._x += speed;
 		_obj._shadowX = _obj._x;
 		_obj._img->setCenter(_obj._x ,_obj._y);
 		_obj._shadow->setCenter(_obj._shadowX , _obj._shadowY);
@@ -38,6 +40,7 @@ void baseball::update(bool Right)
 		if (CAMERAMANAGER->getCameraRIGHT() < _obj._x || CAMERAMANAGER->getCameraLEFT()> _obj._x )
 		{
 			isattack = false;
+			isappear = false;
 		}
 	}
 }
@@ -52,7 +55,6 @@ void baseball::render()
 
 HRESULT trashCan::init(POINT position, int present)
 {
-	//Æ÷Áö¼ÇÀº 794, 408
 	_obj._img = IMAGEMANAGER->addImage("trashCan", "image/5_Item/trashCan.bmp", 99, 137, true, RGB(255, 0, 255), false);
 	_obj._shadow = IMAGEMANAGER->addImage("trashshadow", "image/5_Item/trahsCanshadow.bmp", 95, 23, true, RGB(255, 0, 255), false);
 	_obj._x = position.x;
@@ -62,9 +64,13 @@ HRESULT trashCan::init(POINT position, int present)
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 99, 137);
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
 
-	peice1 = IMAGEMANAGER->addImage("trashCanPiece1", "image/5_Item/trashCanPiece1.bmp", 54, 80, true, RGB(255, 0, 255),false);
-	peice2 = IMAGEMANAGER->addImage("trashCanPiece2", "image/5_Item/trashCanPiece2.bmp", 55, 41, true, RGB(255, 0, 255), false);
-	peice3 = IMAGEMANAGER->addImage("trashCanPiece3", "image/5_Item/trashCanPiece3.bmp", 52, 69, true, RGB(255, 0, 255), false);
+	char str[128];
+	sprintf_s(str, "trashCanPiece%d",present);
+	peice1 = IMAGEMANAGER->addImage(str, "image/5_Item/trashCanPiece1.bmp", 54, 80, true, RGB(255, 0, 255),false);
+	sprintf_s(str, "trashCanPiece%d", present+3);
+	peice2 = IMAGEMANAGER->addImage(str, "image/5_Item/trashCanPiece2.bmp", 55, 41, true, RGB(255, 0, 255), false);
+	sprintf_s(str, "trashCanPiece%d", present+6);
+	peice3 = IMAGEMANAGER->addImage(str, "image/5_Item/trashCanPiece3.bmp", 52, 69, true, RGB(255, 0, 255), false);
 	peice1->setCenter(position.x , position.y);
 	peice2->setCenter(position.x, position.y);
 	peice3->setCenter(position.x, position.y);
@@ -72,7 +78,7 @@ HRESULT trashCan::init(POINT position, int present)
 	_present = present;
 	damagecount = pasty = presenty = 0;
 	jumppower = 4.f;
-	gravity = 0.1f;
+	gravity = 0.2f;
 	isdamage = iscrush =  false;
 	return S_OK;
 }
@@ -105,14 +111,14 @@ void trashCan::update()
 void trashCan::render()
 {
 	char str[128];
-	sprintf_s(str, "¸Â¾Ñ´Ù! : %d , ¸î´ë¸Â¾Ñ³ª? : %d", isdamage, damagecount);
+	sprintf_s(str, "¸Â¾Ñ´Ù! : %d , ¸î´ë¸Â¾Ñ³ª? : %d , present : %d , peice1Y: %f", isdamage, damagecount ,_present,peice1->getCenterY());
 	if (!iscrush) {
 		Rectangle(getMemDC(), _obj._obj_rc);
 		Rectangle(getMemDC(), _obj._shadow_rc);
 		_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
 		_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 	}
-	else if(iscrush&& peice1->getCenterY()<_obj._shadowY)
+	else
 	{
 		peice1->render(getMemDC());
 		peice2->render(getMemDC());
@@ -123,16 +129,16 @@ void trashCan::render()
 
 HRESULT banana::init(POINT position)
 {
-	_obj._img = IMAGEMANAGER->addImage("banana", "image/5_Item/banana.bmp", 59, 53, true, RGB(255, 0, 255), false);
-	_obj._shadow = IMAGEMANAGER->addImage("bananashadow", "image/5_Item/bananashadow.bmp", 59, 14, true, RGB(255, 0, 255), false);
+	_obj._img = IMAGEMANAGER->addImage("banana", "image/5_Item/banana.bmp", 138, 105, true, RGB(255, 0, 255), false);
+	_obj._shadow = IMAGEMANAGER->addImage("bananashadow", "image/5_Item/bananashadow.bmp", 95, 23, true, RGB(255, 0, 255), false);
 	_obj._x = position.x;
 	_obj._y = position.y;
 	_obj._shadowX = position.x;
-	_obj._shadowY = position.y + _obj._img->getHeight() / 2;
-	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 59, 53);
+	_obj._shadowY = position.y + _obj._img->getHeight() / 2 -10;
+	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 138, 105);
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
 
-	ishold = iseat = false;
+	ishold = iseat = isappear = false;
 
 	return S_OK;
 }
@@ -149,8 +155,8 @@ void banana::update()
 
 void banana::render()
 {
-	Rectangle(getMemDC(), _obj._obj_rc);
-	Rectangle(getMemDC(), _obj._shadow_rc);
+	//Rectangle(getMemDC(), _obj._obj_rc);
+	//Rectangle(getMemDC(), _obj._shadow_rc);
 	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
 	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }

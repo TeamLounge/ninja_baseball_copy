@@ -14,9 +14,9 @@ class baseball : public gameNode
 {
 private:
 	Object _obj;
-
+	int speed;
 public:
-	bool isattack , ishold;
+	bool isattack , ishold , isappear , isfire;
 	virtual HRESULT init(POINT position);
 	virtual void release();
 	virtual void update(bool Right);
@@ -94,7 +94,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-	bool ishold , iseat;
+	bool ishold , iseat , isappear;
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }

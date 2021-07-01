@@ -20,6 +20,7 @@ private:
 	baseball* _ball;
 	banana* _banana;
 
+	int catchtime;
 public:
 	virtual HRESULT init();
 	virtual void release();

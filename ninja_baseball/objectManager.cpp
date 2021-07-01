@@ -6,6 +6,7 @@ HRESULT objectManager::init()
 	setTrahCan();
 	setBaseBall();
 	setBanana();
+	catchtime = 0;
 	return S_OK;
 }
 
@@ -17,9 +18,14 @@ void objectManager::release()
 
 void objectManager::update()
 {
-	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++)
+	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end();)
 	{
 		(*_vitrash)->update();
+		if ((*_vitrash)->iscrush && (*_vitrash)->peice1->getCenterY() > (*_vitrash)->getShadowY())
+		{
+			_vitrash = _vtrash.erase(_vitrash);
+		}
+		else _vitrash++;
 	}
 	collsion();
 	updateBall();
@@ -34,9 +40,23 @@ void objectManager::render()
 	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++)
 	{
 		(*_vitrash)->render();
+		if ((*_vitrash)->_present == 0 && (*_vitrash)->iscrush)
+		{
+			_ball->isappear = true;
+		}
+		if ((*_vitrash)->_present == 1 && (*_vitrash)->iscrush)
+		{
+			_banana->isappear = true;
+		}
+		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush)
+		{
+			_banana->isappear = true;
+		}
 	}
-	_ball->render();
-	if (!_banana->iseat) {
+	if (_ball->isappear){
+		_ball->render();
+	}
+	if (_banana->isappear) {
 		_banana->render();
 	}
 
@@ -60,7 +80,7 @@ void objectManager::setBaseBall()
 
 void objectManager::setTrahCan()
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		trashCan* _trashCan = new trashCan;
 		if (i == 0) 
@@ -69,7 +89,11 @@ void objectManager::setTrahCan()
 		}
 		if (i == 1)
 		{
-			_trashCan->init(PointMake(794, 578), i);
+			_trashCan->init(PointMake(1875, 408), i);
+		}
+		if (i == 2)
+		{
+			_trashCan->init(PointMake(3239, 408), i);
 		}
 		_vtrash.push_back(_trashCan);
 	}
@@ -78,7 +102,7 @@ void objectManager::setTrahCan()
 void objectManager::setBanana()
 {
 	_banana = new banana;
-	_banana->init(PointMake((int)_vtrash[1]->getX(), (int)_vtrash[1]->getShadowRect().top));
+	_banana->init(PointMake((int)_vtrash[1]->getX(), (int)_vtrash[1]->getShadowRect().top-30));
 
 }
 
@@ -87,10 +111,13 @@ void objectManager::updateBall()
 	RECT rc;
 	if (_ball->ishold)
 	{
-		if (KEYMANAGER->isOnceKeyDown('X'))
+		catchtime++;
+		if (catchtime>10 &&KEYMANAGER->isOnceKeyDown('X'))
 		{
 			_ball->ishold = false;
 			_ball->isattack = true;
+			_ball->isfire = true;
+			catchtime = 0;
 		}
 		if (_player->isRight)
 		{
@@ -143,9 +170,11 @@ void objectManager::updateBanana()
 {
 	if (_banana->ishold && !_banana->iseat)
 	{
+		if(_player->gethp()!=5)
 		_player->sethp(_player->gethp() + 1);
 		_banana->ishold = false;
 		_banana->iseat = true;
+		_banana->isappear = false;
 	}
 }
 
@@ -172,65 +201,69 @@ void objectManager::collsion()
 	}
 
 	//ball 던진다!
-	//if(_ball->isattack){
-	//	//Whtie baseball
-	//	for (int i = 0; i < _em->getVWb().size(); i++) {
-	//		if (_ball->getShadowY() < _em->getVWb()[i]->getRect().bottom &&
-	//			_ball->getShadowY() > _em->getVWb()[i]->getRect().top)
-	//		{
-	//			if (IntersectRect(&temp, &_em->getVWb()[i]->getRect(), &_ball->getRect()))
-	//			{
-	//				_ball->isattack = false;
-	//				_em->getVWb()[i]->isdamage = true;
-	//			}
-	//		}
-	//	}
-	//	//bule baseball
-	//	for (int i = 0; i < _em->getVBb().size(); i++)
-	//	{
-	//		
-	//		if (_ball->getShadowY() < _em->getVBb()[i]->getRect().bottom &&
-	//			_ball->getShadowY() > _em->getVBb()[i]->getRect().top)
-	//		{
-	//			if (IntersectRect(&temp, &_em->getVBb()[i]->getRect(), &_ball->getRect()))
-	//			{
-	//				_ball->isattack = false;
-	//				//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
-	//			}
-	//		}
-	//
-	//	}
-	//
-	//	//Green Baseball
-	//	for (int i = 0; i < _em->getVGb().size(); i++)
-	//	{
-	//		if (_ball->getShadowY() < _em->getVBb()[i]->getRect().bottom &&
-	//			_ball->getShadowY() > _em->getVBb()[i]->getRect().top)
-	//		{
-	//			if (IntersectRect(&temp, &_em->getVBb()[i]->getRect(), &_ball->getRect()))
-	//			{
-	//				_ball->isattack = false;
-	//				//_em->getVBb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
-	//			}
-	//		}
-	//	
-	//	}
-	//
-	//	//Yello Baseball
-	//	for (int i = 0; i < _em->getVYb().size(); i++)
-	//	{
-	//		if (_ball->getShadowY() < _em->getVYb()[i]->getRect().bottom &&
-	//			_ball->getShadowY() > _em->getVYb()[i]->getRect().top)
-	//		{
-	//			if (IntersectRect(&temp, &_em->getVYb()[i]->getRect(), &_ball->getRect()))
-	//			{
-	//				_ball->isattack = false;
-	//				//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
-	//			}
-	//		}
-	//
-	//	}
-	//}
+	if(_ball->isattack){
+		//Whtie baseball
+		for (int i = 0; i < _em->getVWb().size(); i++) {
+			if (_ball->getShadowY() < _em->getVWb()[i]->_wbShadow.rc.bottom &&
+				_ball->getShadowY() > _em->getVWb()[i]->_wbShadow.rc.top)
+			{
+				if (IntersectRect(&temp, &_em->getVWb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					_ball->isappear = false;
+					_em->getVWb()[i]->isdamage = true;
+				}
+			}
+		}
+		//bule baseball
+		for (int i = 0; i < _em->getVBb().size(); i++)
+		{
+			
+			if (_ball->getShadowY() < _em->getVBb()[i]->_bbShadow.rc.bottom &&
+				_ball->getShadowY() > _em->getVBb()[i]->_bbShadow.rc.top)
+			{
+				if (IntersectRect(&temp, &_em->getVBb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					_ball->isappear = false;
+					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
+				}
+			}
+	
+		}
+	
+		//Green Baseball
+		for (int i = 0; i < _em->getVGb().size(); i++)
+		{
+			if (_ball->getShadowY() < _em->getVGb()[i]->_gbShadow.rc.bottom &&
+				_ball->getShadowY() > _em->getVGb()[i]->_gbShadow.rc.top)
+			{
+				if (IntersectRect(&temp, &_em->getVGb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					_ball->isappear = false;
+					//_em->getVYb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
+				}
+			}
+		
+		}
+	
+		//Yello Baseball
+		for (int i = 0; i < _em->getVYb().size(); i++)
+		{
+			if (_ball->getShadowY() < _em->getVYb()[i]->_ybShadow.rc.bottom &&
+				_ball->getShadowY() > _em->getVYb()[i]->_ybShadow.rc.top)
+			{
+				if (IntersectRect(&temp, &_em->getVYb()[i]->getRect(), &_ball->getRect()))
+				{
+					_ball->isattack = false;
+					_ball->isappear = false;
+					//_em->getVYb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
+				}
+			}
+	
+		}
+	}
 
 	if (_player->isattack)
 	{
@@ -247,10 +280,9 @@ void objectManager::collsion()
 						(*_vitrash)->isdamage = true;
 					}
 				}
+				else (*_vitrash)->pasty = 0;
 			}
 		}
 	}
-	else
-		(*_vitrash)->pasty = 0;
 
 }
