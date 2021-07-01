@@ -25,7 +25,7 @@ HRESULT stageScene1::init()
 
 	_obj->setLinkPlayer(_player);
 	_obj->setLinkEnemyManager(_em);
-	//_red->setEmMemoryAddressLink(_em);
+	/*_red->setEmMemoryAddressLink(_em);*/
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
