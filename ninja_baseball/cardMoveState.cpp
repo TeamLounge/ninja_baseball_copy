@@ -98,7 +98,7 @@ void cardMoveState::isSide(card* card)
 		card->_isTopWall = false;
 	}
 
-	if (card->_card.rc.top <= 0)
+	if (card->_card.rc.top <= 200)
 	{
 		card->_isBottomWall = false;
 		card->_isTopWall = true;
@@ -112,24 +112,24 @@ void cardMoveState::move(card* card)
 {
 	if (card->_isLeft)
 	{
-		if (card->_card.rc.right < WINSIZEX) card->_card.x += 5;
+		if (card->_card.rc.right < BACKGROUNDX) card->_card.x += 3.5f;
 	}
 
 	if (!card->_isLeft)
 	{
-		if (card->_card.rc.left > 0) card->_card.x -= 5;
+		if (card->_card.rc.left > BACKGROUNDX - CAMERAX) card->_card.x -= 3.5f;
 	}
 
 	if (card->_isUpper && !card->_isTopWall && !card->_isBottomWall)
 	{
-		if (card->_card.rc.top > 0) card->_card.y -= 3;
+		if (card->_card.rc.top > 200) card->_card.y -= 2.5f;
 	}
 
 	if (!card->_isUpper && !card->_isTopWall && !card->_isBottomWall)
 	{
-		if (card->_card.rc.bottom < WINSIZEY) card->_card.y += 3;
+		if (card->_card.rc.bottom < WINSIZEY) card->_card.y += 2.5f;
 	}
 
-	if (card->_isTopWall && !card->_isBottomWall) card->_card.y += 3;
-	if (!card->_isTopWall && card->_isBottomWall) card->_card.y -= 3;
+	if (card->_isTopWall && !card->_isBottomWall) card->_card.y += 2.7f;
+	if (!card->_isTopWall && card->_isBottomWall) card->_card.y -= 2.7f;
 }

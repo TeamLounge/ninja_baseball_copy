@@ -37,6 +37,8 @@ HRESULT stageScene1::init()
 	
 	_angle = getAngle(2307, WINSIZEY, 2001, WINSIZEY - 306);
 
+	_em->setCard();
+
 	return S_OK;
 }
 
@@ -54,6 +56,8 @@ void stageScene1::update()
 	shutterCollison();
 	_em->update();
 	_obj->update();
+	
+	_em->updateCard();
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 	CAMERAMANAGER->update();
@@ -113,6 +117,7 @@ void stageScene1::render()
 	_player->render();
 	_obj->render();
 	_em->render();
+	//_em->renderCard();
 
 	IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
 	IMAGEMANAGER->findImage("shutter_pixel")->render(getMemDC());

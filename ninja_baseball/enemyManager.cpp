@@ -48,7 +48,7 @@ void enemyManager::render()
 
 	renderBaseball();
 	//renderGlove();
-	renderCard();
+	//renderCard();
 	//renderBoss();
 
 	char str1[126];
@@ -725,7 +725,7 @@ void enemyManager::setCard()
 	{
 		card* _cd;
 		_cd = new card;
-		_cd->init(PointMake(-50 + i * 700, 300));
+		_cd->init(PointMake(2650 + i * 120, 220 + i * 100));
 		_vCard.push_back(_cd);
 	}
 }
@@ -736,9 +736,18 @@ void enemyManager::setCard()
 /////////////////////////////////////////////////
 void enemyManager::updateCard()
 {
+	//카드 업데이트
+	WhereIsCard();
+
 	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
 	{
+
 		(*_viCard)->update();
+
+		//if (550 > getDistance(_player->getX(), _player->getY(), (*_viCard)->getCenterX(), (*_viCard)->getCenterY()))
+		//{
+		//	
+		//}
 	}
 }
 
@@ -765,25 +774,25 @@ void enemyManager::WhereIsCard()
 		if (!(*_viCard)->getIsDash() && !(*_viCard)->getIsBullet())
 		{
 			//플레이어보다 왼쪽에 있을때
-			if (_player->getX() > (*_viCard)->getCenterX())
+			if (_player->_shadow->getCenterX() > (*_viCard)->getShadowX())
 			{
 				(*_viCard)->setIsLeft(false);
 			}
 
 			//플레이어보다 오른쪽에 있을때
-			if (_player->getX() < (*_viCard)->getCenterX())
+			if (_player->_shadow->getCenterX() < (*_viCard)->getShadowX())
 			{
 				(*_viCard)->setIsLeft(true);
 			}
 
 			//플레이어보다 위에 있을때
-			if (_player->getY() > (*_viCard)->getCenterY())
+			if (_player->_shadow->getCenterY() > (*_viCard)->getShadowY())
 			{
 				(*_viCard)->setIsUpper(true);
 			}
 
 			//플레이어보다 아래에 있을때
-			if (_player->getY() < (*_viCard)->getCenterY())
+			if (_player->_shadow->getCenterY() < (*_viCard)->getShadowY())
 			{
 				(*_viCard)->setIsUpper(false);
 			}
