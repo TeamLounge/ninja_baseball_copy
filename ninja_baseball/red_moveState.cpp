@@ -52,6 +52,13 @@ playerstate* red_moveState::handleInput(player* _player)
 
 void red_moveState::update(player * _player)
 {
+	
+	if (_player->getRect().left < CAMERAMANAGER->getCameraLEFT())
+	{
+		_player->setX(_player->getX() + CAMERAMANAGER->getCameraLEFT() - _player->getRect().left);
+	}
+	
+
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->setX(_player->getX() - redSpeed);
