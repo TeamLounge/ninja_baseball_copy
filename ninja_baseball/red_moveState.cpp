@@ -10,7 +10,7 @@
 
 playerstate* red_moveState::handleInput(player* _player)
 {
-	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 4) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 4) ||
+	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && _runTime > 3) || (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _runTime > 3) ||
 		KEYMANAGER->isOnceKeyUp(VK_UP) || KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{
 		return new red_idleState;

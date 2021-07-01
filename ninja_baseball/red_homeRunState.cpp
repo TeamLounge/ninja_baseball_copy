@@ -16,6 +16,7 @@ playerstate* red_homeRunState::handleInput(player* _player)
 		{
 			_player->setX(_player->getX() + 60);
 		}
+
 		return new red_idleState;
 	}
 
@@ -60,6 +61,27 @@ void red_homeRunState::update(player* _player)
 			}
 		}
 
+		//공격할때 에너미랑 충돌한 렉트 생성
+			//=========================================================
+		if (_index == 3)
+		{
+			_player->isattack = true;
+
+			if (_player->isRight == true)
+			{
+				_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 70, 70);
+			}
+			if (_player->isRight == false)
+			{
+				_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 70, 70);
+			}
+		}
+		else
+		{
+			_player->isattack = false;
+		}
+
+
 		//그림자 위치
 		if (_player->isRight == true)
 		{
@@ -82,7 +104,7 @@ void red_homeRunState::enter(player* _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_homerun"));
 	_player->setImageName("red_homerun");
-	
+		
 	_player->setY(_player->getY() + 20);
 	if (_player->isRight == true)
 	{
