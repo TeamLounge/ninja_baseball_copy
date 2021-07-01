@@ -44,6 +44,13 @@ HRESULT yellowBaseball::init(POINT position)
 	isJump = false;
 	isXOverlap = false;
 	isYOverlap = false;
+	isDeath = false;
+
+	damageCount = 0;
+
+	RENDERMANAGER->addObj("yellowBaseball", _imgName.c_str(), "yBaseball_shadow",
+		&_yellowBaseball.x, &_yellowBaseball.y, &_ybShadow.x, &_ybShadow.y,
+		&_currentFrameX, &_currentFrameY);
 
 	return S_OK;
 }
@@ -65,6 +72,7 @@ void yellowBaseball::update()
 	{
 		//그림자
 		_ybShadow.rc = RectMakeCenter((_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2, _yellowBaseball.rc.bottom, 215, 50);
+		_ybShadow.x = (_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2;
 		_ybShadow.y = _yellowBaseball.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
@@ -72,6 +80,23 @@ void yellowBaseball::update()
 	{
 		//그림자
 		_ybShadow.rc = RectMakeCenter((_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2, _ybShadow.y, 215, 50);	//점프하기 전의 y값을 사용
+	}
+
+	//충돌 여부에 따른 죽음 판정
+	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	{
+		damageCount++;
+		if (damageCount == 5)
+		{
+			isDeath = true;
+		}
+
+		isCollisionDamaged = true;
+	}
+	else
+	{
+		isDeath = false;
+		isCollisionDamaged = false;
 	}
 }
 
@@ -97,7 +122,7 @@ void yellowBaseball::render()
 		DeleteObject(myBrush);
 	}
 
-	_ybShadow.img->render(getMemDC(), _ybShadow.rc.left, _ybShadow.rc.top);
+	//_ybShadow.img->render(getMemDC(), _ybShadow.rc.left, _ybShadow.rc.top);
 	_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.x, _yellowBaseball.y, _currentFrameX, _currentFrameY);
 	//_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.rc.left, _yellowBaseball.rc.top);
 	//_yellowBaseball.img->frameRender(getMemDC(), _yellowBaseball.x, _yellowBaseball.y);

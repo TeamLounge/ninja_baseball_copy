@@ -38,6 +38,13 @@ public:
 	bool _isrun ,_run;
 	float _runtime;
 
+	//플레이어 스테이트 상태 확인
+	bool _isGreenAttackState, _isGreenAttack1, _isGreenAttack2, _isGreenAttack3;
+	bool _isGreenAttackFrontCombo1, _isGreenAttackFrontCombo2;
+	bool _isGreenDashAlt, _isGreenDashAttack;
+	bool _isGreenJumpAttack, _isGreenJumpPowerAttack;
+	bool _isGreenCatchFrontCombo, _isGreenCatchAttack, _isGreenCatchBackAttack;
+
 	enemyManager* _em; //애너미정보가져오기
 
 	//함수를 선언하려면 여기에다
@@ -50,6 +57,7 @@ public:
 
 	virtual void addImage();
 	virtual void collision();
+	void isStateSet();   //스테이트상태 확인 불값 -> 데미지 확인위해 by 김광수
 
 	//수만은 겟터
 	virtual image* getImage() { return _playerimg; }

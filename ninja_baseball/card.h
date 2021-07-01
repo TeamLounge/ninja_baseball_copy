@@ -54,6 +54,13 @@ public:
 
 	void InputHandle();
 
+	/////////////////////////////
+	//    ## 피격용 렉트 ##     //
+	////////////////////////////
+	RECT _assultedRect;
+
+	string _imageName;
+
 	//중력
 	float _gravity, _jumpPower;
 	//무브 속도
@@ -81,6 +88,12 @@ public:
 	//공격패턴을 넣기위한 작업
 	int numPattern;
 	bool _isCrash;
+	//각종 상태 boo값 넣기
+	bool _isCardSmallDamagedState, _isCardSmallDamaged;
+	bool _isCardHeavyDamagedState, _isCardHeavyDamaged;
+	bool _isCardDeathState, _isCardDeath;
+
+
 
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							

@@ -223,4 +223,5 @@ void stageScene1::shutterCollison()
 	}
 	*/
 	
+
 }

@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossEntryState::inputHandle(boss * boss)

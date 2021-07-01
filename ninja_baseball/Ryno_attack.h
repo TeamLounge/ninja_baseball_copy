@@ -10,5 +10,7 @@ public:
 	virtual playerstate* handleInput(player* player);
 	virtual void update(player* player);
 	virtual void enter(player* player);
+
+	int getIndex() { return _index; }
 };
 

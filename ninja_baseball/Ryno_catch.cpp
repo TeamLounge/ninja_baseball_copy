@@ -9,6 +9,7 @@ playerstate * Ryno_catch::handleInput(player * player)
 		player->setY(player->getY() + 30);
 		player->iscatch = false;
 		player->isattack = false;
+		player->_isGreenCatchBackAttack = false;
 		return new Ryno_idle;
 	}
 	if (KEYMANAGER->isOnceKeyUp('V'))
@@ -16,6 +17,7 @@ playerstate * Ryno_catch::handleInput(player * player)
 		player->setY(player->getY() + 30);
 		player->iscatch = false;
 		player->isattack = false;
+		player->_isGreenCatchBackAttack = false;
 		return new Ryno_idle;
 	}
 	if (isfront)
@@ -61,6 +63,7 @@ void Ryno_catch::update(player * player)
 			if (_index == 2)
 			{
 				player->isattack = true;
+				player->_isGreenCatchAttack = true;
 				if (player->isRight) {
 					player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY(), 50, 50);
 				}
@@ -68,26 +71,35 @@ void Ryno_catch::update(player * player)
 					player->_attack_rc = RectMakeCenter(player->getX() - 90, player->getY(), 50, 50);
 
 			}
-			if (_index > 2) { _index = 0;  player->isattack = false; }
+			if (_index > 2)
+			{ 
+				_index = 0;
+				player->isattack = false;
+			}
 			_count = 0;
 		}
 	}
-	if (_index >= 3)
+	if (_index >= 3 && _index <= 5)
+	{
+		player->_isGreenCatchAttack = false;
+		_count++;
+		if (_count % 10 == 0)
+		{
+			if (_index == 3) player->_isGreenCatchBackAttack = true;
+			_index++;
+			_count = 0;
+		}
+	}
+	if (_index > 5)
 	{
 		_count++;
 		if (_count % 10 == 0)
 		{
 			_index++;
-			_count = 0;
-		}
-	}
-	if (_index == 5)
-	{
-		_count++;
-		if (_count % 10 == 0)
-		{
-			_index++;
-			if (_index > 5) isend = true;
+			if (_index > 7)
+			{
+				isend = true;
+			}
 			_count = 0;
 		}
 

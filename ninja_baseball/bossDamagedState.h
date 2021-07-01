@@ -10,6 +10,9 @@ public:
 	int readyCount;
 	float jumpPower;
 	float gravity;
+	int deathCount;
+	float moveX;
+	int catchCount;
 
 	virtual bossState* inputHandle(boss* boss);
 	virtual void update(boss* boss);

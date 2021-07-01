@@ -45,6 +45,8 @@ void gloveAttackTongueState::enter(glove * glove)
 {
 	glove->isattack = true;
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_attackTongue");
+	glove->setImageName("glove_attackTongue");
+
 	if (!glove->isRight)
 	{
 		glove->setCurrentFrameY(1);

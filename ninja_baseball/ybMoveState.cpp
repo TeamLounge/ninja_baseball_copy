@@ -13,6 +13,11 @@ ybState * ybMoveState::inputHandle(yellowBaseball * yellowBaseball)
 	{
 		return new ybIdleState();
 	}
+
+	if (yellowBaseball->isDeath)
+	{
+		return new ybDeathState();
+	}
 	return nullptr;
 }
 
@@ -38,6 +43,8 @@ void ybMoveState::update(yellowBaseball * yellowBaseball)
 void ybMoveState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_move");
+	yellowBaseball->setImageName("yBaseball_move");
+
 	yellowBaseball->setCurrentFrameX(0);
 	yellowBaseball->setCurrentFrameY(1);
 

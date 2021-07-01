@@ -11,8 +11,15 @@ gloveState * gloveMoveState::inputHandle(glove * glove)
 	//glove가 때리면
 	if (glove->isCollisionAttack)
 	{
-		return new gloveAttackTongueState();		//그럼 어택텅 가서 모션 보여줄거고, 행동은 player쪽에서 하고
+		glove->timeCount++;
+		if (glove->timeCount >= 65)
+		{
+			glove->timeCount = 0;
+			return new gloveAttackTongueState();		//그럼 어택텅 가서 모션 보여줄거고, 행동은 player쪽에서 하고
+		}
 	}
+	else glove->timeCount = 0;
+
 	//glove가 맞으면
 	if (glove->isCollisionDamaged)
 	{
@@ -100,6 +107,8 @@ void gloveMoveState::update(glove * glove)
 void gloveMoveState::enter(glove * glove)
 {
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_move");
+	glove->setImageName("glove_move");
+
 	if (!glove->isRight)
 	{
 		glove->setCurrentFrameY(1);

@@ -14,6 +14,12 @@ gbState * gbAttackPunchState::inputHandle(greenBaseball * greenBaseball)
 		greenBaseball->isattack = false;
 		return new gbIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
+
+	if (greenBaseball->isDeath)
+	{
+		return new gbDeathState();
+	}
+
 	return nullptr;
 }
 
@@ -29,7 +35,7 @@ void gbAttackPunchState::update(greenBaseball * greenBaseball)
 			{
 				greenBaseball->setCurrentFrameX(0);
 			}
-			else 
+			else
 			{
 				greenBaseball->setCurrentFrameX(greenBaseball->getCurrentFrameX() + 1);
 
@@ -81,6 +87,8 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 {
 	greenBaseball->isattack = true;
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_punch");
+	greenBaseball->setImageName("gBaseball_punch");
+
 	if (!greenBaseball->isRight)
 	{
 		greenBaseball->setCurrentFrameY(1);
@@ -90,8 +98,7 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 		greenBaseball->setCurrentFrameY(0);
 	}
 	greenBaseball->setCurrentFrameX(0);
-	
-	greenBaseball->setImageName("gBaseball_punch");
+
 }
 
 void gbAttackPunchState::exit(greenBaseball * greenBaseball)

@@ -111,5 +111,7 @@ void Ryno_crawl::enter(player * player)
 	}
 
 	player->setImageName("Ryno_crawl");
+
+	player->_isGreenCatchBackAttack = false;
 }
 

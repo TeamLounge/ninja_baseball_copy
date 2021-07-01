@@ -11,6 +11,7 @@
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossMoveState::inputHandle(boss * boss)
@@ -41,6 +42,10 @@ bossState * bossMoveState::inputHandle(boss * boss)
 		return new bossDamagedState();
 	}
 
+	if (boss->_isSmallDamaged )
+	{
+		return new bossSmallDamagedState();
+	}
 	return nullptr;
 }
 

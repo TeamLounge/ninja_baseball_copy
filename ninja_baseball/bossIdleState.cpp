@@ -10,6 +10,7 @@
 #include "bossStraightAttackState.h"
 #include "bossUpperCutState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossIdleState::inputHandle(boss * boss)
@@ -23,7 +24,7 @@ bossState * bossIdleState::inputHandle(boss * boss)
 		return new bossWindState();
 	}
 
-	if (boss->_stateCount >= 2 && boss->_isPreWind)
+	if (boss->_stateCount >= 1 && boss->_isPreWind)
 	{
 		boss->_stateCount = 0;
 		boss->_isShootingAttack = false;
@@ -111,6 +112,7 @@ void bossIdleState::enter(boss * boss)
 	}
 
 	boss->_isIdleState = true;
+	boss->_stateCount = 0;
 }
 
 void bossIdleState::exit(boss * boss)

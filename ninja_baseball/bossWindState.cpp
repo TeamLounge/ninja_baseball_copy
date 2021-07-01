@@ -11,6 +11,7 @@
 #include "bossUpperCutState.h"
 #include "bossDamagedState.h"
 #include "bossDeathState.h"
+#include "bossSmallDamagedState.h"
 #include "boss.h"
 
 bossState * bossWindState::inputHandle(boss * boss)

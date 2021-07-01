@@ -13,6 +13,10 @@ ybState * ybAttackPunchState::inputHandle(yellowBaseball * yellowBaseball)
 		yellowBaseball->isattack = false;
 		return new ybIdleState();	//디폴트(안맞으면)로 idle 상태
 	}
+	if (yellowBaseball->isDeath)
+	{
+		return new ybDeathState();
+	}
 	return nullptr;
 }
 
@@ -80,6 +84,8 @@ void ybAttackPunchState::enter(yellowBaseball * yellowBaseball)
 {
 	yellowBaseball->isattack = true;
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_punch");
+	yellowBaseball->setImageName("yBaseball_punch");
+
 	if (!yellowBaseball->isRight)
 	{
 		yellowBaseball->setCurrentFrameY(1);

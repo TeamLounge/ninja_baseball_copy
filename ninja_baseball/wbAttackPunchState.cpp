@@ -17,6 +17,10 @@ wbState * wbAttackPunchState::inputHandle(whiteBaseball * whiteBaseball)
 		whiteBaseball->isJump = true;	//점프했음을 알림
 		return new wbAttackJumpState();
 	}
+	if (whiteBaseball->isDeath)
+	{
+		return new wbDeathState();
+	}
 
 	return nullptr;
 }
@@ -63,6 +67,8 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 {
 	/*whiteBaseball->isattack = true;*/
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_punch");
+	whiteBaseball->setImageName("wBaseball_punch");
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -74,7 +80,6 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 
 	whiteBaseball->setCurrentFrameX(0);
 
-	whiteBaseball->setImageName("wBaseball_punch");
 	whiteBaseball->isattack = true;
 
 }

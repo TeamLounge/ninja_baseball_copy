@@ -33,6 +33,8 @@ void wbDeathState::update(whiteBaseball * whiteBaseball)
 void wbDeathState::enter(whiteBaseball * whiteBaseball)
 {
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_spin");
+	whiteBaseball->setImageName("wBaseball_spin");
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);

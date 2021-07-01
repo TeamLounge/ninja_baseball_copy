@@ -5,6 +5,7 @@ playerstate * Ryno_dashAlt::handleInput(player * player)
 {
 	if (speed < 0)
 	{
+		player->_isGreenDashAlt = false;
 		return new Ryno_idle;
 	}
 	return nullptr;
@@ -28,6 +29,7 @@ void Ryno_dashAlt::update(player * player)
 	if (_index == 1)
 	{
 		player->isattack = true;
+		player->_isGreenDashAlt = true;
 		if (player->isRight)
 			player->_attack_rc = RectMakeCenter(player->getX() + 90, player->getY() - 30, 50, 140);
 		else

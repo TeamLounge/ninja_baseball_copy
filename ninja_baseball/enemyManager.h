@@ -95,7 +95,10 @@ public:
 	//  베이스볼 에너미 관련 함수
 	////////////////////////////////
 
-	void setBaseball();
+	void setBlueBaseball();
+	void setGreenBaseball();
+	void setWhiteBaseball();
+	void setYellowBaseball();
 	void updateBaseball();
 	void renderBaseball();
 
@@ -151,6 +154,7 @@ public:
 	void renderCard();
 
 	void WhereIsCard();
+	void assultedCollisionCard();
 
 	vector<card*> getVCard() { return _vCard; }
 	vector<card*>::iterator getVICard() { return _viCard; }
@@ -166,5 +170,6 @@ public:
 	void attackCollision();
 
 	boss* getBoss() { return _boss; }
+	void assultedCollisionBoss();
 };
 

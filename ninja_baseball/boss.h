@@ -64,6 +64,23 @@ public:
 	bool _isAttacked;
 	///////////////////////////////
 
+	/////////////////////////////
+	//    ## 피격용 렉트 ##     //
+	////////////////////////////
+	RECT _assultedRect;
+	
+
+	image* _isLeft_RightNoWing;
+	image* _isLeft_LeftNoWing;
+	image* _isRight_RightNoWing;
+	image* _isRight_LeftNoWing;
+	image* _isLeft_NoWingProp;
+	image* _isRight_NoWingProp;
+	image* _isLeft_RightArm;
+	image* _isLeft_LeftArm;
+	image* _isRight_LeftArm;
+	image* _isRight_RightArm;
+
 	//현재 프레임 확인용
 	int _currentFrameX, _currentFrameY;
 	//무브 속도
@@ -108,14 +125,21 @@ public:
 	//데미지가 들어온 상태인지 확인
 	bool _isDamaged;
 	bool _isDamagedState;
+	bool _isSmallDamaged;
 	//현재 무브상태인지 확인
 	bool _isMoveState;
 	//현재 무슨상태인지 확인
-	bool _isIdleState, _isShootingState, _isDeathState;
+	bool _isIdleState, _isShootingState, _isDeathState, _isSmallDamagedState;
 	string _imageName;
 	string _shadowName;
 	//렌더 위치잡이용
 	float _imageX, _imageY;
+	//형태 불값
+	bool _isNoWing, _isNoWingProp, _isNoOneArm, _isNoArm;
+	float _divideX, _divideY, _divideGravity;
+	bool _isGreenAttack12, _isGreenAttack3;   //그린어택 1,2,3 들어왔을때 불값
+	bool _isGreenCatch, _isGreenCatchAttack, _isGreenCatchBackAttack, _isGreenCatchFrontCombo;
+
 
 
 	void InputHandle();

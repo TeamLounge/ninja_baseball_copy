@@ -6,6 +6,7 @@ playerstate * Ryno_dashAttack::handleInput(player * player)
 	if (speed < 0)
 	{
 		player->isattack = false;
+		player->_isGreenDashAttack = false;
 		player->setY(player->getY() - 30);
 		return new Ryno_idle;
 	}
@@ -25,10 +26,11 @@ void Ryno_dashAttack::update(player * player)
 		speed -= inertia;
 	}
 	player->isattack = true;
+	player->_isGreenDashAttack = true;
 	if(player->isRight)
-		player->_attack_rc = RectMakeCenter(player->getX() + 70, player->_shadow->getY(), 80, 50);
+		player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2), player->getY() - 40, 50, 80);
 	else
-		player->_attack_rc = RectMakeCenter(player->getX() - 70, player->_shadow->getY(), 80, 50);
+		player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY() - 40, 50, 80);
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 	player->_shadow->setX(player->getX() - (player->_shadow->getWidth() / 2));

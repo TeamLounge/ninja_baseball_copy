@@ -32,6 +32,8 @@ HRESULT card::init(POINT position)
 	setImage();
 	_card.img = new image();
 
+	_imageName = "card_dashAttack";
+
 	_cardState = new cardIdleState();
 	_cardState->enter(this);
 
@@ -49,6 +51,9 @@ HRESULT card::init(POINT position)
 	isattack = false;             //에너미가 공격했어??
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
+
+	RENDERMANAGER->addObj("card", _imageName.c_str(), "card_shadow", &_card.x, &_card.y,
+		&_cardShadow.x, &_cardShadow.y, &_currentFrameX, &_currentFrameY);
 
 	return S_OK;
 }
@@ -69,6 +74,8 @@ void card::update()
 		_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
 	_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
 	_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
+	_assultedRect = RectMakeCenter((_card.rc.left + _card.rc.right) / 2,
+		(_card.rc.top + _card.rc.bottom) / 2, 100, 70);
 
 	if (!_isLeft)
 	{
@@ -86,8 +93,8 @@ void card::update()
 
 void card::render()
 {
-	_cardShadow.img->render(getMemDC(), _cardShadow.rc.left, _cardShadow.rc.top);
-	_card.img->frameRender(getMemDC(), _card.x, _card.y, _currentFrameX, _currentFrameY);
+	//_cardShadow.img->render(getMemDC(), _cardShadow.rc.left, _cardShadow.rc.top);
+	//_card.img->frameRender(getMemDC(), _card.x, _card.y, _currentFrameX, _currentFrameY);
 	renderBullet();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
@@ -104,6 +111,7 @@ void card::render()
 		Rectangle(getMemDC(), _card.rc);
 		Rectangle(getMemDC(), _cardShadow.rc);
 		Rectangle(getMemDC(), _atkRc);
+		Rectangle(getMemDC(), _assultedRect);
 
 		for (_viPunchBullet = _vPunchBullet.begin(); _viPunchBullet != _vPunchBullet.end(); ++_viPunchBullet)
 		{
@@ -161,6 +169,11 @@ void card::setCard()
 	_isFire = false;
 	//총알 몇번쐈는지 확인용
 	_bulletCount = 0;
+
+	//각종 상태 불값
+	_isCardSmallDamagedState =_isCardSmallDamaged = false;
+	_isCardHeavyDamagedState =_isCardHeavyDamaged = false;
+	_isCardDeathState =_isCardDeath = false;
 }
 
 void card::setCardShadow()

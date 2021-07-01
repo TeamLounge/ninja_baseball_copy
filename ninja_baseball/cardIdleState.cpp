@@ -4,6 +4,9 @@
 #include "cardMoveState.h"
 #include "cardDashAttackState.h"
 #include "cardPunchAttackState.h"
+#include "cardDeathState.h"
+#include "cardSmallDamagedState.h"
+#include "cardHeavyDamagedState.h"
 
 cardState * cardIdleState::inputHandle(card * card)
 {
@@ -53,6 +56,7 @@ void cardIdleState::update(card * card)
 void cardIdleState::enter(card * card)
 {
 	card->_card.img = IMAGEMANAGER->findImage("card_idle");
+	card->_imageName = "card_idle";
 
 	//이미지 프레임 방향 결정
 

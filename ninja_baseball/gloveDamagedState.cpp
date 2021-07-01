@@ -94,6 +94,7 @@ void gloveDamagedState::update(glove * glove)
 void gloveDamagedState::enter(glove * glove)
 {
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_damaged");
+	glove->setImageName("glove_damaged");
 
 	if (!glove->isRight)
 	{

@@ -4,3 +4,6 @@
 #include "cardMoveState.h"
 #include "cardDashAttackState.h"
 #include "cardPunchAttackState.h"
+#include "cardDeathState.h"
+#include "cardHeavyDamagedState.h"
+#include "cardSmallDamagedState.h"

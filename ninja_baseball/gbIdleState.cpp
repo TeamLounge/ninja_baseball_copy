@@ -22,6 +22,11 @@ gbState * gbIdleState::inputHandle(greenBaseball * greenBaseball)
 	{
 		timeCount = 0;
 	}
+
+	if (greenBaseball->isDeath)
+	{
+		return new gbDeathState();
+	}
 	return nullptr;
 }
 
@@ -37,7 +42,7 @@ void gbIdleState::update(greenBaseball * greenBaseball)
 			{
 				greenBaseball->setCurrentFrameX(0);
 			}
-			else 
+			else
 			{
 				greenBaseball->setCurrentFrameX(greenBaseball->getCurrentFrameX() + 1);
 
@@ -97,6 +102,8 @@ void gbIdleState::update(greenBaseball * greenBaseball)
 void gbIdleState::enter(greenBaseball * greenBaseball)
 {
 	greenBaseball->_greenBaseball.img = IMAGEMANAGER->findImage("gBaseball_idle");
+	greenBaseball->setImageName("gBaseball_idle");
+
 	if (!greenBaseball->isRight)
 	{
 		greenBaseball->setCurrentFrameY(1);
@@ -109,7 +116,6 @@ void gbIdleState::enter(greenBaseball * greenBaseball)
 
 	timeCount = 0;
 
-	greenBaseball->setImageName("gBaseball_idle");
 }
 
 void gbIdleState::exit(greenBaseball * greenBaseball)

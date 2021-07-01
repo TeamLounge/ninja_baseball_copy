@@ -159,7 +159,6 @@
     <ClInclude Include="bbDamagedState.h" />
     <ClInclude Include="bbDeathState.h" />
     <ClInclude Include="bbIdleState.h" />
-    <ClInclude Include="bbLandState.h" />
     <ClInclude Include="bbState.h" />
     <ClInclude Include="blueBaseball.h" />
     <ClInclude Include="boss.h" />
@@ -172,6 +171,7 @@
     <ClInclude Include="bossShootingProp.h" />
     <ClInclude Include="bossShootingReady.h" />
     <ClInclude Include="bossShootingState.h" />
+    <ClInclude Include="bossSmallDamagedState.h" />
     <ClInclude Include="bossState.h" />
     <ClInclude Include="bossStraightAttackState.h" />
     <ClInclude Include="bossUpperCutState.h" />
@@ -179,9 +179,12 @@
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="card.h" />
     <ClInclude Include="cardDashAttackState.h" />
+    <ClInclude Include="cardDeathState.h" />
+    <ClInclude Include="cardHeavyDamagedState.h" />
     <ClInclude Include="cardIdleState.h" />
     <ClInclude Include="cardMoveState.h" />
     <ClInclude Include="cardPunchAttackState.h" />
+    <ClInclude Include="cardSmallDamagedState.h" />
     <ClInclude Include="cardState.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -301,7 +304,6 @@
     <ClCompile Include="bbDamagedState.cpp" />
     <ClCompile Include="bbDeathState.cpp" />
     <ClCompile Include="bbIdleState.cpp" />
-    <ClCompile Include="bbLandState.cpp" />
     <ClCompile Include="bbState.cpp" />
     <ClCompile Include="blueBaseball.cpp" />
     <ClCompile Include="boss.cpp" />
@@ -314,6 +316,7 @@
     <ClCompile Include="bossShootingProp.cpp" />
     <ClCompile Include="bossShootingReady.cpp" />
     <ClCompile Include="bossShootingState.cpp" />
+    <ClCompile Include="bossSmallDamagedState.cpp" />
     <ClCompile Include="bossState.cpp" />
     <ClCompile Include="bossStraightAttackState.cpp" />
     <ClCompile Include="bossUpperCutState.cpp" />
@@ -321,9 +324,12 @@
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="cardDashAttackState.cpp" />
+    <ClCompile Include="cardDeathState.cpp" />
+    <ClCompile Include="cardHeavyDamagedState.cpp" />
     <ClCompile Include="cardIdleState.cpp" />
     <ClCompile Include="cardMoveState.cpp" />
     <ClCompile Include="cardPunchAttackState.cpp" />
+    <ClCompile Include="cardSmallDamagedState.cpp" />
     <ClCompile Include="cardState.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />

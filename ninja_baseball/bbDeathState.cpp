@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "blueBaseball.h"
 #include "bbIdleState.h"
-#include "bbLandState.h"
 #include "bbAttackPunchState.h"
 #include "bbDamagedState.h"
 #include "bbDeathState.h"
@@ -31,6 +30,7 @@ void bbDeathState::update(blueBaseball * blueBaseball)
 void bbDeathState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_spin");
+	blueBaseball->setImageName("bBaseball_spin");
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);
