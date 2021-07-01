@@ -8,6 +8,7 @@ playerstate * red_dieState::handleInput(player * _player)
 
 void red_dieState::update(player * _player)
 {
+	
 	if (_rotation < 4)
 	{
 		_count++;
@@ -45,10 +46,30 @@ void red_dieState::update(player * _player)
 
 	else // 4번 돌고나서 플레이어가 쓰러진 이미지
 	{
-		//여기부터 작업하면됨..
+		_player->setImage(IMAGEMANAGER->findImage("red_die"));
+		_player->setImageName("red_die");
+
+		if (_player->isRight == true)
+		{
+			_player->getImage()->setFrameX(0);
+			_player->getImage()->setFrameY(0);
+		}
+		if (_player->isRight == false)
+		{
+			_player->getImage()->setFrameX(0);
+			_player->getImage()->setFrameY(1);
+		}
 	}
-	
-	
+
+	_jumpPower -= _gravity;
+	_player->setY(_player->getY() - _jumpPower);
+
+	if (_player->getY()+(_player->getImage()->getFrameHeight() / 2) >= _player->_shadow->getY())
+	{
+		_player->setY(_player->_shadow->getY());
+		_isLie = true;
+	}
+		
 	//그림자 위치
 	if (_player->isRight == true)
 	{
@@ -77,6 +98,9 @@ void red_dieState::enter(player * _player)
 
 	_count = _index = _time = 0;
 	_rotation = 0;
+	_jumpPower = 3.5f;
+	_gravity = 0.5f;
+	_isLie = false; //바닥에 닿았는지 확인
 	
 	if (_player->isRight == true)
 	{

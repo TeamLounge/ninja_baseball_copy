@@ -69,7 +69,6 @@ void red_jumpState::update(player * _player)
 		_isJump = true;
 	}
 		
-	
 	if (_isJumpAttack)
 	{
 		_count++;

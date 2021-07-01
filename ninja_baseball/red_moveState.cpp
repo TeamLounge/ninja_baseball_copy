@@ -16,14 +16,14 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_idleState;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('X')) //점프
+	if (KEYMANAGER->isOnceKeyDown('C')) //점프
 	{
 		return new red_jumpState;
 	}
 
 	if (KEYMANAGER->isOnceKeyDown('Z')) //점프 공격
 	{
-		return new red_attackState;
+		return new red_attackState; 
 	}
 
 	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && _isRun == true && _isLeft)
