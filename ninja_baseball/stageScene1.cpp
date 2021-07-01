@@ -49,6 +49,13 @@ HRESULT stageScene1::init()
 
 	setShutter();
 
+	_isAllDead = false;
+
+	_cameraStopX.push(1300);
+	_cameraStopX.push(2200);
+	_cameraStopX.push(BACKGROUNDY);
+
+
 	return S_OK;
 }
 
@@ -70,24 +77,31 @@ void stageScene1::update()
 	_em->update();
 	//_em->update();
 	_obj->update();
-	
+
 	_em->updateCard();
 
 	updateShutter();
 	//UPDATE baseBall////////////
-	//_em->updateBlueBaseball();
-	//_em->updateGreenBaseball();
-	//_em->updateWhiteBaseball();
+	_em->updateBlueBaseball();
+	_em->updateGreenBaseball();
+	_em->updateWhiteBaseball();
 	//_em->updateYellowBaseball();
 	/////////////////////////////
 
 	//_em->updateBat();
 
 	//_em->updateGlove();
-	
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 	CAMERAMANAGER->update();
+
+
+	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT() && !CAMERAMANAGER->_isFixed)
+	{
+		_cameraStopX.pop();
+		CAMERAMANAGER->_isFixed = true;
+	}
+
 
 	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{

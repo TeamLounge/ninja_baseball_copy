@@ -6,6 +6,7 @@
 #include "progressBar.h"
 #include "playerUI.h"
 #include "timerUI.h"
+#include <queue>
 
 struct tagShutter
 {
@@ -32,7 +33,13 @@ private:
 	timerUI* _timerUI;
 
 	tagShutter _shutter;
+
 	float  _down, _gravity;
+
+	bool _isAllDead;
+
+	queue<float> _cameraStopX;
+
 public:
 	HRESULT init();
 	void release();
