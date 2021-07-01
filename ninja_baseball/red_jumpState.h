@@ -11,11 +11,8 @@ private:
 	int _index;
 	float _jumpPower;
 	float _grivity;
-	bool _isJump;
 	bool _isJumpAttack;
 		
-	float _y;
-
 public:
 	playerstate* handleInput(player* _player);
 	void update(player* _player);

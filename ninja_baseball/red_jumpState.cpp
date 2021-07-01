@@ -5,9 +5,9 @@
 
 playerstate * red_jumpState::handleInput(player * _player)
 {
-	if(_player->getY() + _player->getImage()->getFrameHeight()/2 >= _player->_shadow->getY()) //뭐가 문제일까??
+	if(_jumpPower < 0 && _player->getY() + _player->getImage()->getFrameHeight()/2 >= _player->_shadow->getY()) //뭐가 문제일까??
 	{
-		if (_player->isRight == true)
+		if (_player->isRight == true) //점프할때랑 떨어질때랑 상태를 나누어서 작업
 		{
 			_player->setX(_player->getX());
 		}
@@ -65,6 +65,9 @@ void red_jumpState::update(player * _player)
 		_isJumpAttack = true;
 	}
 
+	
+
+	
 	if (_isJumpAttack)
 	{
 		_count++;
@@ -138,7 +141,7 @@ void red_jumpState::enter(player * _player)
 	_jumpPower = 13.0f;
 	_grivity = 0.5f;
 	_isJumpAttack = false;
-	   
+	
 	_count = _index = 0;
 
 	if (_player->isRight == true)
