@@ -48,7 +48,7 @@ void playerUI::update(float x, float y, int currentHP, int life)
 	_hpBar->setY(_rc.bottom - 24);
 	_hpBar->setGauge(_currentHP, _maxHP);
 	_hpBar->update();
-
+	/*
 	if (_isAttacked)
 	{
 		_elapsedSec += TIMEMANAGER->getElapsedTime();
@@ -85,6 +85,7 @@ void playerUI::update(float x, float y, int currentHP, int life)
 			_isAttacked = false;
 		}
 	}
+	*/
 }
 
 void playerUI::render()
@@ -121,10 +122,7 @@ void playerUI::render()
 	sprintf_s(str, "yellow_%d", _life);
 	IMAGEMANAGER->findImage(str)->render(getMemDC(), _rc.right - IMAGEMANAGER->findImage(str)->getWidth(), 
 		_rc.bottom - 24 - IMAGEMANAGER->findImage(str)->getHeight());
-	if (_life != 0 && _currentHP <= 0)
-	{
-		_hpBar->render();
-	}
+	_hpBar->render();
 
 	
 }

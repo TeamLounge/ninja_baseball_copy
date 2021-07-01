@@ -200,7 +200,6 @@ void stageScene1::shutterCollison()
 			//_player->setShadowX(i - _player->_shadow->getWidth() / 2);
 			//_player->setX(_player->getShadowX());
 			//break;
-			/**/
 			if (right > i)
 			{
 				right = i;

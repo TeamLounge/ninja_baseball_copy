@@ -37,8 +37,6 @@ HRESULT boss::init(POINT position)
 	//_isPreWind = true; // 임시방편임
 	_bossState->enter(this);
 
-	_bossPinLight.img = new image;
-
 	_boss.x = position.x;
 	_boss.y = position.y;
 
