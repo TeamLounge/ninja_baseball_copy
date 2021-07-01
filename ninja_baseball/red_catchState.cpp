@@ -2,6 +2,7 @@
 #include "red_catchState.h"
 #include "red_idleState.h"
 #include "red_catchAttackState.h"
+#include "red_throw.h"
 
 playerstate* red_catchState::handleInput(player* _player)
 {
@@ -14,6 +15,11 @@ playerstate* red_catchState::handleInput(player* _player)
 	if (KEYMANAGER->isOnceKeyDown('Z')); //에너미를 잡은 상태에서 때리기
 	{
 		return new red_catchAttackState;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) || KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	{
+		return new red_throw; //에너미를 잡고나서 던지기!!(방향키 방향으로??)
 	}
 
 	return nullptr;
