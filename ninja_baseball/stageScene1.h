@@ -7,8 +7,15 @@
 #include "playerUI.h"
 #include "timerUI.h"
 
+struct tagXY
+{
+	float x, y;
+};
+
 class stageScene1 : public gameNode
 {
+
+
 private:
 	player* _player;
 
@@ -21,10 +28,16 @@ private:
 	playerUI* _playerUI;
 	
 	timerUI* _timerUI;
+
+	float _angle; //º≈≈Õ ∞¢µµ
+
+	vector<tagXY> _guide;
 public:
 	HRESULT init();
 	void release();
 	void update();
 	void render();
+
+	void shutterCollison();
 };
 

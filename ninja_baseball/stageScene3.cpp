@@ -29,6 +29,9 @@ HRESULT stageScene3::init()
 	_timerUI = new timerUI;
 	_timerUI->init(atoi(vText[6].c_str()), 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
+	_em = new enemyManager;
+	_em->init();
+
 	return S_OK;
 }
 
@@ -39,6 +42,8 @@ void stageScene3::release()
 void stageScene3::update()
 {
 	_player->update();
+
+	_em->update();
 
 	_elapsedTime += TIMEMANAGER->getElapsedTime();
 
@@ -66,6 +71,11 @@ void stageScene3::update()
 
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[0].c_str()), 5, _player->gethp(), _player->getlife());
 	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
+	if (_em->getBoss()->_isDeathState)
+	{
+		SCENEMANAGER->changeScene("ending");
+	}
 }
 
 void stageScene3::render()
@@ -73,7 +83,7 @@ void stageScene3::render()
 	IMAGEMANAGER->findImage("stage_3")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("»§ºü·¹")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
 	_player->render();
-
+	_em->render();
 	RENDERMANAGER->render(getMemDC());
 
 	_playerUI->render();

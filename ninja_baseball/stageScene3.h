@@ -3,11 +3,14 @@
 #include "player.h"
 #include "playerUI.h"
 #include "timerUI.h"
+#include "enemyManager.h"
 
 class stageScene3 : public gameNode
 {
 private:
 	player* _player;
+
+	enemyManager* _em;
 
 	float _elapsedTime;
 

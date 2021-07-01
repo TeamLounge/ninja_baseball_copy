@@ -74,7 +74,11 @@ public:
 	//에너미매니저와 링크
 	void setEmMemoryAddressLink(enemyManager* em) { _em = em; }
 
+	//그림자 중점좌표 setter, getter
 	void setShadowX(float shadowX) { _shadowX = shadowX; }
 	void setShadowY(float shadowY) { _shadowY = shadowY; }
+	
+	float getShadowX() { return _shadowX; }
+	float getShadowY() { return _shadowY; }
 };
 

@@ -22,6 +22,10 @@ void renderManager::render(HDC hdc)
 	{
 		if (_arrObj[i].isNotHaveCurrentFrame)
 		{
+			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
+				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
+				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
+
 			if (_arrObj[i].isFrameImage)
 			{
 				IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->frameRender(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getFrameWidth() / 2), 
@@ -32,10 +36,6 @@ void renderManager::render(HDC hdc)
 				IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->render(hdc, *_arrObj[i].bodyX - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getWidth() / 2),
 					*_arrObj[i].bodyY - (IMAGEMANAGER->findImage(_arrObj[i].bodyImageName)->getHeight() / 2));
 			}
-			IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->render(hdc,
-				*_arrObj[i].shadowX - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getWidth() / 2),
-				*_arrObj[i].shadowY - (IMAGEMANAGER->findImage(_arrObj[i].shadowImageName)->getHeight() / 2));
-			
 		}
 		else
 		{

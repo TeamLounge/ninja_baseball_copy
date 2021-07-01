@@ -85,6 +85,7 @@ void endingScene::update()
 	{
 		_sceneHeight += 4;
 	}
+	CAMERAMANAGER->updateCamera(0, 0);
 }
 
 void endingScene::render()

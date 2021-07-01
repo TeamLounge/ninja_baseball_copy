@@ -4,10 +4,10 @@
 
 HRESULT enemyManager::init()
 {
-	setBaseball();
-	setBat();
-	setCard();
-	setGlove();
+	//setBaseball();
+	//setBat();
+	//setCard();
+	//setGlove();
 	setBoss();
 
 	return S_OK;
@@ -19,22 +19,22 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	updateBaseball();
-	baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	//updateBaseball();
+	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
 
-	updateBat();
-	batCollision();
+	//updateBat();
+	//batCollision();
 
-	updateGlove();
-	gloveCollision();
-	
-	playerLocation();
+	//updateGlove();
+	//gloveCollision();
+	//
+	//playerLocation();
 
-	updateCard();
-	WhereIsCard();	
+	//updateCard();
+	//WhereIsCard();	
 
-	updateBoss();
+	//updateBoss();
 }
 
 void enemyManager::render()

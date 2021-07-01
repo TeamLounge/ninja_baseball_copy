@@ -164,5 +164,7 @@ public:
 
 	void WhereIsBoss();
 	void attackCollision();
+
+	boss* getBoss() { return _boss; }
 };
 
