@@ -32,12 +32,12 @@ playerstate* red_runState::handleInput(player* _player)
 
 void red_runState::update(player* _player)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _player->_shadow->getX() > 0)
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->setX(_player->getX() - 8);
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _player->_shadow->getX() + _player->_shadow->getWidth() <  WINSIZEX)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player->setX(_player->getX() + 8);
 	}

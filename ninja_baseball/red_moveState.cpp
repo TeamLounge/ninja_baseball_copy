@@ -52,7 +52,7 @@ playerstate* red_moveState::handleInput(player* _player)
 
 void red_moveState::update(player * _player)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _player->_shadow->getX() > 0)
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->setX(_player->getX() - redSpeed);
 		_player->isRight = false;
@@ -67,7 +67,7 @@ void red_moveState::update(player * _player)
 	}
 
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _player->_shadow->getX() + _player->_shadow->getWidth() < WINSIZEX)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player->setX(_player->getX() + redSpeed);
 		_player->isRight = true;
@@ -82,11 +82,11 @@ void red_moveState::update(player * _player)
 	}
 
 
-	if (KEYMANAGER->isStayKeyDown(VK_UP) && _player->_shadow->getY() > 300)
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_player->setY(_player->getY() - redSpeed);
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _player->_shadow->getY() + _player->_shadow->getHeight() < WINSIZEY)
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_player->setY(_player->getY() + redSpeed);
 	}
