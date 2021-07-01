@@ -24,13 +24,16 @@ HRESULT stageScene3::init()
 
 	_playerUI = new playerUI;
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10,
-		atoi(vText[0].c_str()), 5, _player->gethp(), _player->getlife());
+		atoi(vText[0].c_str()), 2, _player->gethp(), _player->getlife());
 
 	_timerUI = new timerUI;
-	_timerUI->init(atoi(vText[6].c_str()), 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+	_timerUI->init(atoi(vText[6].c_str()), 2, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 	_em = new enemyManager;
 	_em->init();
+
+	_em->setPlayerMemoryAddressLink(_player);
+	_player->setEmMemoryAddressLink(_em);
 
 	return S_OK;
 }
@@ -71,11 +74,12 @@ void stageScene3::update()
 
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, atoi(vText[0].c_str()), 5, _player->gethp(), _player->getlife());
 	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
-
+	/*
 	if (_em->getBoss()->_isDeathState)
 	{
 		SCENEMANAGER->changeScene("ending");
 	}
+	*/
 }
 
 void stageScene3::render()

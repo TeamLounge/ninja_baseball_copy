@@ -6,9 +6,7 @@ HRESULT stageScene1::init()
 	IMAGEMANAGER->addImage("stage_1", "image/1_Map/stage1-1.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("±âµÕ", "image/1_Map/stage1-1±âµÕ.bmp",  72, 768, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("¼ÅÅÍ", "image/9_Object/shutter.bmp", 327, 768, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("shutter_pixel", "image/9_Object/shutter_pixel.bmp", 327, 768, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->findImage("shutter_pixel")->setX(2001);
-	IMAGEMANAGER->findImage("shutter_pixel")->setY(0);
+	IMAGEMANAGER->addImage("shutter_pixel", "image/9_Object/shutter_pixel.bmp", BACKGROUNDX, WINSIZEY, true, RGB(255, 0, 255), false);
 	CAMERAMANAGER->setCamera(0, 0);
 	vText = TXTDATA->txtLoad("playerData.txt");
 
@@ -33,9 +31,7 @@ HRESULT stageScene1::init()
 	_playerUI->init(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _playerSelect, _player->gethp(), _player->gethp(), _player->getlife());
 
 	_timerUI = new timerUI;
-	_timerUI->init(99, 5, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
-	
-	_angle = getAngle(2307, WINSIZEY, 2001, WINSIZEY - 306);
+	_timerUI->init(99, 2, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 	return S_OK;
 }
@@ -49,7 +45,7 @@ void stageScene1::release()
 void stageScene1::update()
 {
 	RENDERMANAGER->update();
-
+	shutterCollison();
 	_player->update();
 	shutterCollison();
 	_em->update();
@@ -115,7 +111,12 @@ void stageScene1::render()
 	_em->render();
 
 	IMAGEMANAGER->findImage("¼ÅÅÍ")->render(getMemDC(), 2001, 0);
-	IMAGEMANAGER->findImage("shutter_pixel")->render(getMemDC());
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		IMAGEMANAGER->findImage("shutter_pixel")->render(getMemDC());
+	}
+
 
 	RENDERMANAGER->render(getMemDC());
 	_playerUI->render();
@@ -129,45 +130,17 @@ void stageScene1::render()
 
 void stageScene1::shutterCollison()
 {
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_DOWN)) return;
+
 	float right = BACKGROUNDX;
 	float top = 0;
 	float bottom = WINSIZEY;
 
-	float _probeTop = _player->getShadowY() - _player->_shadow->getHeight() / 2;
-
-	for (int i = _probeTop + 30; i > _probeTop + 30; --i)
-	{
-		COLORREF color = GetPixel(getMemDC(), _player->getShadowX(), i);
-
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 0 && g == 0 && b == 255))
-		{
-			//_player->setShadowY(i + _player->_shadow->getHeight() / 2);
-			//_player->setY(_player->getShadowY() - _player->_shadow->getHeight() / 2 - 90);
-			//break;
-
-			if (top < i)
-			{
-				top = i;
-			}
-		}
-	}
-
-	if (top >= _player->getShadowY() - _player->_shadow->getHeight() / 2)
-	{
-		_player->setShadowY(_player->getShadowY() + (top - _player->getShadowY() - _player->_shadow->getHeight() / 2));
-		_player->setY(_player->getShadowY() - _player->_shadow->getHeight() / 2 - 90);
-	}
-
 	float _probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
 
-	for (int i = _probeRight - 30; i < _probeRight + 30; ++i)
+	for (int i = _probeRight - 20; i < _probeRight + 20; ++i)
 	{
-
-		COLORREF color = GetPixel(getMemDC(), i, _player->getShadowY());
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), i, _player->getShadowY() - _player->_shadow->getHeight() / 2);
 
 		int r = GetRValue(color);
 		int g = GetGValue(color);
@@ -178,7 +151,7 @@ void stageScene1::shutterCollison()
 			//_player->setShadowX(i - _player->_shadow->getWidth() / 2);
 			//_player->setX(_player->getShadowX());
 			//break;
-
+			/**/
 			if (right > i)
 			{
 				right = i;
@@ -189,39 +162,7 @@ void stageScene1::shutterCollison()
 
 	if (right <= _player->getShadowX() + _player->_shadow->getWidth() / 2)
 	{
-		_player->setShadowX(_player->getShadowX() - (_player->getShadowX() + _player->_shadow->getWidth() / 2 - right));
+		_player->setShadowX(_player->getShadowX() - (_player->getShadowX() + _player->_shadow->getWidth() / 2 - right) + 6);
 		_player->setX(_player->getShadowX());
 	}
-
-	/*
-	float _probeBottom = _player->getShadowY() + _player->_shadow->getHeight() / 2;
-	
-	for (int i = _probeBottom - 30; i < _probeTop + 30; ++i)
-	{
-		COLORREF color = GetPixel(getMemDC(), _player->getShadowX(), i);
-
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 0 && g == 0 && b == 255))
-		{
-			//_player->setShadowY(i - _player->_shadow->getHeight() / 2);
-			//_player->setY(_player->getShadowY() - _player->_shadow->getHeight() / 2 - 90);
-			if (bottom > i)
-			{
-				bottom = i;
-			}
-
-		}
-	}
-
-	if (bottom <= _player->getShadowY() + _player->_shadow->getHeight() / 2)
-	{
-		_player->setShadowY(_player->getShadowY() - (_player->getShadowY() + _player->_shadow->getHeight() / 2 - bottom));
-		_player->setY(_player->getShadowY() - _player->_shadow->getHeight() / 2 - 90);
-	}
-	*/
-	
-
 }

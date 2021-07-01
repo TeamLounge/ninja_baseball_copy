@@ -75,6 +75,17 @@ void cameraManager::updateCamera(float x, float y)
 	cameraRange();
 }
 
+void cameraManager::updateCamera(float x1, float y1, float x2, float y2)
+{
+	_cameraBuffer->setX((x1 + x2) / 2);
+	_cameraBuffer->setY((y1 + y2) / 2);
+	if (getCameraRIGHT() >= x2 + 50)
+	{
+		_cameraBuffer->setX(x2 + 50);
+	}
+	cameraRange();
+}
+
 void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
 {
 	if (_isFixed) return;
@@ -100,6 +111,7 @@ void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
 	x[1] = 0;
 }
 
+/*
 void cameraManager::updateCamera(float x, float y, float ratioX, float ratioY)
 {
 	float cX, cY;
@@ -126,6 +138,9 @@ void cameraManager::updateCamera(float x, float y, float ratioX, float ratioY)
 	}
 	cameraRange();
 }
+*/
+
+
 
 void cameraManager::updateCamera(RECT& player, float ratioX, float ratioY)
 {

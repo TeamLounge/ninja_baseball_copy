@@ -36,8 +36,13 @@ public:
 	//카메라 센터값으로 움직임(플레이어를 중심으로 움직이고 싶으면 사용)
 	void updateCamera(float x, float y);
 
+	/*
 	//플레이어가 카메라에 중심이 아닌 다른 위치에 있고 플레이어에 따라 움직이고 싶을 때 사용)
 	void updateCamera(float x, float y, float ratioX, float ratioY);
+	*/
+
+	//두 개체의 x, y좌표를 기준으로 카메라 센터 지정
+	void updateCamera(float x1, float y1, float x2, float y2);
 
 	//플레이어가 x축 기준으로 어느정도 비율을 넘어가면 카메라가 움직임(0.5f<ratio<1.0f)
 	void updateCamera(float centerX, float centerY, float ratioX);

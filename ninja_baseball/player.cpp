@@ -8,10 +8,12 @@
 
 HRESULT player::init(int character, bool isStart)
 {
-
 	addImage();
+	_playerImgName = "Ryno_catch_frontCombo";
+
 	_character = character;
 	_runtime = 0;
+
 	//이건 하나씩 풀꺼입니다.
 	if (character == 1) {
 		_shadow = IMAGEMANAGER->findImage("red_shadow");
@@ -45,8 +47,6 @@ HRESULT player::init(int character, bool isStart)
 	iscatch = false;
 	iscrawl = false;
 	isfly = false;
-	_playerImgName = "Ryno_catch_frontCombo";
-
 
 	if (character == 1)
 	{

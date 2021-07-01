@@ -29,8 +29,6 @@ private:
 	
 	timerUI* _timerUI;
 
-	float _angle; //º≈≈Õ ∞¢µµ
-
 	vector<tagXY> _guide;
 public:
 	HRESULT init();
@@ -38,6 +36,7 @@ public:
 	void update();
 	void render();
 
+	//º≈≈Õ «»ºø√Êµπ
 	void shutterCollison();
 };
 
