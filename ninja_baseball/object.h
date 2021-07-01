@@ -8,6 +8,7 @@ struct Object
 	float _x, _y;
 	float _shadowX, _shadowY;
 	RECT _obj_rc ,_shadow_rc;
+	string _objName;
 };
 
 class baseball : public gameNode
@@ -16,11 +17,14 @@ private:
 	Object _obj;
 	int speed;
 public:
-	bool isattack , ishold , isappear , isfire;
+	bool isattack , ishold , isrend, isappear , isfire;
 	virtual HRESULT init(POINT position);
 	virtual void release();
 	virtual void update(bool Right);
 	virtual void render();
+
+	void addrendmanager();
+	void deleteRendermanager();
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }
@@ -30,6 +34,8 @@ public:
 	image* getShadow() { return _obj._shadow; }
 	RECT getRect() { return _obj._obj_rc; }
 	RECT getShadowRect() { return _obj._shadow_rc; }
+	string getstring() { return _obj._objName; }
+
 
 	void setX(float x) { _obj._x = x; }
 	void setY(float y) { _obj._y = y; }
@@ -59,7 +65,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
+	virtual void deleteRender(int index);
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }
@@ -69,6 +75,7 @@ public:
 	image* getShadow() { return _obj._shadow; }
 	RECT getRect() { return _obj._obj_rc; }
 	RECT getShadowRect() { return _obj._shadow_rc; }
+	string getstring() { return _obj._objName; }
 
 	void setX(float x) { _obj._x = x; }
 	void setY(float y) { _obj._y = y; }
@@ -94,7 +101,10 @@ public:
 	virtual void update();
 	virtual void render();
 
-	bool ishold , iseat , isappear;
+	void addrendmanager();
+	void deleteRendermanager();
+
+	bool ishold , iseat , isappear , isrend;
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }
@@ -104,6 +114,7 @@ public:
 	image* getShadow() { return _obj._shadow; }
 	RECT getRect() { return _obj._obj_rc; }
 	RECT getShadowRect() { return _obj._shadow_rc; }
+	string getstring() { return _obj._objName; }
 
 	void setX(float x) { _obj._x = x; }
 	void setY(float y) { _obj._y = y; }
@@ -129,7 +140,10 @@ public:
 	virtual void update();
 	virtual void render();
 
-	bool ishold, iseat, isappear;
+	void addrendmanager();
+	void deleteRendermanager();
+
+	bool ishold, iseat, isrend, isappear;
 
 	float getX() { return _obj._x; }
 	float getY() { return _obj._y; }
@@ -139,6 +153,7 @@ public:
 	image* getShadow() { return _obj._shadow; }
 	RECT getRect() { return _obj._obj_rc; }
 	RECT getShadowRect() { return _obj._shadow_rc; }
+	string getstring() { return _obj._objName; }
 
 	void setX(float x) { _obj._x = x; }
 	void setY(float y) { _obj._y = y; }

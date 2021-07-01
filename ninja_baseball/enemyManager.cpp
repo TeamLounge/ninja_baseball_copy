@@ -49,26 +49,9 @@ void enemyManager::render()
 	renderBaseball();
 	//renderGlove();
 	renderCard();
+
 	//renderBoss();
-
-	char str1[126];
-	sprintf_s(str1, "¸Â¾Ñ½á");
-	char str2[125];
-	sprintf_s(str2, "ÀâÇú¾î");
-	char str3[125];
-	sprintf_s(str3, "Ç®·È¾î");
-
-	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
-	{
-		if ((*_viWb)->isdamage)
-		{
-			TextOut(getMemDC(), (*_viWb)->getRect().left - 100, (*_viWb)->getRect().top - 100, str1, strlen(str1));
-		}
-		if ((*_viWb)->iscatch)
-		{
-			TextOut(getMemDC(), (*_viWb)->getRect().left - 100, (*_viWb)->getRect().top - 100, str2, strlen(str2));
-		}
-	}
+	
 }
 
 void enemyManager::setBlueBaseball()

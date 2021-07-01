@@ -44,25 +44,31 @@ void objectManager::render()
 		(*_vitrash)->render();
 		if ((*_vitrash)->_present == 0 && (*_vitrash)->iscrush)
 		{
-			_ball->isappear = true;
+			_ball->isrend = true;
 		}
 		if ((*_vitrash)->_present == 1 && (*_vitrash)->iscrush)
 		{
-			_banana->isappear = true;
+			_banana->isrend = true;
 		}
 		if ((*_vitrash)->_present == 2 && (*_vitrash)->iscrush)
 		{
-			_cereal->isappear = true;
+			_cereal->isrend = true;
 		}
 	}
-	if (_ball->isappear){
-		_ball->render();
+	if (_ball->isrend){
+		_ball->isrend = false;
+		_ball->isappear = true;
+		_ball->addrendmanager();
 	}
-	if (_banana->isappear) {
-		_banana->render();
+	if (_banana->isrend) {
+		_banana->isrend = false;
+		_banana->isappear = true;
+		_banana->addrendmanager();
 	}
-	if (_cereal->isappear) {
-		_cereal->render();
+	if (_cereal->isrend) {
+		_cereal->isrend = false;
+		_cereal->isappear = true;
+		_cereal->addrendmanager();
 	}
 }
 
@@ -90,6 +96,7 @@ void objectManager::setTrahCan()
 			_trashCan->init(PointMake(3239, 408), i);
 		}
 		_vtrash.push_back(_trashCan);
+
 	}
 }
 
@@ -175,6 +182,7 @@ void objectManager::updateBanana()
 		_banana->ishold = false;
 		_banana->iseat = true;
 		_banana->isappear = false;
+		_banana->deleteRendermanager();
 	}
 }
 
@@ -230,6 +238,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					_em->getVWb()[i]->isdamage = true;
 				}
 			}
@@ -245,6 +254,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
 				}
 			}
@@ -261,6 +271,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVYb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
 				}
 			}
@@ -277,6 +288,7 @@ void objectManager::collsion()
 				{
 					_ball->isattack = false;
 					_ball->isappear = false;
+					_ball->deleteRendermanager();
 					//_em->getVYb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
 				}
 			}

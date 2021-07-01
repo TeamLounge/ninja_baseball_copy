@@ -11,6 +11,7 @@ HRESULT baseball::init(POINT position)
 	_obj._shadowY = position.y+_obj._img->getHeight()/2;
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, 59, 53);
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
+	_obj._objName = "baseball";
 
 	ishold = isattack = isappear = isfire =false;
 
@@ -39,6 +40,7 @@ void baseball::update(bool Right)
 		_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
 		if (CAMERAMANAGER->getCameraRIGHT() < _obj._x || CAMERAMANAGER->getCameraLEFT()> _obj._x )
 		{
+			RENDERMANAGER->deleteObj("baseball", 0);
 			isattack = false;
 			isappear = false;
 		}
@@ -47,8 +49,19 @@ void baseball::update(bool Right)
 
 void baseball::render()
 {
-	_obj._shadow->render(getMemDC() , _obj._shadow_rc.left, _obj._shadow_rc.top);
-	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+	//_obj._shadow->render(getMemDC() , _obj._shadow_rc.left, _obj._shadow_rc.top);
+	//_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+}
+
+void baseball::addrendmanager()
+{
+	RENDERMANAGER->addObj("baseball", _obj._objName.c_str(), "baseballshadow",
+		&_obj._x, &_obj._y, &_obj._shadowX, &_obj._shadowY, false);
+}
+
+void baseball::deleteRendermanager()
+{
+	RENDERMANAGER->deleteObj("baseball", 0);
 }
 
 HRESULT trashCan::init(POINT position, int present)
@@ -78,6 +91,11 @@ HRESULT trashCan::init(POINT position, int present)
 	jumppower = 4.f;
 	gravity = 0.2f;
 	isdamage = iscrush =  false;
+	_obj._objName = "trashCan";
+
+	RENDERMANAGER->addObj("trashCan", _obj._objName.c_str(), "trashshadow",
+		&_obj._x, &_obj._y, &_obj._shadowX, &_obj._shadowY,false);
+
 	return S_OK;
 }
 
@@ -120,6 +138,11 @@ void trashCan::render()
 	}
 }
 
+void trashCan::deleteRender(int index)
+{
+	RENDERMANAGER->deleteObj("trashCan", index);
+}
+
 HRESULT banana::init(POINT position)
 {
 	_obj._img = IMAGEMANAGER->addImage("banana", "image/5_Item/banana.bmp", 138, 105, true, RGB(255, 0, 255), false);
@@ -130,8 +153,9 @@ HRESULT banana::init(POINT position)
 	_obj._shadowY = position.y + _obj._img->getHeight() / 2 -10;
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
+	_obj._objName = "banana";
 
-	ishold = iseat = isappear = false;
+	ishold = iseat = isappear = isrend = false;
 
 	return S_OK;
 }
@@ -149,8 +173,19 @@ void banana::update()
 void banana::render()
 {
 
-	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
-	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+	//_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
+	//_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+}
+
+void banana::addrendmanager()
+{
+	RENDERMANAGER->addObj("banana", _obj._objName.c_str(), "bananashadow",
+		&_obj._x, &_obj._y, &_obj._shadowX, &_obj._shadowY, false);
+}
+
+void banana::deleteRendermanager()
+{
+	RENDERMANAGER->deleteObj("banana", 0);
 }
 
 HRESULT cereal::init(POINT position)
@@ -163,6 +198,8 @@ HRESULT cereal::init(POINT position)
 	_obj._shadowY = position.y + _obj._img->getHeight() / 2 - 10;
 	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
 	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
+
+	_obj._objName = "cereal";
 
 	ishold = iseat = isappear = false;
 
@@ -180,6 +217,17 @@ void cereal::update()
 
 void cereal::render()
 {
-	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
-	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+	//_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
+	//_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+}
+
+void cereal::addrendmanager()
+{
+	RENDERMANAGER->addObj("cereal", _obj._objName.c_str(), "cerealshadow",
+		&_obj._x, &_obj._y, &_obj._shadowX, &_obj._shadowY, false);
+}
+
+void cereal::deleteRendermanager()
+{
+	RENDERMANAGER->deleteObj("cereal", 0);
 }

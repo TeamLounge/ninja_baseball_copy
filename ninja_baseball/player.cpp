@@ -36,6 +36,7 @@ HRESULT player::init(int character, bool isStart)
 	_x = 200;
 	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
+	_playerImgName = "Ryno_catch_frontCombo";
 	_state->enter(this);
 
 	_em = new enemyManager;
@@ -45,7 +46,6 @@ HRESULT player::init(int character, bool isStart)
 	iscatch = false;
 	iscrawl = false;
 	isfly = false;
-	_playerImgName = "Ryno_catch_frontCombo";
 
 
 	if (character == 1)
