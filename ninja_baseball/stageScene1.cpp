@@ -43,7 +43,11 @@ void stageScene1::release()
 void stageScene1::update()
 {
 	RENDERMANAGER->update();
-	shutterCollison();
+
+	if (!_shutter.isCrush)
+	{
+		shutterCollison();
+	}
 	_player->update();
 	_em->update();
 	_obj->update();
@@ -107,7 +111,11 @@ void stageScene1::render()
 	_obj->render();
 	_em->render();
 
-	IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
+	if (!_shutter.isCrush)
+	{
+		IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
+	}
+
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -184,6 +192,18 @@ void stageScene1::setShutter()
 	for (int i = 1; i <= 6; i++)
 	{
 		sprintf_s(str, "shutterPiece%d", i);
-		_sutterParticle.push_back(str);
+		_shutter.sutterParticle.push_back(str);
+	}
+}
+
+void stageScene1::updateShutter()
+{
+	RECT temp;
+	if (_player->isattack)
+	{
+		if (IntersectRect(&temp, &_player->_attack_rc, &_shutter.rc))
+		{
+			_shutter.isCrush = true;
+		}
 	}
 }

@@ -7,9 +7,12 @@
 #include "playerUI.h"
 #include "timerUI.h"
 
-struct tagXY
+struct tagShutter
 {
-	float x, y;
+	//셔터
+	RECT rc; //타격 범위 rc
+	bool isCrush;
+	vector<string> sutterParticle;
 };
 
 class stageScene1 : public gameNode
@@ -29,10 +32,7 @@ private:
 	
 	timerUI* _timerUI;
 
-	//셔터
-	RECT rc; //타격 범위 rc
-	bool _isCrush;
-	vector<string> _sutterParticle;
+	tagShutter _shutter;
 
 public:
 	HRESULT init();
@@ -46,5 +46,6 @@ public:
 	void setImage();
 
 	void setShutter();
+	void updateShutter();
 };
 
