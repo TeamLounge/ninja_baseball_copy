@@ -3,6 +3,7 @@
 
 playerstate * red_dieState::handleInput(player * _player)
 {
+	//여기는 어떻해해야 할까(플레이어 레드가 죽고나서)
 	return nullptr;
 }
 

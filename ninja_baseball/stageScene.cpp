@@ -19,6 +19,7 @@ HRESULT stageScene::init()
 	_em->setPlayerMemoryAddressLink(_Ryno);
 	_Ryno->setEmMemoryAddressLink(_em);
 
+
 	return S_OK;
 }
 
@@ -30,7 +31,7 @@ void stageScene::update()
 {
 	RENDERMANAGER->update();
 	_Ryno->update();
-	//_red->update();
+	/*_red->update();*/
 	_em->update();
 	CAMERAMANAGER->updateCamera(_Ryno->getX(), WINSIZEY / 2);
 
@@ -55,6 +56,6 @@ void stageScene::render()
 	_em->render();
 
 	_Ryno->render();
-//	_red->render();
+	/*_red->render();*/
 
 }

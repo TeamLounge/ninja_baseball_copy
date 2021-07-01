@@ -69,11 +69,11 @@ void red_homeRunState::update(player* _player)
 
 			if (_player->isRight == true)
 			{
-				_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 70, 70);
+				_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 80, 80);
 			}
 			if (_player->isRight == false)
 			{
-				_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 70, 70);
+				_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 80, 80);
 			}
 		}
 		else

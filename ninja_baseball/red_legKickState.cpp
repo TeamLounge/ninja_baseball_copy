@@ -4,7 +4,7 @@
 
 playerstate * red_legKickState::handleInput(player * _player)
 {
-	if (_time > 10)
+	if (_time > 10) //프레임렌더가 끝나고 idle상태로 돌아갈때 텀을 주려고
 	{
 		return new red_idleState;
 	}
