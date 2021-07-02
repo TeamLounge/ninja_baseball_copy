@@ -421,6 +421,9 @@
     <ClCompile Include="cardLandState.cpp">
       <Filter>playGound\enemy\Card\cardState</Filter>
     </ClCompile>
+    <ClCompile Include="gameOverUI.cpp">
+      <Filter>playGound\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -860,6 +863,9 @@
     </ClInclude>
     <ClInclude Include="cardLandState.h">
       <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="gameOverUI.h">
+      <Filter>playGound\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
