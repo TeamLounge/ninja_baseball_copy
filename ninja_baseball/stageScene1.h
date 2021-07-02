@@ -9,6 +9,8 @@
 #include "gameOverUI.h"
 #include <queue>
 
+class gameOverUI;
+
 struct tagShutter
 {
 	//╪еем
@@ -37,10 +39,8 @@ private:
 
 	float  _down, _gravity;
 
-	bool _isAllDead;
-
 	queue<float> _cameraStopX;
-
+	
 	gameOverUI* _gameoverUI;
 
 public:

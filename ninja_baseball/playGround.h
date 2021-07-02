@@ -14,10 +14,10 @@
 class playGround : public gameNode
 {
 private:
-	player* _red;
+	//player* _red;
 	/*player* _Ryno;*/
 
-	enemyManager* _em;
+	//enemyManager* _em;
 
 public:
 	playGround();

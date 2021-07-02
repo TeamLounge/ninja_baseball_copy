@@ -8,6 +8,8 @@
 #include "progressBar.h"
 #include "gameOverUI.h"
 
+class gameOverUI;
+
 class stageScene3 : public gameNode
 {
 private:
@@ -34,8 +36,6 @@ private:
 
 	progressBar* _bossHPBar;
 	progressBar* _bossHPBar2;
-
-	string _bossHpBarImgAddress;
 
 	gameOverUI* _gameoverUI;
 

@@ -50,8 +50,8 @@ HRESULT stageScene1::init()
 
 	setShutter();
 
-	_isAllDead = false;
-
+	queue<float> empty;
+	swap(_cameraStopX, empty);
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
 

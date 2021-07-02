@@ -16,18 +16,15 @@ HRESULT titleScene::init()
 
 	_elapsedSec = 0;
 	_isTitleStart = false;
-
+	_isTitleStoped = false;
 	_textElapsedSec = 0;
 	_textBlend = 0;
-
+	IMAGEMANAGER->findImage("title_start")->setFrameX(0);
 	return S_OK;
 }
 
 void titleScene::release()
 {
-	_isTitleStart = false;
-	_isTitleStoped = false;
-	IMAGEMANAGER->findImage("title_start")->setFrameX(0);
 }
 
 void titleScene::update()

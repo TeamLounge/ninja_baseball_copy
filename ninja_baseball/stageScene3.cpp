@@ -38,12 +38,14 @@ HRESULT stageScene3::init()
 
 	_count = 0;
 
+	queue<float> empty;
+	swap(_cameraStopX, empty);
 	_cameraStopX.push(1080);
 
 	CAMERAMANAGER->_isFixed = true;
 
 	_isSetBoss = false;
-
+	_isHaveToSetBoss = false;
 	_isStart = true;
 
 	_bossHPBar = new progressBar;
@@ -61,6 +63,18 @@ void stageScene3::release()
 {
 	_player->release();
 	_em->release();
+
+	SAFE_RELEASE(_player);
+	SAFE_DELETE(_player);
+
+	SAFE_RELEASE(_em);
+	SAFE_DELETE(_em);
+
+	SAFE_RELEASE(_playerUI);
+	SAFE_DELETE(_playerUI);
+
+	SAFE_RELEASE(_timerUI);
+	SAFE_DELETE(_timerUI);
 	RENDERMANAGER->deleteAll();
 }
 

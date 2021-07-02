@@ -1,6 +1,14 @@
 #pragma once
 #include "gameNode.h"
 #include "TimerUI.h"
+#include "titleScene.h"
+#include "startScene.h"
+#include "stageScene.h"
+#include "stageScene1.h"
+#include "stageScene2.h"
+#include "stageScene3.h"
+#include "endingScene.h"
+#include "playerSelectScene.h"
 class gameOverUI : public gameNode
 {
 private:
