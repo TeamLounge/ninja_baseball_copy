@@ -5,6 +5,7 @@ playerstate * Ryno_death::handleInput(player * player)
 {
 	if (jumpPower < 0 && player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
+		player->isdamage = false;
 		return new Ryno_givp_up;
 	}
 	return nullptr;

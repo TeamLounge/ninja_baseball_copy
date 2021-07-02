@@ -109,6 +109,11 @@ void stageScene1::update()
 		}
 	}
 
+	if (KEYMANAGER->isOnceKeyDown('F'))
+	{
+		_player->isdamage = true;
+	}
+
 	if (KEYMANAGER->isOnceKeyDown('S'))
 	{
 		//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제

@@ -48,12 +48,13 @@ void playerUI::update(float x, float y, int currentHP, int life)
 	_hpBar->setY(_rc.bottom - 24);
 	_hpBar->setGauge(_currentHP, _maxHP);
 	_hpBar->update();
-	/*
+
 	if (_isAttacked)
 	{
 		_elapsedSec += TIMEMANAGER->getElapsedTime();
 		if (_elapsedSec >= 0.2f)
 		{
+			_elapsedSec -= 0.2f;
 			if (_playerSelect == 1)
 			{
 				if (IMAGEMANAGER->findImage("ui_red_attacked")->getFrameX() >= IMAGEMANAGER->findImage("ui_red_attacked")->getMaxFrameX())
@@ -83,9 +84,10 @@ void playerUI::update(float x, float y, int currentHP, int life)
 		if (_count >= 3)
 		{
 			_isAttacked = false;
+			_count = 0;
 		}
 	}
-	*/
+
 }
 
 void playerUI::render()
@@ -122,7 +124,8 @@ void playerUI::render()
 	sprintf_s(str, "yellow_%d", _life);
 	IMAGEMANAGER->findImage(str)->render(getMemDC(), _rc.right - IMAGEMANAGER->findImage(str)->getWidth(), 
 		_rc.bottom - 24 - IMAGEMANAGER->findImage(str)->getHeight());
-	_hpBar->render();
-
-	
+	if (_currentHP > 0)
+	{
+		_hpBar->render();
+	}
 }

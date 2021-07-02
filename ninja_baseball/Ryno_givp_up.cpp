@@ -11,6 +11,7 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 		}
 		else
 		{
+
 			player->setlife(player->getlife() - 1);
 			player->sethp(5);
 			return new Ryno_start;
