@@ -30,8 +30,8 @@ HRESULT stageScene3::init()
 	_timerUI->init(atoi(vText[6].c_str()), 2, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 	_em = new enemyManager;
-	_em->init();
-	_em->setBat2();
+
+	_em->setBat2();		//stage3에 등장하는 배트 3마리
 
 	_em->setBoss();
 
@@ -52,8 +52,9 @@ void stageScene3::update()
 {
 	_player->update();
 
-	_em->update();
-
+	_em->updateBat();
+	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
+	_em->playerLocation();
 	
 	_em->updateBoss();
 
@@ -95,7 +96,9 @@ void stageScene3::render()
 	IMAGEMANAGER->findImage("stage_3")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("빵빠레")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
 	_player->render();
-	_em->render();
+
+	_em->renderBat();
+
 	RENDERMANAGER->render(getMemDC());
 
 	_playerUI->render();

@@ -65,7 +65,7 @@ public:
 	bool noBat;					//step2 : 배트 날아감
 	bool death;					//step3 : 죽음
 
-	int damageCount;			//배트의 3단계 변신을 위한 카운트
+	int damagedCount;			//배트의 3단계 변신을 위한 카운트
 								//피격(count)  1~2회 : 변신 x
 								//피격			3회 : 1단계 변신<noCap mode>	..모자 날아감;
 								//피격			4회 : 2단계 변신<noBat mode>	..배트 날아감;	(모자랑 배트는 회전 없이 그대로 날아가지만, 카메라 벽 맞고 튕김 + 알파렌더)
@@ -73,6 +73,9 @@ public:
 
 	int timeCount;				//인터벌 주기 위한 카운트
 	bool iscatch;				//잡혔어?
+
+	float _x = _bat.x;
+	float _y = _bat.y;
 
 
 	bat() {};
@@ -87,12 +90,19 @@ public:
 	void setImage();
 	void setShadow();
 
+	//get
+	//////////////////////////////////////
 	inline RECT getRect() { return _bat.rc; }
 	inline RECT getAttackRect() { return _bat.rcAttackRange; }
 
 	float getCenterX() { return (_bat.rc.left + _bat.rc.right) / 2; }
 	float getCenterY() { return (_bat.rc.top + _bat.rc.bottom) / 2; }
 
+	float getX() { return _bat.x; }
+	float getY() { return _bat.y; }
+
+	//set
+	//////////////////////////////////////
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
@@ -107,5 +117,9 @@ public:
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
 	void setImageName(string s) { _imgName = s; }
+
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
+
 };
 

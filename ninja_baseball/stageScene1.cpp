@@ -14,7 +14,6 @@ HRESULT stageScene1::init()
 	_player->init(_playerSelect, true);
 
 	_em = new enemyManager;
-	//_em->init();
 
 	_obj = new objectManager;
 	_obj->init();
@@ -39,12 +38,14 @@ HRESULT stageScene1::init()
 	//////////////////////////
 
 	//SET bat
-	_em->setBat1();
+	_em->setBat1();		//stage1에 등장하는 배트 2마리
 	/////////////////////////
 
 	//SET glove
 	_em->setGlove();
 	////////////////////////
+
+
 	_em->setCard();
 
 	return S_OK;
@@ -54,6 +55,8 @@ void stageScene1::release()
 {
 	_player->release();
 	_obj->release();
+
+	//애들 죽으면 release해줘야 stage3에서도 안나올거야
 }
 
 void stageScene1::update()
@@ -65,23 +68,33 @@ void stageScene1::update()
 		shutterCollison();
 	}
 	_player->update();
-	_em->update();
-	//_em->update();
 	_obj->update();
 	
 	_em->updateCard();
 
 
-	//UPDATE baseBall////////////
+	//UPDATE BASEBALL
 	//_em->updateBlueBaseball();
 	//_em->updateGreenBaseball();
 	//_em->updateWhiteBaseball();
-	//_em->updateYellowBaseball();
+	_em->updateYellowBaseball();
+	_em->baseballCollision();
 	/////////////////////////////
 
-	//_em->updateBat();
 
+	//UPDATE BAT
+	//_em->updateBat();
+	//_em->batCollision();
+	////////////////////////////
+
+
+	//UPDATE GLOVE
 	//_em->updateGlove();
+	//_em->gloveCollision();
+	////////////////////////////
+
+	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
+	_em->playerLocation();
 	
 
 	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
@@ -139,20 +152,24 @@ void stageScene1::render()
 	EFFECTMANAGER->render();
 
 	_obj->render();
-	//_em->render();
 
-	////RENDER baseBall////////////
-	//_em->renderBlueBaseball();
-	//_em->renderGreenBaseball();
-	//_em->renderWhiteBaseball();
-	//_em->renderGreenBaseball();
+	//RENDER baseBall
+	_em->renderBlueBaseball();
+	_em->renderGreenBaseball();
+	_em->renderWhiteBaseball();
+	_em->renderGreenBaseball();
 	///////////////////////////////
-	//
-	//_em->renderBat();
-	//
-	//_em->renderGlove();
-	_em->render();
-	//_em->renderCard();
+
+	//RENDER BAT
+	_em->renderBat();
+	///////////////////////////////
+
+	//RENDER GLOVE
+	_em->renderGlove();
+	///////////////////////////////
+
+
+	_em->renderCard();
 
 	if (!_shutter.isCrush)
 	{

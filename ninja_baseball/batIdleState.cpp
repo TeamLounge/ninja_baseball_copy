@@ -26,7 +26,7 @@ batState * batIdleState::inputHandle(bat * bat)
 
 	if (bat->isCollisionDamaged)
 	{
-		bat->damageCount++;
+		bat->damagedCount++;
 		return new batDamagedState();
 	}
 

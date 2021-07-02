@@ -52,7 +52,7 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	iscatch = false;				//에저미가 잡혔어??
 	isDeath = false;
 
-	damageCount = 0;
+	damagedCount = 0;
 
 	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "gBaseball_shadow",
 		&_greenBaseball.x, &_greenBaseball.y, &_gbShadow.x, &_gbShadow.y,
@@ -91,38 +91,38 @@ void greenBaseball::update()
 		_gbShadow.rc = RectMakeCenter((_greenBaseball.rc.right + _greenBaseball.rc.left) / 2, _gbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
-	{
-		damageCount++;
-		if (damageCount == 5)
-		{
-			isDeath = true;
-		}
+	//if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	//{
+	//	damagedCount++;
+	//	if (damagedCount == 5)
+	//	{
+	//		isDeath = true;
+	//	}
 
-		isCollisionDamaged = true;
-	}
-	else
-	{
-		isDeath = false;
-		isCollisionDamaged = false;
-	}
+	//	isCollisionDamaged = true;
+	//}
+	//else
+	//{
+	//	isDeath = false;
+	//	isCollisionDamaged = false;
+	//}
 
-	//충돌 여부에 따른 죽음 판정
-	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
-	{
-		damageCount++;
-		if (damageCount == 5)
-		{
-			isDeath = true;
-		}
+	////충돌 여부에 따른 죽음 판정
+	//if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
+	//{
+	//	damageCount++;
+	//	if (damageCount == 5)
+	//	{
+	//		isDeath = true;
+	//	}
 
-		isCollisionDamaged = true;
-	}
-	else
-	{
-		isDeath = false;
-		isCollisionDamaged = false;
-	}
+	//	isCollisionDamaged = true;
+	//}
+	//else
+	//{
+	//	isDeath = false;
+	//	isCollisionDamaged = false;
+	//}
 
 
 }

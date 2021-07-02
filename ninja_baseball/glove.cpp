@@ -53,7 +53,7 @@ HRESULT glove::init(POINT position)
 	isDamaged = false;
 	isDeath = false;
 
-	damageCount = 0;
+	damagedCount = 0;
 
 	isattack = false;              //에너미가 공격했어??
 	isdamage = false;				//에너미가 데미지 받았어??							

@@ -51,11 +51,16 @@ public:
 
 	bool isDamaged;				//맞았어?
 	bool isDeath;				//죽었나?
-	int damageCount;			//맞은 횟수
+	int damagedCount;			//맞은 횟수
 
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
+	bool isGreenFly;			//Green이 날았어?
+
+
+	float _x = _yellowBaseball.x;
+	float _y = _yellowBaseball.y;
 
 
 	yellowBaseball() {};
@@ -70,13 +75,19 @@ public:
 	void setImage();
 	void setShadow();
 
+	//get
+	//////////////////////////////////////
 	inline RECT getRect() { return _yellowBaseball.rc; }
 	inline RECT getAttackRect() { return _yellowBaseball.rcAttackRange; }
 
 	float getCenterX() { return (_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2; }
 	float getCenterY() { return (_yellowBaseball.rc.bottom + _yellowBaseball.rc.top) / 2; }
 
+	float getX() { return _yellowBaseball.x; }
+	float getY() { return _yellowBaseball.y; }
 
+	//set
+	//////////////////////////////////////
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
@@ -91,4 +102,8 @@ public:
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
 	void setImageName(string s) { _imgName = s; }
+
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
+
 };

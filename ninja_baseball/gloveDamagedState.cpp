@@ -8,12 +8,15 @@
 
 gloveState * gloveDamagedState::inputHandle(glove * glove)
 {
-	if (glove->damageCount == 5)
+	if (glove->damagedCount == 5)
 	{
+		glove->damagedCount = 0;
 		return new gloveDeathState();
 	}
-	if (glove->damageCount < 5)
+	if (glove->damagedCount < 5 && glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
 	{
+		glove->setCurrentFrameX(0);
+		glove->isCollisionDamaged = false;
 		return new gloveMoveState();
 	}
 	  
@@ -106,7 +109,7 @@ void gloveDamagedState::enter(glove * glove)
 	}
 	glove->setCurrentFrameX(0);
 
-	glove->isCollisionDamaged = true;
+	//glove->isCollisionDamaged = true;
 
 }
 
