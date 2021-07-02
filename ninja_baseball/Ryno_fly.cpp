@@ -167,10 +167,6 @@ void Ryno_fly::update(player * player)
 	{
 		player->getImage()->setFrameY(1);
 	}
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-	}
 
 	player->getImage()->setFrameX(_index);
 

@@ -68,10 +68,6 @@ void Ryno_crawl::update(player * player)
 	{
 		player->setY(player->getY()-((player->_shadow->getY() + player->_shadow->getHeight()) -WINSIZEY));
 	}
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX()+CAMERAMANAGER->getCameraLEFT()-player->getRect().left);
-	}
 
 	if (_index > 4) _index = 0;
 	player->getImage()->setFrameX(_index);

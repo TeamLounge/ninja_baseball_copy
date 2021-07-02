@@ -50,7 +50,7 @@ HRESULT stageScene3::init()
 	_isStart = true;
 
 	_bossHPBar = new progressBar;
-	_bossHPBar->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_greenBar.bmp", "image/4_Boss/boss_redBar.bmp", 576, 24);
+	_bossHPBar->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_greenBar.bmp", "image/6_UI/inGame/boss_yellowBar.bmp", 576, 24);
 	_bossHPBar2 = new progressBar;
 	_bossHPBar2->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_yellowBar.bmp", "image/4_Boss/boss_redBar.bmp", 576, 24);
 

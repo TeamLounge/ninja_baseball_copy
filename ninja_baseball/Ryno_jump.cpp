@@ -98,10 +98,6 @@ void Ryno_jump::update(player * player)
 			}
 		}
 	}
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-	}
 	player->getImage()->setFrameX(_index);
 	//그림자 위치조정
 	//그림자는 점프했을때 x로만 움직이게 해놨어요
