@@ -37,26 +37,26 @@ void Ryno_crawl::update(player * player)
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		player->isRight = false;
-		player->setX(player->getX() - 5);
+		player->setX(player->getX() - 6);
 		if(_count%5==0)
 		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		player->isRight = true;
-		player->setX(player->getX() + 5);
+		player->setX(player->getX() + 6);
 		if (_count % 5 == 0)
 		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		player->setY(player->getY() - 5);
+		player->setY(player->getY() - 6);
 		if (_count % 5 == 0)
 		_index++;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		player->setY(player->getY() + 5);
+		player->setY(player->getY() + 6);
 		if (_count % 5 == 0)
 		_index++;
 	}

@@ -53,24 +53,24 @@ void Ryno_move::update(player * player)
 	{
 		LEFT = true;
 		player->isRight = false;
-		player->setX(player->getX() - 5);
+		player->setX(player->getX() - 7);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		RIGHT = true;
 		player->isRight = true;
-		player->setX(player->getX() + 5);
+		player->setX(player->getX() + 7);
 	}
 	
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		UP = true;
-		player->setY(player->getY() - 5);
+		player->setY(player->getY() - 7);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		DOWN = true;
-		player->setY(player->getY() + 5);
+		player->setY(player->getY() + 7);
 	}
 	
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT)) LEFT = false;

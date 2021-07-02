@@ -22,12 +22,12 @@ void Ryno_frontCombo::update(player * player)
 	if (_index < 5) {
 		
 		_count++;
-		if (_count % 5 == 0) {
+		if (_count % 3 == 0) {
 			//마찬가지로 인덱스를 0~4까지만돌려요
 			if (_index < 4) _index++;
 			//여기가 인덱스 4일때 결정하는 시간입니다.
 			//이떄도 랜더용 카운트를 시간으로 썻습니다..
-			if (_count < 50) {
+			if (_count < 30) {
 				if (_index==4 && KEYMANAGER->isOnceKeyDown('Z'))
 				{
 					_index++;
@@ -52,7 +52,7 @@ void Ryno_frontCombo::update(player * player)
 	{
 		player->isattack = false;
 		_count++;
-		if (_count %  12== 0) {
+		if (_count %  8== 0) {
 			_index++;
 			//인덱스가 총프레임에 넘어가면 없애버리기 
 			_count = 0;
@@ -62,15 +62,15 @@ void Ryno_frontCombo::update(player * player)
 	if (_index >= 6)
 	{
 		_count++;
-		if (_count % 15 == 0)
+		if (_count % 10 == 0)
 		{
 			_index++;
 		}
 		if (_index == 6)
 		{
-			if (player->isRight) player->setX(player->getX() + 3);
-			else player->setX(player->getX() - 3);
-			player->setY(player->getY() - 7);
+			if (player->isRight) player->setX(player->getX() + 5);
+			else player->setX(player->getX() - 5);
+			player->setY(player->getY() - 10);
 		}
 		if (_index == 7)
 		{
@@ -79,17 +79,17 @@ void Ryno_frontCombo::update(player * player)
 			player->_isGreenAttackFrontCombo1 = false;
 			if (player->isRight)
 			{
-				player->setX(player->getX() + 3);
+				player->setX(player->getX() + 5);
 				player->_attack_rc = RectMakeCenter(player->getX() + (player->getImage()->getFrameWidth() / 2)-30, player->getY(), 50, 50);
 
 			}
 			else
 			{
-				player->setX(player->getX() - 3);
+				player->setX(player->getX() - 5);
 				player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2)+30, player->getY(), 50, 50);
 
 			}
-			player->setY(player->getY() + 7);
+			player->setY(player->getY() + 10);
 		}
 		if (_index > 7)
 		isend = true;
@@ -99,6 +99,7 @@ void Ryno_frontCombo::update(player * player)
 	player->getImage()->setFrameX(_index);
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
 }
 
 void Ryno_frontCombo::enter(player * player)

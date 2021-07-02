@@ -51,7 +51,7 @@ void Ryno_attack::update(player * player)
 					player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY()-40, 50, 80);
 			}
 			//현재 인덱스가 2임
-			if (_count < 30) {
+			if (_count < 20) {
 				//z키를누르면서 앞키를 누르면 새로운 공격패턴으로 갑니다.
 				//이것도 상태클래스를 새로 정의하는게 정신건강에 이로워요 ㅋㅋ  저는 안햇는데.. 이거 수정하려구요
 				if ((KEYMANAGER->isStayKeyDown(VK_RIGHT)||(KEYMANAGER->isStayKeyDown(VK_LEFT))) && KEYMANAGER->isOnceKeyDown('Z'))
@@ -89,7 +89,7 @@ void Ryno_attack::update(player * player)
 		else
 			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY(), 50, 50);
 		//지금도 랜더용카운트를 시간으로 줬는데 어쳐피 지금 상황에선 프레임랜더를 안돌려서도 되서..
-		if (_count < 30)
+		if (_count < 20)
 		{
 			if (KEYMANAGER->isOnceKeyDown('Z'))
 			{
@@ -117,7 +117,7 @@ void Ryno_attack::update(player * player)
 		}
 		else
 			player->_attack_rc = RectMakeCenter(player->getX() - (player->getImage()->getFrameWidth() / 2), player->getY() - 20, 50, 50);
-		if (_count % 8 == 0)
+		if (_count % 4 == 0)
 		{
 			_index++;
 			//계속 돌리다가 총프레임의 바깥으로 인덱스가 나가면 공격 끝

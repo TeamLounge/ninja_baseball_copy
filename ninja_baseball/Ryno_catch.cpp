@@ -48,8 +48,6 @@ void Ryno_catch::update(player * player)
 				_index += 3;
 			if (KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('X'))
 				isfront = true;
-			if (KEYMANAGER->isOnceKeyDown('Z'))
-				_index++;
 		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))
 			_index++;
@@ -57,7 +55,7 @@ void Ryno_catch::update(player * player)
 	if (_index > 0 && _index < 3)
 	{
 		_count++;
-		if (_count % 5 == 0)
+		if (_count % 3 == 0)
 		{
 			_index++;
 			if (_index == 2)
@@ -83,7 +81,7 @@ void Ryno_catch::update(player * player)
 	{
 		player->_isGreenCatchAttack = false;
 		_count++;
-		if (_count % 10 == 0)
+		if (_count % 6 == 0)
 		{
 			if (_index == 3) player->_isGreenCatchBackAttack = true;
 			_index++;
@@ -93,7 +91,7 @@ void Ryno_catch::update(player * player)
 	if (_index > 5)
 	{
 		_count++;
-		if (_count % 10 == 0)
+		if (_count % 6 == 0)
 		{
 			_index++;
 			if (_index > 7)

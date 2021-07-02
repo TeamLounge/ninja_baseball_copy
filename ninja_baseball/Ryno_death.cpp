@@ -25,7 +25,7 @@ void Ryno_death::update(player * player)
 	{
 		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
 	}
-	if (_count % 5 == 0)
+	if (_count % 3 == 0)
 	{
 		_index++;
 		if (_index > 4) _index = 0;

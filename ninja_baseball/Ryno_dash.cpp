@@ -34,12 +34,12 @@ void Ryno_dash::update(player * player)
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		player->isRight = false;
-		player->setX(player->getX() - 8);
+		player->setX(player->getX() - 10);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		player->isRight = true;
-		player->setX(player->getX() + 8);
+		player->setX(player->getX() + 10);
 
 	}
 	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())

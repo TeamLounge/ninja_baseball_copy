@@ -30,12 +30,12 @@ void Ryno_jump::update(player * player)
 	//움직이기
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		player->setX(player->getX() - 5);
+		player->setX(player->getX() - 7);
 		player->isRight = false;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		player->setX(player->getX() + 5);
+		player->setX(player->getX() + 7);
 		player->isRight = true;
 	} 
 	//z키누르면 공격상태
@@ -59,7 +59,7 @@ void Ryno_jump::update(player * player)
 	//마지막인덱스일떄 공격렉트를 띄우는거죠
  	if (player->isattack)
 	{
-		if (_count % 4 == 0)
+		if (_count % 3 == 0)
 		{
 			_index++;
 			//여기부터가 마지막 인덱스 공격렉트를 띄울부분
