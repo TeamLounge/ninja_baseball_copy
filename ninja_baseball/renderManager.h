@@ -46,6 +46,6 @@ public :
 
 	void quickSort(int left, int right);
 
-	void deleteAll();
+	bool deleteAll();
 };
 

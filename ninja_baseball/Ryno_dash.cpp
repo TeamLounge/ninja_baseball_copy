@@ -42,10 +42,7 @@ void Ryno_dash::update(player * player)
 		player->setX(player->getX() + 10);
 
 	}
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-	}
+
 	if (_count % 5 == 0)
 	{
 		if (_index > 4) _index = 0;

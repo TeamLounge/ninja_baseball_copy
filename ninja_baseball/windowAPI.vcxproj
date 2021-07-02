@@ -193,6 +193,7 @@
     <ClInclude Include="endingScene.h" />
     <ClInclude Include="enemyManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="gameOverUI.h" />
     <ClInclude Include="gbAttackPunchState.h" />
     <ClInclude Include="gbDamagedState.h" />
     <ClInclude Include="gbDeathState.h" />
@@ -339,6 +340,7 @@
     <ClCompile Include="endingScene.cpp" />
     <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="gameOverUI.cpp" />
     <ClCompile Include="gbAttackPunchState.cpp" />
     <ClCompile Include="gbDamagedState.cpp" />
     <ClCompile Include="gbDeathState.cpp" />

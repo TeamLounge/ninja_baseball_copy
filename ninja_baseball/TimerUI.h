@@ -14,5 +14,6 @@ public :
 	void render();
 
 	int getTime() { return _time; }
+	void setTime(int time) { _time = time; }
 };
 

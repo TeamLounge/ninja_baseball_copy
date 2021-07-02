@@ -23,7 +23,7 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 	}
 
 	if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1 &&
-		boss->_count < 15)
+		boss->_count < 20)
 	{
 		boss->_isSmallDamaged = false;
 		boss->_isSmallDamagedState = false;
@@ -32,7 +32,7 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		return new bossIdleState();
 	}
 
-	if (boss->_bossForm == NO_ARM && boss->_count >= 15 &&
+	if (boss->_bossForm == NO_ARM && boss->_count >= 20 &&
 		boss->_stateCount == boss->_bossForm &&
 		boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1)
 	{

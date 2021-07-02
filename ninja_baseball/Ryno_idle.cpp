@@ -11,11 +11,11 @@
 playerstate * Ryno_idle::handleInput(player * player)
 {
 
-	//if (player->isdamage)
-	//{
-	//	player->sethp(player->gethp() - 1);
-	//	return new Ryno_damage;
-	//}
+	if (player->isdamage)
+	{
+		player->sethp(player->gethp() - 1);
+		return new Ryno_damage;
+	}
 	if (KEYMANAGER->isStayKeyDown('V'))
 	{
 		return new Ryno_crawl;

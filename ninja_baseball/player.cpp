@@ -92,6 +92,15 @@ void player::update()
 		}
 	}
 
+	if (_playerrc.left < CAMERAMANAGER->getCameraLEFT())
+	{
+		_x = _x + CAMERAMANAGER->getCameraLEFT() - _playerrc.left;
+	}
+	if (_playerrc.right > CAMERAMANAGER->getCameraRIGHT())
+	{
+		_x = _x - (_playerrc.right - CAMERAMANAGER->getCameraRIGHT());
+	}
+
 	handleInput();
 	_state->update(this);
 

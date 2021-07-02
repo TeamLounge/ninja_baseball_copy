@@ -53,9 +53,10 @@ HRESULT stageScene1::init()
 	_isAllDead = false;
 
 	_cameraStopX.push(1300);
-	_cameraStopX.push(2200);
-	_cameraStopX.push(BACKGROUNDY);
+	_cameraStopX.push(2300);
 
+	_gameoverUI = new gameOverUI;
+	_gameoverUI->init();
 
 	return S_OK;
 }
@@ -63,99 +64,129 @@ HRESULT stageScene1::init()
 void stageScene1::release()
 {
 	_player->release();
+	_em->release();
 	_obj->release();
 
 	//애들 죽으면 release해줘야 stage3에서도 안나올거야
+	RENDERMANAGER->deleteAll();
 }
 
 void stageScene1::update()
 {
-	RENDERMANAGER->update();
-
-	if (!_shutter.isCrush)
+	if (!_gameoverUI->getIsGameOver())
 	{
-		shutterCollison();
-	}
-	_player->update();
-	_obj->update();
+		RENDERMANAGER->update();
 
-	_em->updateCard();
-
-	updateShutter();
-	//UPDATE baseBall////////////
-	_em->updateBlueBaseball();
-	_em->updateGreenBaseball();
-	_em->updateWhiteBaseball();
-	//_em->updateYellowBaseball();
-
-
-	//UPDATE BAT
-	//_em->updateBat();
-	//_em->batCollision();
-	////////////////////////////
-
-
-	//UPDATE GLOVE
-	//_em->updateGlove();
-	//_em->gloveCollision();
-	////////////////////////////
-
-	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
-	_em->playerLocation();
-
-	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
-	CAMERAMANAGER->update();
-
-
-	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT() && !CAMERAMANAGER->_isFixed)
-	{
-		_cameraStopX.pop();
-		CAMERAMANAGER->_isFixed = true;
-	}
-
-
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		if (!CAMERAMANAGER->_isFixed)
+		if (!_shutter.isCrush)
 		{
+			shutterCollison();
+		}
+		_player->update();
+		_em->update();
+		//_em->update();
+		_obj->update();
+
+		_em->updateCard();
+
+		updateShutter();
+		//UPDATE baseBall////////////
+		_em->updateBlueBaseball();
+		_em->updateGreenBaseball();
+		//_em->updateWhiteBaseball();
+		//_em->updateYellowBaseball();
+		/////////////////////////////
+
+		//UPDATE BAT
+		//_em->updateBat();
+		//_em->batCollision();
+		////////////////////////////
+
+		//UPDATE GLOVE
+		//_em->updateGlove();
+		//_em->gloveCollision();
+		////////////////////////////
+
+
+		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
+		_em->playerLocation();
+
+		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+		CAMERAMANAGER->update();
+
+
+		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
+		{
+			_cameraStopX.pop();
 			CAMERAMANAGER->_isFixed = true;
 		}
-		else
+
+
+		if (KEYMANAGER->isOnceKeyDown('Q'))
 		{
-			CAMERAMANAGER->_isFixed = false;
+			if (CAMERAMANAGER->_isFixed)
+			{
+				CAMERAMANAGER->_isFixed = false;
+			}
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('F'))
+		{
+			_player->isdamage = true;
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('S'))
+		{
+			//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
+			vText.clear();
+
+			//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
+			char temp[128];
+			_itoa_s(_playerSelect, temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getlife(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->gethp(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getX(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getY(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s((bool)(_player->isRight), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_timerUI->getTime(), temp, 10);
+			vText.push_back(temp);
+
+			TXTDATA->txtSave("playerData.txt", vText);
+
+			SCENEMANAGER->changeScene("stage2");
+		}
+
+		_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
+
+		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
+
+		if (_player->getlife() <= 0 && _player->gethp() <= 0)
+		{
+			if (_player->isEnd)
+			{
+				_gameoverUI->setIsGameOver(true);
+			}
 		}
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('S'))
+	else
 	{
-		//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
-		vText.clear();
-
-		//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
-		char temp[128];
-		_itoa_s(_playerSelect, temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getlife(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->gethp(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getX(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getY(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s((bool)(_player->isRight), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_timerUI->getTime(), temp, 10);
-		vText.push_back(temp);
-
-		TXTDATA->txtSave("playerData.txt", vText);
-
-		SCENEMANAGER->changeScene("stage2");
+		if (KEYMANAGER->isOnceKeyDown())
+		{
+			_gameoverUI->setIsGameOver(false);
+			_gameoverUI->setTimer(9);
+			_player->setlife(4);
+			_player->sethp(5);
+			_player->isEnd = false;
+			//_player->update();
+		}
+		_gameoverUI->update();
 	}
-
-	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
-
-	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 }
 
@@ -188,9 +219,9 @@ void stageScene1::render()
 	if (!_shutter.isCrush)
 	{
 		IMAGEMANAGER->findImage("셔터")->render(getMemDC(), 2001, 0);
-		Rectangle(getMemDC(), _shutter.rc);
+		//Rectangle(getMemDC(), _shutter.rc);
 	}
-	else if (IMAGEMANAGER->findImage("shutterParticle1")->getY()+ IMAGEMANAGER->findImage("shutterParticle1")->getHeight() < WINSIZEY)
+	else if (IMAGEMANAGER->findImage("shutterParticle1")->getY() + IMAGEMANAGER->findImage("shutterParticle1")->getHeight() < WINSIZEY)
 	{
 		IMAGEMANAGER->findImage("shutterParticle1")->render(getMemDC());
 		IMAGEMANAGER->findImage("shutterParticle2")->render(getMemDC());
@@ -214,6 +245,11 @@ void stageScene1::render()
 
 
 	//EFFECTMANAGER->render();
+
+	if (_gameoverUI->getIsGameOver())
+	{
+		_gameoverUI->render();
+	}
 
 }
 
@@ -274,12 +310,12 @@ void stageScene1::setShutter()
 	_shutter.rc = RectMake(2001, 200, IMAGEMANAGER->findImage("셔터")->getWidth(), 500);
 	_down = 100.f;
 	_gravity = 10.f;
-	IMAGEMANAGER->findImage("shutterParticle1")->setCenter(2001+ 30, WINSIZEY/2);
+	IMAGEMANAGER->findImage("shutterParticle1")->setCenter(2001 + 30, WINSIZEY / 2);
 	IMAGEMANAGER->findImage("shutterParticle2")->setCenter(2001 + 30, WINSIZEY / 2);
 	IMAGEMANAGER->findImage("shutterParticle3")->setCenter(2001 + 30, WINSIZEY / 2);
 	IMAGEMANAGER->findImage("shutterParticle4")->setCenter(2001 + 30, WINSIZEY / 2);
-	IMAGEMANAGER->findImage("shutterParticle5")->setCenter(2001 +30, WINSIZEY / 2);
-	IMAGEMANAGER->findImage("shutterParticle6")->setCenter(2001 +30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle5")->setCenter(2001 + 30, WINSIZEY / 2);
+	IMAGEMANAGER->findImage("shutterParticle6")->setCenter(2001 + 30, WINSIZEY / 2);
 }
 
 void stageScene1::updateShutter()
@@ -294,7 +330,7 @@ void stageScene1::updateShutter()
 	}
 	if (_shutter.isCrush)
 	{
-		IMAGEMANAGER->findImage("shutterParticle1")->setCenter(IMAGEMANAGER->findImage("shutterParticle1")->getCenterX()+ 5 , IMAGEMANAGER->findImage("shutterParticle1")->getCenterY() - _down);
+		IMAGEMANAGER->findImage("shutterParticle1")->setCenter(IMAGEMANAGER->findImage("shutterParticle1")->getCenterX() + 5, IMAGEMANAGER->findImage("shutterParticle1")->getCenterY() - _down);
 		IMAGEMANAGER->findImage("shutterParticle2")->setCenter(IMAGEMANAGER->findImage("shutterParticle2")->getCenterX() + 10, IMAGEMANAGER->findImage("shutterParticle2")->getCenterY() - _down);
 		IMAGEMANAGER->findImage("shutterParticle3")->setCenter(IMAGEMANAGER->findImage("shutterParticle3")->getCenterX() + 15, IMAGEMANAGER->findImage("shutterParticle3")->getCenterY() - _down);
 		IMAGEMANAGER->findImage("shutterParticle4")->setCenter(IMAGEMANAGER->findImage("shutterParticle4")->getCenterX() - 5, IMAGEMANAGER->findImage("shutterParticle4")->getCenterY() - _down);

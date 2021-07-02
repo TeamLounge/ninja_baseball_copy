@@ -7,12 +7,20 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 	if (_count > 100) {
 		if (player->getlife() <= 0)
 		{
-			return new Ryno_fly;
+			player->isEnd = true;
 		}
 		else
 		{
+
 			player->setlife(player->getlife() - 1);
 			player->sethp(5);
+			return new Ryno_start;
+		}
+	}
+	if (player->isEnd)
+	{
+		if (KEYMANAGER->isOnceKeyDown())
+		{
 			return new Ryno_start;
 		}
 	}

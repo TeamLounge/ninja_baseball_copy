@@ -49,6 +49,9 @@ HRESULT boss::init(POINT position)
 
 	setBossShadow();
 
+	_maxHp = 10;
+	_currentHp = 10;
+
 	return S_OK;
 }
 
@@ -68,10 +71,13 @@ void boss::update()
 	imgLocation();
 
 	if (_count == 0) _bossForm = DEFAULT;
-	if (_count == 3) _bossForm = NO_WING;
-	if (_count == 6) _bossForm = NO_WING_PROP;
-	if (_count == 9) _bossForm = NO_ONE_ARM;
-	if (_count == 12) _bossForm = NO_ARM;
+	if (_count == 4) _bossForm = NO_WING;
+	if (_count == 8) _bossForm = NO_WING_PROP;
+	if (_count == 12) _bossForm = NO_ONE_ARM;
+	if (_count == 16) _bossForm = NO_ARM;
+
+	_currentHp = _maxHp - (_count % 10);
+	if (_count == 20) _currentHp = 0;
 
 	_boss.rc = RectMake(_boss.x, _boss.y, 579, 429);
 	_assultedRect = RectMakeCenter((_boss.rc.left + _boss.rc.right) / 2,
@@ -271,10 +277,11 @@ void boss::setImage()
 	///////////////////////////////////////////////////////////////////
 	//  ###### 보스 기타 이미지(체력바, 파편, 쉐도우 등) ##########     //
 	///////////////////////////////////////////////////////////////////
-	IMAGEMANAGER->addImage("boss_greenBar", "image/4_Boss/boss_greenBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("boss_redBar", "image/4_Boss/boss_redBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("boss_yellowBar", "image/4_Boss/boss_yellowBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addImage("boss_yellowBarAttack", "image/4_Boss/boss_yellowBarAttack.bmp", 192, 8, true, RGB(255, 0, 255), false);
+	//IMAGEMANAGER->addImage("boss_greenBar", "image/4_Boss/boss_greenBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
+	//IMAGEMANAGER->addImage("boss_redBar", "image/4_Boss/boss_redBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
+	//IMAGEMANAGER->addImage("boss_yellowBar", "image/4_Boss/boss_yellowBar.bmp", 192, 8, true, RGB(255, 0, 255), false);
+	//IMAGEMANAGER->addImage("boss_yellowBarAttack", "image/4_Boss/boss_yellowBarAttack.bmp", 192, 8, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addImage("boss_name", "image/4_Boss/boss_name.bmp", 264, 24, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_shadow", "image/4_Boss/boss_shadow.bmp", 300, 85, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("boss_pinLight", "image/4_Boss/boss_pin_light.bmp", 384, 624, true, RGB(255, 0, 255), true);
 	_isLeft_LeftNoWing = IMAGEMANAGER->addFrameImage("boss_left_leftWing", "image/4_Boss/isLeft_leftWing.bmp", 462, 216, 2, 1, true, RGB(255, 0, 255), false);

@@ -44,10 +44,6 @@ void Ryno_move::update(player * player)
 	{
 		player->setY(player->getY() - ((player->_shadow->getY() + player->_shadow->getHeight()) - WINSIZEY));
 	}
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{

@@ -4,7 +4,7 @@
 #include "Ryno_death.h"
 playerstate * Ryno_damage::handleInput(player * player)
 {
-	if (player->gethp() < 0)
+	if (player->gethp() <= 0)
 	{
 		return new Ryno_death;
 	}

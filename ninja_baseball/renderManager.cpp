@@ -173,8 +173,22 @@ void renderManager::quickSort(int left, int right)
 	quickSort(j + 1, right);
 }
 
-void renderManager::deleteAll()
+bool renderManager::deleteAll()
 {
+	mapObjIter iter = _mObjList.begin();
+
+	for (; iter != _mObjList.end();)
+	{
+		if (!iter->second.empty())
+		{
+			iter->second.clear();
+		}
+		else ++iter;
+	}
+
+	_mObjList.clear();
+
+	return false;
 }
 
 

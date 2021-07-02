@@ -4,6 +4,9 @@
 #include "playerUI.h"
 #include "timerUI.h"
 #include "enemyManager.h"
+#include "queue"
+#include "progressBar.h"
+#include "gameOverUI.h"
 
 class stageScene3 : public gameNode
 {
@@ -19,7 +22,22 @@ private:
 	playerUI* _playerUI;
 	timerUI* _timerUI;
 
-	int _count;
+	int _count; //보스 죽으면 엔딩 씬 전까지 카운트
+
+	queue<float> _cameraStopX; //카메라 멈추는 좌표 큐
+
+	bool _isHaveToSetBoss;
+
+	bool _isSetBoss;
+
+	bool _isStart;
+
+	progressBar* _bossHPBar;
+	progressBar* _bossHPBar2;
+
+	string _bossHpBarImgAddress;
+
+	gameOverUI* _gameoverUI;
 
 public:
 	HRESULT init();

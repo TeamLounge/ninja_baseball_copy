@@ -25,6 +25,9 @@ HRESULT titleScene::init()
 
 void titleScene::release()
 {
+	_isTitleStart = false;
+	_isTitleStoped = false;
+	IMAGEMANAGER->findImage("title_start")->setFrameX(0);
 }
 
 void titleScene::update()
