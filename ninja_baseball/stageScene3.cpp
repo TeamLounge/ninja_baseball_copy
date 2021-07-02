@@ -54,6 +54,9 @@ HRESULT stageScene3::init()
 	_bossHPBar2 = new progressBar;
 	_bossHPBar2->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_yellowBar.bmp", "image/4_Boss/boss_redBar.bmp", 576, 24);
 
+	_gameoverUI = new gameOverUI;
+	_gameoverUI->init();
+
 	return S_OK;
 }
 
@@ -66,108 +69,125 @@ void stageScene3::release()
 
 void stageScene3::update()
 {
-	if (_isStart)
+	if (!_gameoverUI->getIsGameOver())
 	{
-		if (KEYMANAGER->isStayKeyDown(VK_DOWN) || KEYMANAGER->isStayKeyDown(VK_UP) ||
-			KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		if (_isStart)
 		{
-			CAMERAMANAGER->_isFixed = false;
-			_isStart = false;
-		}
-	}
-
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		if (CAMERAMANAGER->_isFixed)
-		{
-			CAMERAMANAGER->_isFixed = false;
-		}
-	}
-
-	if (!_isHaveToSetBoss && CAMERAMANAGER->getCameraRIGHT() >= 1920)
-	{
-		_isHaveToSetBoss = true;
-	}
-	
-	_player->update();
-
-	_em->update();
-	
-	if (_isSetBoss)
-	{
-		_em->updateBoss();
-	}
-	
-	if (_isHaveToSetBoss && !_isSetBoss)
-	{
-		_elapsedTime += TIMEMANAGER->getElapsedTime();
-
-		if (_elapsedTime >= 0.2f)
-		{
-			_elapsedTime -= 0.2f;
-			if (IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() >= IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX())
+			if (KEYMANAGER->isStayKeyDown(VK_DOWN) || KEYMANAGER->isStayKeyDown(VK_UP) ||
+				KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
 			{
-				IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX());
-				_isSetBoss = true;
-				_em->setBoss();
-			}
-			else
-			{
-				IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() + 1);
+				CAMERAMANAGER->_isFixed = false;
+				_isStart = false;
 			}
 		}
-	}
 
-	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
-	{
-		_cameraStopX.pop();
-		CAMERAMANAGER->_isFixed = true;
-	}
+		if (KEYMANAGER->isOnceKeyDown('Q'))
+		{
+			if (CAMERAMANAGER->_isFixed)
+			{
+				CAMERAMANAGER->_isFixed = false;
+			}
+		}
 
-	if (_isSetBoss)
-	{
-		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.07f, 0.93f);
+		if (!_isHaveToSetBoss && CAMERAMANAGER->getCameraRIGHT() >= 1920)
+		{
+			_isHaveToSetBoss = true;
+		}
+
+		_player->update();
+
+		_em->update();
+
+		if (_isSetBoss)
+		{
+			_em->updateBoss();
+		}
+
+		if (_isHaveToSetBoss && !_isSetBoss)
+		{
+			_elapsedTime += TIMEMANAGER->getElapsedTime();
+
+			if (_elapsedTime >= 0.2f)
+			{
+				_elapsedTime -= 0.2f;
+				if (IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() >= IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX())
+				{
+					IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX());
+					_isSetBoss = true;
+					_em->setBoss();
+				}
+				else
+				{
+					IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() + 1);
+				}
+			}
+		}
+
+		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
+		{
+			_cameraStopX.pop();
+			CAMERAMANAGER->_isFixed = true;
+		}
+
+		if (_isSetBoss)
+		{
+			CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.07f, 0.93f);
+		}
+		else
+		{
+			//Ä«¸Þ¶ó ¹«ºù ¼öÁ¤ ÇÊ¿ä
+			CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, 0.51f);
+		}
+		if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
+		{
+			CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);
+		}
+
+		if (_player->getX() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
+		{
+			_player->setX(IMAGEMANAGER->findImage("stage_3")->getWidth());
+		}
+
+		RENDERMANAGER->update();
+
+		_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
+		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
+		if (_isSetBoss && _em->getBoss()->_isDeathState)
+		{
+			SCENEMANAGER->changeScene("ending");
+		}
+
+		if (_isSetBoss)
+		{
+			if (_em->getBoss()->_count < 10)
+			{
+				_bossHPBar->setX(CAMERAMANAGER->getCameraCenterX() - 288);
+				_bossHPBar->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
+				_bossHPBar->update();
+			}
+			else if (_em->getBoss()->_count <= 20)
+			{
+				_bossHPBar2->setX(CAMERAMANAGER->getCameraCenterX() - 288);
+				_bossHPBar2->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
+				_bossHPBar2->update();
+			}
+		}
 	}
 	else
 	{
-		//Ä«¸Þ¶ó ¹«ºù ¼öÁ¤ ÇÊ¿ä
-		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, 0.51f);
-	}
-	if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
-	{
-		CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);
-	}
-
-	if (_player->getX() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
-	{
-		_player->setX(IMAGEMANAGER->findImage("stage_3")->getWidth());
-	}
-
-	RENDERMANAGER->update();
-
-	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
-	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
-
-	if (_isSetBoss && _em->getBoss()->_isDeathState)
-	{
-		SCENEMANAGER->changeScene("ending");
-	}
-
-	if (_isSetBoss)
-	{
-		if (_em->getBoss()->_count < 10)
+		if (KEYMANAGER->isOnceKeyDown())
 		{
-			_bossHPBar->setX(CAMERAMANAGER->getCameraCenterX() - 288);
-			_bossHPBar->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
-			_bossHPBar->update();
+			_gameoverUI->setIsGameOver(false);
+			_gameoverUI->setTimer(9);
+			_player->setlife(4);
+			_player->sethp(5);
+			_player->isEnd = false;
+			//_player->update();
 		}
-		else if(_em->getBoss()->_count<=20)
-		{
-			_bossHPBar2->setX(CAMERAMANAGER->getCameraCenterX() - 288);
-			_bossHPBar2->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
-			_bossHPBar2->update();
-		}
+		_gameoverUI->update();
 	}
+
 }
 
 void stageScene3::render()

@@ -11,5 +11,10 @@ public:
 	void release();
 	void update();
 	void render();
+
+	void setIsGameOver(bool b) { _isGameOver = b; }
+	bool getIsGameOver() { return _isGameOver; }
+
+	void setTimer(int time) { _timerUI->setTime(time); }
 };
 

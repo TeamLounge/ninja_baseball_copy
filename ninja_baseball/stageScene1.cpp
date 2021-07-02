@@ -54,6 +54,9 @@ HRESULT stageScene1::init()
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
 
+	_gameoverUI = new gameOverUI;
+	_gameoverUI->init();
+
 	return S_OK;
 }
 
@@ -67,85 +70,110 @@ void stageScene1::release()
 
 void stageScene1::update()
 {
-	RENDERMANAGER->update();
-
-	if (!_shutter.isCrush)
+	if (!_gameoverUI->getIsGameOver())
 	{
-		shutterCollison();
-	}
-	_player->update();
-	_em->update();
-	//_em->update();
-	_obj->update();
+		RENDERMANAGER->update();
 
-	_em->updateCard();
-
-	updateShutter();
-	//UPDATE baseBall////////////
-	_em->updateBlueBaseball();
-	_em->updateGreenBaseball();
-	//_em->updateWhiteBaseball();
-	//_em->updateYellowBaseball();
-	/////////////////////////////
-
-	//_em->updateBat();
-
-	//_em->updateGlove();
-
-	CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
-	CAMERAMANAGER->update();
-
-
-	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
-	{
-		_cameraStopX.pop();
-		CAMERAMANAGER->_isFixed = true;
-	}
-
-
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		if (CAMERAMANAGER->_isFixed)
+		if (!_shutter.isCrush)
 		{
-			CAMERAMANAGER->_isFixed = false;
+			shutterCollison();
+		}
+		_player->update();
+		_em->update();
+		//_em->update();
+		_obj->update();
+
+		_em->updateCard();
+
+		updateShutter();
+		//UPDATE baseBall////////////
+		_em->updateBlueBaseball();
+		_em->updateGreenBaseball();
+		//_em->updateWhiteBaseball();
+		//_em->updateYellowBaseball();
+		/////////////////////////////
+
+		//_em->updateBat();
+
+		//_em->updateGlove();
+
+		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+		CAMERAMANAGER->update();
+
+
+		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
+		{
+			_cameraStopX.pop();
+			CAMERAMANAGER->_isFixed = true;
+		}
+
+
+		if (KEYMANAGER->isOnceKeyDown('Q'))
+		{
+			if (CAMERAMANAGER->_isFixed)
+			{
+				CAMERAMANAGER->_isFixed = false;
+			}
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('F'))
+		{
+			_player->isdamage = true;
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('S'))
+		{
+			//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
+			vText.clear();
+
+			//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
+			char temp[128];
+			_itoa_s(_playerSelect, temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getlife(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->gethp(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getX(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_player->getY(), temp, 10);
+			vText.push_back(temp);
+			_itoa_s((bool)(_player->isRight), temp, 10);
+			vText.push_back(temp);
+			_itoa_s(_timerUI->getTime(), temp, 10);
+			vText.push_back(temp);
+
+			TXTDATA->txtSave("playerData.txt", vText);
+
+			SCENEMANAGER->changeScene("stage2");
+		}
+
+		_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
+
+		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
+
+
+		if (_player->getlife() <= 0 && _player->gethp() <= 0)
+		{
+			if (_player->isEnd)
+			{
+				_gameoverUI->setIsGameOver(true);
+			}
 		}
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('F'))
+	else
 	{
-		_player->isdamage = true;
+		if (KEYMANAGER->isOnceKeyDown())
+		{
+			_gameoverUI->setIsGameOver(false);
+			_gameoverUI->setTimer(9);
+			_player->setlife(4);
+			_player->sethp(5);
+			_player->isEnd = false;
+			//_player->update();
+		}
+		_gameoverUI->update();
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('S'))
-	{
-		//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
-		vText.clear();
-
-		//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
-		char temp[128];
-		_itoa_s(_playerSelect, temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getlife(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->gethp(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getX(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_player->getY(), temp, 10);
-		vText.push_back(temp);
-		_itoa_s((bool)(_player->isRight), temp, 10);
-		vText.push_back(temp);
-		_itoa_s(_timerUI->getTime(), temp, 10);
-		vText.push_back(temp);
-
-		TXTDATA->txtSave("playerData.txt", vText);
-
-		SCENEMANAGER->changeScene("stage2");
-	}
-
-	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
-
-	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 }
 
@@ -200,6 +228,11 @@ void stageScene1::render()
 
 
 	//EFFECTMANAGER->render();
+
+	if (_gameoverUI->getIsGameOver())
+	{
+		_gameoverUI->render();
+	}
 
 }
 
