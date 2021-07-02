@@ -10,6 +10,8 @@ HRESULT enemyManager::init()
 	//setWhiteBaseball();			
 	//setYellowBaseball();		//데스로 못가네
 	
+	//setBat1();
+	//setBat2();
 	//setCard();
 	//setGlove();				
 	//setBoss();				
@@ -26,13 +28,12 @@ void enemyManager::update()
 	//updateBaseball();
 	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
 
-
 	//updateBat();
 	//batCollision();
 
 	//updateGlove();
 	//gloveCollision();
-	//
+	
 	//playerLocation();
 
 	//updateCard();
@@ -65,10 +66,10 @@ void enemyManager::render()
 void enemyManager::setBlueBaseball()
 {
 	//BLUE
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
-		_bb->init(PointMake(1200, 450));
+		_bb->init(PointMake(1200, 450 - i * 100));
 		_vBb.push_back(_bb);
 
 	}
@@ -76,20 +77,11 @@ void enemyManager::setBlueBaseball()
 void enemyManager::setGreenBaseball()
 {
 	//GREEN
-	//STAGE1
-	for (int i = 0; i < 1; i++)
-	{
-		greenBaseball* _gb1 = new greenBaseball;
-		_gb1->init(PointMake(1200, 250));
-		_vGb.push_back(_gb1);
-	}
-
-	//STAGE2
 	for (int i = 0; i < 2; i++)
 	{
-		greenBaseball* _gb2 = new greenBaseball;
-		_gb2->init(PointMake(2500 + i * 400, -200));
-		_vGb.push_back(_gb2);
+		greenBaseball* _gb = new greenBaseball;
+		_gb->init(PointMake(2500 + i * 400, -200));
+		_vGb.push_back(_gb);
 
 	}
 }
@@ -99,7 +91,7 @@ void enemyManager::setWhiteBaseball()
 	for (int i = 0; i < 3; i++)
 	{
 		whiteBaseball* _wb = new whiteBaseball;	//동적할당 해주고
-		_wb->init(PointMake(1900 + i * 100, 30 + i * 200));			//이닛으로 위치 잡아주고
+		_wb->init(PointMake(1900 + i * 100, 150 + i * 150));			//이닛으로 위치 잡아주고
 		_vWb.push_back(_wb);					//위치 잡아준 애를 벡터에 넣음
 	}
 	//좀 일정치 않은 놈 뽑으려면 for문 밖에 빼서 해주는 것도 방법
@@ -180,7 +172,431 @@ void enemyManager::renderYellowBaseball()
 }
 
 
+void enemyManager::baseballCollision()
+{
+	////////////////
+   //   white    //
+   ///////////////
+	//ATTACK//
+	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viWb)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viWb)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged//
+	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viWb)->getRect())
+			&& !(*_viWb)->isCollisionDamaged && _player->isattack && !(*_viWb)->isCrash)	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viWb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viWb)->isCrash = true;
+			(*_viWb)->damagedCount++;
+		}
 
+		if (!_player->isattack) (*_viWb)->isCrash = false;
+	}
+
+	////////////////
+   //   yellow   //
+   ///////////////
+	//ATTACK//
+	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viYb)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viYb)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viYb)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged//
+	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viYb)->getRect())
+			&& !(*_viYb)->isCollisionDamaged && _player->isattack && !(*_viYb)->isCrash)	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viYb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viYb)->isCrash = true;
+			(*_viYb)->damagedCount++;
+		}
+
+		if (!_player->isattack) (*_viYb)->isCrash = false;
+	}
+		
+	////////////////
+   //   green    //
+   ///////////////
+	//ATTACK//
+	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viGb)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGb)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viGb)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged//
+	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viGb)->getRect())
+			&& !(*_viGb)->isCollisionDamaged && _player->isattack && !(*_viGb)->isCrash)	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viGb)->isCrash = true;
+			(*_viGb)->damagedCount++;
+		}
+
+		if (!_player->isattack) (*_viGb)->isCrash = false;
+	}
+
+	////////////////
+   //   blue     //
+   ///////////////
+	//ATTACK//
+	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBb)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBb)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viBb)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged//
+	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viBb)->getRect())
+			&& !(*_viBb)->isCollisionDamaged && _player->isattack && !(*_viBb)->isCrash)	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viBb)->isCrash = true;
+			(*_viBb)->damagedCount++;
+		}
+
+		if (!_player->isattack) (*_viBb)->isCrash = false;
+	}
+}
+void enemyManager::batCollision()
+{
+	////////////////
+   //     bat    //
+   ///////////////
+	//Attack//
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viBat)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged//
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viBat)->getRect())
+			&& !(*_viBat)->isCollisionDamaged && _player->isattack && !(*_viBat)->isCrash)												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viBat)->isCrash = true;
+			//(*_viBat)->damageCount++;
+		}
+
+		if (!_player->isattack) (*_viBat)->isCrash = false;
+
+		//else if (!(IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getRect())))
+		//{
+		//	(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
+		//}
+	}
+}
+void enemyManager::gloveCollision()
+{
+	////////////////
+   //    glove   //
+   ///////////////
+    
+   //Attack glove가 공격하는 모션 취하기 위함//
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->getRect(), &(*_viGlove)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
+		}
+		else
+		{
+			(*_viGlove)->setIsCollisionAttack(false);		//아니면 false로 전환
+		}
+	}
+	//Damaged glove가 맞으면//
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viGlove)->getRect())
+			&& !(*_viGlove)->isCollisionDamaged && _player->isattack && !(*_viGlove)->isCrash)												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
+			(*_viGlove)->isCrash = true;
+		}
+		if (!_player->isattack) (*_viGlove)->isCrash = false;
+	}
+}
+
+void enemyManager::setBat1()
+{
+	//STAGE1
+	for (int i = 0; i < 2; i++)
+	{
+		bat* _bat = new bat;
+		_bat->init(PointMake(1150 + i * 300, 220 + i * 100));
+		_vBat.push_back(_bat);
+	}
+}
+void enemyManager::setBat2()
+{
+	//STAGE3
+	for (int i = 0; i < 3; i++)
+	{
+		bat* _bat = new bat;
+		_bat->init(PointMake(650 + i * 50, 150 + i * 150));
+		_vBat.push_back(_bat);
+	}
+}
+void enemyManager::updateBat()
+{
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		(*_viBat)->update();
+	}
+}
+void enemyManager::renderBat()
+{
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		(*_viBat)->render();
+	}
+}
+
+void enemyManager::setGlove()	//태어나는 좌표
+{
+	for (int i = 0; i < 2; i++)
+	{
+		glove* _glove = new glove;
+		_glove->init(PointMake(3500 + i * 300, 250 + i * 100));	//스테이지1 제일 우측 끝에서 나옴
+		_vGlove.push_back(_glove);
+	}
+}
+void enemyManager::updateGlove()
+{
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		(*_viGlove)->update();
+	}
+}
+void enemyManager::renderGlove()
+{
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		(*_viGlove)->render();
+	}
+}
+
+//카메라 밖 나가지 않게
+void enemyManager::wallLoaction()
+{
+	////////////////
+   //   blue      //
+   /////////////////
+	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
+	{
+		//위
+		if ((*_viBb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBb)->setY((*_viBb)->getY() + 3);
+		}
+		//아래
+		if ((*_viBb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viBb)->setY((*_viBb)->getY() - 3);
+		}
+		//좌
+		if ((*_viBb)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viBb)->setX((*_viBb)->getX() + 3);
+		}
+		//우
+		if ((*_viBb)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viBb)->setX((*_viBb)->getX() - 3);
+		}
+	}
+
+
+	////////////////
+   //   green    //
+   ///////////////
+	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
+	{
+		//위
+		if ((*_viGb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGb)->setY((*_viGb)->getY() + 3);
+		}
+		//아래
+		if ((*_viGb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viGb)->setY((*_viGb)->getY() - 3);
+		}
+		//좌
+		if ((*_viGb)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viGb)->setX((*_viGb)->getX() + 3);
+		}
+		//우
+		if ((*_viGb)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viGb)->setX((*_viGb)->getX() - 3);
+		}
+	}
+
+	////////////////
+   //   yellow   //
+   ///////////////
+	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
+	{
+		//위
+		if ((*_viYb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viYb)->setY((*_viYb)->getY() + 3);
+		}
+		//아래
+		if ((*_viYb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viYb)->setY((*_viYb)->getY() - 3);
+		}
+		//좌
+		if ((*_viYb)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viYb)->setX((*_viYb)->getX() + 3);
+		}
+		//우
+		if ((*_viYb)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viYb)->setX((*_viYb)->getX() - 3);
+		}
+	}
+
+	////////////////
+   //   white    //
+   ///////////////
+	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
+	{
+		//위
+		if ((*_viWb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viWb)->setY((*_viWb)->getY() + 3);
+		}
+		//아래
+		if ((*_viWb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viWb)->setY((*_viWb)->getY() - 3);
+		}
+		//좌
+		if ((*_viWb)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viWb)->setX((*_viWb)->getX() + 3);
+		}
+		//우
+		if ((*_viWb)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viWb)->setX((*_viWb)->getX() - 3);
+		}
+	}
+
+	////////////////
+   //   bat      //
+   ///////////////
+	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
+	{
+		//위
+		if ((*_viBat)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viBat)->setY((*_viBat)->getY() + 3);
+		}
+		//아래
+		if ((*_viBat)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viBat)->setY((*_viBat)->getY() - 3);
+		}
+		//좌
+		if ((*_viBat)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viBat)->setX((*_viBat)->getX() + 3);
+		}
+		//우
+		if ((*_viBat)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viBat)->setX((*_viBat)->getX() - 3);
+		}
+	}
+
+	////////////////
+   //   glove    //
+   ///////////////
+	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
+	{
+		//위
+		if ((*_viGlove)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		{
+			(*_viGlove)->setY((*_viGlove)->getY() + 3);
+		}
+		//아래
+		if ((*_viGlove)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
+		{
+			(*_viGlove)->setY((*_viGlove)->getY() - 3);
+		}
+		//좌
+		if ((*_viGlove)->getX() <= CAMERAMANAGER->getCameraLEFT())
+		{
+			(*_viGlove)->setX((*_viGlove)->getX() + 3);
+		}
+		//우
+		if ((*_viGlove)->getRect().right >= CAMERAMANAGER->getCameraRIGHT())
+		{
+			(*_viGlove)->setX((*_viGlove)->getX() - 3);
+		}
+	}
+	
+}
+
+//플레이어 위치 찾는 함수
 void enemyManager::playerLocation()
 {
 	////////////////
@@ -462,298 +878,9 @@ void enemyManager::playerLocation()
 	}
 }
 
-void enemyManager::baseballCollision()
-{
-	////////////////
-   //   white    //
-   ///////////////
-
-	//ATTACK//
-	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-		{
-			(*_viWb)->setIsCollisionAttack(true);
-		}
-		else
-		{
-			(*_viWb)->setIsCollisionAttack(false);
-		}
-	}
-	//DAMAGED//
-	//for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
-	//{
-	//	RECT temp;
-	//	if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getRect()) &&
-	//		KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-	//	{
-	//		(*_viWb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-	//		(*_viWb)->damageCount++;
-
-	//		if ((*_viWb)->damageCount > 5)
-	//		{
-	//			(*_viWb)->damageCount = 0;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		(*_viWb)->setIsCollisionDamaged(false);		//아니면 false로 전환
-	//	}
-	//}
-
-		////DAMAGED_(종혁씨가 만드신 거)
-		//if (_player->isattack) {
-		//	if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top && 
-		//		_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
-		//		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viWb)->getRect()))
-		//		{
-		//			(*_viWb)->isdamage= true;
-		//		}
-		//	}
-		//}
-		//if (_player->iscrawl && !_player->isattack)
-		//{
-		//	if (_player->_shadow->getCenterY() >= (*_viWb)->_wbShadow.rc.top &&
-		//		_player->_shadow->getCenterY() <= (*_viWb)->_wbShadow.rc.bottom) {
-		//		if (IntersectRect(&temp, &_player->getRect(), &(*_viWb)->getRect()))
-		//		{
-		//			(*_viWb)->iscatch = true;
-		//		}
-		//	}
-		//}
-	
-
-	////////////////
-   //   yellow   //
-   ///////////////
-	//ATTACK//
-	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viYb)->getAttackRect()))
-		{
-			(*_viYb)->setIsCollisionAttack(true);
-		}
-		else
-		{
-			(*_viYb)->setIsCollisionAttack(false);
-		}
-	}
-	//DAMAGED//
-	//for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
-	//{
-	//	RECT temp;
-	//	if (IntersectRect(&temp, &_player->getRect(), &(*_viYb)->getRect()) &&
-	//		KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-	//	{
-	//		(*_viYb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-	//		(*_viYb)->damageCount++;
-
-	//		if ((*_viYb)->damageCount > 5)
-	//		{
-	//			(*_viYb)->damageCount = 0;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		(*_viYb)->setIsCollisionDamaged(false);		//아니면 false로 전환
-	//	}
-	//}
-	////////////////
-   //   green    //
-   ///////////////
-	//ATTACK//
-	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viGb)->getAttackRect()))
-		{
-			(*_viGb)->setIsCollisionAttack(true);
-		}
-		else
-		{
-			(*_viGb)->setIsCollisionAttack(false);
-		}
-	}
-	//DAMAGED//
-	//for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
-	//{
-	//	RECT temp;
-	//	if (IntersectRect(&temp, &_player->getRect(), &(*_viGb)->getRect()) &&
-	//		KEYMANAGER->isOnceKeyDown('M'))												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-	//	{
-	//		(*_viGb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-	//		(*_viGb)->damageCount++;
-
-	//		if ((*_viGb)->damageCount > 5)
-	//		{
-	//			(*_viGb)->damageCount = 0;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		(*_viGb)->setIsCollisionDamaged(false);		//아니면 false로 전환
-	//	}
-	//}
-	////////////////
-   //   blue     //
-   ///////////////
-	//ATTACK//
-	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viBb)->getAttackRect()))
-		{
-			(*_viBb)->setIsCollisionAttack(true);
-		}
-		else
-		{
-			(*_viBb)->setIsCollisionAttack(false);
-		}
-	}
-	//DAMAGED//
-	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viBb)->getRect())) //플레이어 사거리와 에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-		{
-			(*_viBb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-				(*_viBb)->damageCount++;
-		
-				if ((*_viBb)->damageCount > 5)
-				{
-					(*_viBb)->damageCount = 0;
-				}
-		}
-		else (*_viBb)->setIsCollisionDamaged(false);		//아니면 false로 전환
-
-
-		if (!_player->isattack) (*_viBb)->isCrash = false;
-	}
-}
-void enemyManager::batCollision()
-{
-	////////////////
-   //     bat    //
-   ///////////////
-	//Attack//
-	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getAttackRect()))		//에너미 사거리에 들어오면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-		{
-			(*_viBat)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
-		}
-		else
-		{
-			(*_viBat)->setIsCollisionAttack(false);		//아니면 false로 전환
-		}
-	}
-	//Damaged//
-	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->_attack_rc, &(*_viBat)->getRect())
-			&& !(*_viBat)->isCollisionDamaged && _player->isattack && !(*_viBat)->isCrash)												//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-		{
-			(*_viBat)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
-			(*_viBat)->isCrash = true;
-			//(*_viBat)->damageCount++;				
-		}
-			
-		if (!_player->isattack) (*_viBat)->isCrash = false;
-
-		//else if (!(IntersectRect(&temp, &_player->getRect(), &(*_viBat)->getRect())))
-		//{
-		//	(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
-		//}
-	}
-}
-void enemyManager::gloveCollision()
-{
-	////////////////
-   //    glove   //
-   ///////////////
-    //Attack glove가 공격하면//
-	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &_player->getRect(), &(*_viGlove)->getAttackRect()))		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
-		{
-			(*_viGlove)->setIsCollisionAttack(true);		//충돌했으면 bool 값 true로 전환
-		}
-		else
-		{
-			(*_viGlove)->setIsCollisionAttack(false);		//아니면 false로 전환
-		}
-	}
-	//Damaged glove가 맞으면//
-	
-}
-
-void enemyManager::setBat1()
-{
-	//STAGE1
-	for (int i = 0; i < 2; i++)
-	{
-		bat* _bat = new bat;
-		_bat->init(PointMake(1350 + i * 300, 380 + i * 100));
-		_vBat.push_back(_bat);
-	}
-}
-void enemyManager::setBat2()
-{
-	//STAGE3
-	for (int i = 0; i < 3; i++)
-	{
-		bat* _bat = new bat;
-		_bat->init(PointMake(80 + i * 50, 350 + i * 150));
-		_vBat.push_back(_bat);
-	}
-}
-void enemyManager::updateBat()
-{
-	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
-	{
-		(*_viBat)->update();
-	}
-}
-void enemyManager::renderBat()
-{
-	for (_viBat = _vBat.begin(); _viBat != _vBat.end(); ++_viBat)
-	{
-		(*_viBat)->render();
-	}
-}
-
-void enemyManager::setGlove()	//태어나는 좌표
-{
-	for (int i = 0; i < 2; i++)
-	{
-		glove* _glove = new glove;
-		_glove->init(PointMake(2300 + i * 200, -150));
-		_vGlove.push_back(_glove);
-	}
-}
-void enemyManager::updateGlove()
-{
-	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
-	{
-		(*_viGlove)->update();
-	}
-}
-void enemyManager::renderGlove()
-{
-	for (_viGlove = _vGlove.begin(); _viGlove != _vGlove.end(); ++_viGlove)
-	{
-		(*_viGlove)->render();
-	}
-}
-
 //////////////////////////////////////////////////
 //			카드 에너미 세팅
-/////////////////////////////////////////////////
+//////////////////////////////////////////////////
 void enemyManager::setCard()
 {
 	for (int i = 0; i < 2; i++)
@@ -768,7 +895,7 @@ void enemyManager::setCard()
 
 //////////////////////////////////////////////////
 //			카드 에너미 업데이트
-/////////////////////////////////////////////////
+//////////////////////////////////////////////////
 void enemyManager::updateCard()
 {
 	//카드 업데이트
@@ -784,7 +911,7 @@ void enemyManager::updateCard()
 
 //////////////////////////////////////////////////
 //			카드 에너미 렌더
-/////////////////////////////////////////////////
+//////////////////////////////////////////////////
 void enemyManager::renderCard()
 {
 	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)

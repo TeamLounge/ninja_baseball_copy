@@ -46,7 +46,7 @@ HRESULT bat::init(POINT position)
 
 	_batMode = NORMAL;		//초기 모드 set
 
-	damageCount = 0;		//맞은 횟수
+	damagedCount = 0;		//맞은 횟수
 
 	isXOverlap = false;
 	isYOverlap = false;
@@ -89,24 +89,10 @@ void bat::update()
 	//////////////////////////
 	//		3단 변신			//
 	//////////////////////////
-	//if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
-	//{
-	//	damageCount++;
-	//	if (damageCount == 3) _batMode = NO_CAP;
-	//	else if (damageCount == 4) _batMode = NO_BAT;
-	//	else if (damageCount == 5)
-	//	{
-	//		_batMode = DEATH;
-	//		isDeath = true;
-	//	}
 
-	//	isCollisionDamaged = true;
-	//}
-
-
-	if (damageCount == 3) _batMode = NO_CAP;
-	else if (damageCount == 4) _batMode = NO_BAT;
-	else if (damageCount == 5)
+	if (damagedCount == 3) _batMode = NO_CAP;
+	else if (damagedCount == 4) _batMode = NO_BAT;
+	else if (damagedCount == 5)
 	{
 		_batMode = DEATH;
 		isDeath = true;

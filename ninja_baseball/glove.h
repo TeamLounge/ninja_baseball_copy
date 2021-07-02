@@ -51,12 +51,15 @@ public:
 	bool isDamaged;					//맞았어?
 	bool isDeath;					//count == 5이고, 그래서 죽었어?
 
-	int damageCount;				//맞은 횟수
+	int damagedCount;				//맞은 횟수
 	int timeCount;					//공격 인터벌 주기 위함
 
 	bool isattack;					//에너미가 공격했어??
 	bool isdamage;					//에너미가 데미지 받았어??							
 	bool iscatch;					//에저미가 잡혔어??
+
+	float _x = _glove.x;
+	float _y = _glove.y;
 
 
 	//이미지 좌표 수정 위한 bool값들
@@ -76,13 +79,19 @@ public:
 	void setShadow();
 	void modifiedLocation();
 
-
+	//get
+	//////////////////////////////////////
 	inline RECT getRect() { return _glove.rc; }
 	inline RECT getAttackRect() { return _glove.rcAttackRange; }
 
 	float getCenterX() { return (_glove.rc.left + _glove.rc.right) / 2; }
 	float getCenterY() { return (_glove.rc.top + _glove.rc.bottom) / 2; }
+	
+	float getX() { return _glove.x; }
+	float getY() { return _glove.y; }
 
+	//set
+	//////////////////////////////////////
 	void setIsRight(bool _isRight) { isRight = _isRight; }
 	void setIsDown(bool _isDown) { isDown = _isDown; }
 	void setIsCollisionAttack(bool _isCollisionAttack) { isCollisionAttack = _isCollisionAttack; }
@@ -97,5 +106,8 @@ public:
 	void setCurrentFrameY(int currentY) { _currentFrameY = currentY; }
 
 	void setImageName(string s) { _imgName = s; }
+
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
 };
 

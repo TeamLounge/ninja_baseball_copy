@@ -8,9 +8,16 @@
 
 ybState * ybDamagedState::inputHandle(yellowBaseball * yellowBaseball)
 {
-	if (yellowBaseball->isDeath)
+	if (yellowBaseball->damagedCount == 5)
 	{
+		yellowBaseball->damagedCount = 0;
 		return new ybDeathState();
+	}
+	if (yellowBaseball->damagedCount < 5 && yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+	{
+		yellowBaseball->setCurrentFrameX(0);
+		yellowBaseball->isCollisionDamaged = false;
+		return new ybIdleState();
 	}
 	return nullptr;
 }

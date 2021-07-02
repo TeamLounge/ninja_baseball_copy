@@ -42,6 +42,9 @@ void ybDeathState::enter(yellowBaseball * yellowBaseball)
 		yellowBaseball->setCurrentFrameY(0);
 	}
 	yellowBaseball->setCurrentFrameX(0);
+
+	yellowBaseball->isCollisionDamaged = true;
+	yellowBaseball->isDeath = false;
 }
 
 void ybDeathState::exit(yellowBaseball * yellowBaseball)

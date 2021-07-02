@@ -17,7 +17,7 @@ cardState * cardDeathState::inputHandle(card * card)
 		if (count >= 30)
 		{
 			card->_isDeathState = true;
-			RENDERMANAGER->deleteObj("card", 0);
+			/*RENDERMANAGER->deleteObj("card", 0);*/
 		}
 	}
 	return nullptr;
