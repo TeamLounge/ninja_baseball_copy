@@ -47,7 +47,7 @@ void enemyManager::render()
 
 	//renderGlove();
 
-	//renderCard();
+	renderCard();
 	//renderBoss();
 
 	char str1[126];
@@ -773,6 +773,7 @@ void enemyManager::updateCard()
 {
 	//카드 업데이트
 	WhereIsCard();
+	assultedCollisionCard();
 
 	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
 	{
@@ -830,7 +831,7 @@ void enemyManager::WhereIsCard()
 			if (IntersectRect(&temp, &_player->getRect(), &(*_viCard)->getAtkCardRc())
 				&& !(*_viCard)->_isCrash)
 			{
-				(*_viCard)->numPattern = rand() % 3;
+				(*_viCard)->numPattern = rand() % 5;
 				(*_viCard)->setIsDash(false);
 				(*_viCard)->setIsBullet(false);
 				(*_viCard)->_isCrash = true;
@@ -860,85 +861,94 @@ void enemyManager::WhereIsCard()
 /////////////////////////////////////////////////
 void enemyManager::assultedCollisionCard()
 {
-	/*for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
+	for (_viCard = _vCard.begin(); _viCard != _vCard.end(); ++_viCard)
 	{
-		if ((*_viCard)->_isMoveState && _player->isattack)
+		if ((*_viCard)->_isCardMoveState && _player->isattack)
 		{
 			RECT temp;
-			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->_attack_rc))
 			{
 				if (_player->_isGreenAttack1 || _player->_isGreenAttack2 ||
 					_player->_isGreenAttack3 || _player->_isGreenDashAttack ||
 					_player->_isGreenJumpAttack)
 				{
-					_boss->_isSmallDamaged = true;
+					(*_viCard)->_isCardSmallDamaged = true;
 				}
 
 				if (_player->_isGreenDashAlt || _player->_isGreenJumpPowerAttack)
 				{
-					_boss->_isDamaged = true;
+					(*_viCard)->_isCardHeavyDamaged = true;
 				}
 			}
 		}
 
-		if (_boss->_isSmallDamagedState && _player->isattack)
+		if ((*_viCard)->_isCardSmallDamagedState && _player->isattack)
 		{
 			RECT temp;
-			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
+			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->_attack_rc))
 			{
 				if (_player->_isGreenAttack1)
 				{
-					_boss->_isSmallDamaged = true;
+					(*_viCard)->_isCardSmallDamaged = true;
+					(*_viCard)->_isGreenAttack1 = true;
 				}
 
 				if (_player->_isGreenAttack2 || _player->_isGreenAttackFrontCombo1)
 				{
-					_boss->_isGreenAttack12 = true;
+					(*_viCard)->_isGreenAttack2 = true;
 				}
 
 				if (_player->_isGreenAttack3 || _player->_isGreenAttackFrontCombo2)
 				{
-					_boss->_isGreenAttack3 = true;
+					(*_viCard)->_isGreenAttack3 = true;
 				}
 			}
 		}
 
-		if (_boss->_isMoveState && _player->iscrawl)
+		if ((*_viCard)->_isCardMoveState && _player->iscrawl)
 		{
 			RECT temp;
-			if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
+			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->getRect()))
 			{
 				_player->iscatch = true;
-				_boss->_isGreenCatch = true;
-				_boss->_isSmallDamaged = true;
+				(*_viCard)->_isGreenCatch = true;
+				(*_viCard)->_isCardSmallDamaged = true;
+			}
+		}
+
+		if ((*_viCard)->_isCardSmallDamagedState && _player->iscatch)
+		{
+			if (_player->_isGreenCatchAttack)
+			{
+				(*_viCard)->_isGreenCatchAttack = true;
+				_player->_isGreenCatchAttack = false;
+			}
+
+			if (_player->_isGreenCatchBackAttack &&
+				!(*_viCard)->_isGreenCatchBackAttack)
+			{
+				(*_viCard)->_isGreenCatchBackAttack = true;
+				_player->_isGreenCatchBackAttack = false;
+			}
+
+			if (_player->_isGreenCatchFrontCombo &&
+				!(*_viCard)->_isGreenCatchFrontCombo)
+			{
+				(*_viCard)->_isGreenCatchFrontCombo = true;
+				_player->_isGreenCatchFrontCombo = false;
 			}
 		}
 
 		if (!_player->iscatch)
 		{
-			_boss->_isGreenCatch = false;
+			(*_viCard)->_isGreenCatch = false;
 		}
 
-		if (_player->_isGreenCatchAttack && _player->iscatch)
-		{
-			_boss->_isGreenCatchAttack = true;
-			_player->_isGreenCatchAttack = false;
-			_player->_isGreenCatchBackAttack = false;
-		}
-
-		if (_player->_isGreenCatchBackAttack && _player->iscatch)
-		{
-			_boss->_isGreenCatchBackAttack = true;
-			_player->_isGreenCatchAttack = false;
-		}
-
-		if (_player->_isGreenCatchFrontCombo && _player->iscatch)
-		{
-			_boss->_isGreenCatchFrontCombo = true;
-			_player->_isGreenCatchFrontCombo = false;
-		}
-	}*/
-
+		//if ((*_viCard)->_isDeathState)
+		//{
+		//	RENDERMANAGER->deleteObj("card", 0);
+		//}
+	}
 }
 
 
@@ -970,6 +980,11 @@ void enemyManager::updateBoss()
 void enemyManager::renderBoss()
 {
 	_boss->render();
+}
+
+void enemyManager::pinRender()
+{
+	_boss->pinRender();
 }
 
 
@@ -1139,6 +1154,7 @@ void enemyManager::attackCollision()
 	}
 }
 
+
 /////////////////////////////////
 //  ######보스 피격충돌 ########
 ///////////////////////////////// 공격 당했을때 //
@@ -1186,10 +1202,11 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
-	if (_boss->_isMoveState && _player->iscrawl)
+
+	RECT temp;
+	if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
 	{
-		RECT temp;
-		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
+		if (_boss->_isMoveState && _player->iscrawl)
 		{
 			_player->iscatch = true;
 			_boss->_isGreenCatch = true;
@@ -1202,7 +1219,7 @@ void enemyManager::assultedCollisionBoss()
 		_boss->_isGreenCatch = false;
 	}
 
-	if (_player->_isGreenCatchAttack && _player->iscatch)
+	if (_player->_isGreenCatchAttack  && _player->iscatch)
 	{
 		_boss->_isGreenCatchAttack = true;
 		_player->_isGreenCatchAttack = false;

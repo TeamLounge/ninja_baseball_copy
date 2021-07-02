@@ -177,6 +177,7 @@ public:
 
 	void WhereIsBoss();
 	void attackCollision();
+	void pinRender();
 
 	boss* getBoss() { return _boss; }
 	void assultedCollisionBoss();

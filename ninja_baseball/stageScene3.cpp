@@ -38,9 +38,7 @@ HRESULT stageScene3::init()
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
 
-	_em->setPlayerMemoryAddressLink(_player);
-	_player->setEmMemoryAddressLink(_em);
-
+	_count = 0;
 	return S_OK;
 }
 
@@ -86,7 +84,13 @@ void stageScene3::update()
 
 	if (_em->getBoss()->_isDeathState)
 	{
-		SCENEMANAGER->changeScene("ending");
+		_count++;
+
+		if (_count >= 500)
+		{
+			_count = 0;
+			SCENEMANAGER->changeScene("ending");
+		}
 	}
 }
 
@@ -95,10 +99,12 @@ void stageScene3::render()
 	IMAGEMANAGER->findImage("stage_3")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("»§ºü·¹")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
 	_player->render();
-	_em->render();
+	_em->pinRender();
 	RENDERMANAGER->render(getMemDC());
+	_em->renderBoss();
+	_em->render();
 
 	_playerUI->render();
 	_timerUI->render();
-	
+
 }

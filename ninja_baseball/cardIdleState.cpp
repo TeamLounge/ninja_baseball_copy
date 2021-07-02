@@ -7,12 +7,17 @@
 #include "cardDeathState.h"
 #include "cardSmallDamagedState.h"
 #include "cardHeavyDamagedState.h"
+#include "cardLandState.h"
 
 cardState * cardIdleState::inputHandle(card * card)
 {
 	if ((!card->_isDash && !card->_isPunchBullet) || card->numPattern == 0)
 	{
-		return new cardMoveState();
+		if (readyCount >= 2)
+		{
+			readyCount = 0;
+			return new cardMoveState();
+		}
 	}
 	return nullptr;
 }
@@ -28,6 +33,7 @@ void cardIdleState::update(card * card)
 			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
 				card->_currentFrameX = 0;
+				readyCount++;
 			}
 			else card->_currentFrameX++;
 			card->_currentFrameY = 0;
@@ -43,6 +49,7 @@ void cardIdleState::update(card * card)
 			if (card->_currentFrameX == card->_card.img->getMaxFrameX())
 			{
 				card->_currentFrameX = 0;
+				readyCount++;
 			}
 			else card->_currentFrameX++;
 			card->_currentFrameY = 1;
@@ -71,7 +78,7 @@ void cardIdleState::enter(card * card)
 		card->_currentFrameX = 0;
 		card->_currentFrameY = 1;
 	}
-
+	readyCount = 0;
 
 	return;
 }

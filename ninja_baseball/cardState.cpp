@@ -7,3 +7,4 @@
 #include "cardDeathState.h"
 #include "cardHeavyDamagedState.h"
 #include "cardSmallDamagedState.h"
+#include "cardLandState.h"

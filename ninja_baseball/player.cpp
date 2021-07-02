@@ -38,6 +38,7 @@ HRESULT player::init(int character, bool isStart)
 	_x = 200;
 	_y = WINSIZEY - 200;
 	_playerrc = RectMakeCenter(_x, _y, 80, 77);
+
 	_state->enter(this);
 
 	_em = new enemyManager;
@@ -375,20 +376,20 @@ void player::collision()
 			}
 		}
 	
-		//card과 잡기상태 충돌처리함수
-		if (iscrawl && !isattack)
-		{
-			if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
-			{
-				RECT t3 = _playerrc;
-				RECT t4 = _em->getVCard()[i]->getAtkCardRc();
-				if (IntersectRect(&temp, &t3, &t4))
-				{
-					iscatch = true;
-				}
-			}
-		}
+		//card과 잡기상태 충돌처리함수 <----07.02 주석처리 by 김광수
+		//if (iscrawl && !isattack)
+		//{
+		//	if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
+		//		_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
+		//	{
+		//		RECT t3 = _playerrc;
+		//		RECT t4 = _em->getVCard()[i]->getAtkCardRc();
+		//		if (IntersectRect(&temp, &t3, &t4))
+		//		{
+		//			iscatch = true;
+		//		}
+		//	}
+		//}
 	}
 	
 	//glove 충돌

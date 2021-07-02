@@ -70,12 +70,27 @@ void card::update()
 	_cardState->update(this);
 	
 	_card.rc = RectMake(_card.x + 120, _card.y + 15, 200, 200);
-	_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _card.rc.bottom,
-		_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
-	_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
-	_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
+	//_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _card.rc.bottom,
+	//	_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
+	//_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
+	//_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
 	_assultedRect = RectMakeCenter((_card.rc.left + _card.rc.right) / 2,
 		(_card.rc.top + _card.rc.bottom) / 2, 100, 70);
+
+	if (!_isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
+	{
+		//그림자
+		_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _card.rc.bottom,
+			_cardShadow.img->getWidth(), _cardShadow.img->getHeight());
+		_jumpShadowY = (_cardShadow.rc.bottom + _cardShadow.rc.top) / 2;	//점프하기 전까지의 y값을 계속 저장중.
+
+	}
+	else   //점프하면
+	{
+		//그림자
+		_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2, _jumpShadowY,
+			_cardShadow.img->getWidth(), _cardShadow.img->getHeight());  //점프하기 전의 y값을 사용
+	}
 
 	if (!_isLeft)
 	{
@@ -87,7 +102,9 @@ void card::update()
 		_atkRc = RectMake(_card.x - 400, _card.y + 70, 200, 40);
 	}
 	
-	//getGravity();
+	_cardShadow.x = (_cardShadow.rc.left + _cardShadow.rc.right) / 2;
+	_cardShadow.y = (_cardShadow.rc.top + _cardShadow.rc.bottom) / 2;
+
 	updateBullet();
 }
 
@@ -110,8 +127,8 @@ void card::render()
 
 		Rectangle(getMemDC(), _card.rc);
 		Rectangle(getMemDC(), _cardShadow.rc);
-		Rectangle(getMemDC(), _atkRc);
 		Rectangle(getMemDC(), _assultedRect);
+		Rectangle(getMemDC(), _atkRc);
 
 		for (_viPunchBullet = _vPunchBullet.begin(); _viPunchBullet != _vPunchBullet.end(); ++_viPunchBullet)
 		{
@@ -174,6 +191,19 @@ void card::setCard()
 	_isCardSmallDamagedState =_isCardSmallDamaged = false;
 	_isCardHeavyDamagedState =_isCardHeavyDamaged = false;
 	_isCardDeathState =_isCardDeath = false;
+	_deathCount = 0;
+
+	_isGreenAttack1 = _isGreenAttack2 = _isGreenAttack3 = _isGreenDashAttack = _isGreenJumpAttack = false;
+
+	_isGreenCatchBackAttack = _isGreenCatchFrontCombo = false;
+
+	_isGreenCatch = _isGreenCatchAttack = _isGreenCatchAttackPre = false;
+
+	_isDone = false;
+
+	_isCardLandState = false;
+
+	_isDeathState = false;
 }
 
 void card::setCardShadow()
@@ -187,34 +217,7 @@ void card::setCardShadow()
 	_cardShadow.img->setY(_cardShadow.y);
 }
 
-void card::getGravity()
-{
-	if (_isJump)
-	{
-		_card.y -= _jumpPower;
-		_jumpPower -= _gravity;
-		_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2 + 20, _cardShadow.y, _cardShadow.img->getWidth(), _cardShadow.img->getHeight());
-	}
 
-	if (!_isJump)
-	{
-		_cardShadow.rc = RectMakeCenter((_card.rc.left + _card.rc.right) / 2 + 20, _card.rc.bottom, _cardShadow.img->getWidth(), _cardShadow.img->getHeight());
-	}
-
-	RECT temp;
-	if (IntersectRect(&temp, &_card.rc, &_cardShadow.rc))
-	{
-		_isJump = false;
-		_jumpPower = 0;
-		//_card.y = _card.y - (temp.bottom - temp.top);
-		_cardShadow.y = _card.rc.bottom;
-	}
-
-	if (!(IntersectRect(&temp, &_card.rc, &_cardShadow.rc)))
-	{
-		_isJump = true;
-	}
-}
 
 void card::setBullet(int bulletMax, float range)
 {

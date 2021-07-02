@@ -6,6 +6,7 @@ playerstate * Ryno_catchfrontCombo::handleInput(player * player)
 	if (isend)
 	{
 		player->iscatch = false;
+		player->_isGreenCatchFrontCombo = false;
 		return new Ryno_idle;
 	}
 	return nullptr;

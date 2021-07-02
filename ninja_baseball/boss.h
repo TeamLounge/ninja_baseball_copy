@@ -139,6 +139,7 @@ public:
 	float _divideX, _divideY, _divideGravity;
 	bool _isGreenAttack12, _isGreenAttack3;   //그린어택 1,2,3 들어왔을때 불값
 	bool _isGreenCatch, _isGreenCatchAttack, _isGreenCatchBackAttack, _isGreenCatchFrontCombo;
+	bool _isGreenCatchAttackPre;
 
 
 
@@ -156,6 +157,7 @@ public:
 	void renderAdjust();
 	void smokeEffect();
 	void imgLocation();
+	void pinRender();
 
 	//게터 설정
 	bool getIsUpper() { return _isUpper; }

@@ -18,8 +18,18 @@ bossState * bossDeathState::inputHandle(boss * boss)
 {
 	if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
 	{
-		boss->_isDeathState = true;
-		RENDERMANAGER->deleteObj("boss", 0);
+		count++;
+		if (count >= 100)
+		{
+			boss->_isDeathState = true;
+			RENDERMANAGER->deleteObj("boss", 0);
+			EFFECTMANAGER->stop("boss_smoke_noWing");
+			EFFECTMANAGER->stop("boss_smoke_noWing2");
+			EFFECTMANAGER->stop("boss_smoke_noWingProp");
+			EFFECTMANAGER->stop("boss_smoke_noOneArm");
+			EFFECTMANAGER->stop("boss_smoke_noArm");
+			//¾Æ´Ï¸é EFFECTMANAGER->release();
+		}
 	}
 
 	return nullptr;
@@ -76,6 +86,8 @@ void bossDeathState::enter(boss * boss)
 
 	readyCount = 0;
 	boss->_currentFrameX = 0;
+
+	count = 0;
 }
 
 void bossDeathState::exit(boss * boss)

@@ -418,6 +418,9 @@
     <ClCompile Include="cardSmallDamagedState.cpp">
       <Filter>playGound\enemy\Card\cardState</Filter>
     </ClCompile>
+    <ClCompile Include="cardLandState.cpp">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -853,6 +856,9 @@
       <Filter>playGound\enemy\Card\cardState</Filter>
     </ClInclude>
     <ClInclude Include="cardSmallDamagedState.h">
+      <Filter>playGound\enemy\Card\cardState</Filter>
+    </ClInclude>
+    <ClInclude Include="cardLandState.h">
       <Filter>playGound\enemy\Card\cardState</Filter>
     </ClInclude>
   </ItemGroup>

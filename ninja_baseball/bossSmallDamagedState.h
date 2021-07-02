@@ -9,6 +9,8 @@ public:
 	int frameCount;
 	int readyCount;
 	int deathCount;
+	int damageCount;
+	int cCount;
 
 	virtual bossState* inputHandle(boss* boss);
 	virtual void update(boss* boss);

@@ -92,7 +92,22 @@ public:
 	bool _isCardSmallDamagedState, _isCardSmallDamaged;
 	bool _isCardHeavyDamagedState, _isCardHeavyDamaged;
 	bool _isCardDeathState, _isCardDeath;
+	bool _isCardMoveState, _isCardLandState;
+	float _jumpShadowY;
+	bool _isDeathState;
 
+
+	bool _isGreenAttack1, _isGreenAttack2, _isGreenAttack3, //기본 어택
+		_isGreenDashAttack, _isGreenJumpAttack; //대쉬어택, 점프 어택
+
+	bool _isGreenCatchBackAttack, _isGreenCatchFrontCombo;
+	bool _isGreenCatch, _isGreenCatchAttack;
+	bool _isGreenCatchAttackPre;
+
+	bool _isDone; // 공격이 끝났따~ 이말이야
+
+	//죽기 딱 좋은 카운트
+	int _deathCount;
 
 
 	bool isattack;              //에너미가 공격했어??
@@ -111,7 +126,6 @@ public:
 	void setImage();
 	void setCard();
 	void setCardShadow();
-	void getGravity();
 
 	////////////////////////////
 	//   총알 발사 함수

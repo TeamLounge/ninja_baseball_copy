@@ -153,7 +153,6 @@ void boss::render()
 {
 	//보스 상태마다 이미지크기가 달라서 위치를 조정하기 위해 만들었음
 	//_bossShadow.img->render(getMemDC(), _bossShadow.rc.left, _bossShadow.rc.top);
-	if (_isPinLight) _bossPinLight.img->alphaRender(getMemDC(), _boss.x + 100, _boss.y - 150, _alphaIdx);
 	
 	if (_isLeft)
 	{
@@ -368,6 +367,7 @@ void boss::setBoss()
 	_isGreenCatchAttack = false;
 	_isGreenCatchBackAttack = false;
 	_isGreenCatchFrontCombo = false;
+	_isGreenCatchAttackPre = false;
 }
 
 
@@ -511,7 +511,7 @@ void boss::renderAdjust()
 				_imageY = _boss.y - 104;
 			}
 
-			if (_isSmallDamagedState)
+			else if (_isSmallDamagedState)
 			{
 				_imageX = _boss.x + 103;
 				_imageY = _boss.y - 104;
@@ -537,7 +537,7 @@ void boss::renderAdjust()
 				_imageY = _boss.y - 104;
 			}
 
-			if (_isSmallDamagedState)
+			else if (_isSmallDamagedState)
 			{
 				_imageX = _boss.x + 103;
 				_imageY = _boss.y - 104;
@@ -667,7 +667,7 @@ void boss::renderAdjust()
 				_imageY = _boss.y - 104;
 			}
 
-			if (_isSmallDamagedState)
+			else if (_isSmallDamagedState)
 			{
 				_imageX = _boss.x + 20;
 				_imageY = _boss.y - 104;
@@ -1044,6 +1044,11 @@ void boss::imgLocation()
 		_isRight_RightArm->setX(_isRight_RightArm->getX() + _divideX);
 		_isRight_RightArm->setY(_isRight_RightArm->getY() - _divideY);
 	}
+}
+
+void boss::pinRender()
+{
+	if (_isPinLight) _bossPinLight.img->alphaRender(getMemDC(), _boss.x + 100, _boss.y - 150, _alphaIdx);
 }
 
 

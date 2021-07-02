@@ -11,6 +11,7 @@ public:
 	float jumpPower;
 	float gravity;
 	float moveX;
+	int count;
 
 	virtual bossState* inputHandle(boss* boss);
 	virtual void update(boss* boss);
