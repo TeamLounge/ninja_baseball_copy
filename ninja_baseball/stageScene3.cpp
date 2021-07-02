@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "stageScene3.h"
 
+//ver 0702_22:27 주석 삭제
 HRESULT stageScene3::init()
 {
 	IMAGEMANAGER->addImage("stage_3", "image/1_Map/stage1-3.bmp", 1920, WINSIZEY, true, RGB(255, 0, 255), false);
