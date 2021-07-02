@@ -89,11 +89,11 @@ void red_moveState::update(player * _player)
 	}
 
 
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	if (KEYMANAGER->isStayKeyDown(VK_UP) && _player->_shadow->getY() > 344)
 	{
 		_player->setY(_player->getY() - redSpeed);
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _player->_shadow->getY() < 617)
 	{
 		_player->setY(_player->getY() + redSpeed);
 	}
@@ -143,11 +143,15 @@ void red_moveState::update(player * _player)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 5 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());
 	}
 	if (_player->isRight == false)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());
 	}
 	
 	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
