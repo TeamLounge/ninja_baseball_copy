@@ -52,9 +52,7 @@ HRESULT stageScene1::init()
 	_isAllDead = false;
 
 	_cameraStopX.push(1300);
-	_cameraStopX.push(2200);
-	_cameraStopX.push(BACKGROUNDY);
-
+	_cameraStopX.push(2300);
 
 	return S_OK;
 }
@@ -84,7 +82,7 @@ void stageScene1::update()
 	//UPDATE baseBall////////////
 	_em->updateBlueBaseball();
 	_em->updateGreenBaseball();
-	_em->updateWhiteBaseball();
+	//_em->updateWhiteBaseball();
 	//_em->updateYellowBaseball();
 	/////////////////////////////
 
@@ -96,7 +94,7 @@ void stageScene1::update()
 	CAMERAMANAGER->update();
 
 
-	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT() && !CAMERAMANAGER->_isFixed)
+	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 	{
 		_cameraStopX.pop();
 		CAMERAMANAGER->_isFixed = true;
@@ -105,11 +103,7 @@ void stageScene1::update()
 
 	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
-		if (!CAMERAMANAGER->_isFixed)
-		{
-			CAMERAMANAGER->_isFixed = true;
-		}
-		else
+		if (CAMERAMANAGER->_isFixed)
 		{
 			CAMERAMANAGER->_isFixed = false;
 		}
@@ -173,7 +167,7 @@ void stageScene1::render()
 	if (!_shutter.isCrush)
 	{
 		IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
-		Rectangle(getMemDC(), _shutter.rc);
+		//Rectangle(getMemDC(), _shutter.rc);
 	}
 	else if (IMAGEMANAGER->findImage("shutterParticle1")->getY()+ IMAGEMANAGER->findImage("shutterParticle1")->getHeight() < WINSIZEY)
 	{

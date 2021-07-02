@@ -42,7 +42,7 @@ public:
 	*/
 
 	//두 개체의 x, y좌표를 기준으로 카메라 센터 지정
-	void updateCamera(float x1, float y1, float x2, float y2);
+	void updateCamera(float x1, float y1, float x2, float y2, float ratioX1, float ratioX);
 
 	//플레이어가 x축 기준으로 어느정도 비율을 넘어가면 카메라가 움직임(0.5f<ratio<1.0f)
 	void updateCamera(float centerX, float centerY, float ratioX);

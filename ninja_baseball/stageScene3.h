@@ -4,6 +4,7 @@
 #include "playerUI.h"
 #include "timerUI.h"
 #include "enemyManager.h"
+#include "queue"
 
 class stageScene3 : public gameNode
 {
@@ -18,6 +19,14 @@ private:
 
 	playerUI* _playerUI;
 	timerUI* _timerUI;
+
+	queue<float> _cameraStopX;
+
+	bool _isHaveToSetBoss;
+
+	bool _isSetBoss;
+
+	bool _isStart;
 
 public:
 	HRESULT init();

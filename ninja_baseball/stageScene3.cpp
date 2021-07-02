@@ -32,14 +32,22 @@ HRESULT stageScene3::init()
 	_em = new enemyManager;
 	_em->init();
 	_em->setBat2();
+	//_em->setBoss();
+	
 
-	_em->setBoss();
+	_em->setPlayerMemoryAddressLink(_player);
+	_player->setEmMemoryAddressLink(_em);
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
 
-	_em->setPlayerMemoryAddressLink(_player);
-	_player->setEmMemoryAddressLink(_em);
+	_cameraStopX.push(1080);
+
+	CAMERAMANAGER->_isFixed = true;
+
+	_isSetBoss = false;
+
+	_isStart = true;
 
 	return S_OK;
 }
@@ -50,30 +58,73 @@ void stageScene3::release()
 
 void stageScene3::update()
 {
-	_player->update();
-
-	_em->update();
-
-	
-	_em->updateBoss();
-
-	_elapsedTime += TIMEMANAGER->getElapsedTime();
-
-	if (_elapsedTime >= 0.2f)
+	if (_isStart)
 	{
-		_elapsedTime -= 0.2f;
-		if (IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() >= IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX())
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN) || KEYMANAGER->isStayKeyDown(VK_UP) ||
+			KEYMANAGER->isStayKeyDown(VK_LEFT) || KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
-			IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(0);
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() + 1);
+			CAMERAMANAGER->_isFixed = false;
+			_isStart = false;
 		}
 	}
 
-	//Ä«¸Þ¶ó ¹«ºù ¼öÁ¤ ÇÊ¿ä
-	CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2, 0.51f);
+	if (KEYMANAGER->isOnceKeyDown('Q'))
+	{
+		if (CAMERAMANAGER->_isFixed)
+		{
+			CAMERAMANAGER->_isFixed = false;
+		}
+	}
+
+	if (!_isHaveToSetBoss && CAMERAMANAGER->getCameraRIGHT() >= 1920)
+	{
+		_isHaveToSetBoss = true;
+	}
+	
+	_player->update();
+
+	_em->update();
+	
+	if (_isSetBoss)
+	{
+		_em->updateBoss();
+	}
+	
+	if (_isHaveToSetBoss && !_isSetBoss)
+	{
+		_elapsedTime += TIMEMANAGER->getElapsedTime();
+
+		if (_elapsedTime >= 0.2f)
+		{
+			_elapsedTime -= 0.2f;
+			if (IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() >= IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX())
+			{
+				IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getMaxFrameX());
+				_isSetBoss = true;
+				_em->setBoss();
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() + 1);
+			}
+		}
+	}
+
+	if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
+	{
+		_cameraStopX.pop();
+		CAMERAMANAGER->_isFixed = true;
+	}
+
+	if (_isSetBoss)
+	{
+		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2, _em->getBoss()->getCenterX(), WINSIZEY/2, 0.1f, 0.9f);
+	}
+	else
+	{
+		//Ä«¸Þ¶ó ¹«ºù ¼öÁ¤ ÇÊ¿ä
+		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, 0.51f);
+	}
 	if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
 	{
 		CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);
@@ -84,21 +135,26 @@ void stageScene3::update()
 	_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
 	_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
-	if (_em->getBoss()->_isDeathState)
+	if (_isSetBoss && _em->getBoss()->_isDeathState)
 	{
 		SCENEMANAGER->changeScene("ending");
 	}
+
 }
 
 void stageScene3::render()
 {
 	IMAGEMANAGER->findImage("stage_3")->render(getMemDC(), 0, 0);
-	IMAGEMANAGER->findImage("»§ºü·¹")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
+	if (_isHaveToSetBoss)
+	{
+		IMAGEMANAGER->findImage("»§ºü·¹")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
+	}
 	_player->render();
 	_em->render();
+	//em->renderBoss();
 	RENDERMANAGER->render(getMemDC());
-
 	_playerUI->render();
 	_timerUI->render();
 	
+
 }

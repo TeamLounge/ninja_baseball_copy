@@ -75,15 +75,30 @@ void cameraManager::updateCamera(float x, float y)
 	cameraRange();
 }
 
-void cameraManager::updateCamera(float x1, float y1, float x2, float y2)
+void cameraManager::updateCamera(float x1, float y1, float x2, float y2, float ratioX1, float ratioX2)
 {
-	_cameraBuffer->setX((x1 + x2) / 2);
-	_cameraBuffer->setY((y1 + y2) / 2);
-	if (getCameraRIGHT() >= x2 + 50)
+	if (x1 >= _cameraBuffer->getX() + ratioX2 * CAMERAX)
 	{
-		_cameraBuffer->setX(x2 + 50);
+		_cameraBuffer->setX(x1 - ratioX2 * CAMERAX);
 	}
+	if (x1 <= _cameraBuffer->getX() + ratioX1 * CAMERAX)
+	{
+		_cameraBuffer->setX(x1 - ratioX1 * CAMERAX);
+	}
+
+	if (getCameraRIGHT() <= x2)
+	{
+		_cameraBuffer->setX(x2 - WINSIZEX);
+	}
+	else if (getCameraLEFT() >= x2)
+	{
+		_cameraBuffer->setX(x2);
+	}
+
 	cameraRange();
+	x[0] = _cameraBuffer->getX() + ratioX1 * CAMERAX;
+	x[1] = _cameraBuffer->getX() + ratioX2 * CAMERAX;
+	//_cameraBuffer->setCenter((x1 + x2) / 2, (y1 + y2) / 2);
 }
 
 void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
