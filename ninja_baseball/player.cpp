@@ -104,7 +104,7 @@ void player::release()
 
 void player::render()
 {
-	if (isfly)
+	if (isfly&&isattack)
 	{
 		_effect->render(getMemDC());
 		_effect1->render(getMemDC());

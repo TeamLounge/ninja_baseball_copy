@@ -5,7 +5,7 @@ class Ryno_fly : public playerstate
 private:
 	int _count, _index;
 	int _actiontime , _commandTime;
-	float _top;
+	float _top , second;
 	bool isattack , isend ,next;
 	RECT rc;
 public:

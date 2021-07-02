@@ -29,7 +29,7 @@ void Ryno_fly::update(player * player)
 			{
 				if (KEYMANAGER->isOnceKeyDown('X')&& (player->getY() < _top))
 				{
-					player->isattack = true;
+					player->isfly = true;
 					player->_isGreenJumpPowerAttack = true;
 				}
 			}
@@ -56,11 +56,19 @@ void Ryno_fly::update(player * player)
 	}
 
 	//이거는 공격했다면 공격렉트를 쏠겁니다
-	if (_index<2 && player->isattack)
+	if (_index<2 && player->isfly)
 	{
 		_actiontime++;
 		next = true;
-		player->isfly = true;
+		second += TIMEMANAGER->getElapsedTime();
+		if (second >= 0.08f)
+		{
+			player->isattack = true;
+			second -= 0.08f;
+		}
+		else
+			player->isattack = false;
+
 		if(player->isRight)
 		{
 			player->_effect->setCenter((player->getX() + (player->getRect().right - player->getRect().left) / 2) + cosf(0.75) * 20, (player->getY() + (player->getRect().bottom - player->getRect().top) / 2) + sinf(0.75) * 2);
@@ -81,7 +89,8 @@ void Ryno_fly::update(player * player)
 		if (_actiontime > 50)
 		{
 			player->isfly = false;
-			_index++;
+			player->isattack = false;
+			_index = 2;
 			_actiontime = 0;
 			_commandTime = 0;
 			_count = 0;
@@ -184,7 +193,7 @@ void Ryno_fly::update(player * player)
 void Ryno_fly::enter(player * player)
 {
 	_count = _index = 0;
-	_actiontime = _commandTime =  0;
+	_actiontime = _commandTime = second=  0;
 
 	next = false;
 	player->isattack = false;
