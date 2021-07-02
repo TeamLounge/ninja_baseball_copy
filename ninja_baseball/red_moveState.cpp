@@ -52,7 +52,7 @@ playerstate* red_moveState::handleInput(player* _player)
 
 void red_moveState::update(player * _player)
 {
-	
+	//이부분 수정예정...
 	if (_player->getRect().left < CAMERAMANAGER->getCameraLEFT())
 	{
 		_player->setX(_player->getX() + CAMERAMANAGER->getCameraLEFT() - _player->getRect().left);
@@ -88,7 +88,7 @@ void red_moveState::update(player * _player)
 		_runTimeStart = true;
 	}
 
-
+	
 	if (KEYMANAGER->isStayKeyDown(VK_UP) && _player->_shadow->getY() > 344)
 	{
 		_player->setY(_player->getY() - redSpeed);
