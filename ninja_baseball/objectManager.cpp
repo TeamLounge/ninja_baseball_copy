@@ -291,23 +291,21 @@ void objectManager::collsion()
 		}
 	}
 
-	if (_player->isattack)
-	{
-		for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++) {
-			if ((*_vitrash)->getShadowY() > _player->_shadow->getY() &&
-				(*_vitrash)->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
+	
+	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++) {
+		if ((*_vitrash)->getShadowY() > _player->_shadow->getY() &&
+			(*_vitrash)->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
+		{
+			if (_player->isattack&&IntersectRect(&temp, &_player->_attack_rc, &(*_vitrash)->getRect()))
 			{
-				if (IntersectRect(&temp, &_player->_attack_rc, &(*_vitrash)->getRect()))
+				(*_vitrash)->presenty = _player->_attack_rc.top;
+				if ((*_vitrash)->pasty != (*_vitrash)->presenty)
 				{
-					(*_vitrash)->presenty = _player->_attack_rc.top;
-					if ((*_vitrash)->pasty != (*_vitrash)->presenty)
-					{
-						(*_vitrash)->pasty = (*_vitrash)->presenty;
-						(*_vitrash)->isdamage = true;
-					}
+					(*_vitrash)->pasty = (*_vitrash)->presenty;
+					(*_vitrash)->isdamage = true;
 				}
-				else (*_vitrash)->pasty = 0;
 			}
+			else (*_vitrash)->pasty = 0;
 		}
 	}
 

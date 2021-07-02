@@ -60,12 +60,17 @@ void Ryno_fly::update(player * player)
 	{
 		_actiontime++;
 		next = true;
-		second += TIMEMANAGER->getElapsedTime();
-		if (second >= 0.08f)
-		{
+		//second += TIMEMANAGER->getElapsedTime();
+		//if (second >= 0.08f)
+		//{
+		//	player->isattack = true;
+		//	second -= 0.08f;
+		//}
+		//else
+		//	player->isattack = false;
+		//
+		if(_count%4==0)
 			player->isattack = true;
-			second -= 0.08f;
-		}
 		else
 			player->isattack = false;
 

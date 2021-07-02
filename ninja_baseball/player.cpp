@@ -106,10 +106,12 @@ void player::render()
 {
 	if (isfly&&isattack)
 	{
+		Rectangle(getMemDC(), _attack_rc);
 		_effect->render(getMemDC());
 		_effect1->render(getMemDC());
 		_effect2->render(getMemDC());
 		_effect3->render(getMemDC());
+		
 	}
 }
 
