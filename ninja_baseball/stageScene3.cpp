@@ -32,9 +32,14 @@ HRESULT stageScene3::init()
 	_em = new enemyManager;
 	_em->init();
 	_em->setBat2();		//stage3에 등장하는 배트 3마리
+	
+	_obj = new objectManager;
+	_obj->setgoldbat(0,0);
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
+	_obj->setLinkEnemyManager(_em);
+	_obj->setLinkPlayer(_player);
 
 	_count = 0;
 
@@ -81,10 +86,7 @@ void stageScene3::update()
 	_em->updateBat();
 	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
 	_em->playerLocation();
-	
-
 	_player->update();
-
 	_em->update();
 		if (KEYMANAGER->isOnceKeyDown('Q'))
 		{
@@ -103,8 +105,8 @@ void stageScene3::update()
 		if (_isSetBoss)
 		{
 			_em->updateBoss();
+			_obj->updategoldbat();
 		}
-
 		if (_isHaveToSetBoss && !_isSetBoss)
 		{
 			_elapsedTime += TIMEMANAGER->getElapsedTime();
@@ -154,6 +156,7 @@ void stageScene3::update()
 		//보스 죽으면
 		if (_isSetBoss && _em->getBoss()->_isDeathState)
 		{
+
 			_count++;
 			if (_count >= 500)
 			{
@@ -204,10 +207,10 @@ void stageScene3::render()
 		IMAGEMANAGER->findImage("빵빠레")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
 	}
 	_player->render();
-
 	if (_isSetBoss)
 	{
 		_em->pinRender();
+		_obj->goldrender();
 	}
 	_em->renderBat();
 	RENDERMANAGER->render(getMemDC());
@@ -220,7 +223,6 @@ void stageScene3::render()
 
 	_playerUI->render();
 	_timerUI->render();
-	
 	//보스 체력바 출력
 	if (_isSetBoss)
 	{
@@ -233,4 +235,5 @@ void stageScene3::render()
 			CAMERAMANAGER->getCameraCenterX() - IMAGEMANAGER->findImage("boss_name")->getWidth() / 2,
 			120);
 	}
+	
 }

@@ -212,14 +212,13 @@ void cereal::release()
 
 void cereal::update()
 {
-
 }
 
 void cereal::render()
 {
 
-	_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
-	_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
+	//_obj._shadow->render(getMemDC(), _obj._shadow_rc.left, _obj._shadow_rc.top);
+	//_obj._img->render(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top);
 }
 
 void cereal::addrendmanager()
@@ -233,3 +232,51 @@ void cereal::deleteRendermanager()
 	RENDERMANAGER->deleteObj("cereal", 0);
 }
 
+HRESULT goldbat::init(POINT position)
+{
+	_obj._img = IMAGEMANAGER->addImage("goldbat", "image/5_Item/goldbat.bmp", 135, 129, true, RGB(255, 0, 255), false);
+	_obj._shadow = IMAGEMANAGER->addImage("goldbatshadow", "image/5_Item/goldbatshadow.bmp", 135, 23, true, RGB(255, 0, 255), false);
+	_obj._x = position.x;
+	_obj._y = position.y;
+	_obj._shadowX = position.x;
+	_obj._shadowY = position.y + _obj._img->getHeight() / 2 - 10;
+	_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
+	_obj._shadow_rc = RectMakeCenter(_obj._shadowX, _obj._shadowY, _obj._shadow->getWidth(), _obj._shadow->getHeight());
+
+	_obj._objName = "goldbat";
+	jumppower = 4.f;
+	gravity = 0.2f;
+
+	ishold = isappear = false;
+	return S_OK;
+}
+
+void goldbat::release()
+{
+
+}
+
+void goldbat::update()
+{
+	if (!ishold  && _obj._y + (_obj._img->getHeight()/2) < _obj._shadowY) {
+		_obj._y -= jumppower;
+		jumppower -= gravity;
+		_obj._obj_rc = RectMakeCenter(_obj._x, _obj._y, _obj._img->getWidth(), _obj._img->getHeight());
+	}
+}
+
+void goldbat::render()
+{
+
+}
+
+void goldbat::addrendmanager()
+{
+	RENDERMANAGER->addObj("goldbat", _obj._objName.c_str(), "goldbatshadow",
+		&_obj._x, &_obj._y, &_obj._shadowX, &_obj._shadowY, false);
+}
+
+void goldbat::deleteRendermanager()
+{
+	RENDERMANAGER->deleteObj("goldbat", 0);
+}

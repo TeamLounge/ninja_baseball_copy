@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Ryno_dashAttack.h"
 #include "Ryno_idle.h"
+#include "Ryno_damage.h"
 playerstate * Ryno_dashAttack::handleInput(player * player)
 {
 	if (speed < 0)
@@ -9,6 +10,10 @@ playerstate * Ryno_dashAttack::handleInput(player * player)
 		player->_isGreenDashAttack = false;
 		player->setY(player->getY() - 30);
 		return new Ryno_idle;
+	}
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
 	}
 	return nullptr;
 }

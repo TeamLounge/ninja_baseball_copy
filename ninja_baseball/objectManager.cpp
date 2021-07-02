@@ -34,10 +34,10 @@ void objectManager::update()
 	updateCereal();
 }
 
+
 void objectManager::render()
 {
-	char str[128];
-	char str1[128];
+
 	
 	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++)
 	{
@@ -63,6 +63,15 @@ void objectManager::render()
 			_cereal->addrendmanager();
 			(*_vitrash)->deleteRender(0);
 		}
+	}
+}
+
+void objectManager::goldrender()
+{
+	if (_em->getBoss()->_isDeathState && !(_goldbat->isappear))
+	{
+		_goldbat->isappear = true;
+		_goldbat->addrendmanager();
 	}
 }
 
@@ -105,6 +114,12 @@ void objectManager::setCereal()
 {
 	_cereal = new cereal;
 	_cereal->init(PointMake((int)_vtrash[2]->getX(), (int)_vtrash[2]->getShadowRect().top - 30));
+}
+
+void objectManager::setgoldbat(float x , float y)
+{
+	_goldbat = new goldbat;
+	_goldbat->init(PointMake(1520, 478));
 }
 
 void objectManager::updateBall()
@@ -193,6 +208,69 @@ void objectManager::updateCereal()
 	}
 }
 
+void objectManager::updategoldbat()
+{
+	RECT rc;
+	if (!(_goldbat->isappear))
+	{
+		_goldbat->setX(_em->getBoss()->getCenterX());
+		_goldbat->setY(_em->getBoss()->getCenterY());
+		_goldbat->setShadowX(_em->getBoss()->getCenterX());
+		_goldbat->setShadowY(_em->getBoss()->getCenterY() + 214);
+	}
+	if (_goldbat->isappear)
+	{
+		if (!_goldbat->ishold)
+		{
+			goldbatCollsion();
+			_goldbat->update();
+		}
+		else
+		{
+			if (_player->isRight)
+			{
+				_goldbat->setX(_player->getX() + _player->_shadow->getWidth() - 20);
+				_goldbat->setY(_player->getY());
+
+				_goldbat->setShadowX(_goldbat->getX());
+				_goldbat->setShadowY(_player->_shadow->getCenterY());
+
+				_goldbat->getShadow()->setCenter(_goldbat->getShadowX(), _goldbat->getShadowY());
+
+				_goldbat->getImage()->setCenter(_goldbat->getX(), _goldbat->getY());
+
+				rc = RectMakeCenter(_goldbat->getX(), _goldbat->getY(), _goldbat->getImage()->getWidth(), _goldbat->getImage()->getHeight());
+				_goldbat->setRect(rc);
+
+				rc = RectMakeCenter(_goldbat->getShadowX(), _goldbat->getShadowY(), _goldbat->getShadow()->getWidth(), _goldbat->getShadow()->getHeight());
+				_goldbat->setShadowRect(rc);
+
+
+			}
+			else
+			{
+				_goldbat->setX(_player->getX() - _player->_shadow->getWidth() + 20);
+				_goldbat->setY(_player->getY());
+
+				_goldbat->setShadowX(_goldbat->getX());
+				_goldbat->setShadowY(_player->_shadow->getCenterY());
+				
+				_goldbat->getShadow()->setCenter(_goldbat->getShadowX(), _goldbat->getShadowY());
+
+				_goldbat->getImage()->setCenter(_goldbat->getX(), _goldbat->getY());
+
+				rc = RectMakeCenter(_goldbat->getX(), _goldbat->getY(), _goldbat->getImage()->getWidth(), _goldbat->getImage()->getHeight());
+				_goldbat->setRect(rc);
+
+				rc = RectMakeCenter(_goldbat->getShadowX(), _goldbat->getShadowY(), _goldbat->getShadow()->getWidth(), _goldbat->getShadow()->getHeight());
+				_goldbat->setShadowRect(rc);
+
+
+			}
+		}
+	}
+}
+
 void objectManager::collsion()
 {
 	RECT temp;
@@ -201,7 +279,7 @@ void objectManager::collsion()
 	{
 		if (_ball->isappear&&!(_ball->ishold)&& IntersectRect(&temp, &_player->getRect(), &_ball->getRect())) {
 			if ( _ball->getShadowY() > _player->_shadow->getY() &&
-				_ball->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight() / 2);
+				_ball->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight());
 			{
 				_ball->ishold = true;
 			}
@@ -309,4 +387,20 @@ void objectManager::collsion()
 		}
 	}
 
+}
+
+void objectManager::goldbatCollsion()
+{
+	RECT temp;
+
+	if (KEYMANAGER->isStayKeyDown('X') && KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		if (_goldbat->isappear && !(_goldbat->ishold) && IntersectRect(&temp, &_player->getRect(), &_goldbat->getRect())) {
+			if (_goldbat->getShadowY() > _player->_shadow->getY() &&
+				_goldbat->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight());
+			{
+				_goldbat->ishold = true;
+			}
+		}
+	}
 }

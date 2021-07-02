@@ -4,16 +4,17 @@
 #include "playerUI.h"
 #include "timerUI.h"
 #include "enemyManager.h"
+#include "objectManager.h"
 #include "queue"
 #include "progressBar.h"
 #include "gameOverUI.h"
-
 class stageScene3 : public gameNode
 {
 private:
 	player* _player;
 
 	enemyManager* _em;
+	objectManager* _obj;
 
 	float _elapsedTime;
 
@@ -38,6 +39,7 @@ private:
 	string _bossHpBarImgAddress;
 
 	gameOverUI* _gameoverUI;
+	goldbat* _goldbat;
 
 public:
 	HRESULT init();

@@ -2,6 +2,7 @@
 #include "Ryno_damage.h"
 #include "Ryno_idle.h"
 #include "Ryno_death.h"
+#include "Ryno_fall.h"
 playerstate * Ryno_damage::handleInput(player * player)
 {
 	if (player->gethp() <= 0)
@@ -11,6 +12,10 @@ playerstate * Ryno_damage::handleInput(player * player)
 	if (isend)
 	{
 		player->isdamage = false;
+		if (player->getY() + player->getImage()->getHeight() < player->getShadowY())
+		{
+			return new Ryno_fall;
+		}
 		return new Ryno_idle;
 	}
 	

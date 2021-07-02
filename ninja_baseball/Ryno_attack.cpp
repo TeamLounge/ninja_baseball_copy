@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Ryno_attack.h"
 #include "Ryno_idle.h"
+#include "Ryno_damage.h"
 #include "Ryno_frontCombo.h"
 #include "player.h"
 playerstate * Ryno_attack::handleInput(player * player)
@@ -20,6 +21,10 @@ playerstate * Ryno_attack::handleInput(player * player)
 	{
 		player->isattack = false;
 		return new Ryno_frontCombo;
+	}
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
 	}
 	return nullptr;
 }

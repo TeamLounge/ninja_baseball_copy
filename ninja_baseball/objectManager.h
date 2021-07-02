@@ -20,7 +20,7 @@ private:
 	baseball* _ball;
 	banana* _banana;
 	cereal* _cereal;
-
+	goldbat* _goldbat;
 
 	int catchtime;
 public:
@@ -28,17 +28,22 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+	void goldrender();
 
 	void setBaseBall();
 	void setTrahCan();
 	void setBanana();
 	void setCereal();
+	void setgoldbat(float x, float y);
 
 	void updateBall();
 	void updateBanana();
 	void updateCereal();
+	void updategoldbat();
+	
 	void collsion();
-
+	void goldbatCollsion();
+	
 	void setLinkPlayer(player* player) { _player = player; }
 	void setLinkEnemyManager(enemyManager* enemyManager) { _em = enemyManager; }
 

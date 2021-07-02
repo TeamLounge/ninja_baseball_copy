@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "Ryno_dash.h"
 #include "Ryno_idle.h"
+#include "Ryno_damage.h"
 #include "Ryno_dashAttack.h";
 #include "Ryno_dashAlt.h"
 #include "Ryno_jump.h"
 
 playerstate * Ryno_dash::handleInput(player * player)
 {
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
+	}
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 	{
 		return new Ryno_idle;

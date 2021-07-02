@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "Ryno_fall.h"
 #include "Ryno_idle.h"
+#include "Ryno_damage.h"
 playerstate * Ryno_fall::handleInput(player * player)
 {
 	if (player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
 		player->isattack = false;
 		return new Ryno_idle;
+	}
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
 	}
 	return nullptr;
 }

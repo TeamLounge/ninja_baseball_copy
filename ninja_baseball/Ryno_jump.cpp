@@ -2,6 +2,7 @@
 #include "Ryno_jump.h"
 #include "player.h"
 #include "Ryno_fall.h"
+#include "Ryno_damage.h"
 #include "Ryno_fly.h"
 playerstate * Ryno_jump::handleInput(player * player)
 {
@@ -15,6 +16,10 @@ playerstate * Ryno_jump::handleInput(player * player)
 	{
 		player->_isGreenJumpAttack = false;
 		return new Ryno_fly;
+	}
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
 	}
  	return nullptr;
 }

@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "Ryno_dashAlt.h"
 #include "Ryno_idle.h"
+#include "Ryno_damage.h"
 playerstate * Ryno_dashAlt::handleInput(player * player)
 {
 	if (speed < 0)
 	{
 		player->_isGreenDashAlt = false;
 		return new Ryno_idle;
+	}
+	if (player->isdamage)
+	{
+		return new Ryno_damage;
 	}
 	return nullptr;
 }
