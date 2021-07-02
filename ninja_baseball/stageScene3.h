@@ -5,6 +5,7 @@
 #include "timerUI.h"
 #include "enemyManager.h"
 #include "queue"
+#include "progressBar.h"
 
 class stageScene3 : public gameNode
 {
@@ -28,6 +29,10 @@ private:
 
 	bool _isStart;
 
+	progressBar* _bossHPBar;
+	progressBar* _bossHPBar2;
+
+	string _bossHpBarImgAddress;
 public:
 	HRESULT init();
 	void release();

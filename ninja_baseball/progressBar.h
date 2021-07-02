@@ -21,5 +21,7 @@ public:
 
 	void setX(int x) { _x = x; }
 	void setY(int y) { _y = y; }
+
+	void setFrontImage(const char* address, int width, int height);
 };
 

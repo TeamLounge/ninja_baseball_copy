@@ -64,9 +64,9 @@ void startScene::update()
 					_isFirstDialogEnd = true;
 				}
 			}
-			else if (_elapsedSecForFrame >= 0.1f)
+			else if (_elapsedSecForFrame >= 0.08f)
 			{
-				_elapsedSecForFrame -= 0.1f;
+				_elapsedSecForFrame -= 0.08f;
 				if (IMAGEMANAGER->findImage("stolen")->getFrameX() >= IMAGEMANAGER->findImage("stolen")->getMaxFrameX())
 				{
 					IMAGEMANAGER->findImage("stolen")->setFrameX(IMAGEMANAGER->findImage("stolen")->getMaxFrameX());
@@ -81,9 +81,9 @@ void startScene::update()
 		if (_dialogNow < 4 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForText += TIMEMANAGER->getElapsedTime();
-			if (_elapsedSecForText >= 0.1f)
+			if (_elapsedSecForText >= 0.08f)
 			{
-				_elapsedSecForText -= 0.1f;
+				_elapsedSecForText -= 0.08f;
 				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
 				{
 					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();
@@ -105,9 +105,9 @@ void startScene::update()
 		else if (_isFirstDialogEnd && _dialogNow<_dialog.size())
 		{
 			_elapsedSecForText += TIMEMANAGER->getElapsedTime();
-			if (_elapsedSecForText >= 0.1f)
+			if (_elapsedSecForText >= 0.05f)
 			{
-				_elapsedSecForText -= 0.1f;
+				_elapsedSecForText -= 0.05f;
 				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
 				{
 					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();

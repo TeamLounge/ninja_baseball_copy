@@ -38,7 +38,7 @@ bossState * bossDamagedState::inputHandle(boss * boss)
 	if ((boss->_bossForm == NO_ONE_ARM || boss->_bossForm == NO_ARM) &&
 		boss->_isUpperCut && boss->_stateCount == boss->_bossForm && 
 		boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1 &&
-		boss->_count < 15)
+		boss->_count < 20)
 	{
 		boss->_isDamaged = false;
 		boss->_isDamagedState = false;
@@ -66,7 +66,7 @@ bossState * bossDamagedState::inputHandle(boss * boss)
 		return new bossUpperCutState();	
 	}
 
-	if (boss->_bossForm == NO_ARM && boss->_count >= 15 && 
+	if (boss->_bossForm == NO_ARM && boss->_count >= 20 && 
 		boss->_stateCount == boss->_bossForm && boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1)
 	{
 		deathCount++;

@@ -53,9 +53,9 @@ void endingScene::update()
 
 		if (_dialogNow < _dialog.size())
 		{
-			if (_elapsedTime >= 0.1f)
+			if (_elapsedTime >= 0.08f)
 			{
-				_elapsedTime -= 0.1f;
+				_elapsedTime -= 0.08f;
 				if (_dialogTextNum[_dialogNow] >= _dialog[_dialogNow].length())
 				{
 					_dialogTextNum[_dialogNow] = _dialog[_dialogNow].length();

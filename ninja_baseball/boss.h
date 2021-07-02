@@ -47,6 +47,8 @@ struct BOSSPINLIGHT
 class boss : public gameNode
 {
 private:
+	int _maxHp;
+	int _currentHp;
 
 public:
 	boss() {};
@@ -163,6 +165,8 @@ public:
 	float getCenterX() { return (_boss.rc.left + _boss.rc.right) / 2; }
 	float getCenterY() { return (_boss.rc.top + _boss.rc.bottom) / 2; }
 
+	int getCurrentHP() { return _currentHp; }
+	int getMaxHP() { return _maxHp; }
 
 	//세터설정 == 필요없긴하지 ㅎ;
 	void setImageName(string imgName) { _imageName = imgName; }

@@ -60,7 +60,9 @@ HRESULT stageScene1::init()
 void stageScene1::release()
 {
 	_player->release();
+	_em->release();
 	_obj->release();
+	RENDERMANAGER->deleteAll();
 }
 
 void stageScene1::update()

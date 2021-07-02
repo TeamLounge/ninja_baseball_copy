@@ -49,11 +49,19 @@ HRESULT stageScene3::init()
 
 	_isStart = true;
 
+	_bossHPBar = new progressBar;
+	_bossHPBar->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_greenBar.bmp", "image/4_Boss/boss_redBar.bmp", 576, 24);
+	_bossHPBar2 = new progressBar;
+	_bossHPBar2->init(CAMERAMANAGER->getCameraCenterX() - 288, 150, "image/6_UI/inGame/boss_yellowBar.bmp", "image/4_Boss/boss_redBar.bmp", 576, 24);
+
 	return S_OK;
 }
 
 void stageScene3::release()
 {
+	_player->release();
+	_em->release();
+	RENDERMANAGER->deleteAll();
 }
 
 void stageScene3::update()
@@ -118,7 +126,7 @@ void stageScene3::update()
 
 	if (_isSetBoss)
 	{
-		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY/2, _em->getBoss()->getCenterX(), WINSIZEY/2, 0.1f, 0.9f);
+		CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.07f, 0.93f);
 	}
 	else
 	{
@@ -128,6 +136,11 @@ void stageScene3::update()
 	if (CAMERAMANAGER->getCameraRIGHT() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
 	{
 		CAMERAMANAGER->setCamera(IMAGEMANAGER->findImage("stage_3")->getWidth() - WINSIZEX, 0);
+	}
+
+	if (_player->getX() >= IMAGEMANAGER->findImage("stage_3")->getWidth())
+	{
+		_player->setX(IMAGEMANAGER->findImage("stage_3")->getWidth());
 	}
 
 	RENDERMANAGER->update();
@@ -140,6 +153,21 @@ void stageScene3::update()
 		SCENEMANAGER->changeScene("ending");
 	}
 
+	if (_isSetBoss)
+	{
+		if (_em->getBoss()->_count < 10)
+		{
+			_bossHPBar->setX(CAMERAMANAGER->getCameraCenterX() - 288);
+			_bossHPBar->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
+			_bossHPBar->update();
+		}
+		else if(_em->getBoss()->_count<=20)
+		{
+			_bossHPBar2->setX(CAMERAMANAGER->getCameraCenterX() - 288);
+			_bossHPBar2->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
+			_bossHPBar2->update();
+		}
+	}
 }
 
 void stageScene3::render()
@@ -156,5 +184,15 @@ void stageScene3::render()
 	_playerUI->render();
 	_timerUI->render();
 	
+	if (_isSetBoss)
+	{
+		if (_em->getBoss()->_count < 10)
+			_bossHPBar->render();
+		else
+			_bossHPBar2->render();
 
+		IMAGEMANAGER->findImage("boss_name")->render(getMemDC(),
+			CAMERAMANAGER->getCameraCenterX() - IMAGEMANAGER->findImage("boss_name")->getWidth() / 2,
+			120);
+	}
 }
