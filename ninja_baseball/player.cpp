@@ -113,6 +113,12 @@ void player::render()
 		_effect3->render(getMemDC());
 		
 	}
+
+	//플레이어 좌표확인하려고
+	char str[128];
+	sprintf_s(str,"x:%f y:%f", _x, _y);
+	TextOut(getMemDC(), _playerrc.left, _playerrc.top, str, strlen(str));
+
 }
 
 void player::handleInput()

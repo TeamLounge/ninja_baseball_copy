@@ -32,12 +32,18 @@ playerstate* red_runState::handleInput(player* _player)
 
 void red_runState::update(player* _player)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _player->_shadow->getX() > 0)
+	if (_player->getRect().left < CAMERAMANAGER->getCameraLEFT())
+	{
+		_player->setX(_player->getX() + CAMERAMANAGER->getCameraLEFT() - _player->getRect().left);
+	}
+	
+
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->setX(_player->getX() - 8);
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _player->_shadow->getX() + _player->_shadow->getWidth() <  WINSIZEX)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player->setX(_player->getX() + 8);
 	}
@@ -78,11 +84,15 @@ void red_runState::update(player* _player)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		/*_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());*/
 	}
 	if (_player->isRight == false)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) -15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		/*_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());*/
 	}
 
 	if (_player->isRight == true) //오른쪽방향일때 렉트상태
