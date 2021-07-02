@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "yellowBaseball.h"
-#include "ybIdleState.h"
+#include "ybMoveState.h"
 
 void yellowBaseball::InputHandle()
 {
@@ -26,7 +26,7 @@ HRESULT yellowBaseball::init(POINT position)
 
 	setShadow();
 
-	_ybState = new ybIdleState();		//무브 모습으로 등장
+	_ybState = new ybMoveState();		//무브 모습으로 등장
 	_ybState->enter(this);
 
 	_yellowBaseball.x = position.x;
@@ -45,8 +45,9 @@ HRESULT yellowBaseball::init(POINT position)
 	isXOverlap = false;
 	isYOverlap = false;
 	isDeath = false;
+	isGreenFly = false;
 
-	damageCount = 0;
+	damagedCount = 0;
 
 	RENDERMANAGER->addObj("yellowBaseball", _imgName.c_str(), "yBaseball_shadow",
 		&_yellowBaseball.x, &_yellowBaseball.y, &_ybShadow.x, &_ybShadow.y,
@@ -81,23 +82,7 @@ void yellowBaseball::update()
 		//그림자
 		_ybShadow.rc = RectMakeCenter((_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2, _ybShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
-
-	//충돌 여부에 따른 죽음 판정
-	if (KEYMANAGER->isOnceKeyDown('M') && !isCollisionDamaged)
-	{
-		damageCount++;
-		if (damageCount == 5)
-		{
-			isDeath = true;
-		}
-
-		isCollisionDamaged = true;
-	}
-	else
-	{
-		isDeath = false;
-		isCollisionDamaged = false;
-	}
+	
 }
 
 void yellowBaseball::render()

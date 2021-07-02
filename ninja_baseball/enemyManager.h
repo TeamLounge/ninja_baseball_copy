@@ -111,6 +111,7 @@ public:
 	void renderYellowBaseball();
 
 	void playerLocation();			//플레이어 위치 찾고 본인 위치와 비교하는 함수(베이스볼, 배트)
+	void wallLoaction();			//벽 위치 찾고 선 넘지 않게 해주는 함수
 	void baseballCollision();		//베이스볼과의 충돌 함수
 
 	vector<whiteBaseball*> getVWb() { return _vWb; }
@@ -130,8 +131,8 @@ public:
 	//   배트 에너미 관련 함수
 	////////////////////////////////
 
-	void setBat1();
-	void setBat2();
+	void setBat1();	//stage1
+	void setBat2();	//stage2
 	void updateBat();
 	void renderBat();
 
@@ -177,6 +178,7 @@ public:
 
 	void WhereIsBoss();
 	void attackCollision();
+	void pinRender();
 
 	boss* getBoss() { return _boss; }
 	void assultedCollisionBoss();

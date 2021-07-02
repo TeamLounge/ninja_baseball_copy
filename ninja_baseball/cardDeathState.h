@@ -8,16 +8,13 @@ class cardDeathState : public cardState
 public:
 	int frameCount;
 	int readyCount;
-	float jumpPower;
-	float gravity;
-	float moveX;
+	int deathCount;
+	int count;
 
 	virtual cardState* inputHandle(card* card);
 	virtual void update(card* card);
 	virtual void enter(card* card);
 	virtual void exit(card* card);
-
-	void jump(card* card);
 };
 
 

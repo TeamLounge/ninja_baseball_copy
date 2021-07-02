@@ -23,14 +23,9 @@ gloveState * gloveMoveState::inputHandle(glove * glove)
 	//glove가 맞으면
 	if (glove->isCollisionDamaged)
 	{
-		if (glove->damageCount < 5)
-		{
-			return new gloveDamagedState();
-		}
-		if (glove->damageCount == 5)
-		{
-			return new gloveDeathState();
-		}
+		glove->damagedCount++;
+		
+		return new gloveDamagedState();
 	}
 		return nullptr;
 }
@@ -118,6 +113,8 @@ void gloveMoveState::enter(glove * glove)
 		glove->setCurrentFrameY(0);
 	}
 	glove->setCurrentFrameX(0);
+
+	glove->timeCount = 0;
 
 }
 

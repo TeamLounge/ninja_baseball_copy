@@ -8,6 +8,7 @@
 
 ybState * ybIdleState::inputHandle(yellowBaseball * yellowBaseball)
 {
+	//떄리기
 	if (yellowBaseball->isCollisionAttack)
 	{
 		timeCount++;
@@ -17,14 +18,15 @@ ybState * ybIdleState::inputHandle(yellowBaseball * yellowBaseball)
 			return new ybAttackPunchState();
 		}
 	}
-	else
-	{
-		timeCount = 0;
-	}
+	else timeCount = 0;
 
-	if (yellowBaseball->isDeath)
+	//맞기
+
+	if (yellowBaseball->isCollisionDamaged)
 	{
-		return new ybDeathState();
+		yellowBaseball->damagedCount++;
+
+		return new ybDamagedState();
 	}
 	return nullptr;
 }

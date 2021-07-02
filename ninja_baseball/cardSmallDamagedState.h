@@ -8,7 +8,9 @@ class cardSmallDamagedState : public cardState
 public:
 	int frameCount;
 	int readyCount;
-	int deathCount;
+	int count;
+	int damageCount;
+	int frameCatchCount;
 
 	virtual cardState* inputHandle(card* card);
 	virtual void update(card* card);

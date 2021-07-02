@@ -7,19 +7,38 @@
 #include "cardDeathState.h"
 #include "cardSmallDamagedState.h"
 #include "cardHeavyDamagedState.h"
+#include "cardLandState.h"
 #include "time.h"
 
 cardState * cardMoveState::inputHandle(card * card)
 {
 	if (card->_isDash)
 	{
+		card->_isCardMoveState = false;
 		return new cardDashAttackState();
 	}
 
 	if (card->_isPunchBullet)
 	{
+		card->_isCardMoveState = false;
 		return new cardPunchAttackState();
 	}
+
+	if (card->_isCardSmallDamaged)
+	{
+		card->_isCardSmallDamaged = false;
+		card->_isCardMoveState = false;
+		return new cardSmallDamagedState();
+	}
+
+	if (card->_isCardHeavyDamaged)
+	{
+		card->_isJump = true;
+		card->_isCardHeavyDamaged = false;
+		card->_isCardMoveState = false;
+		return new cardHeavyDamagedState();
+	}
+
 	return nullptr;
 }
 
@@ -77,6 +96,8 @@ void cardMoveState::enter(card * card)
 		card->_currentFrameX = 0;
 		card->_currentFrameY = 1;
 	}
+
+	card->_isCardMoveState = true;
 
 
 	return;

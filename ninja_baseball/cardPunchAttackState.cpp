@@ -7,6 +7,7 @@
 #include "cardDeathState.h"
 #include "cardSmallDamagedState.h"
 #include "cardHeavyDamagedState.h"
+#include "cardLandState.h"
 
 cardState * cardPunchAttackState::inputHandle(card * card)
 {

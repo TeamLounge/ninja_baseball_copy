@@ -67,8 +67,8 @@ void gloveJumpState::enter(glove * glove)
 	delayCnt = 0;
 
 	//점프 초기화
-	jumpPower = 21.0f;		//태어나는 걸 아예 카메라 밖에서 나오게 하자.
-	gravity = 0.58f;
+	jumpPower = 31.0f;		//태어나는 걸 아예 카메라 밖에서 나오게 하자.
+	gravity = 0.38f;
 }
 
 void gloveJumpState::exit(glove * glove)

@@ -51,46 +51,120 @@ bossState * bossMoveState::inputHandle(boss * boss)
 
 void bossMoveState::update(boss * boss)
 {
-	if (!boss->_isLeft)
+	if (boss->_bossForm != NO_ARM)
 	{
-		frameCount++;
-		if (frameCount >= 15)
+		if (!boss->_isLeft)
 		{
-			frameCount = 0;
-			if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+			frameCount++;
+			if (frameCount >= 15)
 			{
-				boss->_currentFrameX = 0;
-				boss->_stateCount++;
+				frameCount = 0;
+				if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+				{
+					boss->_currentFrameX = 0;
+					boss->_stateCount++;
+				}
+				else boss->_currentFrameX++;
+				boss->_currentFrameY = 1;
 			}
-			else boss->_currentFrameX++;
-			boss->_currentFrameY = 1;
+
+			if (!boss->_isMoveStopRangeX) boss->_boss.x += 2.5f;
 		}
 
-		if (!boss->_isMoveStopRangeX) boss->_boss.x += 2.5f;
-	}
-
-	else if (boss->_isLeft)
-	{
-		frameCount++;
-		if (frameCount >= 15)
+		else if (boss->_isLeft)
 		{
-			frameCount = 0;
-			if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+			frameCount++;
+			if (frameCount >= 15)
 			{
-				boss->_currentFrameX = 0;
-				boss->_stateCount++;
+				frameCount = 0;
+				if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+				{
+					boss->_currentFrameX = 0;
+					boss->_stateCount++;
+				}
+				else boss->_currentFrameX++;
+				boss->_currentFrameY = 0;
 			}
-			else boss->_currentFrameX++;
-			boss->_currentFrameY = 0;
+
+			if (!boss->_isMoveStopRangeX) boss->_boss.x -= 2.5f;
 		}
 
-		if (!boss->_isMoveStopRangeX) boss->_boss.x -= 2.5f;
+		if (!boss->_isMoveStopRangeY)
+		{
+			if (!boss->_isUpper) boss->_boss.y -= 1.5f;
+			if (boss->_isUpper) boss->_boss.y += 1.5f;
+		}
 	}
 
-	if (!boss->_isMoveStopRangeY)
+	else
 	{
-		if (!boss->_isUpper) boss->_boss.y -= 1.5f;
-		if (boss->_isUpper) boss->_boss.y += 1.5f;
+		if (isRightWall)
+		{
+			frameCount++;
+			if (frameCount >= 15)
+			{
+				frameCount = 0;
+				if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+				{
+					boss->_currentFrameX = 0;
+				}
+				else boss->_currentFrameX++;
+				boss->_currentFrameY = 1;
+			}
+
+			boss->_boss.x += RND->getFromFloatTo(5.f, 10.f);
+
+			if (boss->_bossShadow.rc.right > 2000)
+			{
+				isRightWall = false;
+				isLeftWall = true;
+			}
+		}
+
+		if (isLeftWall)
+		{
+			frameCount++;
+			if (frameCount >= 15)
+			{
+				frameCount = 0;
+				if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX())
+				{
+					boss->_currentFrameX = 0;
+				}
+				else boss->_currentFrameX++;
+				boss->_currentFrameY = 0;
+			}
+
+			boss->_boss.x -= RND->getFromFloatTo(5.f, 10.f);
+
+			if (boss->_bossShadow.rc.left < 800)
+			{
+				isLeftWall = false;
+				isRightWall = true;
+			}
+		}
+
+		if (isTopWall)
+		{
+			boss->_boss.y -= RND->getFromFloatTo(5.f, 10.f);
+
+			if (boss->_bossShadow.rc.top < 400)
+			{
+				isTopWall = false;
+				isBottomWall = true;
+			}
+		}
+
+		if (isBottomWall)
+		{
+			boss->_boss.y += RND->getFromFloatTo(5.f, 10.f);
+
+			if (boss->_bossShadow.rc.bottom > WINSIZEY)
+			{
+				isBottomWall = false;
+				isTopWall = true;
+			}
+		}
 	}
 }
 
@@ -135,6 +209,11 @@ void bossMoveState::enter(boss * boss)
 	}
 
 	boss->_isMoveState = true;
+
+	isRightWall = true;
+	isLeftWall = false;
+	isTopWall = true;
+	isBottomWall = false;
 }
 
 void bossMoveState::exit(boss * boss)

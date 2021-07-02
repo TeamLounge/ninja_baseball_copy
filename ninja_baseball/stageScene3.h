@@ -19,6 +19,8 @@ private:
 	playerUI* _playerUI;
 	timerUI* _timerUI;
 
+	int _count;
+
 public:
 	HRESULT init();
 	void release();

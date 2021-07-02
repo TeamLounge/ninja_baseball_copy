@@ -58,12 +58,23 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		return new bossDamagedState();
 	}
 
-	if (boss->_isGreenCatchAttack)
+	if (boss->_isGreenCatchAttack && !boss->_isGreenCatchAttackPre)
 	{
 		boss->_isGreenCatchAttack = false;
 		boss->_isGreenCatch = false;
 		boss->_currentFrameX = 0;
 		boss->_count++;
+		damageCount++;
+		if (damageCount == 2)
+		{
+			boss->_isGreenCatchAttackPre = true;
+		}
+	}
+
+	if (boss->_isGreenCatchAttackPre && boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1)
+	{
+		boss->_isGreenCatchAttackPre = false;
+		return new bossIdleState();
 	}
 
 	if (boss->_isGreenCatchBackAttack)
@@ -71,6 +82,7 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		boss->_isJump = true;
 		boss->_isGreenCatchBackAttack = false;
 		boss->_isGreenCatch = false;
+		boss->_isSmallDamagedState = false;
 		return new bossDamagedState();
 	}
 
@@ -79,6 +91,7 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		boss->_isJump = true;
 		boss->_isGreenCatchFrontCombo = false;
 		boss->_isGreenCatch = false;
+		boss->_isSmallDamagedState = false;
 		return new bossDamagedState();
 	}
 	return nullptr;
@@ -149,16 +162,20 @@ void bossSmallDamagedState::enter(boss * boss)
 		boss->_currentFrameY = 0;
 	}
 
-	if (!boss->_isSmallDamagedState && !boss->_isGreenCatch)
+	boss->_isSmallDamagedState = true;
+	boss->_isMoveState = false;
+	boss->_isGreenCatchAttackPre = false;
+	
+	if (!boss->_isGreenCatch)
 	{
 		boss->_count++;
 	}
 
-	boss->_isSmallDamagedState = true;
-	boss->_isMoveState = false;
-	
 	readyCount = 0;
 	deathCount = 0;
+	damageCount = 0;
+	damageCount = 0;
+	cCount = 0;
 }
 
 void bossSmallDamagedState::exit(boss * boss)

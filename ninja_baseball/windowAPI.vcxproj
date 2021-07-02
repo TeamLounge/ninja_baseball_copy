@@ -182,6 +182,7 @@
     <ClInclude Include="cardDeathState.h" />
     <ClInclude Include="cardHeavyDamagedState.h" />
     <ClInclude Include="cardIdleState.h" />
+    <ClInclude Include="cardLandState.h" />
     <ClInclude Include="cardMoveState.h" />
     <ClInclude Include="cardPunchAttackState.h" />
     <ClInclude Include="cardSmallDamagedState.h" />
@@ -328,6 +329,7 @@
     <ClCompile Include="cardDeathState.cpp" />
     <ClCompile Include="cardHeavyDamagedState.cpp" />
     <ClCompile Include="cardIdleState.cpp" />
+    <ClCompile Include="cardLandState.cpp" />
     <ClCompile Include="cardMoveState.cpp" />
     <ClCompile Include="cardPunchAttackState.cpp" />
     <ClCompile Include="cardSmallDamagedState.cpp" />
