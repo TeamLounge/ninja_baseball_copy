@@ -8,10 +8,11 @@
 #include "Ryno_damage.h"
 playerstate * Ryno_move::handleInput(player * player)
 {
-	//if (player->isdamage)
-	//{
-	//	return new Ryno_damage;
-	//}
+	if (player->isdamage && !player->invincibility)
+	{
+		player->sethp(player->gethp() - 1);
+		return new Ryno_damage;
+	}
 	if (!LEFT&&!RIGHT&&!UP&&!DOWN)
 	{
 

@@ -23,7 +23,7 @@ playerstate * red_idleState2::handleInput(player * _player)
 		return new red_jumpState;
 	}
 
-	if (_player->isdamage)
+	if (_player->isdamage && !_player->invincibility)
 	{
 		return new red_damage1State;
 	}

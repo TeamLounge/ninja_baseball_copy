@@ -9,6 +9,7 @@ playerstate* red_damage1State::handleInput(player* _player)
 	if (_time > 50)
 	{
 		_player->isdamage = false;
+		_player->invincibility = true;
 		_player->setY(_player->getY() - 90);
 		return new red_idleState;
 	}
@@ -16,6 +17,7 @@ playerstate* red_damage1State::handleInput(player* _player)
 	if (KEYMANAGER->isOnceKeyDown('Z') && _isLie)
 	{
 		_player->isdamage = false;
+		_player->invincibility = true;
 		return new red_standUpState;
 	}
 

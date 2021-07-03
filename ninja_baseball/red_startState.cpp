@@ -27,6 +27,7 @@ void red_startState::update(player * _player)
 		_index++;
 		_count = 0;
 	}
+	_player->invincibility = true;
 }
 
 void red_startState::enter(player * _player)
@@ -34,7 +35,7 @@ void red_startState::enter(player * _player)
 	_player->setImage(IMAGEMANAGER->findImage("red_set"));
 	_player->setImageName("red_set");
 	
-
+	_player->invincibility = true;
 	//체력 풀로 채움
 	_player->sethp(_player->gethp() + 5);
 	

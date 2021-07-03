@@ -12,8 +12,9 @@ playerstate * Ryno_crawl::handleInput(player * player)
 		player->iscrawl = false;
 		return new Ryno_catch;
 	}
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	if(KEYMANAGER->isOnceKeyUp('V')) 

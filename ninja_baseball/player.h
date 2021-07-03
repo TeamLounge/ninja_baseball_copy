@@ -24,7 +24,7 @@ private:
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
 	int _life , _hp;  // 목숨과 hp
-
+	int alpha , _invincibilitytime;
 	//enemyManager* _em; //애너미정보가져오기
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
@@ -34,7 +34,7 @@ public:
 	//이건 플레이어의 좌,우 구분할 때 쓰는 bool변수 , 공격을했는지 안했는지 판단하기위해서 쓰는 bool변수 , 맞았는지 안맞았는지 판단하는 bool 변수
 	//기어다니는지 아닌지 판단하는 bool변수 , 잡앗는지 안 잡았는지 확인하는 bool 변수, 날때 전기쏘기 bool변수
 	bool isRight, isattack, isdamage;
-	bool iscrawl , iscatch ,isfly, isEnd;
+	bool iscrawl , iscatch ,isfly, isEnd , invincibility;
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
 	float _runtime;
