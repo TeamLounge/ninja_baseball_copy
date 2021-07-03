@@ -85,6 +85,8 @@ void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_punch");
 	blueBaseball->setImageName("bBaseball_punch");
 
+	blueBaseball->isattack = true;
+
 	if (!blueBaseball->isRight)
 	{
 		blueBaseball->setCurrentFrameY(1);

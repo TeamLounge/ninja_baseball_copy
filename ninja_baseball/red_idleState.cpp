@@ -8,7 +8,6 @@
 //=====================================
 #include "red_damage1State.h"
 #include "red_damage2State.h"
-#include "red_downAttackState.h"
 #include "red_dieState.h"
 //=====================================
 
@@ -31,7 +30,7 @@ playerstate * red_idleState::handleInput(player * _player)
 	}
 	if (_player->isdamage)
 	{
-		return new red_damage1State; 
+		return new red_damage1State;  //에너미에게 맞았을 때
 	}
 	
 	if (_time > 200)
@@ -58,11 +57,7 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_damage2State; //약하게 공격당했을 때
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('J'))
-	{
-		return new red_downAttackState; //몸이 누웠을 때 내려찍기
-	}
+		
 
 	//if (KEYMANAGER->isOnceKeyDown('K'))
 	//{

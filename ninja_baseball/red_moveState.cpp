@@ -37,7 +37,7 @@ playerstate* red_moveState::handleInput(player* _player)
 		return new red_gripState;
 	}
 
-	if (_player->isdamage)
+	if (_player->isdamage) //에너미에게 맞았을 떄
 	{
 		return new red_damage1State;
 	}

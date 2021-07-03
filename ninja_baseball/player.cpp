@@ -19,7 +19,7 @@ HRESULT player::init(int character, bool isStart)
 	if (character == 1) {
 		_shadow = IMAGEMANAGER->findImage("red_shadow");
 		_state = new red_startState;
-		isRight = true;
+		isRight = true; //처음 시작할때 오른쪽을 향하게 하려구
 	}
 
 	if (character == 2) {

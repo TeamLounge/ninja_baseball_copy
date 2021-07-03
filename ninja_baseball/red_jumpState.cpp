@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "red_jumpState.h"
 #include "red_idleState.h"
+#include "red_damage1State.h"
 
 playerstate * red_jumpState::handleInput(player * _player)
 {
@@ -20,10 +21,16 @@ playerstate * red_jumpState::handleInput(player * _player)
 		{
 			_player->setY(_player->getY() + 60);
 		}
+		
 
 		_player->_isRedJumpAttack = true;
 		
 		return new red_idleState;
+	}
+
+	if (_player->isdamage)
+	{
+		return new red_damage1State;
 	}
 	
 	return nullptr;

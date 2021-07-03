@@ -70,6 +70,8 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_punch");
 	whiteBaseball->setImageName("wBaseball_punch");
 
+	whiteBaseball->isattack = true;
+
 	if (!whiteBaseball->isRight)
 	{
 		whiteBaseball->setCurrentFrameY(1);
@@ -81,8 +83,7 @@ void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 
 	whiteBaseball->setCurrentFrameX(0);
 
-	whiteBaseball->isattack = true;
-
+	
 }
 
 void wbAttackPunchState::exit(whiteBaseball * whiteBaseball)

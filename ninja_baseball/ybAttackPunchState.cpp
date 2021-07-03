@@ -85,6 +85,8 @@ void ybAttackPunchState::enter(yellowBaseball * yellowBaseball)
 	yellowBaseball->_yellowBaseball.img = IMAGEMANAGER->findImage("yBaseball_punch");
 	yellowBaseball->setImageName("yBaseball_punch");
 
+	yellowBaseball->isattack = true;
+
 	if (!yellowBaseball->isRight)
 	{
 		yellowBaseball->setCurrentFrameY(1);
@@ -95,7 +97,7 @@ void ybAttackPunchState::enter(yellowBaseball * yellowBaseball)
 	}
 	yellowBaseball->setCurrentFrameX(0);
 
-	yellowBaseball->isattack = true;
+	
 }
 
 void ybAttackPunchState::exit(yellowBaseball * yellowBaseball)
