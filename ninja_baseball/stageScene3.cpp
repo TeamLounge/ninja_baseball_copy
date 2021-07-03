@@ -178,7 +178,14 @@ void stageScene3::update()
 
 		if (_isSetBoss)
 		{
-			CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.07f, 0.93f);
+			if (atoi(vText[0].c_str()) == 1)
+			{
+				CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.15f, 0.85f);
+			}
+			else if(atoi(vText[0].c_str()) == 2)
+			{
+				CAMERAMANAGER->updateCamera(_player->getX(), WINSIZEY / 2, _em->getBoss()->getCenterX(), WINSIZEY / 2, 0.07f, 0.93f);
+			}
 		}
 		else
 		{
@@ -196,18 +203,6 @@ void stageScene3::update()
 		_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
 		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
-		//보스 죽으면
-		if (_isSetBoss && _em->getBoss()->_isDeathState && _obj->getGoldbat()->ishold)
-		{
-
-			_count++;
-			if (_count >= 350)
-			{
-				_count = 0;
-				SCENEMANAGER->changeScene("ending");
-			}
-		}
-
 		//보스 체력바
 		if (_isSetBoss)
 		{
@@ -222,6 +217,18 @@ void stageScene3::update()
 				_bossHPBar2->setX(CAMERAMANAGER->getCameraCenterX() - 288);
 				_bossHPBar2->setGauge(_em->getBoss()->getCurrentHP(), _em->getBoss()->getMaxHP());
 				_bossHPBar2->update();
+			}
+		}
+
+		//보스 죽으면
+		if (_isSetBoss && _em->getBoss()->_isDeathState && _obj->getGoldbat()->ishold)
+		{
+
+			_count++;
+			if (_count >= 350)
+			{
+				_count = 0;
+				SCENEMANAGER->changeScene("ending");
 			}
 		}
 	}

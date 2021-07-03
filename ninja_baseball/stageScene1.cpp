@@ -69,6 +69,8 @@ HRESULT stageScene1::init()
 
 	_setBaseBallandGlove = false;
 
+	_isWhiteBaseBallSet = false;
+
 	_isAllEnemySet = false;
 	return S_OK;
 }
@@ -107,17 +109,18 @@ void stageScene1::update()
 		{
 			if (_setEnemy.front() == 1150)
 			{
-				//_em->setBlueBaseball();
-				//_em->setYellowBaseball();
+				_em->setBlueBaseball();
+				_em->setYellowBaseball();
 
 			}
 			else if (_setEnemy.front() == 2250)
 			{
-				//_em->setWhiteBaseball();
+				_em->setWhiteBaseball();
+				_isWhiteBaseBallSet = true;
 			}
 			else if (_setEnemy.front() == 2450)
 			{
-				//_em->setCard();
+				_em->setCard();
 			}
 			else if (_setEnemy.front() == BACKGROUNDX - 100)
 			{
@@ -182,7 +185,7 @@ void stageScene1::update()
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 		{
 			_cameraStopX.pop();	//ÀÌÀü Ä«¸Þ¶ó Áö¿öÁÜ
-			//CAMERAMANAGER->_isFixed = true;
+			CAMERAMANAGER->_isFixed = true;
 		}
 
 		if (_em->isAllDead())
@@ -414,29 +417,33 @@ void stageScene1::updateShutter()
 		_down -= _gravity;
 	}
 
-	if(KEYMANAGER->isStayKeyDown('E'))
+	if(_isWhiteBaseBallSet)
 	{
-		
-		if (_shutter.body.bottom >= WINSIZEY)
+		_count++;
+		if (_count >= 50)
 		{
-			if (!_shutter.isClosed)
+			if (_shutter.body.bottom >= WINSIZEY)
 			{
-				_shutter.body.bottom = WINSIZEY - _shutter.height;
-				_shutter.height -= 5;
-				if (_shutter.height <= 0)
+				if (!_shutter.isClosed)
 				{
-					_shutter.isClosed = true;
+					_shutter.body.bottom = WINSIZEY - _shutter.height;
+					_shutter.height -= 5;
+					if (_shutter.height <= 0)
+					{
+						_shutter.isClosed = true;
+						_count = 0;
+					}
 				}
+				else
+				{
+					_shutter.body.bottom = WINSIZEY;
+				}
+				_shutter.y = _shutter.body.bottom - IMAGEMANAGER->findImage("¼ÅÅÍ")->getHeight();
 			}
 			else
 			{
-				_shutter.body.bottom = WINSIZEY;
+				_shutter.y += 10;
 			}
-			_shutter.y = _shutter.body.bottom - IMAGEMANAGER->findImage("¼ÅÅÍ")->getHeight();
-		}
-		else
-		{
-			_shutter.y += 10;
 		}
 		_shutter.body = RectMake(_shutter.x, _shutter.y, IMAGEMANAGER->findImage("¼ÅÅÍ")->getWidth(), IMAGEMANAGER->findImage("¼ÅÅÍ")->getHeight());
 	}
