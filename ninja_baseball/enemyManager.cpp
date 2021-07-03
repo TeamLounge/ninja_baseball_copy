@@ -1157,20 +1157,20 @@ void enemyManager::assultedCollisionCard()
 			(*_viCard)->_isGreenCatch = false;
 			(*_viCard)->_isRedCatch = false;
 		}
+	}
 
+	if (!_vCard.empty())
+	{
 		//사라져라 카드여//
-		//for (int i = 0; i < _vCard.size(); ++i)
-		//{
-		//	if (_vCard[i]->_isDeathState)
-		//	{
-		//		RENDERMANAGER->deleteObj("card", i);
-		//		//RENDERMANAGER->deleteObj("card_Shadow", i);
-		//		_vCard[i]->_isDeathState = false;
-		//		break;
-		//	}
-		//		
-		//	break;
-		//}
+		for (int i = 0; i < _vCard.size(); ++i)
+		{
+			if (_vCard[i]->_isDeathState)
+			{
+				RENDERMANAGER->deleteObj("card", i);
+				_vCard.erase(_vCard.begin() + i);
+				break;
+			}
+		}
 	}
 }
 
