@@ -18,6 +18,8 @@ private:
 		float *bodyY;
 		bool isNotHaveCurrentFrame;
 		bool isFrameImage;
+		bool isAlphaBlend;
+		int* alpha;
 	}OBJ;
 
 	typedef vector<OBJ>						arrObj;
@@ -37,8 +39,10 @@ public :
 	void render(HDC hdc);
 
 	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, bool isFrameImage);
+	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, bool isFrameImage, int* alphaBlend);
 
 	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, int* currentFrameX, int* currentFrameY);
+	void addObj(string strKey, const char* bodyImageName, const char* shadowImageName, float* bodyX, float* bodyY, float* shadowX, float* shadowY, int* currentFrameX, int* currentFrameY, int* alphaBlend);
 
 	bool deleteObj(string strKey, int i);
 
