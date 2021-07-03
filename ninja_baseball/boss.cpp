@@ -369,6 +369,8 @@ void boss::setBoss()
 	_divideX = _divideY = _divideGravity = 0;
 	//바람카운트
 	_windCnt = 0;
+	_windPower = 5.5f;
+	_windInerita = 0.35f;
 	//작은 공격 들어왔을때
 	_isSmallDamagedState = false;
 	_isSmallDamaged = false;

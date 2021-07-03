@@ -25,6 +25,8 @@ private:
 	timerUI* _timerUI;
 
 	int _count; //보스 죽으면 엔딩 씬 전까지 카운트
+	int _soundCount; // 보스 등장 맞춤 카운트
+	bool _isSoundOn; // 보스등장 여부 사운드맞춤
 
 	queue<float> _cameraStopX; //카메라 멈추는 좌표 큐
 

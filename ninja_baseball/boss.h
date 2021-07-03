@@ -134,6 +134,7 @@ public:
 	bool _isIdleState, _isShootingState, _isDeathState, _isSmallDamagedState;
 	bool _isWindState;
 	int _windCnt;
+	float _windPower, _windInerita;
 	string _imageName;
 	string _shadowName;
 	//렌더 위치잡이용

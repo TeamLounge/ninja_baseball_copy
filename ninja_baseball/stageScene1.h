@@ -53,6 +53,10 @@ private:
 	bool _isAllEnemySet;
 
 	int _count;
+
+	bool _isGameOverSound;
+	bool _isContinueSound;
+	int _soundCount;
 public:
 	HRESULT init();
 	void release();

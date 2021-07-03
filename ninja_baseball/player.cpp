@@ -206,8 +206,8 @@ void player::addImage()
 	
 	//이건  Ryno이미지입니다 하나씩 풀꺼입니다.
 	IMAGEMANAGER->addFrameImage("Ryno_idle", "image/2_Player/green/green_idle.bmp", 1020, 432, 5, 2, true, RGB(255, 0, 255), true);
-	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move.bmp", 1101, 432, 6, 2, true, RGB(255, 0, 255), true);
-	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move1.bmp", 1100, 432, 6, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal1.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), true);
 	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), true);
 	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255), true);
 	IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 4, 2, true, RGB(255, 0, 255), true);

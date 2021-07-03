@@ -70,6 +70,12 @@ HRESULT stageScene1::init()
 	_setBaseBallandGlove = false;
 
 	_isAllEnemySet = false;
+	SOUNDMANAGER->stop("캐릭터선택");
+	SOUNDMANAGER->play("스테이지1", 0.7f);
+
+	_isGameOverSound = false;
+	_isContinueSound = false;
+	_soundCount = 0;
 	return S_OK;
 }
 
@@ -234,6 +240,12 @@ void stageScene1::update()
 			if (_player->isEnd)
 			{
 				_gameoverUI->setIsGameOver(true);
+				SOUNDMANAGER->pause("스테이지1");
+				if (!_isGameOverSound)
+				{
+					_isGameOverSound = true;
+					SOUNDMANAGER->play("gameOver", 0.7f);
+				}
 			}
 		}
 	}
@@ -246,9 +258,27 @@ void stageScene1::update()
 			_player->setlife(4);
 			_player->sethp(5);
 			_player->isEnd = false;
+			_soundCount = 0;
+			_isGameOverSound = false;
+			_isContinueSound = false;
+			SOUNDMANAGER->resume("스테이지1");
+			SOUNDMANAGER->stop("continue");
 			//_player->update();
 		}
-		_gameoverUI->update();
+
+		_soundCount++;
+
+		if (_soundCount >= 100)
+		{
+			_gameoverUI->update();
+			SOUNDMANAGER->stop("gameOver");
+			
+			if (!_isContinueSound)
+			{
+				_isContinueSound = true;
+				SOUNDMANAGER->play("continue", 0.7f);
+			}
+		}
 	}
 
 }

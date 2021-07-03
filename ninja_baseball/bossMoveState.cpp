@@ -148,7 +148,7 @@ void bossMoveState::update(boss * boss)
 		{
 			boss->_boss.y -= RND->getFromFloatTo(5.f, 10.f);
 
-			if (boss->_bossShadow.rc.top < 400)
+			if (boss->_bossShadow.rc.top < 450)
 			{
 				isTopWall = false;
 				isBottomWall = true;

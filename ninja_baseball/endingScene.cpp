@@ -28,6 +28,10 @@ HRESULT endingScene::init()
 	_dialog.push_back("GOOD, WE GOT THE BAT BACK!!");
 	_dialog.push_back("THE NEXT ENEMY IS WAITING FOR US");
 	_dialog.push_back("ON THE STEAM SHIP!!");
+
+	SOUNDMANAGER->stop("스테이지클리어");
+	SOUNDMANAGER->play("스토리씬", 0.7f);
+
 	return S_OK;
 }
 
