@@ -14,8 +14,9 @@ cardState * cardDeathState::inputHandle(card * card)
 	if (card->_currentFrameX == card->_card.img->getMaxFrameX() + 1)
 	{
 		count++;
-		if (count >= 30)
+		if (count >= 8)
 		{
+			count = 0;
 			card->_isDeathState = true;
 			/*RENDERMANAGER->deleteObj("card", 0);*/
 		}

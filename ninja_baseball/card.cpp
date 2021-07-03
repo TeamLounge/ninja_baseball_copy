@@ -204,6 +204,11 @@ void card::setCard()
 	_isCardLandState = false;
 
 	_isDeathState = false;
+
+	_isRedAttack1 = _isRedAttack2 = _isRedAttack3 = false; //레드 기본어택
+	_isRedDownAttack = _isRedDynamiteDance = _isRedCatchAttack = _isRedHomeRunAttack = false;
+	_isRedJumpAttack = _isRedCatch = _isRedGrip = _isRedLegKickAttack = isRedSliding = false;
+	_isRedDynamiteOn = _isRedCatchAttackPre = _isRedThrow = false;
 }
 
 void card::setCardShadow()
@@ -216,8 +221,6 @@ void card::setCardShadow()
 	_cardShadow.img->setX(_cardShadow.x);
 	_cardShadow.img->setY(_cardShadow.y);
 }
-
-
 
 void card::setBullet(int bulletMax, float range)
 {

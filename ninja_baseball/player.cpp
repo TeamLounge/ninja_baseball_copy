@@ -164,6 +164,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("red_dynamiteDance", "image/2_player/red/red_dynamiteDance.bmp", 0, 0, 19440, 780, 36, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_damage3", "image/2_player/red/red_damage3.bmp", 0, 0, 855, 462, 3, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("red_die", "image/2_player/red/red_die.bmp", 0, 0, 333, 576, 1, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_gripAttack", "image/2_player/red/red_gripAttack.bmp", 0, 0, 720, 444, 3, 2, true, RGB(255, 0, 255), false);
 	//플레이어(레드) 그림자 이미지
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
@@ -456,4 +457,10 @@ void player::isStateSet()
 	_isGreenJumpAttack = _isGreenJumpPowerAttack = false; //점프어택 약공격 강공격
 
 	_isGreenCatchFrontCombo = _isGreenCatchBackAttack = _isGreenCatchAttack = false;  //캐치 공격 ㅇㅇ
+
+	_isRedAttackState = _isRedAttack1 = _isRedAttack2 = _isRedAttack3 = false; //레드 기본공격 스테이트
+	_isRedDownAttack = _isRedDynamiteDance = _isRedCatchAttack = _isRedHomeRunAttack = false;
+	_isRedJumpAttack = _isRedCatch = _isRedGrip = _isRedLegKickAttack = _isRedSliding = false;
+	_isRedDashAttack = _isCatchAttackSwitch = _isRedCatchAttackOn = _isRedThrow = false;
+	_catchAttackCnt = 0;
 }

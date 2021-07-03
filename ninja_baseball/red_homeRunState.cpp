@@ -17,6 +17,10 @@ playerstate* red_homeRunState::handleInput(player* _player)
 			_player->setX(_player->getX() + 60);
 		}
 
+		_player->_isRedHomeRunAttack = false;
+		_player->isattack = false;
+		_player->iscatch = false;
+
 		return new red_idleState;
 	}
 
@@ -66,6 +70,7 @@ void red_homeRunState::update(player* _player)
 		if (_index == 3)
 		{
 			_player->isattack = true;
+			_player->_isRedHomeRunAttack = true;
 
 			if (_player->isRight == true)
 			{

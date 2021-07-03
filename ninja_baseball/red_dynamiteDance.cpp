@@ -7,6 +7,8 @@ playerstate * red_dynamiteDance::handleInput(player * _player)
 	if (_time > 30)
 	{
 		_player->setY(_player->getY() + 80);
+		_player->isattack = false;
+		_player->_isRedDynamiteDance = false;
 		return new red_idleState;
 	}
 
@@ -34,6 +36,20 @@ void red_dynamiteDance::update(player * _player)
 
 		_count = 0;
 	}
+
+	if (_player->isattack)
+	{
+		if (_player->isRight)
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY(), 70, 70);
+		
+		}
+		
+		else
+		{
+			_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 30, _player->getY(), 70, 70);
+		}
+	}
 	
 	if (_index > _player->getImage()->getMaxFrameX())
 	{
@@ -48,6 +64,8 @@ void red_dynamiteDance::update(player * _player)
 		_jumpPower -= _gravity;
 
 		_player->setY(_player->getY() - _jumpPower);*/
+
+		_player->_isRedDynamiteDance = false;
 
 		if (_player->isRight == true)
 		{
@@ -108,4 +126,7 @@ void red_dynamiteDance::enter(player * _player)
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 170 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
+
+	_player->isattack = true;
+	_player->_isRedDynamiteDance = true;
 }

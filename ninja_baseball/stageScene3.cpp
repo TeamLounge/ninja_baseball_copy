@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "stageScene3.h"
 
-//ver 0702_22:27 주석 삭제
 HRESULT stageScene3::init()
 {
 	IMAGEMANAGER->addImage("stage_3", "image/1_Map/stage1-3.bmp", 1920, WINSIZEY, true, RGB(255, 0, 255), false);
@@ -32,7 +31,7 @@ HRESULT stageScene3::init()
 
 	_em = new enemyManager;
 	_em->init();
-	_em->setBat2();		//stage3에 등장하는 배트 3마리
+	//_em->setBat2();		//stage3에 등장하는 배트 3마리
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
@@ -156,7 +155,7 @@ void stageScene3::update()
 		if (_isSetBoss && _em->getBoss()->_isDeathState)
 		{
 			_count++;
-			if (_count >= 500)
+			if (_count >= 350)
 			{
 				_count = 0;
 				SCENEMANAGER->changeScene("ending");
@@ -214,7 +213,7 @@ void stageScene3::render()
 	RENDERMANAGER->render(getMemDC());
 	if (_isSetBoss)
 	{
-		//_em->renderBoss();
+		_em->renderBoss();
 	}
 	EFFECTMANAGER->render();
 	_em->render();

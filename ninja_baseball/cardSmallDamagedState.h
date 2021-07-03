@@ -11,6 +11,7 @@ public:
 	int count;
 	int damageCount;
 	int frameCatchCount;
+	int atkCnt;
 
 	virtual cardState* inputHandle(card* card);
 	virtual void update(card* card);

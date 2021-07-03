@@ -2,16 +2,25 @@
 #include "red_gripState.h"
 #include "red_idleState.h"
 #include "red_legKickState.h"
+#include "red_catchState.h"
 
 playerstate* red_gripState::handleInput(player* _player)
 {
+	if (_player->iscatch)
+	{
+		_player->_isRedGrip = false;
+		return new red_catchState;
+	}
+
 	if (KEYMANAGER->isOnceKeyUp('Z'))
 	{
+		_player->_isRedGrip = false;
 		return new red_idleState;
 	}
 
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
+		_player->_isRedGrip = false;
 		return new red_legKickState;
 	}
 
@@ -79,6 +88,9 @@ void red_gripState::update(player* _player)
 			_count = 0;
 		}
 	}
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth() - 50, _player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 	
 	//그림자 위치
 	if (_player->isRight == true)
@@ -116,4 +128,6 @@ void red_gripState::enter(player* _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
+
+	_player->_isRedGrip = true;
 }

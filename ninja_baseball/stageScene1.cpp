@@ -45,12 +45,10 @@ HRESULT stageScene1::init()
 	_em->setGlove();
 	////////////////////////
 
-
-	_em->setCard();
-
 	setShutter();
 
 	_isAllDead = false;
+	_isSetCard = false;
 
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
@@ -86,7 +84,7 @@ void stageScene1::update()
 		//_em->update();
 		_obj->update();
 
-		_em->updateCard();
+		//_em->updateCard();
 
 		updateShutter();
 		//UPDATE baseBall////////////
@@ -95,6 +93,17 @@ void stageScene1::update()
 		//_em->updateWhiteBaseball();
 		//_em->updateYellowBaseball();
 		/////////////////////////////
+
+		if (_shutter.isCrush)
+		{
+			if (!_isSetCard)
+			{
+				_em->setCard();
+				_isSetCard = true;
+			}
+			_em->updateCard();
+		}
+
 
 		//UPDATE BAT
 		//_em->updateBat();

@@ -28,7 +28,7 @@ bossState * bossDeathState::inputHandle(boss * boss)
 			EFFECTMANAGER->stop("boss_smoke_noWingProp");
 			EFFECTMANAGER->stop("boss_smoke_noOneArm");
 			EFFECTMANAGER->stop("boss_smoke_noArm");
-			//¾Æ´Ï¸é EFFECTMANAGER->release();
+			EFFECTMANAGER->release();
 		}
 	}
 

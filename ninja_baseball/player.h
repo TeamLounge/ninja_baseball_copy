@@ -44,6 +44,12 @@ public:
 	bool _isGreenJumpAttack, _isGreenJumpPowerAttack;
 	bool _isGreenCatchFrontCombo, _isGreenCatchAttack, _isGreenCatchBackAttack;
 
+	bool _isRedAttackState, _isRedAttack1, _isRedAttack2, _isRedAttack3;
+	bool _isRedDownAttack, _isRedDynamiteDance, _isRedCatchAttack, _isCatchAttackSwitch, _isRedHomeRunAttack;
+	bool _isRedJumpAttack, _isRedCatch, _isRedGrip, _isRedLegKickAttack, _isRedSliding;
+	bool _isRedDashAttack, _isRedCatchAttackOn, _isRedThrow;
+	int _catchAttackCnt;
+
 
 	image* _effect; // 번개이미지1
 	image* _effect1; // 번개이미지2

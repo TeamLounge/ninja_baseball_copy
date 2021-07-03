@@ -6,6 +6,7 @@ playerstate* red_dashAttackState::handleInput(player* _player)
 {
 	if (_time == 20)
 	{
+		_player->_isRedDashAttack = false;
 		return new red_idleState;
 	}
 
@@ -31,6 +32,7 @@ void red_dashAttackState::update(player* _player)
 		if (_time < 20)
 		{
 			_player->isattack = true;
+			_player->_isRedDashAttack = true;
 			_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY(), 70, 70);
 		}
 		else

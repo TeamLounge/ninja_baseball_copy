@@ -13,7 +13,7 @@ cardState * cardIdleState::inputHandle(card * card)
 {
 	if ((!card->_isDash && !card->_isPunchBullet) || card->numPattern == 0)
 	{
-		if (readyCount >= 2)
+		if (readyCount >= 1)
 		{
 			readyCount = 0;
 			return new cardMoveState();

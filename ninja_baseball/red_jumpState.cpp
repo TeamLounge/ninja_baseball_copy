@@ -20,6 +20,8 @@ playerstate * red_jumpState::handleInput(player * _player)
 		{
 			_player->setY(_player->getY() + 60);
 		}
+
+		_player->_isRedJumpAttack = true;
 		
 		return new red_idleState;
 	}
@@ -86,6 +88,7 @@ void red_jumpState::update(player * _player)
 				if (_index == 0)
 				{
 					_player->isattack = true;
+					_player->_isRedJumpAttack = true;
 					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY() + 120, 70, 70);
 				}
 				else

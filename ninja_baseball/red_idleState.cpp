@@ -140,6 +140,4 @@ void red_idleState::enter(player * _player)
 		_player->getImage()->setFrameX(_index);
 		_player->getImage()->setFrameY(1);
 	}
-
-
 }
