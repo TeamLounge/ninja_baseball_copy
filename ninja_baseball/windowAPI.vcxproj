@@ -241,6 +241,7 @@
     <ClInclude Include="red_runState.h" />
     <ClInclude Include="red_slidingState.h" />
     <ClInclude Include="red_standUpState.h" />
+    <ClInclude Include="red_startState.h" />
     <ClInclude Include="red_throw.h" />
     <ClInclude Include="renderManager.h" />
     <ClInclude Include="Resource.h" />
@@ -386,6 +387,7 @@
     <ClCompile Include="red_runState.cpp" />
     <ClCompile Include="red_slidingState.cpp" />
     <ClCompile Include="red_standUpState.cpp" />
+    <ClCompile Include="red_startState.cpp" />
     <ClCompile Include="red_throw.cpp" />
     <ClCompile Include="renderManager.cpp" />
     <ClCompile Include="Ryno_attack.cpp" />

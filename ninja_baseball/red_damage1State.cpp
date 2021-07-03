@@ -90,11 +90,6 @@ void red_damage1State::enter(player* _player)
 
 	_player->sethp(_player->gethp() - 1); //에너미한테 맞으면 체력이 1씩 줄어든다
 	
-	if (_player->gethp() == 0) //플레이어의 hp가 0이 되면
-	{
-		_player->setlife(_player->getlife() - 1); //플레이어의 라이프가 1씩 줄어든다
-	}
-
 	//적에게 맞을떄 공중에 띄우기 위해서 점프값과 중력값 줬음
 	_jumpPower = 3.0f;
 	_gravity = 0.15f;

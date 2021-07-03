@@ -33,6 +33,7 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_damage1State; 
 	}
+	
 	if (_time > 200)
 	{
 		return new red_idleState2;
@@ -40,6 +41,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	if (KEYMANAGER->isOnceKeyDown('V'))
 	{
 		return new red_dynamiteDance;
+	}
+	if (_player->gethp() <= 0)
+	{
+		return new red_dieState;
 	}
 
 	//=============================================================================
@@ -59,10 +64,10 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_downAttackState; //몸이 누웠을 때 내려찍기
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('K'))
-	{
-		return new red_dieState; //피가 떨어져서 죽었음
-	}
+	//if (KEYMANAGER->isOnceKeyDown('K'))
+	//{
+	//	return new red_dieState; //피가 떨어져서 죽었음
+	//}
 	//================================================================================
 
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
@@ -90,6 +95,23 @@ void red_idleState::update(player * _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
+
+
+	//그림자 위치
+	if (_player->isRight == true)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	}
+
+	if (_player->isRight == false)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	}
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_idleState::enter(player * _player)
@@ -113,8 +135,8 @@ void red_idleState::enter(player * _player)
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
 	 	
-	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-		_player->getImage()->getFrameHeight());*/
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
 	
 	if (_player->isRight == true) //오른쪽방향일때 렉트상태
 	{
@@ -124,8 +146,7 @@ void red_idleState::enter(player * _player)
 	{
 		_rc = RectMakeCenter(_player->getX() - 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
 	}
-	
-
+		
 	_player->setRect(_rc);
 
 	_count = _index = _time = 0;
@@ -140,6 +161,4 @@ void red_idleState::enter(player * _player)
 		_player->getImage()->setFrameX(_index);
 		_player->getImage()->setFrameY(1);
 	}
-
-
 }

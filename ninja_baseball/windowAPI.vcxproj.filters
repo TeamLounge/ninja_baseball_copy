@@ -424,6 +424,9 @@
     <ClCompile Include="gameOverUI.cpp">
       <Filter>playGound\UI</Filter>
     </ClCompile>
+    <ClCompile Include="red_startState.cpp">
+      <Filter>playGound\player\red</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h">
@@ -866,6 +869,9 @@
     </ClInclude>
     <ClInclude Include="gameOverUI.h">
       <Filter>playGound\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="red_startState.h">
+      <Filter>playGound\player\red</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
