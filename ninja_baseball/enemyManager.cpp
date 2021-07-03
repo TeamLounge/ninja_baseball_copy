@@ -2,6 +2,7 @@
 #include "enemyManager.h"
 #include "player.h"
 
+//ver.8 에너미 삭제 gogo
 HRESULT enemyManager::init()
 {
 	
