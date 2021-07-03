@@ -46,7 +46,6 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("title", new titleScene);
 	SCENEMANAGER->addScene("start", new startScene);
 	SCENEMANAGER->addScene("playerSelect", new playerSelectScene);
-	SCENEMANAGER->addScene("stage", new stageScene);
 	SCENEMANAGER->addScene("stage1", new stageScene1);
 	SCENEMANAGER->addScene("stage2", new stageScene2);
 	SCENEMANAGER->addScene("stage3", new stageScene3);

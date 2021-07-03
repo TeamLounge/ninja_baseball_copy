@@ -96,7 +96,7 @@ void glove::update()
 	}
 
 	//GLOVE 상태마다 변하는 이미지 잡아주기
-	modifiedLocation();
+	//modifiedLocation();
 
 	InputHandle();
 	_gloveState->update(this);

@@ -13,12 +13,12 @@ HRESULT stageScene3::init()
 	_player->init(atoi(vText[0].c_str()), false);
 
 	//플레이어 위치 조정
-	_player->setX(WINSIZEX - (BACKGROUNDX-atoi(vText[3].c_str())));
+	_player->setX(WINSIZEX - (BACKGROUNDX - atoi(vText[3].c_str())));
 	_player->setY(atoi(vText[4].c_str()));
 
 	//플레이어 체력 조정
 	_player->sethp(atoi(vText[2].c_str()));
-	
+
 	//플레이어 목숨 조정
 	_player->setlife(atoi(vText[1].c_str()));
 
@@ -26,7 +26,7 @@ HRESULT stageScene3::init()
 	_player->isRight = (bool)atoi(vText[5].c_str());
 
 	//플레이어 그림자 위치 조정
-	if (atoi(vText[0].c_str())==1)
+	if (atoi(vText[0].c_str()) == 1)
 	{
 		if (_player->isRight)
 		{
@@ -52,7 +52,7 @@ HRESULT stageScene3::init()
 		}
 	}
 
-	
+
 	_elapsedTime = 0;
 
 	_playerUI = new playerUI;
@@ -66,7 +66,7 @@ HRESULT stageScene3::init()
 	_em->init();
 
 	_obj = new objectManager;
-	_obj->setgoldbat(0,0);
+	_obj->setgoldbat(0, 0);
 
 	//bat
 	_em->setBat2();		//stage3에 등장하는 배트 3마리
@@ -121,14 +121,17 @@ void stageScene3::update()
 			}
 		}
 
-	
-	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
-	_player->update();
-	_em->playerLocation();
-	_em->updateBat();
-	_em->batCollision();
-	_em->update();
-		if (KEYMANAGER->isOnceKeyDown('Q'))
+
+		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
+		_player->update();
+		_em->playerLocation();
+
+		_em->updateBat();
+		_em->batCollision();
+
+		_em->update();
+
+		if (_em->isAllDead())
 		{
 			if (CAMERAMANAGER->_isFixed)
 			{
@@ -274,5 +277,5 @@ void stageScene3::render()
 			CAMERAMANAGER->getCameraCenterX() - IMAGEMANAGER->findImage("boss_name")->getWidth() / 2,
 			120);
 	}
-	
+
 }

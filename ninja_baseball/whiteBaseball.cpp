@@ -40,7 +40,7 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	_whiteBaseball.img->setY(_whiteBaseball.y);	//이미지도 좌표에 맞게 뿌려줬고
 
 	//등장 충돌 렉트
-	_whiteBaseball.rcStop = RectMakeCenter(_whiteBaseball.x - RND->getFromIntTo(800, 900), _whiteBaseball.y + 200, 50, 100);
+	_whiteBaseball.rcStop = RectMakeCenter(_whiteBaseball.x - RND->getFromIntTo(400, 500), _whiteBaseball.y + 200, 50, 100);
 
 	isRight = false;
 	isDown = false;

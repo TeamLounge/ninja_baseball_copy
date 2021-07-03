@@ -1664,3 +1664,12 @@ void enemyManager::assultedCollisionBoss()
 		_boss->_isRedCatch = false;
 	}
 }
+
+bool enemyManager::isAllDead()
+{
+	if (_vWb.empty() && _vYb.empty() && _vGb.empty() && _vBb.empty() && _vBat.empty() && _vGlove.empty() && _vCard.empty())
+	{
+		return true;
+	}
+	return false;
+}

@@ -98,6 +98,9 @@ void Ryno_idle::update(player * player)
 			}
 		}
 	}
+	RECT rc;
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(rc);
 }
 
 void Ryno_idle::enter(player * player)
