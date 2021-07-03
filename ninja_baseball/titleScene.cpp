@@ -21,6 +21,8 @@ HRESULT titleScene::init()
 	_textBlend = 0;
 	IMAGEMANAGER->findImage("title_start")->setFrameX(0);
 	return S_OK;
+
+	SOUNDMANAGER->stop("continue");
 }
 
 void titleScene::release()

@@ -30,6 +30,13 @@ bossState * bossDeathState::inputHandle(boss * boss)
 			EFFECTMANAGER->stop("boss_smoke_noArm");
 			EFFECTMANAGER->release();
 		}
+
+		if (!_soundOn)
+		{
+			_soundOn = true;
+			SOUNDMANAGER->stop("보스씬");
+			SOUNDMANAGER->play("스테이지클리어", 0.7f);
+		}
 	}
 
 	return nullptr;
@@ -88,6 +95,7 @@ void bossDeathState::enter(boss * boss)
 	boss->_currentFrameX = 0;
 
 	count = 0;
+	_soundOn = false;
 }
 
 void bossDeathState::exit(boss * boss)

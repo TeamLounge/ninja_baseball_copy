@@ -96,6 +96,9 @@ HRESULT stageScene3::init()
 	_gameoverUI = new gameOverUI;
 	_gameoverUI->init();
 
+	_isSoundOn = false;
+	_soundCount = 0;
+
 	return S_OK;
 }
 
@@ -153,12 +156,21 @@ void stageScene3::update()
 					IMAGEMANAGER->findImage("빵빠레")->setFrameX(IMAGEMANAGER->findImage("빵빠레")->getMaxFrameX());
 					_isSetBoss = true;
 					_em->setBoss();
+					SOUNDMANAGER->stop("보스등장");
+					SOUNDMANAGER->play("보스씬", 0.7f);
+
 				}
 				else
 				{
 					IMAGEMANAGER->findImage("빵빠레")->setFrameX(IMAGEMANAGER->findImage("빵빠레")->getFrameX() + 1);
 				}
 			}
+		}
+
+		if (IMAGEMANAGER->findImage("빵빠레")->getFrameX() == 1)
+		{
+			SOUNDMANAGER->stop("스테이지1");
+			SOUNDMANAGER->play("보스등장", 0.7f);
 		}
 
 		if (_isSetBoss)

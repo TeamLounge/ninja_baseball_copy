@@ -48,6 +48,10 @@ private:
 	gameOverUI* _gameoverUI;
 
 	bool _isSetCard;
+
+	bool _isGameOverSound;
+	bool _isContinueSound;
+	int _soundCount;
 public:
 	HRESULT init();
 	void release();

@@ -1469,16 +1469,31 @@ void enemyManager::attackCollision()
 	if (_boss->_isWindState)
 	{
 		_boss->_windCnt++;
+		_boss->_windPower += _boss->_windInerita;
 
-		if (_boss->_windCnt <= 10)
+		if (_boss->_windCnt <= 20)
 		{
-			_player->setX(_player->getX() - RND->getFromFloatTo(5.5f, 12.f));
+			_player->setX(_player->getX() - _boss->_windPower);
 			_player->setShadowX(_player->getX());
 		}
-		
-		if (_boss->_windCnt > 20)
+
+		if (_boss->_windCnt > 22)
 		{
+			_boss->_windPower = 5.5f;
 			_boss->_windCnt = 0;
+		}
+
+		if (_player->getX() < CAMERAMANAGER->getCameraLEFT())
+		{
+			_player->setX(CAMERAMANAGER->getCameraLEFT() + 65);
+			_player->setShadowX(_player->getX());
+		}
+
+		if (_player->getRect().left < 100)
+		{
+			_boss->_isWindState = false;
+			_player->setX(_player->getX() + _boss->_windPower);
+			_player->setShadowX(_player->getX());
 		}
 	}
 }

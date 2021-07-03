@@ -53,6 +53,8 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("ending", new endingScene);
 
 	SCENEMANAGER->changeScene("title");
+
+	setMusic();
 	
 	return S_OK;
 }
@@ -83,4 +85,17 @@ void playGround::render()
 	//여기도 건들지마라
 	CAMERAMANAGER->render(this->getBackBuffer(), getHDC());
 	//this->getBackBuffer()->render(getHDC(), 0, 0);
+}
+
+void playGround::setMusic()
+{
+	SOUNDMANAGER->addSound("캐릭터선택", "music/01_Player Select.mp3", true, true);
+	SOUNDMANAGER->addSound("스테이지1", "music/02_Stage 1 In Seattle.mp3", true, true);
+	SOUNDMANAGER->addSound("보스씬", "music/03_Boss Theme.mp3", true, true);
+	SOUNDMANAGER->addSound("스테이지클리어", "music/04_Stage Clear!.mp3", true, false);
+	SOUNDMANAGER->addSound("스토리씬", "music/05_Story Sequence.mp3", true, true);
+	SOUNDMANAGER->addSound("continue", "music/19_Continue.mp3", true, true);
+	SOUNDMANAGER->addSound("gameOver", "music/20_Game Over.mp3", true, false);
+	SOUNDMANAGER->addSound("보스등장", "music/24_Boss Enter.mp3", true, false);
+
 }
