@@ -51,13 +51,15 @@ HRESULT player::init(int character, bool isStart)
 	iscrawl = false;
 	isfly = false;
 	invincibility = false;
+	_invincibilitytime=0;
+	alpha = 255;
 	if (character == 1)
 	{
-		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY, true);
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY, true , &alpha);
 	}
 	else if (character == 2)
 	{
-		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY, true);
+		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "green_shadow", &_x, &_y, &_shadowX, &_shadowY, true, &alpha);
 	}
 
 	_hp = 5;
@@ -96,8 +98,19 @@ void player::update()
 	if (invincibility)
 	{
 		_invincibilitytime++;
-		if(_invincibilitytime>100)
+		isdamage = false;
+		if (_invincibilitytime % 3 == 0)
+		{
+			alpha = 100;
+		}
+		else
+			alpha = 255;
+		if (_invincibilitytime > 100)
+		{
 			invincibility = false;
+			alpha = 255;
+			_invincibilitytime = 0;
+		}
 	}
 	if (_playerrc.left < CAMERAMANAGER->getCameraLEFT())
 	{
@@ -178,23 +191,22 @@ void player::addImage()
 	
 	//이건  Ryno이미지입니다 하나씩 풀꺼입니다.
 	IMAGEMANAGER->addFrameImage("Ryno_idle", "image/2_Player/green/green_idle.bmp", 1020, 432, 5, 2, true, RGB(255, 0, 255), true);
-	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move.bmp", 1101, 432, 6, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 4, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_alt", "image/2_Player/green/green_dashAttack_alt.bmp", 549, 432, 3, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_ctrl", "image/2_Player/green/green_dashAttack_ctrl.bmp", 219, 330, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_crawl", "image/2_Player/green/green_crawl.bmp", 1008, 294, 4, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_catch", "image/2_Player/green/green_catch.bmp", 2784, 576, 8, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_catch_frontCombo.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_fly", "image/2_Player/green/green_fly.bmp", 1332, 378, 4, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_give_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138 ,216, 1 , 1, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("Ryno_start2", "image/2_Player/green/green_start2.bmp", 2700 ,338, 9 , 1, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move.bmp", 1101, 432, 6, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_jumpAttack", "image/2_Player/green/green_jumpAttack.bmp", 1680, 432, 7, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_dash", "image/2_Player/green/green_dash.bmp", 768, 360, 4, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_alt", "image/2_Player/green/green_dashAttack_alt.bmp", 549, 432, 3, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_dashAttack_ctrl", "image/2_Player/green/green_dashAttack_ctrl.bmp", 219, 330, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_crawl", "image/2_Player/green/green_crawl.bmp", 1008, 294, 4, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_catch", "image/2_Player/green/green_catch.bmp", 2784, 576, 8, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_catch_frontCombo", "image/2_Player/green/green_catch_frontCombo.bmp", 1410, 438, 5, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_fly", "image/2_Player/green/green_fly.bmp", 1332, 378, 4, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_damage", "image/2_Player/green/green_damage.bmp", 192, 420, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_death", "image/2_Player/green/green_death.bmp", 888, 444, 4, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_give_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("Ryno_start2", "image/2_Player/green/green_start2.bmp", 2700 ,338, 9 , 1, true, RGB(255, 0, 255), true);
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("effect" , "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("effect1", "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);

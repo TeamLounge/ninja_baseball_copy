@@ -27,6 +27,7 @@ void Ryno_start::update(player * player)
 		}
 		_count = 0;
 	}
+	player->invincibility = true;
 	player->getImage()->setFrameX(_index);
 }
 
@@ -35,7 +36,7 @@ void Ryno_start::enter(player * player)
 	image* img = IMAGEMANAGER->findImage("Ryno_start2");
 	_count = _index = 0;
 	player->setImage(img);
-
+	player->invincibility = true;
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 

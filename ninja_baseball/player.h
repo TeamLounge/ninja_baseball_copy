@@ -24,7 +24,7 @@ private:
 	//추가항목들은 밑에 추가해주세용 주석도 달아주시는거 잊지 말아주세요
 	int _character; // 캐릭터 구분변수 1이면 captin 2 Ryno
 	int _life , _hp;  // 목숨과 hp
-
+	int alpha , _invincibilitytime;
 	//enemyManager* _em; //애너미정보가져오기
 public:
 	//public변수는 다른 클래스쪽에서 막 참조해도 되는걸로 해주세용 get,set쓰기 귀찮으니까 ㅜ
@@ -36,7 +36,7 @@ public:
 	bool iscrawl , iscatch ,isfly, isEnd , invincibility;
 	image* _shadow; // 그림자이미지
 	bool _isrun ,_run;
-	float _runtime , _invincibilitytime;
+	float _runtime;
 	//플레이어 스테이트 상태 확인
 	bool _isGreenAttackState, _isGreenAttack1, _isGreenAttack2, _isGreenAttack3;
 	bool _isGreenAttackFrontCombo1, _isGreenAttackFrontCombo2;
