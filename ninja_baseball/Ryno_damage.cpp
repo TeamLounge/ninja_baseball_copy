@@ -35,11 +35,7 @@ void Ryno_damage::update(player * player)
 			player->setX(player->getX() + 5);
 	}
 	else isend = true;
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-		isend = true;
-	}
+
 	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(rc);
 

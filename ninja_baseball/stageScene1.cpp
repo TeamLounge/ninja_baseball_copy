@@ -263,7 +263,7 @@ void stageScene1::shutterCollison()
 
 	float _probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
 
-	for (int i = _probeRight - 20; i < _probeRight + 20; ++i)
+	for (int i = _player->_shadow->getX(); i < _probeRight + 20; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), i, _player->getShadowY() - _player->_shadow->getHeight() / 2);
 

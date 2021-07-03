@@ -32,6 +32,9 @@ void Ryno_death::update(player * player)
 		if (_index > 4) _index = 0;
 	}
 	player->getImage()->setFrameX(_index);
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(rc);
+	player->setShadowX(player->getX() - (player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("green_shadow")->getWidth() / 2);
 }
 
 void Ryno_death::enter(player * player)
@@ -42,8 +45,6 @@ void Ryno_death::enter(player * player)
 	jumpPower = 6.f;
 	gravity = 0.1f;
 	player->setImage(img);
-	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
-	player->setRect(rc);
 	player->_shadow->setY(player->getY() + 90);
 
 	player->setShadowY(player->getY() + 90 + IMAGEMANAGER->findImage("green_shadow")->getHeight() / 2);

@@ -30,10 +30,6 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 void Ryno_givp_up::update(player * player)
 {
 	_count++;
-	if (player->getRect().left < CAMERAMANAGER->getCameraLEFT())
-	{
-		player->setX(player->getX() + CAMERAMANAGER->getCameraLEFT() - player->getRect().left);
-	}
 }
 
 void Ryno_givp_up::enter(player * player)
