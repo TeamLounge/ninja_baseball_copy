@@ -4,7 +4,7 @@
 
 playerstate * red_dieState::handleInput(player * _player)
 {
-	if (_time > 300)
+	if (_time > 230)
 	{
 		return new red_startState;
 	}
