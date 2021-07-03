@@ -34,31 +34,42 @@ HRESULT stageScene1::init()
 	//_em->setBlueBaseball();
 	//_em->setGreenBaseball();
 	//_em->setWhiteBaseball();
-	_em->setYellowBaseball();
+	//_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat
-	_em->setBat1();		//stage1에 등장하는 배트 2마리
+	//_em->setBat1();		//stage1에 등장하는 배트 2마리
 	/////////////////////////
 
 	//SET glove
-	_em->setGlove();
+	//_em->setGlove();
 	////////////////////////
 
 	setShutter();
 
-	_isSetCard = false;
-
 	queue<float> empty;
 	swap(_cameraStopX, empty);
 
+	queue<float> empty2;
+	swap(_setEnemy, empty2);
+
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
-	_cameraStopX.push(BACKGROUNDX - 5);
+	_cameraStopX.push(BACKGROUNDX);
+
+	_setEnemy.push(1150);
+	_setEnemy.push(2250);
+	_setEnemy.push(2450);
+	_setEnemy.push(BACKGROUNDX - 100);
 
 	_gameoverUI = new gameOverUI;
 	_gameoverUI->init();
 
+	_count = 0;
+
+	_setBaseBallandGlove = false;
+
+	_isAllEnemySet = false;
 	return S_OK;
 }
 
@@ -83,33 +94,71 @@ void stageScene1::update()
 			shutterCollison();
 		}
 		_player->update();
-		_em->update();
-		//_em->update();
+		
 		_obj->update();
 
-		//_em->updateCard();
-
 		updateShutter();
+
+		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
+		CAMERAMANAGER->update();
+
+		//===============================에너미 세팅===============================================
+		if (!_setEnemy.empty() && _setEnemy.front() <= CAMERAMANAGER->getCameraRIGHT())
+		{
+			if (_setEnemy.front() == 1150)
+			{
+				//_em->setBlueBaseball();
+				//_em->setYellowBaseball();
+
+			}
+			else if (_setEnemy.front() == 2250)
+			{
+				//_em->setWhiteBaseball();
+			}
+			else if (_setEnemy.front() == 2450)
+			{
+				//_em->setCard();
+			}
+			else if (_setEnemy.front() == BACKGROUNDX - 100)
+			{
+				_setBaseBallandGlove = true;
+			}
+			_setEnemy.pop();
+		}
+		
+
+		if (_setBaseBallandGlove)
+		{
+			_count++;
+			if (_count != 0)
+			{
+				if (_count <= 350 && _count % 350 == 0)
+				{
+					_em->setGlove();
+				}
+				else if (_count % 700 == 0)
+				{
+					//_em->setGreenBaseball();
+				}
+				if (_count > 700)
+				{
+					_setBaseBallandGlove = false;
+					_isAllEnemySet = true;
+					_count = 0;
+				}
+			}
+		}
+		//=======================================================================================
+
+		//==================에너미 업데이트 ================================
 		//UPDATE baseBall////////////
-		//_em->updateBlueBaseball();
-		//_em->updateGreenBaseball();
-		//_em->updateWhiteBaseball();
-		//_em->updateYellowBaseball();
+		_em->update();
+		_em->updateBlueBaseball();
+		_em->updateGreenBaseball();
+		_em->updateWhiteBaseball();
+		_em->updateYellowBaseball();
 		_em->baseballCollision();
 		/////////////////////////////
-
-		if (_shutter.isCrush)
-		{
-			if (!_isSetCard)
-			{
-				_em->setCard();
-				_isSetCard = true;
-			}
-			_em->updateCard();
-		}
-
-			//0703_1807
-			//화이트볼 등장
 
 		//UPDATE BAT
 		_em->updateBat();
@@ -121,85 +170,59 @@ void stageScene1::update()
 		_em->gloveCollision();
 		////////////////////////////
 
+		//UPDATE CARD
+		_em->updateCard();
 
 		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
 		_em->playerLocation();
 
-		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
-		CAMERAMANAGER->update();
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//if (CAMERAMANAGER->getCameraRIGHT() >= _cameraStopX.front() - 50)		//카메라가 1300에 있으면
-		//{
-		//	if (_cameraStopX.front() == 1300)
-		//	{
-		//		_em->updateBlueBaseball();
-		//		_em->updateGreenBaseball();
-		//		_em->updateWhiteBaseball();
-		//		_em->updateYellowBaseball();
-
-		//	}
-		//	if (_cameraStopX.front() == 2300)		//카메라가 1300에 있으면
-		//	{
-
-		//	}
-		//	_cameraStopX.pop();	//이전 카메라 지워줌
-		//	CAMERAMANAGER->_isFixed = true;
-		//}
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+		//===============================================================
 
 		//카메라
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 		{
-			
 			_cameraStopX.pop();	//이전 카메라 지워줌
-			CAMERAMANAGER->_isFixed = true;
+			//CAMERAMANAGER->_isFixed = true;
 		}
 
-
-		if (KEYMANAGER->isOnceKeyDown('Q'))
+		if (_em->isAllDead())
 		{
 			if (CAMERAMANAGER->_isFixed)
 			{
 				CAMERAMANAGER->_isFixed = false;
 			}
+			if (_isAllEnemySet)
+			{
+				_count++;
+				if (_count >= 100)
+				{
+					//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
+					vText.clear();
+
+					//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
+					char temp[128];
+					_itoa_s(_playerSelect, temp, 10);
+					vText.push_back(temp);
+					_itoa_s(_player->getlife(), temp, 10);
+					vText.push_back(temp);
+					_itoa_s(_player->gethp(), temp, 10);
+					vText.push_back(temp);
+					_itoa_s(_player->getX(), temp, 10);
+					vText.push_back(temp);
+					_itoa_s(_player->getY(), temp, 10);
+					vText.push_back(temp);
+					_itoa_s((bool)(_player->isRight), temp, 10);
+					vText.push_back(temp);
+					_itoa_s(_timerUI->getTime(), temp, 10);
+					vText.push_back(temp);
+
+					TXTDATA->txtSave("playerData.txt", vText);
+
+					SCENEMANAGER->changeScene("stage2");
+				}
+			}
 		}
 		//=============================================
-
-
-		if (KEYMANAGER->isOnceKeyDown('F'))
-		{
-			_player->isdamage = true;
-		}
-
-		if (KEYMANAGER->isOnceKeyDown('S'))
-		{
-			//텍스트 데이터로 현재 정보 넘기기 위해 기존에 벡터에 저장했던거 삭제
-			vText.clear();
-
-			//플레이어 선택, 플레이어 목숨, 플레이어 hp, 플레이어 x좌표, 플레이어 y좌표, 플레이어가 오른쪽을 보고있는지 bool값, 타이머 시간 순으로 텍스트에 저장
-			char temp[128];
-			_itoa_s(_playerSelect, temp, 10);
-			vText.push_back(temp);
-			_itoa_s(_player->getlife(), temp, 10);
-			vText.push_back(temp);
-			_itoa_s(_player->gethp(), temp, 10);
-			vText.push_back(temp);
-			_itoa_s(_player->getX(), temp, 10);
-			vText.push_back(temp);
-			_itoa_s(_player->getY(), temp, 10);
-			vText.push_back(temp);
-			_itoa_s((bool)(_player->isRight), temp, 10);
-			vText.push_back(temp);
-			_itoa_s(_timerUI->getTime(), temp, 10);
-			vText.push_back(temp);
-
-			TXTDATA->txtSave("playerData.txt", vText);
-
-			SCENEMANAGER->changeScene("stage2");
-		}
 
 		_playerUI->update(CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 10, _player->gethp(), _player->getlife());
 
@@ -291,6 +314,12 @@ void stageScene1::render()
 		_gameoverUI->render();
 	}
 
+	char str[128];
+	sprintf_s(str, "set : %d", _setBaseBallandGlove);
+	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 50, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
+	sprintf_s(str, "count : %d", _count);
+	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
+	
 }
 
 void stageScene1::shutterCollison()

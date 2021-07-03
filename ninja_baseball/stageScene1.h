@@ -43,11 +43,16 @@ private:
 
 	float  _down, _gravity;
 
-	queue<float> _cameraStopX;
-	
-	gameOverUI* _gameoverUI;
+	queue<float> _setEnemy;
 
-	bool _isSetCard;
+	queue<float> _cameraStopX;
+
+	gameOverUI* _gameoverUI;
+	
+	bool _setBaseBallandGlove;
+	bool _isAllEnemySet;
+
+	int _count;
 public:
 	HRESULT init();
 	void release();

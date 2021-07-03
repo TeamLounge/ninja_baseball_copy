@@ -3,7 +3,6 @@
 #include "player.h"
 #include "titleScene.h"
 #include "startScene.h"
-#include "stageScene.h"
 #include "stageScene1.h"
 #include "stageScene2.h"
 #include "stageScene3.h"

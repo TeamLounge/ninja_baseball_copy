@@ -162,4 +162,5 @@ public:
 	bool getIsDash() { return _isDash; }
 	bool getIsBullet() { return _isPunchBullet; }
 	bool getIsFire() { return _isFire; }
+	vector<tagPunchBullet> getBulletVector() { return _vPunchBullet; }
 };

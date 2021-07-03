@@ -182,5 +182,7 @@ public:
 
 	boss* getBoss() { return _boss; }
 	void assultedCollisionBoss();
+
+	bool isAllDead();
 };
 

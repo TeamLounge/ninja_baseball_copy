@@ -421,10 +421,17 @@ void player::collision()
 				_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
-				RECT t2 = _em->getVCard()[i]->getAtkCardRc();
+				RECT t2 = _em->getVCard()[i]->getCardRc();
 				if (IntersectRect(&temp, &t1, &t2))
 				{
 					isdamage = true;
+				}
+				for (int j = 0; j < _em->getVCard()[i]->getBulletVector().size(); j++)
+				{
+					if (IntersectRect(&temp, &t1, &_em->getVCard()[i]->getBulletVector()[i].rc))
+					{
+						isdamage = true;
+					}
 				}
 			}
 		}
