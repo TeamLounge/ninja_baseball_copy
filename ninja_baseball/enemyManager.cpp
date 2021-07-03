@@ -238,14 +238,14 @@ void enemyManager::baseballCollision()
 						if (_vWb[i]->getShadowY() < _vWb[j]->getShadowY())
 						{
 							_vWb[i]->setShadowY(_vWb[i]->getShadowY() - height);
-							_vWb[i]->setY(_vWb[i]->getShadowY() - 315);
+							_vWb[i]->setY(_vWb[i]->getShadowY() - 295);
 							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
 							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vWb[i]->setShadowY(_vWb[i]->getShadowY() + height);
-							_vWb[i]->setY(_vWb[i]->getShadowY() - 315);
+							_vWb[i]->setY(_vWb[i]->getShadowY() - 295);
 							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
 							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
 						}
@@ -336,14 +336,14 @@ void enemyManager::baseballCollision()
 						if (_vYb[i]->getShadowY() < _vYb[j]->getShadowY())
 						{
 							_vYb[i]->setShadowY(_vYb[i]->getShadowY() - height);
-							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 295);
 							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
 							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vYb[i]->setShadowY(_vYb[i]->getShadowY() + height);
-							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 295);
 							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
 							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
 						}
@@ -434,14 +434,14 @@ void enemyManager::baseballCollision()
 						if (_vGb[i]->getShadowY() < _vGb[j]->getShadowY())
 						{
 							_vGb[i]->setShadowY(_vGb[i]->getShadowY() - height);
-							_vGb[i]->setY(_vGb[i]->getShadowY() - 315);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 295);
 							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
 							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vGb[i]->setShadowY(_vGb[i]->getShadowY() + height);
-							_vGb[i]->setY(_vGb[i]->getShadowY() - 315);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 295);
 							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
 							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
 						}
@@ -531,14 +531,14 @@ void enemyManager::baseballCollision()
 						if (_vBb[i]->getShadowY() < _vBb[j]->getShadowY())
 						{
 							_vBb[i]->setShadowY(_vBb[i]->getShadowY() - height);
-							_vBb[i]->setY(_vBb[i]->getShadowY() - 315);
+							_vBb[i]->setY(_vBb[i]->getShadowY() - 295);
 							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
 							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vBb[i]->setShadowY(_vBb[i]->getShadowY() + height);
-							_vBb[i]->setY(_vBb[i]->getShadowY() - 315);
+							_vBb[i]->setY(_vBb[i]->getShadowY() - 295);
 							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
 							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
 						}
@@ -585,14 +585,14 @@ void enemyManager::baseballCollision()
 						if (_vYb[i]->getShadowY() < _vBb[j]->getShadowY())
 						{
 							_vYb[i]->setShadowY(_vYb[i]->getShadowY() - height);
-							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 295);
 							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
 							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vYb[i]->setShadowY(_vYb[i]->getShadowY() + height);
-							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 295);
 							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
 							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
 						}
@@ -690,14 +690,14 @@ void enemyManager::batCollision()
 						if (_vBat[i]->getShadowY() < _vBat[j]->getShadowY())
 						{
 							_vBat[i]->setShadowY(_vBat[i]->getShadowY() - height);
-							_vBat[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vBat[i]->setY(_vBat[i]->getShadowY() - 295);
 							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
 							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vBat[i]->setShadowY(_vBat[i]->getShadowY() + height);
-							_vBat[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vBat[i]->setY(_vBat[i]->getShadowY() - 295);
 							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
 							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
 						}
@@ -789,14 +789,14 @@ void enemyManager::gloveCollision()
 						if (_vGlove[i]->getShadowY() < _vGlove[j]->getShadowY())
 						{
 							_vGlove[i]->setShadowY(_vGlove[i]->getShadowY() - height);
-							_vGlove[i]->setY(_vGlove[i]->getShadowY() - 315);
+							_vGlove[i]->setY(_vGlove[i]->getShadowY() - 295);
 							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
 							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
 						}
 						else //아래에서 충돌
 						{
 							_vGlove[i]->setShadowY(_vBat[i]->getShadowY() + height);
-							_vGlove[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vGlove[i]->setY(_vBat[i]->getShadowY() - 295);
 							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
 							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
 						}

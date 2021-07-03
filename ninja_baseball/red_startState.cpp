@@ -37,7 +37,7 @@ void red_startState::enter(player * _player)
 	
 	_player->invincibility = true;
 	//체력 풀로 채움
-	_player->sethp(_player->gethp() + 5);
+	_player->sethp(5);
 	
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());

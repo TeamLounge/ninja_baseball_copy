@@ -243,6 +243,12 @@ void stageScene1::update()
 
 		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
+		if (_timerUI->getTime() == 0)
+		{
+			_gameoverUI->setIsGameOver(true);
+		}
+
+		_gameoverUI->update();
 
 		if (_player->getlife() <= 0 && _player->gethp() <= 0)
 		{
@@ -264,7 +270,8 @@ void stageScene1::update()
 		{
 			_gameoverUI->setIsGameOver(false);
 			_gameoverUI->setTimer(9);
-			_player->setlife(4);
+			_timerUI->setTime(99);
+			_player->setlife(3);
 			_player->sethp(5);
 			_player->isEnd = false;
 			_soundCount = 0;
@@ -279,9 +286,8 @@ void stageScene1::update()
 
 		if (_soundCount >= 100)
 		{
-			_gameoverUI->update();
 			SOUNDMANAGER->stop("gameOver");
-			
+			_gameoverUI->update();
 			if (!_isContinueSound)
 			{
 				_isContinueSound = true;

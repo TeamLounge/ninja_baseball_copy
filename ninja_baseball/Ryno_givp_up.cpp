@@ -11,7 +11,6 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 		}
 		else
 		{
-			player->setlife(player->getlife() - 1);
 			player->sethp(5);
 			return new Ryno_start;
 		}
@@ -62,6 +61,6 @@ void Ryno_givp_up::enter(player * player)
 		player->getImage()->setFrameX(0);
 		player->getImage()->setFrameY(1);
 	}
-
+	player->setlife(player->getlife() - 1);
 	player->setImageName("Ryno_give_up");
 }
