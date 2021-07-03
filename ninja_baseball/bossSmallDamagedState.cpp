@@ -33,6 +33,10 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		boss->_isRedAttack2 = false;
 		boss->_isRedAttack3 = false;
 		boss->_isGreenCatchAttack = false;
+		boss->_isRedCatchAttackPre = false;
+		boss->_isRedCatchAttack = false;
+		boss->_isRedThrow = false;
+		boss->_isRedHomeRunAttack = false;
 		return new bossIdleState();
 	}
 
@@ -117,6 +121,7 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		return new bossIdleState();
 	}
 
+	//그린좌 캐치
 	if (boss->_isGreenCatch)
 	{
 		frameCount = 0;
@@ -173,6 +178,64 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 			return new bossDamagedState();
 		}
 	}
+
+	//레드좌 캐치공격맞아불기
+
+	if (!boss->_isRedCatch && boss->_isRedCatchAttackPre)
+	{
+		boss->_isSmallDamagedState = false;
+		boss->_isSmallDamaged = false;
+		boss->_isRedThrow = false;
+		return new bossIdleState();
+	}
+
+	if (boss->_isRedCatch)
+	{
+		frameCount = 0;
+		boss->_isRedCatchAttackPre = true;
+
+		if (boss->_isRedCatchAttack)
+		{
+			if (boss->_currentFrameX <= 2 && catchAtkCount == 1)
+			{
+				boss->_count++;
+				boss->_isRedCatchAttack = false;
+				boss->_isRedCatch = false;
+				boss->_isRedCatchAttackPre = false;
+				catchAtkCount++;
+			}
+
+			if (boss->_currentFrameX <= 2 && catchAtkCount == 0)
+			{
+				boss->_isRedCatchAttack = false;
+				boss->_isRedCatchAttackPre = false;
+				boss->_count++;
+				catchAtkCount++;
+			}
+
+			catchCount++;
+			if (catchCount >= 5)
+			{
+				catchCount = 0;
+				boss->_currentFrameX++;
+				if (boss->_currentFrameX > 2)
+				{
+					boss->_currentFrameX = 0;
+				}
+			}
+		}
+
+		if (boss->_isRedThrow)
+		{
+			boss->_isJump = true;
+			boss->_isSmallDamagedState = false;
+			boss->_isRedCatch = false;
+			boss->_isSmallDamagedState = false;
+			boss->_isRedCatchAttackPre = false;
+			return new bossDamagedState();
+		}
+	}
+
 	return nullptr;
 }
 
@@ -192,7 +255,7 @@ void bossSmallDamagedState::update(boss * boss)
 			
 		}
 
-		if (boss->_isGreenCatch)
+		if (boss->_isGreenCatch || boss->_isRedCatch)
 		{
 			boss->_currentFrameX = 0;
 		}
@@ -244,8 +307,10 @@ void bossSmallDamagedState::enter(boss * boss)
 	boss->_isSmallDamagedState = true;
 	boss->_isMoveState = false;
 	boss->_isGreenCatchAttackPre = false;
+	boss->_isRedCatchAttackPre = false;
 	
-	if (!boss->_isGreenCatch)
+	if (!boss->_isGreenCatch &&
+		!boss->_isRedCatch) 
 	{
 		boss->_count++;
 	}

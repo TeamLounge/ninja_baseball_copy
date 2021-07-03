@@ -361,10 +361,14 @@ void boss::setBoss()
 	_isIdleState = false;
 	//슈팅상태
 	_isShootingState = false;
+	//바람부는 상태
+	_isWindState = false;
 	//죽음의 상태
 	_isDeathState = false;
 	_isNoWing = _isNoWingProp = _isNoOneArm = _isNoArm = false;
 	_divideX = _divideY = _divideGravity = 0;
+	//바람카운트
+	_windCnt = 0;
 	//작은 공격 들어왔을때
 	_isSmallDamagedState = false;
 	_isSmallDamaged = false;

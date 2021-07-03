@@ -105,12 +105,6 @@ void stageScene3::update()
 			_isHaveToSetBoss = true;
 		}
 
-
-		if (_isSetBoss)
-		{
-			_em->updateBoss();
-			_obj->updategoldbat();
-		}
 		if (_isHaveToSetBoss && !_isSetBoss)
 		{
 			_elapsedTime += TIMEMANAGER->getElapsedTime();
@@ -129,6 +123,12 @@ void stageScene3::update()
 					IMAGEMANAGER->findImage("»§ºü·¹")->setFrameX(IMAGEMANAGER->findImage("»§ºü·¹")->getFrameX() + 1);
 				}
 			}
+		}
+
+		if (_isSetBoss)
+		{
+			_em->updateBoss();
+			_obj->updategoldbat();
 		}
 
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())

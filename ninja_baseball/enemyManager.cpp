@@ -1182,9 +1182,8 @@ void enemyManager::assultedCollisionCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(1600, 150));
+	_boss->init(PointMake(1300, 150));
 }
-
 
 /////////////////////////////////
 // ######보스 업데이트 항목 ########
@@ -1196,7 +1195,6 @@ void enemyManager::updateBoss()
 	attackCollision();
 	assultedCollisionBoss();
 }
-
 
 /////////////////////////////////
 //  ######보스 그리기 ########
@@ -1210,7 +1208,6 @@ void enemyManager::pinRender()
 {
 	_boss->pinRender();
 }
-
 
 /////////////////////////////////
 //  ######보스 위치잡기 ########
@@ -1263,8 +1260,6 @@ void enemyManager::WhereIsBoss()
 		_boss->_isMoveStopRangeY = false;
 	}
 }
-
-
 
 /////////////////////////////////
 //  ######보스 공격충돌 ########
@@ -1376,8 +1371,26 @@ void enemyManager::attackCollision()
 			_boss->_isUpperCut = false;
 		}
 	}
-}
 
+	/////////////////////////////////////////////
+	// #######  보스 wind 바람등장 ##########   //
+	/////////////////////////////////////////////
+	if (_boss->_isWindState)
+	{
+		_boss->_windCnt++;
+
+		if (_boss->_windCnt <= 10)
+		{
+			_player->setX(_player->getX() - RND->getFromFloatTo(5.5f, 12.f));
+			_player->setShadowX(_player->getX());
+		}
+		
+		if (_boss->_windCnt > 20)
+		{
+			_boss->_windCnt = 0;
+		}
+	}
+}
 
 /////////////////////////////////
 //  ######보스 피격충돌 ########
@@ -1490,17 +1503,7 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
-	//레드좌 잡기
-	if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
-	{
-		if (_boss->_isMoveState && _player->iscrawl)
-		{
-			_player->iscatch = true;
-			_boss->_isGreenCatch = true;
-			_boss->_isSmallDamaged = true;
-		}
-	}
-
+	//그린좌 잡기 공격
 	if (_boss->_isSmallDamagedState && _player->iscatch)
 	{
 		if (_player->_isGreenCatchAttack &&
@@ -1525,8 +1528,48 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
+	//레드좌 잡기
+	if (_boss->_isMoveState && _player->_isRedGrip)
+	{
+		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getGripRect()))
+		{
+			_player->iscatch = true;
+			_boss->_isRedCatch = true;
+			_boss->_isSmallDamaged = true;
+		}
+	}
+
+
+	if (_boss->_isSmallDamagedState && _player->iscatch)
+	{
+		if (_player->_isRedCatchAttack && !_player->_isRedCatchAttackOn &&
+			!_boss->_isRedCatchAttack)
+		{
+			_boss->_isRedCatchAttack = true;
+			_player->_isRedCatchAttackOn = true;
+		}
+
+		if (_player->_isRedHomeRunAttack &&
+			!_boss->_isRedHomeRunAttack)
+		{
+			_boss->_isRedHomeRunAttack = true;
+			_player->_isRedHomeRunAttack = false;
+		}
+
+		if (_player->_isRedThrow &&
+			!_boss->_isRedThrow)
+		{
+			_boss->_isRedThrow = true;
+			_player->_isRedThrow = false;
+		}
+	}
+
+	//레드좌 잡기공격
+
+	//잡기 풀면 다풀려요
 	if (!_player->iscatch)
 	{
 		_boss->_isGreenCatch = false;
+		_boss->_isRedCatch = false;
 	}
 }
