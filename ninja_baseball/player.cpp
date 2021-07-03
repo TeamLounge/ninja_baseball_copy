@@ -185,6 +185,7 @@ void player::addImage()
 	IMAGEMANAGER->addFrameImage("Ryno_death2", "image/2_Player/green/green_death2.bmp", 216, 396, 1, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_give_up", "image/2_Player/green/green_giveUp.bmp", 234, 564, 1, 2, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addFrameImage("Ryno_start", "image/2_Player/green/green_start.bmp", 138 ,216, 1 , 1, true, RGB(255, 0, 255),false);
+	IMAGEMANAGER->addFrameImage("Ryno_start2", "image/2_Player/green/green_start2.bmp", 2400 ,338, 8 , 1, true, RGB(255, 0, 255),false);
 	IMAGEMANAGER->addImage("green_shadow", "image/2_Player/green/shadow.bmp", 100, 35, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("effect" , "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("effect1", "image/2_Player/green/effect.bmp", 150, 150, true, RGB(255, 0, 255), false);

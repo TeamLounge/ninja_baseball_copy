@@ -3,8 +3,11 @@
 #include "Ryno_idle.h"
 playerstate * Ryno_start::handleInput(player * player)
 {
-	if (_count > 30)
+	if (_index == player->getImage()->getMaxFrameX())
 	{
+		player->setX(player->getX() + 12);
+		player->setY(player->getY() + 30);
+		
 		return new Ryno_idle;
 	}
 	return nullptr;
@@ -13,12 +16,24 @@ playerstate * Ryno_start::handleInput(player * player)
 void Ryno_start::update(player * player)
 {
 	_count++;
+	if (_count % 5 == 0) {
+		if (_index >= player->getImage()->getMaxFrameX())
+		{
+			_index = player->getImage()->getMaxFrameX();
+		}
+		else
+		{
+			_index++;
+		}
+		_count = 0;
+	}
+	player->getImage()->setFrameX(_index);
 }
 
 void Ryno_start::enter(player * player)
 {
-	image* img = IMAGEMANAGER->findImage("Ryno_start");
-	_count = 0;
+	image* img = IMAGEMANAGER->findImage("Ryno_start2");
+	_count = _index = 0;
 	player->setImage(img);
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
@@ -32,5 +47,7 @@ void Ryno_start::enter(player * player)
 	player->getImage()->setFrameX(0);
 	player->getImage()->setFrameY(0);
 
-	player->setImageName("Ryno_start");
+	player->setX(player->getX() - 12);
+	player->setY(player->getY() - 30);
+	player->setImageName("Ryno_start2");
 }

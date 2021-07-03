@@ -4,6 +4,7 @@ class Ryno_start : public playerstate
 {
 private:
 	int _count;
+	int _index;
 	RECT _rc;
 public:
 	virtual playerstate* handleInput(player* player);
