@@ -55,11 +55,15 @@ public:
 
 	bool isDamaged;				//맞았어?
 	bool isDeath;				//죽었나?
+	bool isLand;
 	int damagedCount;			//맞은 횟수
+	int timeCount;
 
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
+
+	bool isPlayerReached;		//플레이어 특정 좌표 도착했어?
 
 	float _x = _greenBaseball.x;
 	float _y = _greenBaseball.y;

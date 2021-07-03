@@ -10,9 +10,16 @@
 
 wbState * wbDamagedState::inputHandle(whiteBaseball * whiteBaseball)
 {
-	if (whiteBaseball->isDeath)
+	if (whiteBaseball->damagedCount == 5)
 	{
+		whiteBaseball->damagedCount = 0;
 		return new wbDeathState();
+	}
+	if (whiteBaseball->damagedCount < 5 && whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+	{
+		whiteBaseball->setCurrentFrameX(0);
+		whiteBaseball->isCollisionDamaged = false;
+		return new wbIdleState();
 	}
 	return nullptr;
 }

@@ -25,6 +25,7 @@ HRESULT yellowBaseball::init(POINT position)
 	_yellowBaseball.img = new image();
 
 	setShadow();
+	_imgName = "yBaseball_damaged";
 
 	_ybState = new ybMoveState();		//무브 모습으로 등장
 	_ybState->enter(this);

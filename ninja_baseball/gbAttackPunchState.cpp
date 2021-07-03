@@ -99,6 +99,7 @@ void gbAttackPunchState::enter(greenBaseball * greenBaseball)
 	}
 	greenBaseball->setCurrentFrameX(0);
 
+	greenBaseball->isattack = true;
 }
 
 void gbAttackPunchState::exit(greenBaseball * greenBaseball)

@@ -54,6 +54,7 @@ public:
 	bool isDamaged;				//맞았어?
 	bool isDeath;				//count == 5이고, 그래서 죽었어?
 	int damagedCount;			//맞은 횟수
+	int timeCount;
 
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							

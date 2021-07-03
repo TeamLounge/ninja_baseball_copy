@@ -11,21 +11,21 @@ ybState * ybIdleState::inputHandle(yellowBaseball * yellowBaseball)
 	//떄리기
 	if (yellowBaseball->isCollisionAttack)
 	{
-		timeCount++;
-		if (timeCount >= 60)
+		yellowBaseball->timeCount++;
+		if (yellowBaseball->timeCount >= 60)
 		{
-			timeCount = 0;
+			yellowBaseball->timeCount = 0;
 			return new ybAttackPunchState();
 		}
 	}
-	else timeCount = 0;
+	else yellowBaseball->timeCount = 0;
 
 	//맞기
 
 	if (yellowBaseball->isCollisionDamaged)
 	{
 		yellowBaseball->damagedCount++;
-
+		
 		return new ybDamagedState();
 	}
 	return nullptr;
@@ -116,7 +116,7 @@ void ybIdleState::enter(yellowBaseball * yellowBaseball)
 	}
 	yellowBaseball->setCurrentFrameX(0);
 
-	timeCount = 0;
+	yellowBaseball->timeCount = 0;
 }
 
 void ybIdleState::exit(yellowBaseball * yellowBaseball)

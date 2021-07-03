@@ -25,6 +25,8 @@ HRESULT bat::init(POINT position)
 
 	setShadow();
 
+	_imgName = "fBat_damaged";		//이름 제일 긴 거 등록해서 담을 크기 키워주자
+
 	_batState = new batMoveState();		//무브로 시작
 	_batState->enter(this);
 

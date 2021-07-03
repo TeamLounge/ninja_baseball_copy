@@ -44,6 +44,9 @@ void gbDeathState::enter(greenBaseball * greenBaseball)
 		greenBaseball->setCurrentFrameY(0);
 	}
 	greenBaseball->setCurrentFrameX(0);
+
+	greenBaseball->isCollisionDamaged = true;
+	greenBaseball->isDeath = false;
 }
 
 void gbDeathState::exit(greenBaseball * greenBaseball)

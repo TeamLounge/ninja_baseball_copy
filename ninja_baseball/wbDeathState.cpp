@@ -44,6 +44,9 @@ void wbDeathState::enter(whiteBaseball * whiteBaseball)
 		whiteBaseball->setCurrentFrameY(0);
 	}
 	whiteBaseball->setCurrentFrameX(0);
+
+	whiteBaseball->isCollisionDamaged = true;
+	whiteBaseball->isDeath = false;
 }
 
 void wbDeathState::exit(whiteBaseball * whiteBaseball)

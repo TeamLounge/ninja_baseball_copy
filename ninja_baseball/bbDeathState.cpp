@@ -40,6 +40,9 @@ void bbDeathState::enter(blueBaseball * blueBaseball)
 		blueBaseball->setCurrentFrameY(0);
 	}
 	blueBaseball->setCurrentFrameX(0);
+
+	blueBaseball->isCollisionDamaged = true;
+	blueBaseball->isDeath = false;
 }
 
 void bbDeathState::exit(blueBaseball * blueBaseball)
