@@ -14,8 +14,12 @@ class gameOverUI;
 struct tagShutter
 {
 	//셔터
+	float x, y; //left top 좌표
+	RECT body; //본체 rc
 	RECT rc; //타격 범위 rc
 	bool isCrush;
+	bool isClosed;
+	int height; //닫히는 모션 위해서
 };
 
 class stageScene1 : public gameNode
