@@ -11,7 +11,6 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 		}
 		else
 		{
-
 			player->setlife(player->getlife() - 1);
 			player->sethp(5);
 			return new Ryno_start;
@@ -30,6 +29,8 @@ playerstate * Ryno_givp_up::handleInput(player * player)
 void Ryno_givp_up::update(player * player)
 {
 	_count++;
+	rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
+	player->setRect(rc);
 }
 
 void Ryno_givp_up::enter(player * player)

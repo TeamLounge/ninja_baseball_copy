@@ -11,8 +11,9 @@ playerstate * Ryno_dashAttack::handleInput(player * player)
 		player->setY(player->getY() - 30);
 		return new Ryno_idle;
 	}
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	return nullptr;

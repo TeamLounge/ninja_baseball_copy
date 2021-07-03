@@ -6,7 +6,6 @@
 #include "Ryno_fly.h"
 playerstate * Ryno_jump::handleInput(player * player)
 {
-	//이부분도 나중에 바꿔야할것같음..
 	if (_jumpPower < 0 && player->getY() + (player->getImage()->getFrameHeight() / 2) > player->_shadow->getY())
 	{
 		player->_isGreenJumpAttack = false;
@@ -17,8 +16,9 @@ playerstate * Ryno_jump::handleInput(player * player)
 		player->_isGreenJumpAttack = false;
 		return new Ryno_fly;
 	}
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
  	return nullptr;

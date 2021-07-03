@@ -22,8 +22,9 @@ playerstate * Ryno_attack::handleInput(player * player)
 		player->isattack = false;
 		return new Ryno_frontCombo;
 	}
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	return nullptr;

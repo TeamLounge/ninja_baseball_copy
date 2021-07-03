@@ -12,6 +12,7 @@ playerstate * Ryno_damage::handleInput(player * player)
 	if (isend)
 	{
 		player->isdamage = false;
+		player->invincibility = true;
 		if (player->getY() + player->getImage()->getHeight() < player->getShadowY())
 		{
 			return new Ryno_fall;

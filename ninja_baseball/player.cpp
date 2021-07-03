@@ -50,7 +50,7 @@ HRESULT player::init(int character, bool isStart)
 	iscatch = false;
 	iscrawl = false;
 	isfly = false;
-
+	invincibility = false;
 	if (character == 1)
 	{
 		RENDERMANAGER->addObj("player", _playerImgName.c_str(), "red_shadow", &_x, &_y, &_shadowX, &_shadowY, true);
@@ -93,7 +93,12 @@ void player::update()
 			_isrun = false;
 		}
 	}
-
+	if (invincibility)
+	{
+		_invincibilitytime++;
+		if(_invincibilitytime>100)
+			invincibility = false;
+	}
 	if (_playerrc.left < CAMERAMANAGER->getCameraLEFT())
 	{
 		_x = _x + CAMERAMANAGER->getCameraLEFT() - _playerrc.left;
@@ -127,7 +132,7 @@ void player::render()
 
 	//플레이어 좌표확인하려고
 	char str[128];
-	sprintf_s(str,"x:%f y:%f", _x, _y);
+	sprintf_s(str,"x:%f y:%f , 무적?: %d" , _x, _y , invincibility);
 	TextOut(getMemDC(), _playerrc.left, _playerrc.top, str, strlen(str));
 
 }
@@ -172,7 +177,7 @@ void player::addImage()
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	
 	//이건  Ryno이미지입니다 하나씩 풀꺼입니다.
-	IMAGEMANAGER->addFrameImage("Ryno_idle", "image/2_Player/green/green_idle.bmp", 1020, 432, 5, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("Ryno_idle", "image/2_Player/green/green_idle.bmp", 1020, 432, 5, 2, true, RGB(255, 0, 255), true);
 	IMAGEMANAGER->addFrameImage("Ryno_move", "image/2_Player/green/green_move.bmp", 1101, 432, 6, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_attack", "image/2_Player/green/green_attack_normal.bmp", 2163, 432, 7, 2, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addFrameImage("Ryno_attack_front", "image/2_Player/green/green_attack_frontCombo.bmp", 2352, 576, 8, 2, true, RGB(255, 0, 255), false);

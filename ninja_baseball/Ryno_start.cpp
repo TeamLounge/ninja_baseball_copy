@@ -35,6 +35,7 @@ void Ryno_start::enter(player * player)
 	image* img = IMAGEMANAGER->findImage("Ryno_start2");
 	_count = _index = 0;
 	player->setImage(img);
+
 	_rc = RectMakeCenter(player->getX(), player->getY(), 140, 197);
 	player->setRect(_rc);
 

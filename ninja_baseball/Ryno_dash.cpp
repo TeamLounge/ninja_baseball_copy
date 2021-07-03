@@ -8,8 +8,9 @@
 
 playerstate * Ryno_dash::handleInput(player * player)
 {
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))

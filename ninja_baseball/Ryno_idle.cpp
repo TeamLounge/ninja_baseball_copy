@@ -10,8 +10,7 @@
 #include "enemyManager.h"
 playerstate * Ryno_idle::handleInput(player * player)
 {
-
-	if (player->isdamage)
+	if (player->isdamage&& !player->invincibility)
 	{
 		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;

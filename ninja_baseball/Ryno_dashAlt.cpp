@@ -9,8 +9,9 @@ playerstate * Ryno_dashAlt::handleInput(player * player)
 		player->_isGreenDashAlt = false;
 		return new Ryno_idle;
 	}
-	if (player->isdamage)
+	if (player->isdamage && !player->invincibility)
 	{
+		player->sethp(player->gethp() - 1);
 		return new Ryno_damage;
 	}
 	return nullptr;
