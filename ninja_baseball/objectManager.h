@@ -47,5 +47,7 @@ public:
 	void setLinkPlayer(player* player) { _player = player; }
 	void setLinkEnemyManager(enemyManager* enemyManager) { _em = enemyManager; }
 
+	goldbat* getGoldbat() { return _goldbat; }
+
 };
 

@@ -154,7 +154,7 @@ void stageScene3::update()
 		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 		//º¸½º Á×À¸¸é
-		if (_isSetBoss && _em->getBoss()->_isDeathState)
+		if (_isSetBoss && _em->getBoss()->_isDeathState && _obj->getGoldbat()->ishold)
 		{
 
 			_count++;
