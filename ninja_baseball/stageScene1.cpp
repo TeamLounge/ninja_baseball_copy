@@ -34,7 +34,7 @@ HRESULT stageScene1::init()
 	_em->setBlueBaseball();
 	_em->setGreenBaseball();
 	_em->setWhiteBaseball();
-	//_em->setYellowBaseball();
+	_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat
@@ -92,18 +92,19 @@ void stageScene1::update()
 		//UPDATE baseBall////////////
 		_em->updateBlueBaseball();
 		_em->updateGreenBaseball();
-		//_em->updateWhiteBaseball();
-		//_em->updateYellowBaseball();
+		_em->updateWhiteBaseball();
+		_em->updateYellowBaseball();
+		_em->baseballCollision();
 		/////////////////////////////
 
 		//UPDATE BAT
-		//_em->updateBat();
-		//_em->batCollision();
+		_em->updateBat();
+		_em->batCollision();
 		////////////////////////////
 
 		//UPDATE GLOVE
-		//_em->updateGlove();
-		//_em->gloveCollision();
+		_em->updateGlove();
+		_em->gloveCollision();
 		////////////////////////////
 
 

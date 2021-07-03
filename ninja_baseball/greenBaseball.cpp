@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "greenBaseball.h"
-#include "gbIdleState.h"
+#include "gbHangState.h"
 
 
 void greenBaseball::InputHandle()
@@ -16,7 +16,7 @@ void greenBaseball::InputHandle()
 
 HRESULT greenBaseball::init()
 {
-
+	
 	return S_OK;
 }
 
@@ -25,9 +25,11 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	setImage();
 	_greenBaseball.img = new image();
 
+	_imgName = "gBaseball_damaged";
+
 	setShadow();
 
-	_gbState = new gbIdleState();		//Hang으로 시작할거니까 바꿔줘!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	_gbState = new gbHangState();		
 	_gbState->enter(this);
 
 	_greenBaseball.x = position.x;
@@ -38,7 +40,7 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	_greenBaseball.img->setY(_greenBaseball.y);	//이미지도 좌표에 맞게 뿌려줬고
 
 	//등장 충돌 렉트
-	_greenBaseball.rcStop = RectMakeCenter(_greenBaseball.x - RND->getFromIntTo(800, 900), _greenBaseball.y + 200, 50, 100);
+	_greenBaseball.rcStop = RectMakeCenter(_greenBaseball.x + 200, _greenBaseball.y + 750, 100, 50);
 
 	isRight = false;
 	isDown = false;
@@ -47,11 +49,14 @@ HRESULT greenBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	isXOverlap = false;
 	isYOverlap = false;
 
+	isLand = false;
+
 	isattack = false;				//에너미가 공격했어??
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
 	isDeath = false;
 
+	timeCount = 0;
 	damagedCount = 0;
 
 	RENDERMANAGER->addObj("greenBaseball", _imgName.c_str(), "gBaseball_shadow",

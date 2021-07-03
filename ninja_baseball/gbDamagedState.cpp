@@ -10,9 +10,16 @@
 gbState * gbDamagedState::inputHandle(greenBaseball * greenBaseball)
 {
 
-	if (greenBaseball->isDeath)
+	if (greenBaseball->damagedCount == 5)
 	{
+		greenBaseball->damagedCount = 0;
 		return new gbDeathState();
+	}
+	if (greenBaseball->damagedCount < 5 && greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())
+	{
+		greenBaseball->setCurrentFrameX(0);
+		greenBaseball->isCollisionDamaged = false;
+		return new gbIdleState();
 	}
 	return nullptr;
 }
@@ -23,7 +30,7 @@ void gbDamagedState::update(greenBaseball * greenBaseball)
 	{
 		//frame
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())
@@ -50,7 +57,7 @@ void gbDamagedState::update(greenBaseball * greenBaseball)
 	if (greenBaseball->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())

@@ -11,12 +11,14 @@
 
 wbState * wbAttackPunchState::inputHandle(whiteBaseball * whiteBaseball)
 {	
+	//펀치 후 점프
 	if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
 	{
-		whiteBaseball->isattack = false;
 		whiteBaseball->isJump = true;	//점프했음을 알림
+		whiteBaseball->isattack = false;
 		return new wbAttackJumpState();
 	}
+
 	if (whiteBaseball->isDeath)
 	{
 		return new wbDeathState();
@@ -65,7 +67,6 @@ void wbAttackPunchState::update(whiteBaseball * whiteBaseball)
 
 void wbAttackPunchState::enter(whiteBaseball * whiteBaseball)
 {
-	/*whiteBaseball->isattack = true;*/
 	whiteBaseball->_whiteBaseball.img = IMAGEMANAGER->findImage("wBaseball_punch");
 	whiteBaseball->setImageName("wBaseball_punch");
 

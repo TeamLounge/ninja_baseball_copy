@@ -27,6 +27,8 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	setShadow();
 
+	_imgName = "wBaseball_damaged";
+
 	_wbState = new wbRollState();		//롤 모습으로 등장
 	_wbState->enter(this);
 

@@ -11,20 +11,25 @@
 
 wbState * wbIdleState::inputHandle(whiteBaseball * whiteBaseball)
 {
+	//때림
 	if (whiteBaseball->isCollisionAttack)
 	{
-		timeCount++;
-		if (timeCount >= 70)
+		whiteBaseball->timeCount++;
+		if (whiteBaseball->timeCount >= 70)
 		{
-			timeCount = 0;
+			whiteBaseball->timeCount = 0;
 			return new wbAttackPunchState();
 		}
 	}
-	else timeCount = 0;
+	else whiteBaseball->timeCount = 0;
 
-	if (whiteBaseball->isDeath)
+
+	//맞음
+	if (whiteBaseball->isCollisionDamaged)
 	{
-		return new wbDeathState();
+		whiteBaseball->damagedCount++;
+
+		return new wbDamagedState();
 	}
 
 	return nullptr;
@@ -114,7 +119,7 @@ void wbIdleState::enter(whiteBaseball * whiteBaseball)		//init
 	}
 	whiteBaseball->setCurrentFrameX(0);
 
-	timeCount = 0;
+	whiteBaseball->timeCount = 0;
 
 }
 

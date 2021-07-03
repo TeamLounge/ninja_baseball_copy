@@ -8,7 +8,7 @@ HRESULT enemyManager::init()
 	//setBlueBaseball();		
 	//setGreenBaseball();
 	//setWhiteBaseball();			
-	//setYellowBaseball();		//데스로 못가네
+	//setYellowBaseball();		
 	
 	//setBat1();
 	//setBat2();
@@ -26,7 +26,7 @@ void enemyManager::release()
 void enemyManager::update()
 {
 	//updateBaseball();
-	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	//baseballCollision();	
 
 	//updateBat();
 	//batCollision();
@@ -69,7 +69,7 @@ void enemyManager::setBlueBaseball()
 	for (int i = 0; i < 2; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
-		_bb->init(PointMake(1200, 450 - i * 100));
+		_bb->init(PointMake(1200, 450 - i * 400));
 		_vBb.push_back(_bb);
 
 	}
@@ -80,7 +80,7 @@ void enemyManager::setGreenBaseball()
 	for (int i = 0; i < 2; i++)
 	{
 		greenBaseball* _gb = new greenBaseball;
-		_gb->init(PointMake(2500 + i * 400, -200));
+		_gb->init(PointMake(2500 + i * 400, -100));		//2500, -200
 		_vGb.push_back(_gb);
 
 	}
@@ -199,7 +199,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viWb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viWb)->isCrash = true;
-			(*_viWb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viWb)->isCrash = false;
@@ -230,7 +229,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viYb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viYb)->isCrash = true;
-			(*_viYb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viYb)->isCrash = false;
@@ -261,7 +259,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viGb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viGb)->isCrash = true;
-			(*_viGb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viGb)->isCrash = false;
@@ -292,7 +289,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viBb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viBb)->isCrash = true;
-			(*_viBb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viBb)->isCrash = false;

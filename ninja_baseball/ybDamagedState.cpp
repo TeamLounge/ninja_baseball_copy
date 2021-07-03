@@ -28,7 +28,7 @@ void ybDamagedState::update(yellowBaseball * yellowBaseball)
 	{
 		//frame
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
@@ -55,7 +55,7 @@ void ybDamagedState::update(yellowBaseball * yellowBaseball)
 	if (yellowBaseball->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
