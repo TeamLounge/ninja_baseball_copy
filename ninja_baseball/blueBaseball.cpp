@@ -90,7 +90,7 @@ void blueBaseball::update()
 		_bbShadow.rc = RectMakeCenter((_blueBaseball.rc.right + _blueBaseball.rc.left) / 2, _bbShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
 }
-
+//
 void blueBaseball::render()
 {
 
