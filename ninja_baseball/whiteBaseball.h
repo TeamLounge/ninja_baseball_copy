@@ -61,6 +61,8 @@ public:
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
 
+	bool isRollState; //등장 상태인지
+
 	whiteBaseball() {};
 	~whiteBaseball() {};
 

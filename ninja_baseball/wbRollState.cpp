@@ -15,6 +15,7 @@ wbState * wbRollState::inputHandle(whiteBaseball * whiteBaseball)		//상태에 따른
 	RECT temp;
 	if (IntersectRect(&temp, &whiteBaseball->_whiteBaseball.rc, &whiteBaseball->_whiteBaseball.rcStop))	
 	{
+		whiteBaseball->isRollState = false;
 		return new wbStopState();
 	}
 	if (whiteBaseball->isDeath)

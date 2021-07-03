@@ -339,9 +339,9 @@ void stageScene1::shutterCollison()
 	float top = 0;
 	float bottom = WINSIZEY;
 
-	float _probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
+	float probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
 
-	for (int i = _player->_shadow->getX(); i < _probeRight + 20; ++i)
+	for (int i = _player->_shadow->getX(); i < probeRight + 20; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), i, _player->getShadowY() - _player->_shadow->getHeight() / 2);
 
@@ -366,6 +366,41 @@ void stageScene1::shutterCollison()
 	{
 		_player->setShadowX(_player->getShadowX() - (_player->getShadowX() + _player->_shadow->getWidth() / 2 - right) + 6);
 		_player->setX(_player->getShadowX());
+	}
+
+	if (!_em->getVWb().empty())
+	{
+		for (int i = 0; i < _em->getVWb().size(); i++)
+		{
+			right = BACKGROUNDX;
+			if (_em->getVWb()[i]->isRollState) continue;
+			float enemyProbeRight = _em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2;
+			for (int j = _em->getVWb()[i]->getShadowX() - (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2; 
+				j < enemyProbeRight + 50; ++j)
+			{
+				COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), j,
+					_em->getVWb()[i]->getShadowY() - (_em->getVWb()[i]->getShadowRect().bottom - _em->getVWb()[i]->getShadowRect().top) / 2);
+
+				int r = GetRValue(color);
+				int g = GetGValue(color);
+				int b = GetBValue(color);
+
+				if ((r == 0 && g == 0 && b == 255))
+				{
+					if (right > j)
+					{
+						right = j;
+					}
+
+				}
+			}
+
+			if (right <= _em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2)
+			{
+				_em->getVWb()[i]->setShadowX(_em->getVWb()[i]->getShadowX() - (_em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2 - right) + 6);
+				_em->getVWb()[i]->setX(_em->getVWb()[i]->getShadowX() - 200);
+			}
+		}
 	}
 }
 

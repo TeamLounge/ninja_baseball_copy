@@ -52,6 +52,7 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	damagedCount = 0;
 
+	isRollState = true;
 	
 	RENDERMANAGER->addObj("whiteBaseball", _imgName.c_str(), "wBaseball_shadow", 
 		&_whiteBaseball.x, &_whiteBaseball.y, &_wbShadow.x, &_wbShadow.y, 
