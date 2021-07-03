@@ -33,10 +33,7 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_damage1State; 
 	}
-	if (KEYMANAGER->isOnceKeyDown('D'))
-	{
-		return new red_damage1State;
-	}
+	
 	if (_time > 200)
 	{
 		return new red_idleState2;
@@ -98,6 +95,20 @@ void red_idleState::update(player * _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
+
+
+	//그림자 위치
+	if (_player->isRight == true)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	}
+
+	if (_player->isRight == false)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 30 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+	}
 }
 
 void red_idleState::enter(player * _player)
@@ -147,6 +158,4 @@ void red_idleState::enter(player * _player)
 		_player->getImage()->setFrameX(_index);
 		_player->getImage()->setFrameY(1);
 	}
-
-
 }

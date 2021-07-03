@@ -4,6 +4,7 @@
 #include "Ryno_idle.h"
 #include "red_idleState.h"
 #include "red_moveState.h"
+#include "red_startState.h"
 #include "enemyManager.h"
 
 HRESULT player::init(int character, bool isStart)
@@ -17,7 +18,8 @@ HRESULT player::init(int character, bool isStart)
 	//이건 하나씩 풀꺼입니다.
 	if (character == 1) {
 		_shadow = IMAGEMANAGER->findImage("red_shadow");
-		_state = new red_idleState;
+		_state = new red_startState;
+		isRight = true;
 	}
 
 	if (character == 2) {

@@ -33,6 +33,7 @@ void red_startState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_set"));
 	_player->setImageName("red_set");
+	
 
 	//체력 풀로 채움
 	_player->sethp(_player->gethp() + 5);

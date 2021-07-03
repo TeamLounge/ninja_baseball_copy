@@ -117,6 +117,22 @@ void red_runState::enter(player* _player)
 	//	_player->getImage()->getFrameHeight());
 	//_player->setRect(_rc);
 
+	//그림자 위치
+	if (_player->isRight == true)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		/*_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());*/
+	}
+	if (_player->isRight == false)
+	{
+		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
+		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		/*_player->_shadow->setX(_player->getX());
+		_player->_shadow->setY(_player->getY());*/
+	}
+
 	_count = _index = 0;
 	
 	if (_player->isRight == true)
