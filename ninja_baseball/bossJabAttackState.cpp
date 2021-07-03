@@ -73,6 +73,10 @@ void bossJabAttackState::enter(boss * boss)
 
 	boss->_isJabState = true;
 	boss->_isMoveState = false;
+	boss->_isRedCatch = false;
+	boss->_isRedCatchAttack = false;
+	boss->_isRedThrow = false;
+	boss->_isRedHomeRunAttack = false;
 }
 
 void bossJabAttackState::exit(boss * boss)

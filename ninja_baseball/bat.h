@@ -59,6 +59,7 @@ public:
 	bool isCrash;				//충돌했어?(by 김광수)
 
 	bool isDeath;				//count == 5이고, 그래서 죽었어?
+	bool isDeathDeleteState;	//죽고 지워줄 준비가 됐는지 판별할 bool값
 
 	//배트 단계
 	bool noCap;					//step1 : 모자 벗어짐

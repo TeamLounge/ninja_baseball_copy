@@ -10,6 +10,16 @@
 
 wbState * wbDeathState::inputHandle(whiteBaseball * whiteBaseball)
 {
+	if (whiteBaseball->getCurrentFrameX() == whiteBaseball->_whiteBaseball.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 8)
+		{
+			count = 0;
+			whiteBaseball->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	return nullptr;
 }
 

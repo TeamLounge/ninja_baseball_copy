@@ -132,6 +132,8 @@ public:
 	bool _isMoveState;
 	//현재 무슨상태인지 확인
 	bool _isIdleState, _isShootingState, _isDeathState, _isSmallDamagedState;
+	bool _isWindState;
+	int _windCnt;
 	string _imageName;
 	string _shadowName;
 	//렌더 위치잡이용
@@ -150,6 +152,7 @@ public:
 	bool _isRedDownAttack, _isRedDynamiteDance, _isRedCatchAttack, _isRedHomeRunAttack;
 	bool _isRedJumpAttack, _isRedCatch, _isRedGrip, _isRedLegKickAttack, isRedSliding;
 	bool _isRedDynamiteOn, _isRedCatchAttackPre, _isRedThrow;
+
 
 
 

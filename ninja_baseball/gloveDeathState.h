@@ -8,6 +8,7 @@ class gloveDeathState :public gloveState
 public:
 
 	int frameCount;
+	int count;
 
 	virtual gloveState* inputHandle(glove* glove);
 	virtual void update(glove* glove);

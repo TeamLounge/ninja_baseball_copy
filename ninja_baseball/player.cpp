@@ -122,7 +122,6 @@ void player::render()
 		_effect1->render(getMemDC());
 		_effect2->render(getMemDC());
 		_effect3->render(getMemDC());
-		
 	}
 
 	//플레이어 좌표확인하려고

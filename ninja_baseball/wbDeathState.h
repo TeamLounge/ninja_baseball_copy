@@ -9,6 +9,7 @@ class wbDeathState : public wbState
 public:
 
 	int frameCount;
+	int count;
 
 	virtual wbState* inputHandle(whiteBaseball* whiteBaseball);
 	virtual void update(whiteBaseball* whiteBaseball);

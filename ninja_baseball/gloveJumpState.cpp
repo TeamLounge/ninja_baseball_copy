@@ -12,6 +12,7 @@ gloveState * gloveJumpState::inputHandle(glove * glove)
 	if (!glove->isJump && glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())		//떨어져 도착하면 move상태로
 	{
 		glove->isJumpState = false;
+		glove->isMoveState = true;
 
 		return new gloveMoveState();		//new!!!!!!!!!new!!!!!!!!!new!!!!!!!!!!!적어!!!!!!!!!!!
 	}

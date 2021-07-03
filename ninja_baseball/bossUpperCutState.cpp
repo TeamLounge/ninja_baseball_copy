@@ -79,6 +79,10 @@ void bossUpperCutState::enter(boss * boss)
 	}
 
 	boss->_isUpperCutState = true;
+	boss->_isRedCatch = false;
+	boss->_isRedCatchAttack = false;
+	boss->_isRedThrow = false;
+	boss->_isRedHomeRunAttack = false;
 }
 
 void bossUpperCutState::exit(boss * boss)

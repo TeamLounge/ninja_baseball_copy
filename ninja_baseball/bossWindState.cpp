@@ -74,6 +74,8 @@ void bossWindState::enter(boss * boss)
 
 	jumpPower = 3.5f;
 	gravity = 0.f;
+
+	boss->_isWindState = true;
 	
 }
 
@@ -107,6 +109,7 @@ void bossWindState::flying(boss * boss)
 
 		if ((boss->_bossShadow.rc.bottom + boss->_bossShadow.rc.top) / 2 < boss->_boss.rc.bottom)
 		{
+			boss->_isWindState = false;
 			boss->_boss.rc.bottom = boss->_jumpShadowY;
 			jumpPower = 0;
 			gravity = 0;

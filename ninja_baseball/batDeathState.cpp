@@ -8,6 +8,16 @@
 
 batState * batDeathState::inputHandle(bat * bat)
 {
+	if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 5)
+		{
+			count = 0;
+			bat->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	return nullptr;
 }
 
@@ -15,7 +25,7 @@ void batDeathState::update(bat * bat)
 {
 	
 	frameCount++;
-	if (frameCount >= 15)		//한 번 타죽고 끝나
+	if (frameCount >= 5)		//한 번 타죽고 끝나
 	{
 		frameCount = 0;
 		if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())

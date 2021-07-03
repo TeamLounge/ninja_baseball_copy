@@ -6,9 +6,11 @@ class red_gripState : public playerstate
 private:
 
 	RECT _rc;
+	RECT _atkRc;
 	int _count;
 	int _index;
 	bool _isMove;
+	bool _isGrip;
 
 public:
 

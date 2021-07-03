@@ -97,13 +97,14 @@ void red_gripState::update(player* _player)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		_player->_grip_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 30, _player->getY(), 70, 70);
 	}
 	if (_player->isRight == false)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+		_player->_grip_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 185, _player->getY(), 70, 70);
 	}
-	
 }
 
 void red_gripState::enter(player* _player)

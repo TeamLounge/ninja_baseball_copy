@@ -9,6 +9,16 @@
 gloveState * gloveDeathState::inputHandle(glove * glove)
 {
 	//죽음 상태
+	if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 8)
+		{
+			count = 0;
+			glove->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	//죽음 이미지 알파렌더
 	//이후 deathRing 위로
 	return nullptr;

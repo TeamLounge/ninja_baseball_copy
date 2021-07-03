@@ -2,6 +2,7 @@
 #include "enemyManager.h"
 #include "player.h"
 
+//ver.8 에너미 삭제 gogo
 HRESULT enemyManager::init()
 {
 	
@@ -203,6 +204,19 @@ void enemyManager::baseballCollision()
 
 		if (!_player->isattack) (*_viWb)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vWb.empty())
+	{
+		for (int i = 0; i < _vWb.size(); ++i)
+		{
+			if (_vWb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("whiteBaseball", i);
+				_vWb.erase(_vWb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 
 	////////////////
    //   yellow   //
@@ -220,6 +234,7 @@ void enemyManager::baseballCollision()
 			(*_viYb)->setIsCollisionAttack(false);		//아니면 false로 전환
 		}
 	}
+
 	//Damaged//
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
@@ -232,6 +247,19 @@ void enemyManager::baseballCollision()
 		}
 
 		if (!_player->isattack) (*_viYb)->isCrash = false;
+	}
+	//죽은 애들 지워주자
+	if (!_vYb.empty())
+	{
+		for (int i = 0; i < _vYb.size(); ++i)
+		{
+			if (_vYb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("yellowBaseball", i);	
+				_vYb.erase(_vYb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
 	}
 		
 	////////////////
@@ -263,6 +291,19 @@ void enemyManager::baseballCollision()
 
 		if (!_player->isattack) (*_viGb)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vGb.empty())
+	{
+		for (int i = 0; i < _vGb.size(); ++i)
+		{
+			if (_vGb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("greenBaseball", i);
+				_vGb.erase(_vGb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 
 	////////////////
    //   blue     //
@@ -292,6 +333,19 @@ void enemyManager::baseballCollision()
 		}
 
 		if (!_player->isattack) (*_viBb)->isCrash = false;
+	}
+	//죽은 애들 지워주자
+	if (!_vBb.empty())
+	{
+		for (int i = 0; i < _vBb.size(); ++i)
+		{
+			if (_vBb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("blueBaseball", i);
+				_vBb.erase(_vBb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
 	}
 }
 void enemyManager::batCollision()
@@ -331,6 +385,19 @@ void enemyManager::batCollision()
 		//	(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
 		//}
 	}
+	//죽은 애들 지워주자
+	if (!_vBat.empty())
+	{
+		for (int i = 0; i < _vBat.size(); ++i)
+		{
+			if (_vBat[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("bat", i);
+				_vBat.erase(_vBat.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 }
 void enemyManager::gloveCollision()
 {
@@ -363,6 +430,19 @@ void enemyManager::gloveCollision()
 		}
 		if (!_player->isattack) (*_viGlove)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vGlove.empty())
+	{
+		for (int i = 0; i < _vGlove.size(); ++i)
+		{
+			if (_vGlove[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("glove", i);
+				_vGlove.erase(_vGlove.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 }
 
 void enemyManager::setBat1()
@@ -374,6 +454,18 @@ void enemyManager::setBat1()
 		_bat->init(PointMake(1150 + i * 300, 220 + i * 100));
 		_vBat.push_back(_bat);
 	}
+	////이렇게 나눠줄 순 없나..
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	bat* _bat1 = new bat;
+	//	bat* _bat3 = new bat;
+	//	
+	//	_bat1->init(PointMake(1150 + i * 300, 220 + i * 100));
+	//	_vBat.push_back(_bat1);
+	//
+	//	_bat3->init(PointMake(1150 + i * 300, 220 + i * 100));
+	//	_vBat.push_back(_bat3);
+	//}
 }
 void enemyManager::setBat2()
 {
@@ -1181,9 +1273,8 @@ void enemyManager::assultedCollisionCard()
 void enemyManager::setBoss()
 {
 	_boss = new boss;
-	_boss->init(PointMake(1600, 150));
+	_boss->init(PointMake(1300, 150));
 }
-
 
 /////////////////////////////////
 // ######보스 업데이트 항목 ########
@@ -1195,7 +1286,6 @@ void enemyManager::updateBoss()
 	attackCollision();
 	assultedCollisionBoss();
 }
-
 
 /////////////////////////////////
 //  ######보스 그리기 ########
@@ -1209,7 +1299,6 @@ void enemyManager::pinRender()
 {
 	_boss->pinRender();
 }
-
 
 /////////////////////////////////
 //  ######보스 위치잡기 ########
@@ -1262,8 +1351,6 @@ void enemyManager::WhereIsBoss()
 		_boss->_isMoveStopRangeY = false;
 	}
 }
-
-
 
 /////////////////////////////////
 //  ######보스 공격충돌 ########
@@ -1375,8 +1462,26 @@ void enemyManager::attackCollision()
 			_boss->_isUpperCut = false;
 		}
 	}
-}
 
+	/////////////////////////////////////////////
+	// #######  보스 wind 바람등장 ##########   //
+	/////////////////////////////////////////////
+	if (_boss->_isWindState)
+	{
+		_boss->_windCnt++;
+
+		if (_boss->_windCnt <= 10)
+		{
+			_player->setX(_player->getX() - RND->getFromFloatTo(5.5f, 12.f));
+			_player->setShadowX(_player->getX());
+		}
+		
+		if (_boss->_windCnt > 20)
+		{
+			_boss->_windCnt = 0;
+		}
+	}
+}
 
 /////////////////////////////////
 //  ######보스 피격충돌 ########
@@ -1489,17 +1594,7 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
-	//레드좌 잡기
-	if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
-	{
-		if (_boss->_isMoveState && _player->iscrawl)
-		{
-			_player->iscatch = true;
-			_boss->_isGreenCatch = true;
-			_boss->_isSmallDamaged = true;
-		}
-	}
-
+	//그린좌 잡기 공격
 	if (_boss->_isSmallDamagedState && _player->iscatch)
 	{
 		if (_player->_isGreenCatchAttack &&
@@ -1524,8 +1619,48 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
+	//레드좌 잡기
+	if (_boss->_isMoveState && _player->_isRedGrip)
+	{
+		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getGripRect()))
+		{
+			_player->iscatch = true;
+			_boss->_isRedCatch = true;
+			_boss->_isSmallDamaged = true;
+		}
+	}
+
+
+	if (_boss->_isSmallDamagedState && _player->iscatch)
+	{
+		if (_player->_isRedCatchAttack && !_player->_isRedCatchAttackOn &&
+			!_boss->_isRedCatchAttack)
+		{
+			_boss->_isRedCatchAttack = true;
+			_player->_isRedCatchAttackOn = true;
+		}
+
+		if (_player->_isRedHomeRunAttack &&
+			!_boss->_isRedHomeRunAttack)
+		{
+			_boss->_isRedHomeRunAttack = true;
+			_player->_isRedHomeRunAttack = false;
+		}
+
+		if (_player->_isRedThrow &&
+			!_boss->_isRedThrow)
+		{
+			_boss->_isRedThrow = true;
+			_player->_isRedThrow = false;
+		}
+	}
+
+	//레드좌 잡기공격
+
+	//잡기 풀면 다풀려요
 	if (!_player->iscatch)
 	{
 		_boss->_isGreenCatch = false;
+		_boss->_isRedCatch = false;
 	}
 }

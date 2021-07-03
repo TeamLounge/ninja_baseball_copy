@@ -58,6 +58,7 @@ public:
 	bool isLand;
 	int damagedCount;			//맞은 횟수
 	int timeCount;
+	bool isDeathDeleteState;	//죽고 지워줄 준비가 됐는지 판별할 bool값
 
 	bool isattack;              //에너미가 공격했어??
 	bool isdamage;				//에너미가 데미지 받았어??							

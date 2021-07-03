@@ -34,6 +34,7 @@ bossState * bossDamagedState::inputHandle(boss * boss)
 		boss->_isGreenCatchFrontCombo = false;
 		boss->_isRedDynamiteOn = false;
 		boss->_isRedHomeRunAttack = false;
+		boss->_isRedThrow = false;
 		return new bossIdleState();
 	}
 
@@ -52,6 +53,7 @@ bossState * bossDamagedState::inputHandle(boss * boss)
 		boss->_isGreenCatchFrontCombo = false;
 		boss->_isRedDynamiteOn = false;
 		boss->_isRedHomeRunAttack = false;
+		boss->_isRedThrow = false;
 		return new bossIdleState();
 	}
 
@@ -69,6 +71,7 @@ bossState * bossDamagedState::inputHandle(boss * boss)
 		boss->_isGreenCatchFrontCombo = false;
 		boss->_isRedDynamiteOn = false;
 		boss->_isRedHomeRunAttack = false;
+		boss->_isRedThrow = false;
 		return new bossUpperCutState();	
 	}
 
@@ -170,7 +173,7 @@ void bossDamagedState::enter(boss * boss)
 	}
 
 	if (boss->_isGreenCatchBackAttack || boss->_isGreenCatchFrontCombo ||
-		boss->_isRedHomeRunAttack)
+		boss->_isRedHomeRunAttack || boss->_isRedThrow)
 	{
 		jumpPower = 15.5f;
 		gravity = 0.55f;
@@ -223,29 +226,29 @@ void bossDamagedState::jump(boss * boss)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x -= 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x -= 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x -= 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x -= 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x -= 1.5f;
 			}
 
 			if (_isLeftWall)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x += 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x += 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x += 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x += 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x += 1.5f;
 			}
 			if (!_isRightWall && !_isLeftWall)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x += 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x -= 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x -= 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x += 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x += 1.5f;
 			}
 		}
 
@@ -255,28 +258,28 @@ void bossDamagedState::jump(boss * boss)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x -= 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x -= 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x -= 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x -= 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x -= 1.5f;
 			}
 			if (_isLeftWall)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x += 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x += 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x += 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x += 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x += 1.5f;
 			}
 			if (!_isRightWall && !_isLeftWall)
 			{
 				if (boss->_isGreenCatchFrontCombo || boss->_isRedDynamiteOn ||
 					boss->_isRedHomeRunAttack) boss->_boss.x -= 10.7f;
-				if (boss->_isGreenCatchBackAttack) boss->_boss.x += 10.7f;
+				if (boss->_isGreenCatchBackAttack || boss->_isRedThrow) boss->_boss.x += 10.7f;
 
 				if (!boss->_isGreenCatchBackAttack && !boss->_isRedHomeRunAttack &&
-					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn) boss->_boss.x -= 1.5f;
+					!boss->_isGreenCatchFrontCombo && !boss->_isRedDynamiteOn && !boss->_isRedThrow) boss->_boss.x -= 1.5f;
 			}
 		}
 	}
