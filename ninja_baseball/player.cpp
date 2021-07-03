@@ -239,8 +239,8 @@ void player::collision()
 		//플레이어가 whiteBaseball한테 맞을때 충돌함수
 		if (_em->getVWb()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
-				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
+			if (_shadowY >= _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadowY <= _em->getVWb()[i]->_wbShadow.rc.bottom)
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
 				{
@@ -252,8 +252,8 @@ void player::collision()
 		//whiteBaseball와 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVWb()[i]->_wbShadow.rc.top&&
-				_shadow->getCenterY() <= _em->getVWb()[i]->_wbShadow.rc.bottom)
+			if (_shadowY >= _em->getVWb()[i]->_wbShadow.rc.top&&
+				_shadowY <= _em->getVWb()[i]->_wbShadow.rc.bottom)
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVWb()[i]->getRect()))
 				{
@@ -271,8 +271,8 @@ void player::collision()
 		//플레이어가 blueBaseball한테 맞을때 충돌함수
 		if (_em->getVBb()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVBb()[i]->_bbShadow.rc.top&&
-				_shadow->getCenterY() <= _em->getVBb()[i]->_bbShadow.rc.bottom)
+			if (_shadowY >= _em->getVBb()[i]->_bbShadow.rc.top&&
+				_shadowY <= _em->getVBb()[i]->_bbShadow.rc.bottom)
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVBb()[i]->getRect()))
 				{
@@ -284,8 +284,8 @@ void player::collision()
 		//blueBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVBb()[i]->_bbShadow.rc.top&&
-				_shadow->getCenterY() <= _em->getVBb()[i]->_bbShadow.rc.bottom)
+			if (_shadowY >= _em->getVBb()[i]->_bbShadow.rc.top&&
+				_shadowY <= _em->getVBb()[i]->_bbShadow.rc.bottom)
 			{
 				if (IntersectRect(&temp, &_playerrc, &_em->getVBb()[i]->getRect()))
 				{
@@ -309,8 +309,8 @@ void player::collision()
 		//플레이어가 yellowBaseball한테 맞을때 충돌함수
 		if (_em->getVYb()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVYb()[i]->_ybShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVYb()[i]->_ybShadow.rc.bottom)
+			if (_shadowY >= _em->getVYb()[i]->_ybShadow.rc.top &&
+				_shadowY <= _em->getVYb()[i]->_ybShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
 				RECT t2 = _em->getVYb()[i]->getRect();
@@ -324,8 +324,8 @@ void player::collision()
 		//yellowBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVYb()[i]->_ybShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVYb()[i]->_ybShadow.rc.bottom)
+			if (_shadowY >= _em->getVYb()[i]->_ybShadow.rc.top &&
+				_shadowY <= _em->getVYb()[i]->_ybShadow.rc.bottom)
 			{
 				RECT t3 = _playerrc;
 				RECT t4 = _em->getVYb()[i]->getRect();
@@ -345,8 +345,8 @@ void player::collision()
 		//플레이어가 greenBaseball한테 맞을때 충돌함수
 		if (_em->getVGb()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVGb()[i]->_gbShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVGb()[i]->_gbShadow.rc.bottom)
+			if (_shadowY >= _em->getVGb()[i]->_gbShadow.rc.top &&
+				_shadowY <= _em->getVGb()[i]->_gbShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
 				RECT t2 = _em->getVGb()[i]->getRect();
@@ -360,8 +360,8 @@ void player::collision()
 		//greenBaseball과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVGb()[i]->_gbShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVGb()[i]->_gbShadow.rc.bottom)
+			if (_shadowY >= _em->getVGb()[i]->_gbShadow.rc.top &&
+				_shadowY <= _em->getVGb()[i]->_gbShadow.rc.bottom)
 			{
 				RECT t3 = _playerrc;
 				RECT t4 = _em->getVGb()[i]->getRect();
@@ -381,8 +381,8 @@ void player::collision()
 		//플레이어가 batMan한테 맞을때 충돌함수
 		if (_em->getVBat()[i]->isAttack)
 		{
-			if (_shadow->getCenterY() >= _em->getVBat()[i]->_batShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVBat()[i]->_batShadow.rc.bottom)
+			if (_shadowY >= _em->getVBat()[i]->_batShadow.rc.top &&
+				_shadowY <= _em->getVBat()[i]->_batShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
 				RECT t2 = _em->getVBat()[i]->getRect();
@@ -396,8 +396,8 @@ void player::collision()
 		//batMan과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVBat()[i]->_batShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVBat()[i]->_batShadow.rc.bottom)
+			if (_shadowY >= _em->getVBat()[i]->_batShadow.rc.top &&
+				_shadowY <= _em->getVBat()[i]->_batShadow.rc.bottom)
 			{
 				RECT t3 = _playerrc;
 				RECT t4 = _em->getVBat()[i]->getRect();
@@ -417,8 +417,8 @@ void player::collision()
 		//플레이어가 card한테 맞을때 충돌함수
 		if (_em->getVCard()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
+			if (_shadowY >= _em->getVCard()[i]->_cardShadow.rc.top &&
+				_shadowY <= _em->getVCard()[i]->_cardShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
 				RECT t2 = _em->getVCard()[i]->getAtkCardRc();
@@ -432,8 +432,8 @@ void player::collision()
 		//card과 잡기상태 충돌처리함수 <----07.02 주석처리 by 김광수
 		//if (iscrawl && !isattack)
 		//{
-		//	if (_shadow->getCenterY() >= _em->getVCard()[i]->_cardShadow.rc.top &&
-		//		_shadow->getCenterY() <= _em->getVCard()[i]->_cardShadow.rc.bottom)
+		//	if (_shadowY >= _em->getVCard()[i]->_cardShadow.rc.top &&
+		//		_shadowY <= _em->getVCard()[i]->_cardShadow.rc.bottom)
 		//	{
 		//		RECT t3 = _playerrc;
 		//		RECT t4 = _em->getVCard()[i]->getAtkCardRc();
@@ -453,8 +453,8 @@ void player::collision()
 		//플레이어가 glove한테 맞을때 충돌함수
 		if (_em->getVGlove()[i]->isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVGlove()[i]->_gloveShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVGlove()[i]->_gloveShadow.rc.bottom)
+			if (_shadowY >= _em->getVGlove()[i]->_gloveShadow.rc.top &&
+				_shadowY <= _em->getVGlove()[i]->_gloveShadow.rc.bottom)
 			{
 				RECT t1 = _playerrc;
 				RECT t2 = _em->getVGlove()[i]->getAttackRect();
@@ -468,8 +468,8 @@ void player::collision()
 		//glove과 잡기상태 충돌처리함수
 		if (iscrawl && !isattack)
 		{
-			if (_shadow->getCenterY() >= _em->getVGlove()[i]->_gloveShadow.rc.top &&
-				_shadow->getCenterY() <= _em->getVGlove()[i]->_gloveShadow.rc.bottom)
+			if (_shadowY >= _em->getVGlove()[i]->_gloveShadow.rc.top &&
+				_shadowY <= _em->getVGlove()[i]->_gloveShadow.rc.bottom)
 			{
 				RECT t3 = _playerrc;
 				RECT t4 = _em->getVGlove()[i]->getAttackRect();
