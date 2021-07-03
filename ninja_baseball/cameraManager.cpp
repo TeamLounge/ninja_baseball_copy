@@ -77,6 +77,7 @@ void cameraManager::updateCamera(float x, float y)
 
 void cameraManager::updateCamera(float x1, float y1, float x2, float y2, float ratioX1, float ratioX2)
 {
+	//x1이 비율 밖으로 나가면 화면 조정
 	if (x1 >= _cameraBuffer->getX() + ratioX2 * CAMERAX)
 	{
 		_cameraBuffer->setX(x1 - ratioX2 * CAMERAX);
@@ -86,6 +87,7 @@ void cameraManager::updateCamera(float x1, float y1, float x2, float y2, float r
 		_cameraBuffer->setX(x1 - ratioX1 * CAMERAX);
 	}
 
+	//x2의 좌표가 화면 밖으로 나가려고 하면 카메라 조정
 	if (getCameraRIGHT() <= x2)
 	{
 		_cameraBuffer->setX(x2 - WINSIZEX);
@@ -98,7 +100,6 @@ void cameraManager::updateCamera(float x1, float y1, float x2, float y2, float r
 	cameraRange();
 	x[0] = _cameraBuffer->getX() + ratioX1 * CAMERAX;
 	x[1] = _cameraBuffer->getX() + ratioX2 * CAMERAX;
-	//_cameraBuffer->setCenter((x1 + x2) / 2, (y1 + y2) / 2);
 }
 
 void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
