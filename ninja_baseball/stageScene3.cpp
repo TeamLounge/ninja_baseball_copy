@@ -44,12 +44,14 @@ HRESULT stageScene3::init()
 
 	_count = 0;
 
+	queue<float> empty;
+	swap(_cameraStopX, empty);
 	_cameraStopX.push(1080);
 
 	CAMERAMANAGER->_isFixed = true;
 
 	_isSetBoss = false;
-
+	_isHaveToSetBoss = false;
 	_isStart = true;
 
 	_bossHPBar = new progressBar;
@@ -67,6 +69,7 @@ void stageScene3::release()
 {
 	_player->release();
 	_em->release();
+
 	RENDERMANAGER->deleteAll();
 }
 
@@ -224,7 +227,7 @@ void stageScene3::render()
 	_playerUI->render();
 	_timerUI->render();
 	//보스 체력바 출력
-	if (_isSetBoss)
+	if (_isSetBoss && !_em->getBoss()->_isDeathState)
 	{
 		if (_em->getBoss()->_count < 10)
 			_bossHPBar->render();

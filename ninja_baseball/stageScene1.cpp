@@ -47,8 +47,10 @@ HRESULT stageScene1::init()
 
 	setShutter();
 
-	_isAllDead = false;
 	_isSetCard = false;
+
+	queue<float> empty;
+	swap(_cameraStopX, empty);
 
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
@@ -123,7 +125,7 @@ void stageScene1::update()
 		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 		CAMERAMANAGER->update();
 
-
+		//д╚╦ч╤С
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 		{
 			_cameraStopX.pop();
@@ -138,6 +140,8 @@ void stageScene1::update()
 				CAMERAMANAGER->_isFixed = false;
 			}
 		}
+		//=============================================
+
 
 		if (KEYMANAGER->isOnceKeyDown('F'))
 		{
@@ -228,7 +232,7 @@ void stageScene1::render()
 
 	if (!_shutter.isCrush)
 	{
-		IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), 2001, 0);
+		IMAGEMANAGER->findImage("╪еем")->render(getMemDC(), _shutter.x, _shutter.y);
 		//Rectangle(getMemDC(), _shutter.rc);
 	}
 	else if (IMAGEMANAGER->findImage("shutterParticle1")->getY() + IMAGEMANAGER->findImage("shutterParticle1")->getHeight() < WINSIZEY)
@@ -317,6 +321,9 @@ void stageScene1::setImage()
 
 void stageScene1::setShutter()
 {
+	_shutter.x = 2001;
+	_shutter.y = -IMAGEMANAGER->findImage("╪еем")->getHeight() / 2 + 100;
+	_shutter.body = RectMake(_shutter.x, _shutter.y, IMAGEMANAGER->findImage("╪еем")->getWidth(), IMAGEMANAGER->findImage("╪еем")->getHeight());
 	_shutter.rc = RectMake(2001, 200, IMAGEMANAGER->findImage("╪еем")->getWidth(), 500);
 	_down = 100.f;
 	_gravity = 10.f;
@@ -326,6 +333,9 @@ void stageScene1::setShutter()
 	IMAGEMANAGER->findImage("shutterParticle4")->setCenter(2001 + 30, WINSIZEY / 2);
 	IMAGEMANAGER->findImage("shutterParticle5")->setCenter(2001 + 30, WINSIZEY / 2);
 	IMAGEMANAGER->findImage("shutterParticle6")->setCenter(2001 + 30, WINSIZEY / 2);
+	_shutter.isCrush = false;
+	_shutter.isClosed = false;
+	_shutter.height = 30;
 }
 
 void stageScene1::updateShutter()
@@ -347,5 +357,32 @@ void stageScene1::updateShutter()
 		IMAGEMANAGER->findImage("shutterParticle5")->setCenter(IMAGEMANAGER->findImage("shutterParticle5")->getCenterX() - 7, IMAGEMANAGER->findImage("shutterParticle5")->getCenterY() - _down);
 		IMAGEMANAGER->findImage("shutterParticle6")->setCenter(IMAGEMANAGER->findImage("shutterParticle6")->getCenterX() - 13, IMAGEMANAGER->findImage("shutterParticle6")->getCenterY() - _down);
 		_down -= _gravity;
+	}
+
+	if(KEYMANAGER->isStayKeyDown('E'))
+	{
+		
+		if (_shutter.body.bottom >= WINSIZEY)
+		{
+			if (!_shutter.isClosed)
+			{
+				_shutter.body.bottom = WINSIZEY - _shutter.height;
+				_shutter.height -= 5;
+				if (_shutter.height <= 0)
+				{
+					_shutter.isClosed = true;
+				}
+			}
+			else
+			{
+				_shutter.body.bottom = WINSIZEY;
+			}
+			_shutter.y = _shutter.body.bottom - IMAGEMANAGER->findImage("╪еем")->getHeight();
+		}
+		else
+		{
+			_shutter.y += 10;
+		}
+		_shutter.body = RectMake(_shutter.x, _shutter.y, IMAGEMANAGER->findImage("╪еем")->getWidth(), IMAGEMANAGER->findImage("╪еем")->getHeight());
 	}
 }

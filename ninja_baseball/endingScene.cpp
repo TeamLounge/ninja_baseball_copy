@@ -24,6 +24,7 @@ HRESULT endingScene::init()
 	}
 	_dialogNow = 0;
 
+	_dialog.clear();
 	_dialog.push_back("GOOD, WE GOT THE BAT BACK!!");
 	_dialog.push_back("THE NEXT ENEMY IS WAITING FOR US");
 	_dialog.push_back("ON THE STEAM SHIP!!");

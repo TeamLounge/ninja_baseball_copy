@@ -5,9 +5,6 @@ HRESULT startScene::init()
 {
 	//이미지
 	IMAGEMANAGER->addFrameImage("stolen", "image/6_UI/startScene/stolen_frame.bmp", 27840, 574, 29, 1, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->findImage("stolen")->setFrameX(0);
-	IMAGEMANAGER->findImage("stolen")->setFrameY(0);
-
 	IMAGEMANAGER->addImage("start_background", "image/6_UI/startScene/background.bmp", WINSIZEX, 384, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("start_dialog_background", "image/6_UI/startScene/dialogBackground.bmp", WINSIZEX, 191, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("start_dialog_background2", "image/6_UI/startScene/dialogBackground2.bmp", WINSIZEX, 191, true, RGB(255, 0, 255), false);
@@ -16,7 +13,14 @@ HRESULT startScene::init()
 	IMAGEMANAGER->addImage("face_blue", "image/6_UI/startScene/face_blue.bmp", 240, 192, true, RGB(255, 0, 255), false);
 	IMAGEMANAGER->addImage("face_red", "image/6_UI/startScene/face_red.bmp", 240, 192, true, RGB(255, 0, 255), false);
 
+	IMAGEMANAGER->findImage("stolen")->setFrameX(0);
+	IMAGEMANAGER->findImage("stolen")->setFrameY(0);
+
+	CAMERAMANAGER->setCamera(0, 0);
+
 	//다이얼로그
+	_dialog.clear();
+
 	_dialog.push_back("ONE DAY SIX BASEBALL ITEMS WERE");
 	_dialog.push_back("STOLEN FROM THE BASEBALL HALL OF");
 	_dialog.push_back("FAME BY A SECRET SOCIETY CALLED");
@@ -26,21 +30,29 @@ HRESULT startScene::init()
 	_dialog.push_back("NINJA BASEBALL BATMAN TO RETURN");
 	_dialog.push_back("THE STOLEN ITEMS");
 
+	_backgroundHeight = 0;
+	_dialogNow = 0;
+
 	for (int i = 0; i < 7; i++)
 	{
 		_dialogTextNum[i] = 0;
 	}
 
-	_backgroundHeight = 0;
-	_dialogNow = 0;
-
 	_faceImgName = "face_yellow";
 	_dBackgroundName = "start_dialog_background";
+
+	_elapsedSecForFrame = 0;
+	_elapsedSecForText = 0;
+
+	
+	_isFirstDialogEnd = false;
+
 	return S_OK;
 }
 
 void startScene::release()
 {
+
 }
 
 void startScene::update()
@@ -48,7 +60,7 @@ void startScene::update()
 	//배경이 전부 나오면 다이얼로그 출력 시작
 	if (_backgroundHeight == IMAGEMANAGER->findImage("start_background")->getHeight() / 2)
 	{
-		//첫번째 다이얼로그
+		//씬 넘기기
 		if (_dialogTextNum[2] >= 17 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForFrame += TIMEMANAGER->getElapsedTime();
@@ -77,7 +89,7 @@ void startScene::update()
 				}
 			}
 		}
-		//두번째 다이얼로그
+		//첫번째 다이얼로그
 		if (_dialogNow < 4 && !_isFirstDialogEnd)
 		{
 			_elapsedSecForText += TIMEMANAGER->getElapsedTime();
@@ -104,6 +116,7 @@ void startScene::update()
 		}
 		else if (_isFirstDialogEnd && _dialogNow<_dialog.size())
 		{
+			//두번째 다이얼로그
 			_elapsedSecForText += TIMEMANAGER->getElapsedTime();
 			if (_elapsedSecForText >= 0.05f)
 			{
@@ -191,44 +204,50 @@ void startScene::render()
 		IMAGEMANAGER->findImage("stolen")->frameRender(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("stolen")->getFrameHeight());
 	}
 
-	HFONT font = CreateFont(35, 0, 0, 0, 600, false, false, false, DEFAULT_CHARSET,
-		0, 0, 0, 0, TEXT("Retro Gaming"));
-	HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
-	SetBkMode(getMemDC(), TRANSPARENT);
+	
 
-	//그림자
-	SetTextColor(getMemDC(), RGB(0, 0, 0));
-	if (!_isFirstDialogEnd)
+	if (_backgroundHeight == IMAGEMANAGER->findImage("start_background")->getHeight() / 2)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			TextOut(getMemDC(), 152, WINSIZEY - 147 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
-		}
-	}
-	else
-	{
-		for (int i = 4; i < _dialog.size(); i++)
-		{
-			TextOut(getMemDC(), 152, WINSIZEY - 147 + 30 * (i-4), _dialog[i].c_str(), _dialogTextNum[i]);
-		}
-	}
+		HFONT font = CreateFont(35, 0, 0, 0, 600, false, false, false, DEFAULT_CHARSET,
+			0, 0, 0, 0, TEXT("Retro Gaming"));
+		HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
+		SetBkMode(getMemDC(), TRANSPARENT);
 
-	//텍스트
-	SetTextColor(getMemDC(), RGB(255, 255, 255));
-	if (!_isFirstDialogEnd)
-	{
-		for (int i = 0; i < 4; i++)
+		//그림자
+		SetTextColor(getMemDC(), RGB(0, 0, 0));
+		if (!_isFirstDialogEnd)
 		{
-			TextOut(getMemDC(), 150, WINSIZEY - 150 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+			for (int i = 0; i < 4; i++)
+			{
+				TextOut(getMemDC(), 152, WINSIZEY - 147 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+			}
 		}
-	}
-	else
-	{
-		for (int i = 4; i < _dialog.size(); i++)
+		else
 		{
-			TextOut(getMemDC(), 150, WINSIZEY - 150 + 30 * (i - 4), _dialog[i].c_str(), _dialogTextNum[i]);
+			for (int i = 4; i < _dialog.size(); i++)
+			{
+				TextOut(getMemDC(), 152, WINSIZEY - 147 + 30 * (i - 4), _dialog[i].c_str(), _dialogTextNum[i]);
+			}
 		}
+
+		//텍스트
+		SetTextColor(getMemDC(), RGB(255, 255, 255));
+		if (!_isFirstDialogEnd)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				TextOut(getMemDC(), 150, WINSIZEY - 150 + 30 * i, _dialog[i].c_str(), _dialogTextNum[i]);
+			}
+		}
+		else
+		{
+			for (int i = 4; i < _dialog.size(); i++)
+			{
+				TextOut(getMemDC(), 150, WINSIZEY - 150 + 30 * (i - 4), _dialog[i].c_str(), _dialogTextNum[i]);
+			}
+		}
+		SelectObject(getMemDC(), oldFont);
+		DeleteObject(font);
 	}
-	SelectObject(getMemDC(), oldFont);
-	DeleteObject(font);
+	
 }
