@@ -125,6 +125,7 @@ void cameraManager::updateCamera(float centerX, float centerY, float ratioX)
 	cameraRange();
 	x[0] = _cameraBuffer->getX() + ratioX * CAMERAX;
 	x[1] = 0;
+	
 }
 
 /*
