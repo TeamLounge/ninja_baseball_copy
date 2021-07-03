@@ -7,6 +7,16 @@
 
 bbState * bbDeathState::inputHandle(blueBaseball * blueBaseball)
 {
+	if (blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 8)
+		{
+			count = 0;
+			blueBaseball->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	return nullptr;
 }
 

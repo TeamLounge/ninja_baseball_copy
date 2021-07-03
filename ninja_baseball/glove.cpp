@@ -53,6 +53,11 @@ HRESULT glove::init(POINT position)
 	isDamaged = false;
 	isDeath = false;
 
+	//상태 변화에 따른 이미지 bool값
+	isAttackTongueState = false;
+	isJumpState = false;
+	isMoveState = false;
+
 	damagedCount = 0;
 
 	isattack = false;              //에너미가 공격했어??
@@ -73,24 +78,25 @@ void glove::release()
 
 void glove::update()
 {
-
-
 	//에너미
-	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 300, 232);
+	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 150, 232);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{
 		//그림자
-		_gloveShadow.rc = RectMakeCenter((_glove.rc.right + _glove.rc.left) / 2, _glove.rc.bottom, 215, 50);
-		_gloveShadow.x = (_glove.rc.right + _glove.rc.left) / 2;	//점프하기 전까지의 y값을 계속 저장중.
 		_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
+		_gloveShadow.x = (_glove.rc.right + _glove.rc.left) / 2;	//점프하기 전까지의 y값을 계속 저장중.
+		_gloveShadow.rc = RectMakeCenter(_gloveShadow.x, _gloveShadow.y, 215, 50);
 	}
 	else   //점프하면
 	{
 		//그림자
-		_gloveShadow.rc = RectMakeCenter((_glove.rc.right + _glove.rc.left) / 2, _gloveShadow.y, 215, 50);	//점프하기 전의 y값을 사용
+		_gloveShadow.x = (_glove.rc.right + _glove.rc.left) / 2;	//점프하기 전까지의 y값을 계속 저장중.
+		_gloveShadow.rc = RectMakeCenter(_gloveShadow.x, _gloveShadow.y, 215, 50);	//점프하기 전의 y값을 사용
 	}
 
+	//GLOVE 상태마다 변하는 이미지 잡아주기
+	modifiedLocation();
 
 	InputHandle();
 	_gloveState->update(this);
@@ -142,23 +148,38 @@ void glove::setShadow()
 //공격 시 이미지 이동됨.... 좌표 수정 위함
 void glove::modifiedLocation()
 {
+	//공격 중일 때의 이미지
 	if (isAttackTongueState)
 	{
-		if (!isRight)
+		if (!isRight)	//좌
 		{
 			_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 70, _currentFrameX, _currentFrameY);
 		}
-		if (isRight)
+		if (isRight)	//우
 		{
 			_glove.img->frameRender(getMemDC(), _glove.x + 100, _glove.y + 70, _currentFrameX, _currentFrameY);
 		}
 	}
+	//점프일 때의 이미지
 	if (isJumpState)
 	{
 		_glove.img->frameRender(getMemDC(), _glove.x + 70, _glove.y + 30, _currentFrameX, _currentFrameY);
 	}
-	if (!isAttackTongueState && !isJumpState)
+	/*if (!isAttackTongueState && !isJumpState)
 	{
 		_glove.img->frameRender(getMemDC(), _glove.x + 100, _glove.y + 70, _currentFrameX, _currentFrameY);
+	}*/
+
+	//움직일 때의 이미지
+	if (isMoveState)
+	{
+		if (!isRight)	//왼쪽 보면
+		{
+			_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 70, _currentFrameX, _currentFrameY);
+		}
+		if (isRight)	//오른쪽 보면
+		{
+			_glove.img->frameRender(getMemDC(), _glove.x + 150, _glove.y + 70, _currentFrameX, _currentFrameY);
+		}
 	}
 }

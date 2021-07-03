@@ -8,6 +8,16 @@
 
 ybState * ybDeathState::inputHandle(yellowBaseball * yellowBaseball)
 {
+	if (yellowBaseball->getCurrentFrameX() == yellowBaseball->_yellowBaseball.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 8)
+		{
+			count = 0;
+			yellowBaseball->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	return nullptr;
 }
 

@@ -8,6 +8,7 @@ class gbDeathState :public gbState
 public:
 
 	int frameCount;
+	int count;
 
 	virtual gbState* inputHandle(greenBaseball* greenBaseball);
 	virtual void update(greenBaseball* greenBaseball);

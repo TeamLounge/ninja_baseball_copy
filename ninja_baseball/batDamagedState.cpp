@@ -30,7 +30,7 @@ void batDamagedState::update(bat * bat)
 	{
 		//frame
 		frameCount++;
-		if (frameCount >= 5)
+		if (frameCount >= 7)
 		{
 			frameCount = 0;
 			if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())
@@ -57,7 +57,7 @@ void batDamagedState::update(bat * bat)
 	if (bat->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
-		if (frameCount >= 5)
+		if (frameCount >= 7)
 		{
 			frameCount = 0;
 			if (bat->getCurrentFrameX() == bat->_bat.img->getMaxFrameX())

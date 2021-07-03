@@ -8,6 +8,7 @@ class ybDeathState : public ybState
 public:
 
 	int frameCount;
+	int count;
 
 	virtual ybState* inputHandle(yellowBaseball* yellowBaseball);
 	virtual void update(yellowBaseball* yellowBaseball);
