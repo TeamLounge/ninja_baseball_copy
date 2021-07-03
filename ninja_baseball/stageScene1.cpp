@@ -358,13 +358,6 @@ void stageScene1::render()
 	{
 		_gameoverUI->render();
 	}
-
-	char str[128];
-	sprintf_s(str, "set : %d", _setBaseBallandGlove);
-	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 50, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
-	sprintf_s(str, "count : %d", _count);
-	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
-	
 }
 
 void stageScene1::shutterCollison()

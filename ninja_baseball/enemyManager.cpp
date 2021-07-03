@@ -619,6 +619,60 @@ void enemyManager::baseballCollision()
 			}
 		}
 	}
+
+	//초록이랑 글러브 충돌
+	if (!_vGb.empty() && !_vGlove.empty())
+	{
+		for (int i = 0; i < _vGb.size(); i++)
+		{
+			for (int j = 0; j < _vGlove.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vGb[i]->getShadowRect(), &_vGlove[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vGb[i]->getShadowY() < _vGlove[j]->getShadowY())
+						{
+							_vGb[i]->setShadowY(_vGb[i]->getShadowY() - height);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 295);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vGb[i]->setShadowY(_vGb[i]->getShadowY() + height);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 295);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vGb[i]->getShadowX() < _vGlove[j]->getShadowX())
+						{
+							_vGb[i]->setShadowX(_vGb[i]->getShadowX() - width);
+							_vGb[i]->setX(_vGb[i]->getShadowX() - 200);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vGb[i]->setShadowX(_vGb[i]->getShadowX() + width);
+							_vGb[i]->setX(_vGb[i]->getShadowX() - 200);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
 }
 void enemyManager::batCollision()
 {
