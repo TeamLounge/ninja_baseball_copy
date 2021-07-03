@@ -136,6 +136,9 @@ void trashCan::render()
 		peice2->render(getMemDC());
 		peice3->render(getMemDC());
 	}
+	char str[128];
+	sprintf_s(str, "count : %d ", damagecount);
+	TextOut(getMemDC(), _obj._obj_rc.left, _obj._obj_rc.top - 30,str,strlen(str));
 }
 
 void trashCan::deleteRender(int index)

@@ -371,8 +371,8 @@ void objectManager::collsion()
 
 	
 	for (_vitrash = _vtrash.begin(); _vitrash != _vtrash.end(); _vitrash++) {
-		if ((*_vitrash)->getShadowY() > _player->_shadow->getY() &&
-			(*_vitrash)->getShadowY() < _player->_shadow->getY() + _player->_shadow->getHeight())
+		if ((*_vitrash)->getShadowY() > _player->getShadowY()-_player->_shadow->getHeight()/2 &&
+			(*_vitrash)->getShadowY() < _player->getShadowY() + _player->_shadow->getHeight() / 2)
 		{
 			if (_player->isattack&&IntersectRect(&temp, &_player->_attack_rc, &(*_vitrash)->getRect()))
 			{

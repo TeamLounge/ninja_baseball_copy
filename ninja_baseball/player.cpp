@@ -17,9 +17,18 @@ HRESULT player::init(int character, bool isStart)
 
 	//이건 하나씩 풀꺼입니다.
 	if (character == 1) {
-		_shadow = IMAGEMANAGER->findImage("red_shadow");
-		_state = new red_startState;
-		isRight = true;
+		if (isStart)
+		{
+			_shadow = IMAGEMANAGER->findImage("red_shadow");
+			_state = new red_startState;
+			isRight = true;
+		}
+		else
+		{
+			_shadow = IMAGEMANAGER->findImage("red_shadow");
+			_state = new red_idleState;
+		}
+
 	}
 
 	if (character == 2) {
@@ -142,12 +151,14 @@ void player::render()
 		_effect3->render(getMemDC());
 		
 	}
-
+	if (isattack)
+	{
+		Rectangle(getMemDC(), _attack_rc);
+	}
 	//플레이어 좌표확인하려고
 	char str[128];
 	sprintf_s(str,"x:%f y:%f , 무적?: %d" , _x, _y , invincibility);
-	TextOut(getMemDC(), _playerrc.left, _playerrc.top, str, strlen(str));
-
+	TextOut(getMemDC(), _playerrc.left, _shadow->getY(), str, strlen(str));
 }
 
 void player::handleInput()
@@ -164,28 +175,28 @@ void player::handleInput()
 void player::addImage()
 {
 	//플레이어(레드) 프레임 이미지
-	IMAGEMANAGER->addFrameImage("red_idle", "image/2_player/red/red_idle.bmp", 0, 0, 240, 462, 1, 2, true, RGB(255, 0, 255),false);
-	IMAGEMANAGER->addFrameImage("red_walk", "image/2_player/red/red_walk2.bmp", 0, 0, 1440, 522, 6, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_jump", "image/2_player/red/red_jump.bmp", 0, 0, 231, 498, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_attack", "image/2_player/red/red_attack.bmp", 0, 0, 7344, 630, 16, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_run", "image/2_player/red/red_run.bmp", 0, 0, 768, 480, 4, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_grip2", "image/2_player/red/red_grip2.bmp", 0, 0, 666, 444, 3, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_jumpAttack", "image/2_player/red/red_jumpAttack.bmp", 0, 0, 588, 750, 2, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_idle2", "image/2_player/red/red_idle2.bmp", 0, 0, 396, 510, 2, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_sliding", "image/2_player/red/red_sliding.bmp", 0, 0, 288, 366, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_dashAttack", "image/2_player/red/red_dashAttack.bmp", 0, 0, 192, 444, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_homerun", "image/2_player/red/red_homerun.bmp", 0, 0, 2520, 522, 7, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_damage1", "image/2_player/red/red_damage.bmp", 0, 0, 666, 462, 2, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_damage2", "image/2_player/red/red_damage2.bmp", 0, 0, 234, 396, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_downAttack", "image/2_player/red/red_downAttack.bmp", 0, 0, 792, 480, 3, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_standUp", "image/2_player/red/red_standUp.bmp", 0, 0, 2016, 576, 7, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_legKick", "image/2_player/red/red_legKick.bmp", 0, 0, 3420, 522, 10, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_throw", "image/2_player/red/red_throw.bmp", 0, 0, 2250, 642, 5, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_dynamiteDance", "image/2_player/red/red_dynamiteDance.bmp", 0, 0, 19440, 780, 36, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_damage3", "image/2_player/red/red_damage3.bmp", 0, 0, 855, 462, 3, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_die", "image/2_player/red/red_die.bmp", 0, 0, 333, 576, 1, 2, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_set", "image/2_player/red/red_set.bmp", 0, 0, 2700, 338, 9, 1, true, RGB(255, 0, 255), false);
-	IMAGEMANAGER->addFrameImage("red_gripAttack", "image/2_player/red/red_gripAttack.bmp", 0, 0, 720, 444, 3, 2, true, RGB(255, 0, 255), false);
+	IMAGEMANAGER->addFrameImage("red_idle", "image/2_player/red/red_idle.bmp", 0, 0, 240, 462, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_walk", "image/2_player/red/red_walk2.bmp", 0, 0, 1440, 522, 6, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_jump", "image/2_player/red/red_jump.bmp", 0, 0, 231, 498, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_attack", "image/2_player/red/red_attack.bmp", 0, 0, 7344, 630, 16, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_run", "image/2_player/red/red_run.bmp", 0, 0, 768, 480, 4, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_grip2", "image/2_player/red/red_grip2.bmp", 0, 0, 666, 444, 3, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_jumpAttack", "image/2_player/red/red_jumpAttack.bmp", 0, 0, 588, 750, 2, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_idle2", "image/2_player/red/red_idle2.bmp", 0, 0, 396, 510, 2, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_sliding", "image/2_player/red/red_sliding.bmp", 0, 0, 288, 366, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_dashAttack", "image/2_player/red/red_dashAttack.bmp", 0, 0, 192, 444, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_homerun", "image/2_player/red/red_homerun.bmp", 0, 0, 2520, 522, 7, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_damage1", "image/2_player/red/red_damage.bmp", 0, 0, 666, 462, 2, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_damage2", "image/2_player/red/red_damage2.bmp", 0, 0, 234, 396, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_downAttack", "image/2_player/red/red_downAttack.bmp", 0, 0, 792, 480, 3, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_standUp", "image/2_player/red/red_standUp.bmp", 0, 0, 2016, 576, 7, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_legKick", "image/2_player/red/red_legKick.bmp", 0, 0, 3420, 522, 10, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_throw", "image/2_player/red/red_throw.bmp", 0, 0, 2250, 642, 5, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_dynamiteDance", "image/2_player/red/red_dynamiteDance.bmp", 0, 0, 19440, 780, 36, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_damage3", "image/2_player/red/red_damage3.bmp", 0, 0, 855, 462, 3, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_die", "image/2_player/red/red_die.bmp", 0, 0, 333, 576, 1, 2, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_set", "image/2_player/red/red_set.bmp", 0, 0, 2700, 338, 9, 1, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("red_gripAttack", "image/2_player/red/red_gripAttack.bmp", 0, 0, 720, 444, 3, 2, true, RGB(255, 0, 255), true);
 	//플레이어(레드) 그림자 이미지
 	IMAGEMANAGER->addImage("red_shadow", "image/2_Player/red/redShadow.bmp", 170, 60, true, RGB(255, 0, 255), false);
 	

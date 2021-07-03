@@ -22,7 +22,7 @@ playerstate* red_runState::handleInput(player* _player)
 		return new red_dashAttackState;
 	}
 
-	if (_player->isdamage)
+	if (_player->isdamage && !_player->invincibility)
 	{
 		return new red_damage1State;
 	}

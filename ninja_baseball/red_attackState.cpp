@@ -43,11 +43,11 @@ void red_attackState::update(player * _player)
 
 				if (_player->isRight == true)
 				{
-					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY(), 70, 70);
+					_player->_attack_rc = RectMakeCenter(_player->getX() + _player->getImage()->getFrameWidth() / 2 - 50, _player->getY()+30, 70, 70);
 				}
 				if (_player->isRight == false)
 				{
-					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY(), 70, 70);
+					_player->_attack_rc = RectMakeCenter(_player->getX() - _player->getImage()->getFrameWidth() / 2 + 50, _player->getY() + 30, 70, 70);
 				}
 			}
 			else
