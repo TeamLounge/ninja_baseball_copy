@@ -68,6 +68,10 @@ void red_dashAttackState::update(player* _player)
 	//그림자 위치
 	_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	_player->setShadowY(_player->getY() + 90 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_dashAttackState::enter(player* _player)
@@ -75,10 +79,6 @@ void red_dashAttackState::enter(player* _player)
 	_player->setImage(IMAGEMANAGER->findImage("red_dashAttack"));
 	_player->setImageName("red_dashAttack");
 	
-	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-	//	_player->getImage()->getFrameHeight());
-	//_player->setRect(_rc);
-
 	_time = 0;
 
 	if (_player->isRight == true)

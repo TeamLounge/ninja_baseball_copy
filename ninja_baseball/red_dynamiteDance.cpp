@@ -88,6 +88,10 @@ void red_dynamiteDance::update(player * _player)
 		_player->_shadow->setY(_player->getY() + 170);
 		_player->_shadow->setX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15);
 	}
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_dynamiteDance::enter(player * _player)
@@ -96,10 +100,7 @@ void red_dynamiteDance::enter(player * _player)
 	_player->setImageName("red_dynamiteDance");
 
 	_player->setY(_player->getY() - 80);
-	/*_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-		_player->getImage()->getFrameHeight());
-	_player->setRect(_rc);*/
-
+	
 	_count = _index = _time = 0;
 	_jumpPower = 3.0f;
 	_gravity = 0.15;

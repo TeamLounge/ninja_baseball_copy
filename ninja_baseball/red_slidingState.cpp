@@ -73,6 +73,10 @@ void red_slidingState::update(player* _player)
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 		_player->setShadowY(_player->getY() + 50 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 	}
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_slidingState::enter(player* _player)
@@ -81,10 +85,7 @@ void red_slidingState::enter(player* _player)
 	_player->setImageName("red_sliding");
 
 	_player->setY(_player->getY() + 40);
-	
-	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-	//	_player->getImage()->getFrameHeight());
-	//_player->setRect(_rc);
+		
 
 	_time = 0;
 

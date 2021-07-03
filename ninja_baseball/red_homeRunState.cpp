@@ -99,6 +99,10 @@ void red_homeRunState::update(player* _player)
 			_player->setShadowY(_player->getY() + 110 + IMAGEMANAGER->findImage("red_shadow")->getHeight() / 2);
 		}
 	}
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_homeRunState::enter(player* _player)
@@ -115,11 +119,7 @@ void red_homeRunState::enter(player* _player)
 	{
 		_player->setX(_player->getX() - 60);
 	}
-
-	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-	//	_player->getImage()->getFrameHeight());
-	//_player->setRect(_rc);
-
+		
 	_count = _index = _count2 = 0;
 
 	if (_player->isRight == true)

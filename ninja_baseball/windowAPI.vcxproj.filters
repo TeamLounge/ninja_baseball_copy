@@ -64,9 +64,6 @@
     <ClCompile Include="red_idleState2.cpp">
       <Filter>playGound\player\red</Filter>
     </ClCompile>
-    <ClCompile Include="red_jumpAttackState.cpp">
-      <Filter>playGound\player\red</Filter>
-    </ClCompile>
     <ClCompile Include="red_jumpState.cpp">
       <Filter>playGound\player\red</Filter>
     </ClCompile>
@@ -499,9 +496,6 @@
       <Filter>playGound\player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_idleState2.h">
-      <Filter>playGound\player\red</Filter>
-    </ClInclude>
-    <ClInclude Include="red_jumpAttackState.h">
       <Filter>playGound\player\red</Filter>
     </ClInclude>
     <ClInclude Include="red_jumpState.h">

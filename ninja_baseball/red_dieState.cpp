@@ -97,17 +97,17 @@ void red_dieState::update(player * _player)
 	{
 		_player->setShadowX(_player->getX() - (_player->_shadow->getWidth() / 2) - 15 + IMAGEMANAGER->findImage("red_shadow")->getWidth() / 2);
 	}
+
+	_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
+		_player->getImage()->getFrameHeight());
+	_player->setRect(_rc);
 }
 
 void red_dieState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_damage3"));
 	_player->setImageName("red_damage3");
-
-	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
-	//	_player->getImage()->getFrameHeight());
-	//_player->setRect(_rc);
-
+	
 	//죽으면 life 1개 줄어든다
 	_player->setlife(_player->getlife() - 1);
 
