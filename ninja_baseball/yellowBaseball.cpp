@@ -68,9 +68,9 @@ void yellowBaseball::update()
 	_ybState->update(this);
 
 	//에너미
-	_yellowBaseball.rc = RectMakeCenter(_yellowBaseball.x + 200, _yellowBaseball.y + 200, 300, 230);
+	_yellowBaseball.rc = RectMakeCenter(_yellowBaseball.x + 200, _yellowBaseball.y + 200, 230, 190);
 
-	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
+	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 때
 	{
 		//그림자
 		_ybShadow.rc = RectMakeCenter((_yellowBaseball.rc.right + _yellowBaseball.rc.left) / 2, _yellowBaseball.rc.bottom, 215, 50);

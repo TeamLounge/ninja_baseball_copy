@@ -34,7 +34,7 @@ HRESULT stageScene1::init()
 	//_em->setBlueBaseball();
 	//_em->setGreenBaseball();
 	//_em->setWhiteBaseball();
-	//_em->setYellowBaseball();
+	_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat

@@ -80,7 +80,7 @@ void greenBaseball::update()
 
 
 	//에너미
-	_greenBaseball.rc = RectMakeCenter(_greenBaseball.x + 200, _greenBaseball.y + 200, 300, 230);
+	_greenBaseball.rc = RectMakeCenter(_greenBaseball.x + 200, _greenBaseball.y + 200, 230, 190);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{

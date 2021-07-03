@@ -25,13 +25,21 @@ HRESULT glove::init(POINT position)
 
 	setShadow();
 
-	_imgName = "glove_attackTongue";
+	_imgName = "glove_attackTongue";		//초기 크기 잡아주기 위해 어떠한 이름이든 다 담을 수 있는 제일 큰거 쓰자
+	_shadowName = "glove_shadow";
+
+	RENDERMANAGER->addObj("glove", _imgName.c_str(), _shadowName.c_str(), &_imageX, &_imageY,
+		&_gloveShadow.x, &_gloveShadow.y, &_currentFrameX, &_currentFrameY);
 
 	_gloveState = new gloveJumpState();		//점프로 등장
 	_gloveState->enter(this);
 
 	_glove.x = position.x;
 	_glove.y = position.y;		//포지션 입력값 받아올거고
+
+	//이미지태그용
+	_imageX = _glove.x;
+	_imageY = _glove.y;
 
 	//이미지 좌표 셋
 	_glove.img->setX(_glove.x);
@@ -40,7 +48,7 @@ HRESULT glove::init(POINT position)
 	//에너미
 	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 300, 232);
 	//그림자
-	_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.				//배트엔 없는데.. 없애도 되나..? 있어야 함. 왜지........
+	_gloveShadow.y = _glove.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	isJump = true;	//true
 	isRight = false;
@@ -60,13 +68,11 @@ HRESULT glove::init(POINT position)
 
 	damagedCount = 0;
 
-	isattack = false;              //에너미가 공격했어??
+	isattack = false;               //에너미가 공격했어??
 	isdamage = false;				//에너미가 데미지 받았어??							
 	iscatch = false;				//에저미가 잡혔어??
 
-	RENDERMANAGER->addObj("glove", _imgName.c_str(), "glove_shadow",
-		&_glove.x, &_glove.y, &_gloveShadow.x, &_gloveShadow.y,
-		&_currentFrameX, &_currentFrameY);
+	
 
 	return S_OK;
 }
@@ -79,7 +85,7 @@ void glove::release()
 void glove::update()
 {
 	//에너미
-	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 200, 150, 232);
+	_glove.rc = RectMakeCenter(_glove.x + 200, _glove.y + 140, 200, 232);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{
@@ -96,7 +102,7 @@ void glove::update()
 	}
 
 	//GLOVE 상태마다 변하는 이미지 잡아주기
-	//modifiedLocation();
+	modifiedLocation();
 
 	InputHandle();
 	_gloveState->update(this);
@@ -123,10 +129,6 @@ void glove::render()
 		DeleteObject(myPen);
 		DeleteObject(myBrush);
 	}
-
-	//_gloveShadow.img->render(getMemDC(), _gloveShadow.rc.left, _gloveShadow.rc.top);
-	//_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 50, _currentFrameX, _currentFrameY);
-	
 }
 
 void glove::setImage()
@@ -148,38 +150,48 @@ void glove::setShadow()
 //공격 시 이미지 이동됨.... 좌표 수정 위함
 void glove::modifiedLocation()
 {
-	//공격 중일 때의 이미지
-	if (isAttackTongueState)
+	if (isRight)//오른쪽 볼 때
 	{
-		if (!isRight)	//좌
+		if (isAttackTongueState)	//공격중일 때
 		{
-			_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 70, _currentFrameX, _currentFrameY);
+			_imageX = _glove.x + 100;
+			_imageY = _glove.y + 200;
 		}
-		if (isRight)	//우
+		else if (isJumpState)		//점프 상태
 		{
-			_glove.img->frameRender(getMemDC(), _glove.x + 100, _glove.y + 70, _currentFrameX, _currentFrameY);
+			_imageX = _glove.x + 100;
+			_imageY = _glove.y + 200;
 		}
+		else if (isMoveState)		//이동 상태
+		{
+			_imageX = _glove.x + 100;
+			_imageY = _glove.y + 500;
+		}
+		else
+		{
+			_imageX = _glove.x;
+		}	_imageY = _glove.y;
 	}
-	//점프일 때의 이미지
-	if (isJumpState)
+	else //왼쪽 볼 때
 	{
-		_glove.img->frameRender(getMemDC(), _glove.x + 70, _glove.y + 30, _currentFrameX, _currentFrameY);
-	}
-	/*if (!isAttackTongueState && !isJumpState)
-	{
-		_glove.img->frameRender(getMemDC(), _glove.x + 100, _glove.y + 70, _currentFrameX, _currentFrameY);
-	}*/
-
-	//움직일 때의 이미지
-	if (isMoveState)
-	{
-		if (!isRight)	//왼쪽 보면
+		if (isAttackTongueState)	//공격중일 때
 		{
-			_glove.img->frameRender(getMemDC(), _glove.x, _glove.y + 70, _currentFrameX, _currentFrameY);
+			_imageX = _glove.x;
+			_imageY = _glove.y;
 		}
-		if (isRight)	//오른쪽 보면
+		else if (isJumpState)		//점프 상태
 		{
-			_glove.img->frameRender(getMemDC(), _glove.x + 150, _glove.y + 70, _currentFrameX, _currentFrameY);
+			_imageX = _glove.x + 100;
+			_imageY = _glove.y + 200;
 		}
+		else if (isMoveState)		//이동 상태
+		{
+			_imageX = _glove.x + 100;
+			_imageY = _glove.y + 500;
+		}
+		else
+		{
+			_imageX = _glove.x;
+		}	_imageY = _glove.y;
 	}
 }

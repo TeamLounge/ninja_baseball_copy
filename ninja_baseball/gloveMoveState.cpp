@@ -57,7 +57,7 @@ void gloveMoveState::update(glove * glove)
 			glove->_glove.x -= 0.7f;
 		}
 		//감지 범위 => 왼쪽으로 생김
-		glove->_glove.rcAttackRange = RectMakeCenter(glove->_glove.x, glove->_glove.y + 200, 100, 50);
+		glove->_glove.rcAttackRange = RectMakeCenter(glove->_glove.x + 100, glove->_glove.y + 200, 100, 50);
 
 	}
 	if (glove->isRight)			//오른쪽 바라보면
@@ -82,7 +82,7 @@ void gloveMoveState::update(glove * glove)
 			glove->_glove.x += 0.7f;
 		}
 		//감지 범위 => 오른쪽으로 생김
-		glove->_glove.rcAttackRange = RectMakeCenter(glove->_glove.x + 250, glove->_glove.y + 200, 100, 50);
+		glove->_glove.rcAttackRange = RectMakeCenter(glove->_glove.x + 300, glove->_glove.y + 200, 100, 50);
 	}
 
 	//move (up, down)

@@ -29,6 +29,7 @@ private:
 	int _currentFrameY;
 
 	string _imgName;
+	string _shadowName;
 
 public:
 
@@ -61,6 +62,9 @@ public:
 
 	float _x = _glove.x;
 	float _y = _glove.y;
+
+	float _imageX;
+	float _imageY;
 
 
 	//이미지 좌표 수정 위한 bool값들

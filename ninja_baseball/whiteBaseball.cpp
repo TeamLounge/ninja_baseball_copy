@@ -79,7 +79,7 @@ void whiteBaseball::update()
 	
 
 	//에너미
-	_whiteBaseball.rc = RectMakeCenter(_whiteBaseball.x + 200 , _whiteBaseball.y + 200, 300, 232);
+	_whiteBaseball.rc = RectMakeCenter(_whiteBaseball.x + 200 , _whiteBaseball.y + 200, 230, 190);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{

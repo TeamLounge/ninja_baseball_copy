@@ -74,7 +74,7 @@ void blueBaseball::update()
 
 
 	//에너미
-	_blueBaseball.rc = RectMakeCenter(_blueBaseball.x + 200, _blueBaseball.y + 200, 300, 230);
+	_blueBaseball.rc = RectMakeCenter(_blueBaseball.x + 200, _blueBaseball.y + 200, 230, 190);
 
 	if (!isJump)	//jump가 false이면 그림자가 따라다닌다. => 점프 아닐 떄
 	{
@@ -84,7 +84,7 @@ void blueBaseball::update()
 		_bbShadow.y = _blueBaseball.rc.bottom;	//점프하기 전까지의 y값을 계속 저장중.
 
 	}
-	else   //점프하면 그림자 분신술
+	else   //점프하면 그림자 분신술x
 	{
 		//그림자
 		_bbShadow.rc = RectMakeCenter((_blueBaseball.rc.right + _blueBaseball.rc.left) / 2, _bbShadow.y, 215, 50);	//점프하기 전의 y값을 사용

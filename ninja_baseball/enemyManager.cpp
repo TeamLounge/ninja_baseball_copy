@@ -497,7 +497,7 @@ void enemyManager::setGlove()	//태어나는 좌표
 	for (int i = 0; i < 2; i++)
 	{
 		glove* _glove = new glove;
-		_glove->init(PointMake(3500 + i * 300, 250 + i * 100));	//스테이지1 제일 우측 끝에서 나옴
+		_glove->init(PointMake(3500 + i * 300, 250 + i * 100));	//스테이지1 제일 우측 끝에서 나옴		//x : 3500
 		_vGlove.push_back(_glove);
 	}
 }
