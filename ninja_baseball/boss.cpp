@@ -215,23 +215,10 @@ void boss::render()
 	///////////////////////////////////
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		SetBkMode(getMemDC(), TRANSPARENT);
-		SetTextColor(getMemDC(), RGB(255, 255, 255));
-
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
-
-		HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
-		SelectObject(getMemDC(), myPen);
-
 		Rectangle(getMemDC(), _boss.rc);
 		Rectangle(getMemDC(), _bossShadow.rc);
 		Rectangle(getMemDC(), _longRangeAtkRc);
 		Rectangle(getMemDC(), _assultedRect);
-
-		SelectObject(getMemDC(), oldBrush);
-		DeleteObject(myPen);
-		DeleteObject(myBrush);
 	}
 
 }

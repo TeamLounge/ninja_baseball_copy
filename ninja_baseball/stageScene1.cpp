@@ -124,6 +124,7 @@ void stageScene1::update()
 			}
 			else if (_setEnemy.front() == BACKGROUNDX - 100)
 			{
+				_count = 0;
 				_setBaseBallandGlove = true;
 			}
 			_setEnemy.pop();
@@ -141,7 +142,7 @@ void stageScene1::update()
 				}
 				else if (_count % 700 == 0)
 				{
-					//_em->setGreenBaseball();
+					_em->setGreenBaseball();
 				}
 				if (_count > 700)
 				{
@@ -154,12 +155,16 @@ void stageScene1::update()
 		//=======================================================================================
 
 		//==================에너미 업데이트 ================================
+
+	
 		//UPDATE baseBall////////////
 		_em->update();
+	
 		_em->updateBlueBaseball();
 		_em->updateGreenBaseball();
 		_em->updateWhiteBaseball();
 		_em->updateYellowBaseball();
+		
 		_em->baseballCollision();
 		/////////////////////////////
 
@@ -175,9 +180,10 @@ void stageScene1::update()
 
 		//UPDATE CARD
 		_em->updateCard();
-
+		
 		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
 		_em->playerLocation();
+
 
 		//===============================================================
 
@@ -431,6 +437,7 @@ void stageScene1::updateShutter()
 					if (_shutter.height <= 0)
 					{
 						_shutter.isClosed = true;
+						_isWhiteBaseBallSet = false;
 						_count = 0;
 					}
 				}

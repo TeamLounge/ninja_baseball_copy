@@ -116,15 +116,6 @@ void card::render()
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		SetBkMode(getMemDC(), TRANSPARENT);
-		SetTextColor(getMemDC(), RGB(255, 255, 255));
-
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
-
-		HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
-		SelectObject(getMemDC(), myPen);
-
 		Rectangle(getMemDC(), _card.rc);
 		Rectangle(getMemDC(), _cardShadow.rc);
 		Rectangle(getMemDC(), _assultedRect);
@@ -134,10 +125,6 @@ void card::render()
 		{
 			Rectangle(getMemDC(), _viPunchBullet->rc);
 		}
-
-		SelectObject(getMemDC(), oldBrush);
-		DeleteObject(myPen);
-		DeleteObject(myBrush);
 	}
 }
 

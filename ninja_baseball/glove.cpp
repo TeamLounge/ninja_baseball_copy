@@ -106,22 +106,9 @@ void glove::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		SetBkMode(getMemDC(), TRANSPARENT);
-		SetTextColor(getMemDC(), RGB(255, 255, 255));
-
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
-
-		HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
-		SelectObject(getMemDC(), myPen);
-
 		Rectangle(getMemDC(), _glove.rcAttackRange);	//공격 범위 렉트
 		Rectangle(getMemDC(), _glove.rc);				//에너미 렉트
 		Rectangle(getMemDC(), _gloveShadow.rc);			//그림자 렉트
-
-		SelectObject(getMemDC(), oldBrush);
-		DeleteObject(myPen);
-		DeleteObject(myBrush);
 	}
 
 	//_gloveShadow.img->render(getMemDC(), _gloveShadow.rc.left, _gloveShadow.rc.top);

@@ -65,10 +65,6 @@ public:
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
 
-	float _x = _blueBaseball.x;
-	float _y = _blueBaseball.y;
-	
-
 	blueBaseball() {};
 	~blueBaseball() {};
 
@@ -110,6 +106,17 @@ public:
 
 	void setImageName(string s) { _imgName = s; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _blueBaseball.x = x; }
+	void setY(float y) { _blueBaseball.y = y; }
+
+	RECT getShadowRect() { return _bbShadow.rc; }
+	void setShadowRc(RECT rc) { _bbShadow.rc = rc; }
+
+	float getShadowX() { return _bbShadow.x; }
+	float getShadowY() { return _bbShadow.y; }
+
+	void setShadowX(float x) { _bbShadow.x = x; }
+	void setShadowY(float y) { _bbShadow.y = y; }
+
+	void setRc(RECT rc) { _blueBaseball.rc = rc; }
 };

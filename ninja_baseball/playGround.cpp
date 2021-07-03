@@ -77,7 +77,20 @@ void playGround::render()
 	// 위에 건들지마라
 	//================제발 이 사이에 좀 그립시다==========================
 
+	SetBkMode(getMemDC(), TRANSPARENT);
+	SetTextColor(getMemDC(), RGB(255, 255, 255));
+
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
+
+	HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
+	SelectObject(getMemDC(), myPen);
+
 	SCENEMANAGER->render();
+
+	SelectObject(getMemDC(), oldBrush);
+	DeleteObject(myPen);
+	DeleteObject(myBrush);
 	//==================================================
 	//여기도 건들지마라
 	CAMERAMANAGER->render(this->getBackBuffer(), getHDC());
