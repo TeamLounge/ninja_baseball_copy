@@ -132,12 +132,7 @@ void red_idleState::enter(player * _player)
 	{
 		_rc = RectMakeCenter(_player->getX() - 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
 	}
-	
-	if (KEYMANAGER->isOnceKeyDown('I'))
-	{
-		_player->sethp(_player->gethp() - 1);
-	}
-
+		
 	_player->setRect(_rc);
 
 	_count = _index = _time = 0;

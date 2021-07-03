@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "red_dieState.h"
+#include "red_startState.h"
 
 playerstate * red_dieState::handleInput(player * _player)
 {
-	if (_time > 500)
+	if (_time > 300)
 	{
-		
+		return new red_startState;
 	}
 	return nullptr;
 }
@@ -73,11 +74,11 @@ void red_dieState::update(player * _player)
 
 		if (_player->isRight == true)
 		{
-			_player->setX(_player->getX() - 3);
+			_player->setX(_player->getX() - 2);
 		}
 		if (_player->isRight == false)
 		{
-			_player->setX(_player->getX() + 3);
+			_player->setX(_player->getX() + 2);
 		}
 	}
 	
@@ -106,6 +107,10 @@ void red_dieState::enter(player * _player)
 	//_rc = RectMakeCenter(_player->getX(), _player->getY(), _player->getImage()->getFrameWidth(),
 	//	_player->getImage()->getFrameHeight());
 	//_player->setRect(_rc);
+
+	//죽으면 life 1개 줄어든다
+	_player->setlife(_player->getlife() - 1);
+
 
 	_count = _index = _time = 0;
 	_rotation = 0;
