@@ -10,9 +10,16 @@
 
 bbState * bbDamagedState::inputHandle(blueBaseball * blueBaseball)
 {
-	if (blueBaseball->isDeath)
+	if (blueBaseball->damagedCount == 5)
 	{
+		blueBaseball->damagedCount = 0;
 		return new bbDeathState();
+	}
+	if (blueBaseball->damagedCount < 5 && blueBaseball->getCurrentFrameX() == blueBaseball->_blueBaseball.img->getMaxFrameX())
+	{
+		blueBaseball->setCurrentFrameX(0);
+		blueBaseball->isCollisionDamaged = false;
+		return new bbIdleState();
 	}
 	return nullptr;
 }
@@ -95,10 +102,6 @@ void bbDamagedState::enter(blueBaseball * blueBaseball)
 {
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_damaged");
 	blueBaseball->setImageName("bBaseball_damaged");
-
-	
-	frameCount = 0;
-
 
 	if (!blueBaseball->isRight)
 	{

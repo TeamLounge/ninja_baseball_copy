@@ -11,6 +11,10 @@ public:
 	int deathCount;
 	int damageCount;
 	int cCount;
+	int atkCnt;
+	int catchCount;
+	int catchAtkCount;
+	int count;
 
 	virtual bossState* inputHandle(boss* boss);
 	virtual void update(boss* boss);

@@ -8,6 +8,9 @@ playerstate * red_attackState::handleInput(player * _player)
 	if (_isend)
 	{
 		_player->setY(_player->getY() + 40);
+		_player->_isRedAttack1 = false;
+		_player->_isRedAttack2 = false;
+		_player->_isRedAttack3 = false;
 		return new red_idleState;
 	}
 
@@ -36,6 +39,7 @@ void red_attackState::update(player * _player)
 			if (_index == 1)
 			{
 				_player->isattack = true;
+				_player->_isRedAttack1 = true;
 
 				if (_player->isRight == true)
 				{
@@ -81,6 +85,7 @@ void red_attackState::update(player * _player)
 			if (_index == 6)
 			{
 				_player->isattack = true;
+				_player->_isRedAttack2 = true;
 
 				if (_player->isRight == true)
 				{
@@ -126,6 +131,7 @@ void red_attackState::update(player * _player)
 			if (_index == 14)
 			{
 				_player->isattack = true;
+				_player->_isRedAttack3 = true;
 
 				if (_player->isRight == true)
 				{

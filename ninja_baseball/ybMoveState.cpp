@@ -10,7 +10,7 @@ ybState * ybMoveState::inputHandle(yellowBaseball * yellowBaseball)
 {
 	//µîÀå
 	timeCount++;
-	if (timeCount >= 350)
+	if (timeCount >= 250)
 	{
 		return new ybIdleState();
 	}
@@ -84,7 +84,7 @@ void ybMoveState::enter(yellowBaseball * yellowBaseball)
 	yellowBaseball->setCurrentFrameX(0);
 	yellowBaseball->setCurrentFrameY(1);
 
-	timeCount++;
+	timeCount = 0;
 }
 
 void ybMoveState::exit(yellowBaseball * yellowBaseball)

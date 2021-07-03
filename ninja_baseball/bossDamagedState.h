@@ -13,6 +13,8 @@ public:
 	int deathCount;
 	float moveX;
 	int catchCount;
+	bool _isRightWall;
+	bool _isLeftWall;
 
 	virtual bossState* inputHandle(boss* boss);
 	virtual void update(boss* boss);

@@ -9,21 +9,18 @@ bbState * bbIdleState::inputHandle(blueBaseball * blueBaseball)
 {
 	if (blueBaseball->isCollisionAttack)
 	{
-		timeCount++;
-		if (timeCount >= 60)
+		blueBaseball->timeCount++;
+		if (blueBaseball->timeCount >= 60)
 		{
-			timeCount = 0;
+			blueBaseball->timeCount = 0;
 			return new bbAttackPunchState();
 		}
 	}
-	else
+	if (blueBaseball->isCollisionDamaged)
 	{
-		timeCount = 0;
-	}
+		blueBaseball->damagedCount++;
 
-	if (blueBaseball->isDeath)
-	{
-		return new bbDeathState();
+		return new bbDamagedState();
 	}
 				
 	return nullptr;
@@ -113,7 +110,7 @@ void bbIdleState::enter(blueBaseball * blueBaseball)
 	}
 	blueBaseball->setCurrentFrameX(0);
 
-	timeCount = 0;
+	blueBaseball->timeCount = 0;
 
 }
 

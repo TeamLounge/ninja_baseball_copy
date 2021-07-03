@@ -137,7 +137,7 @@ void bossMoveState::update(boss * boss)
 
 			boss->_boss.x -= RND->getFromFloatTo(5.f, 10.f);
 
-			if (boss->_bossShadow.rc.left < 800)
+			if (boss->_bossShadow.rc.left < 400)
 			{
 				isLeftWall = false;
 				isRightWall = true;

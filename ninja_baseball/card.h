@@ -104,6 +104,11 @@ public:
 	bool _isGreenCatch, _isGreenCatchAttack;
 	bool _isGreenCatchAttackPre;
 
+	bool _isRedAttack1, _isRedAttack2, _isRedAttack3; //레드 기본어택
+	bool _isRedDownAttack, _isRedDynamiteDance, _isRedCatchAttack, _isRedHomeRunAttack;
+	bool _isRedJumpAttack, _isRedCatch, _isRedGrip, _isRedLegKickAttack, isRedSliding;
+	bool _isRedDynamiteOn, _isRedCatchAttackPre, _isRedThrow;
+
 	bool _isDone; // 공격이 끝났따~ 이말이야
 
 	//죽기 딱 좋은 카운트

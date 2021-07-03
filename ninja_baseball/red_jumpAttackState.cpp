@@ -48,4 +48,6 @@ void red_jumpAttackState::enter(player * _player)
 		_player->getImage()->setFrameX(0);
 		_player->getImage()->setFrameY(1);
 	}
+
+	_player->_isRedJumpAttack = true;
 }

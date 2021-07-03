@@ -34,7 +34,7 @@ HRESULT stageScene1::init()
 	_em->setBlueBaseball();
 	_em->setGreenBaseball();
 	_em->setWhiteBaseball();
-	//_em->setYellowBaseball();
+	_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat
@@ -45,12 +45,10 @@ HRESULT stageScene1::init()
 	_em->setGlove();
 	////////////////////////
 
-
-	_em->setCard();
-
 	setShutter();
 
 	_isAllDead = false;
+	_isSetCard = false;
 
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
@@ -86,24 +84,36 @@ void stageScene1::update()
 		//_em->update();
 		_obj->update();
 
-		_em->updateCard();
+		//_em->updateCard();
 
 		updateShutter();
 		//UPDATE baseBall////////////
 		_em->updateBlueBaseball();
 		_em->updateGreenBaseball();
-		//_em->updateWhiteBaseball();
-		//_em->updateYellowBaseball();
+		_em->updateWhiteBaseball();
+		_em->updateYellowBaseball();
+		_em->baseballCollision();
 		/////////////////////////////
 
+		if (_shutter.isCrush)
+		{
+			if (!_isSetCard)
+			{
+				_em->setCard();
+				_isSetCard = true;
+			}
+			_em->updateCard();
+		}
+
+
 		//UPDATE BAT
-		//_em->updateBat();
-		//_em->batCollision();
+		_em->updateBat();
+		_em->batCollision();
 		////////////////////////////
 
 		//UPDATE GLOVE
-		//_em->updateGlove();
-		//_em->gloveCollision();
+		_em->updateGlove();
+		_em->gloveCollision();
 		////////////////////////////
 
 

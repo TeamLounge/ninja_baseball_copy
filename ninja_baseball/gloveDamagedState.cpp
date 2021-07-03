@@ -29,7 +29,7 @@ void gloveDamagedState::update(glove * glove)
 	{
 		//frame
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())
@@ -56,7 +56,7 @@ void gloveDamagedState::update(glove * glove)
 	if (glove->isRight)			//오른쪽 바라보면
 	{
 		frameCount++;
-		if (frameCount >= 15)
+		if (frameCount >= 10)
 		{
 			frameCount = 0;
 			if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())

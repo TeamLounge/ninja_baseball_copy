@@ -4,8 +4,9 @@
 
 playerstate * red_catchAttackState::handleInput(player * _player)
 {
-	if (_player->getImage()->getMaxFrameX() < _index)
+	if (_player->getImage()->getMaxFrameX() + 1 < _index)
 	{
+		_player->_isRedCatchAttackOn = false;
 		return new red_catchState;
 	}
 	
@@ -15,8 +16,8 @@ playerstate * red_catchAttackState::handleInput(player * _player)
 void red_catchAttackState::update(player * _player)
 {
 	_count++;
-
-	if (_count % 5 == 0)
+	  
+	if (_count % 8 == 0) 
 	{
 		if (_player->isRight == true)
 		{
@@ -39,6 +40,7 @@ void red_catchAttackState::update(player * _player)
 	if (_index == 2) 
 	{
 		_player->isattack = true;
+		if (!_player->_isRedCatchAttack) _player->_isRedCatchAttack = true;
 		
 		if (_player->isRight == true)
 		{

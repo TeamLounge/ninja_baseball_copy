@@ -31,10 +31,11 @@ HRESULT stageScene3::init()
 
 	_em = new enemyManager;
 	_em->init();
-	_em->setBat2();		//stage3에 등장하는 배트 3마리
-	
+
 	_obj = new objectManager;
 	_obj->setgoldbat(0,0);
+
+	//_em->setBat2();		//stage3에 등장하는 배트 3마리
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
@@ -158,7 +159,7 @@ void stageScene3::update()
 		{
 
 			_count++;
-			if (_count >= 500)
+			if (_count >= 350)
 			{
 				_count = 0;
 				SCENEMANAGER->changeScene("ending");
@@ -215,7 +216,7 @@ void stageScene3::render()
 	RENDERMANAGER->render(getMemDC());
 	if (_isSetBoss)
 	{
-		//_em->renderBoss();
+		_em->renderBoss();
 	}
 	EFFECTMANAGER->render();
 	_em->render();

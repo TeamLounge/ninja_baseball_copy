@@ -139,9 +139,17 @@ public:
 	//형태 불값
 	bool _isNoWing, _isNoWingProp, _isNoOneArm, _isNoArm;
 	float _divideX, _divideY, _divideGravity;
+
+	//그린 불값
 	bool _isGreenAttack12, _isGreenAttack3;   //그린어택 1,2,3 들어왔을때 불값
 	bool _isGreenCatch, _isGreenCatchAttack, _isGreenCatchBackAttack, _isGreenCatchFrontCombo;
 	bool _isGreenCatchAttackPre;
+
+	//레드 공격 불값
+	bool _isRedAttack1, _isRedAttack2, _isRedAttack3; //레드 기본어택
+	bool _isRedDownAttack, _isRedDynamiteDance, _isRedCatchAttack, _isRedHomeRunAttack;
+	bool _isRedJumpAttack, _isRedCatch, _isRedGrip, _isRedLegKickAttack, isRedSliding;
+	bool _isRedDynamiteOn, _isRedCatchAttackPre, _isRedThrow;
 
 
 

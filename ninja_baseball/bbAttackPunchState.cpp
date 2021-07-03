@@ -82,7 +82,6 @@ void bbAttackPunchState::update(blueBaseball * blueBaseball)
 
 void bbAttackPunchState::enter(blueBaseball * blueBaseball)
 {
-	blueBaseball->isattack = true;
 	blueBaseball->_blueBaseball.img = IMAGEMANAGER->findImage("bBaseball_punch");
 	blueBaseball->setImageName("bBaseball_punch");
 

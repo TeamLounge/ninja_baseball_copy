@@ -9,23 +9,25 @@
 
 gbState * gbIdleState::inputHandle(greenBaseball * greenBaseball)
 {
+	//떄리기
 	if (greenBaseball->isCollisionAttack)
 	{
-		timeCount++;
-		if (timeCount >= 60)
+		greenBaseball->timeCount++;
+		if (greenBaseball->timeCount >= 60)
 		{
-			timeCount = 0;
+			greenBaseball->timeCount = 0;
 			return new gbAttackPunchState();
 		}
 	}
-	else
-	{
-		timeCount = 0;
-	}
+	else greenBaseball->timeCount = 0;
 
-	if (greenBaseball->isDeath)
+	//맞기
+
+	if (greenBaseball->isCollisionDamaged)
 	{
-		return new gbDeathState();
+		greenBaseball->damagedCount++;
+
+		return new gbDamagedState();
 	}
 	return nullptr;
 }
@@ -114,7 +116,7 @@ void gbIdleState::enter(greenBaseball * greenBaseball)
 	}
 	greenBaseball->setCurrentFrameX(0);
 
-	timeCount = 0;
+	greenBaseball->timeCount = 0;
 
 }
 

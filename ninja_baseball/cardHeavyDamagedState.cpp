@@ -23,6 +23,9 @@ cardState * cardHeavyDamagedState::inputHandle(card * card)
 		card->_isGreenAttack1 = false;
 		card->_isGreenAttack2 = false;
 		card->_isGreenAttack3 = false;
+		card->_isRedHomeRunAttack = false;
+		card->_isRedDynamiteOn = false;
+		card->_isRedThrow = false;
 		return new cardIdleState();
 	}
 
@@ -33,6 +36,9 @@ cardState * cardHeavyDamagedState::inputHandle(card * card)
 		card->_isGreenCatchBackAttack = false;
 		card->_isCardHeavyDamagedState = false;
 		card->_isCardHeavyDamaged = false;
+		card->_isRedHomeRunAttack = false;
+		card->_isRedDynamiteOn = false;
+		card->_isRedThrow = false;
 		return new cardDeathState();
 	}
 
@@ -78,7 +84,8 @@ void cardHeavyDamagedState::enter(card * card)
 	card->_imageName = "card_stun";
 
 	if (!card->_isGreenCatchFrontCombo &&
-		!card->_isGreenCatchBackAttack)
+		!card->_isGreenCatchBackAttack &&
+		!card->_isRedThrow)
 	{
 		card->_deathCount += 2;
 	}
@@ -103,9 +110,17 @@ void cardHeavyDamagedState::enter(card * card)
 		card->_isCardSmallDamaged = false;
 	}
 
-	if (card->_isGreenCatchBackAttack || card->_isGreenCatchFrontCombo)
+	if (card->_isGreenCatchBackAttack || card->_isGreenCatchFrontCombo ||
+		card->_isRedHomeRunAttack || card->_isRedHomeRunAttack ||
+		card->_isRedThrow)
 	{
 		jumpPower = 15.5f;
+		gravity = 0.55f;
+	}
+
+	else if (card->_isRedDynamiteOn)
+	{
+		jumpPower = 25.5f;
 		gravity = 0.55f;
 	}
 
@@ -153,6 +168,30 @@ void cardHeavyDamagedState::jump(card * card)
 		if (card->_currentFrameY == 0) card->_card.x += 13.7f;
 	}
 
+	if (card->_isJump && card->_isRedHomeRunAttack)
+	{
+		card->_card.y -= jumpPower;
+		jumpPower -= gravity;
+		if (card->_currentFrameY == 1) card->_card.x -= 13.7f;
+		if (card->_currentFrameY == 0) card->_card.x += 13.7f;
+	}
+
+	if (card->_isJump && card->_isRedDynamiteOn)
+	{
+		card->_card.y -= jumpPower;
+		jumpPower -= gravity;
+		if (card->_currentFrameY == 1) card->_card.x -= 13.7f;
+		if (card->_currentFrameY == 0) card->_card.x += 13.7f;
+	}
+
+	if (card->_isJump && card->_isRedThrow)
+	{
+		card->_card.y -= jumpPower;
+		jumpPower -= gravity;
+		if (card->_currentFrameY == 1) card->_card.x -= 13.7f;
+		if (card->_currentFrameY == 0) card->_card.x += 13.7f;
+	}
+
 	if (card->_isJump)
 	{
 		card->_card.y -= jumpPower;
@@ -175,7 +214,10 @@ void cardHeavyDamagedState::jump(card * card)
 			if (_isRightWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x -= 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn ||
+					card->_isRedThrow) card->_card.x -= 13.7f;
 				
 				else card->_card.x -= 1.5f;
 			}
@@ -183,14 +225,21 @@ void cardHeavyDamagedState::jump(card * card)
 			if (_isLeftWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x += 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn ||
+					card->_isRedThrow) card->_card.x += 13.7f;
 
 				else card->_card.x += 1.5f;
 			}
 			if (!_isRightWall && !_isLeftWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x += 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn) card->_card.x += 13.7f;
+
+				else if (card->_isRedThrow) card->_card.x += 13.7f;
 
 				else card->_card.x += 1.5f;
 			}
@@ -201,21 +250,31 @@ void cardHeavyDamagedState::jump(card * card)
 			if (_isRightWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x -= 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn ||
+					card->_isRedThrow) card->_card.x -= 13.7f;
 
 				else card->_card.x -= 1.5f;
 			}
 			if (_isLeftWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x += 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn ||
+					card->_isRedThrow) card->_card.x += 13.7f;
 
 				else card->_card.x += 1.5f;
 			}
 			if (!_isRightWall && !_isLeftWall)
 			{
 				if (card->_isGreenCatchBackAttack ||
-					card->_isGreenCatchFrontCombo) card->_card.x -= 13.7f;
+					card->_isGreenCatchFrontCombo ||
+					card->_isRedHomeRunAttack ||
+					card->_isRedDynamiteOn) card->_card.x -= 13.7f;
+
+				else if (card->_isRedThrow) card->_card.x -= 13.7f;
 
 				else card->_card.x -= 1.5f;
 			}

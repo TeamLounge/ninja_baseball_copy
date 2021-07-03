@@ -43,6 +43,7 @@ private:
 
 	gameOverUI* _gameoverUI;
 
+	bool _isSetCard;
 public:
 	HRESULT init();
 	void release();

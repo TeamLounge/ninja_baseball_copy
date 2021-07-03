@@ -29,6 +29,10 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		boss->_isSmallDamagedState = false;
 		boss->_isGreenAttack12 = false;
 		boss->_isGreenAttack3 = false;
+		boss->_isRedAttack1 = false;
+		boss->_isRedAttack2 = false;
+		boss->_isRedAttack3 = false;
+		boss->_isGreenCatchAttack = false;
 		return new bossIdleState();
 	}
 
@@ -50,6 +54,13 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		boss->_currentFrameX = 0;
 	}
 
+	if (boss->_isRedAttack1 || boss->_isRedAttack2)
+	{
+		if (boss->_isRedAttack1) boss->_isRedAttack1 = false;
+		if (boss->_isRedAttack2) boss->_isRedAttack2 = false;
+		boss->_currentFrameX = 0;
+	}
+
 	if (boss->_isGreenAttack3)
 	{
 		boss->_isJump = true;
@@ -58,41 +69,109 @@ bossState * bossSmallDamagedState::inputHandle(boss * boss)
 		return new bossDamagedState();
 	}
 
-	if (boss->_isGreenCatchAttack && !boss->_isGreenCatchAttackPre)
+	if (boss->_isRedAttack3)
 	{
-		boss->_isGreenCatchAttack = false;
-		boss->_isGreenCatch = false;
-		boss->_currentFrameX = 0;
-		boss->_count++;
-		damageCount++;
-		if (damageCount == 2)
+		boss->_isJump = true;
+		boss->_isRedAttack3 = false;
+		boss->_isSmallDamagedState = false;
+		return new bossDamagedState();
+	}
+
+	if (boss->_isRedDynamiteDance)
+	{
+		boss->_isRedDynamiteOn = true;
+		frameCount = 0;
+		count++;
+		if (count >= 10)
 		{
-			boss->_isGreenCatchAttackPre = true;
+			count = 0;
+			boss->_currentFrameX++;
+			if (boss->_currentFrameX == boss->_boss.img->getMaxFrameX() - 1)
+			{
+				boss->_currentFrameX = 0;
+				boss->_count++;
+			}
 		}
 	}
 
-	if (boss->_isGreenCatchAttackPre && boss->_currentFrameX == boss->_boss.img->getMaxFrameX() + 1)
+	if (!boss->_isRedDynamiteDance && boss->_isRedDynamiteOn)
 	{
-		boss->_isGreenCatchAttackPre = false;
+		boss->_isJump = true;
+		boss->_isSmallDamagedState = false;
+		return new bossDamagedState();
+	}
+
+	if (boss->_isRedHomeRunAttack)
+	{
+		boss->_isJump = true;
+		boss->_isRedAttack1 = false;
+		boss->_isRedAttack2 = false;
+		boss->_isSmallDamagedState = false;
+		return new bossDamagedState();
+	}
+
+	if (!boss->_isGreenCatch && boss->_isGreenCatchAttackPre)
+	{
+		boss->_isSmallDamagedState = false;
+		boss->_isSmallDamaged = false;
 		return new bossIdleState();
 	}
 
-	if (boss->_isGreenCatchBackAttack)
+	if (boss->_isGreenCatch)
 	{
-		boss->_isJump = true;
-		boss->_isGreenCatchBackAttack = false;
-		boss->_isGreenCatch = false;
-		boss->_isSmallDamagedState = false;
-		return new bossDamagedState();
-	}
+		frameCount = 0;
+		boss->_isGreenCatchAttackPre = true;
 
-	if (boss->_isGreenCatchFrontCombo)
-	{
-		boss->_isJump = true;
-		boss->_isGreenCatchFrontCombo = false;
-		boss->_isGreenCatch = false;
-		boss->_isSmallDamagedState = false;
-		return new bossDamagedState();
+		if (boss->_isGreenCatchAttack)
+		{
+			if (boss->_currentFrameX <= 2 && catchAtkCount == 1)
+			{
+				boss->_count++;
+				boss->_isGreenCatchAttack = false;
+				boss->_isGreenCatch = false;
+				boss->_isGreenCatchAttackPre = false;
+				catchAtkCount++;
+			}
+
+			if (boss->_currentFrameX <= 2 && catchAtkCount == 0)
+			{
+				boss->_isGreenCatchAttack = false;
+				boss->_isGreenCatchAttackPre = false;
+				boss->_count++;
+				catchAtkCount++;
+			}
+
+			catchCount++;
+			if (catchCount >= 5)
+			{
+				catchCount = 0;
+				boss->_currentFrameX++;
+				if (boss->_currentFrameX > 2)
+				{
+					boss->_currentFrameX = 0;
+				}
+			}
+		}
+		
+		if (boss->_isGreenCatchBackAttack)
+		{
+			boss->_isJump = true;
+			boss->_isGreenCatch = false;
+			boss->_isSmallDamagedState = false;
+			boss->_isGreenCatchAttack = false;
+			boss->_isGreenCatchAttackPre = false;
+			return new bossDamagedState();
+		}
+
+			if (boss->_isGreenCatchFrontCombo)
+		{
+			boss->_isJump = true;
+			boss->_isGreenCatch = false;
+			boss->_isSmallDamagedState = false;
+			boss->_isGreenCatchAttack = false;
+			boss->_isGreenCatchAttackPre = false;
+			return new bossDamagedState();
+		}
 	}
 	return nullptr;
 }
@@ -176,6 +255,8 @@ void bossSmallDamagedState::enter(boss * boss)
 	damageCount = 0;
 	damageCount = 0;
 	cCount = 0;
+	atkCnt = 0;
+	catchAtkCount = 0;
 }
 
 void bossSmallDamagedState::exit(boss * boss)

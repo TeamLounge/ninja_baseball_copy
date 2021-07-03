@@ -6,6 +6,7 @@ playerstate * red_legKickState::handleInput(player * _player)
 {
 	if (_time > 10) //프레임렌더가 끝나고 idle상태로 돌아갈때 텀을 주려고
 	{
+		_player->_isRedLegKickAttack = false;
 		return new red_idleState;
 	}
 
@@ -67,6 +68,7 @@ void red_legKickState::update(player * _player)
 	if (_index > 3 && _player->getImage()->getMaxFrameX() >= _index)
 	{
 		_player->isattack = true;
+		_player->_isRedLegKickAttack = true;
 
 		if (_player->isRight == true)
 		{

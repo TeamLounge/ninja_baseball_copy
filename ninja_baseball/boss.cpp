@@ -375,6 +375,11 @@ void boss::setBoss()
 	_isGreenCatchBackAttack = false;
 	_isGreenCatchFrontCombo = false;
 	_isGreenCatchAttackPre = false;
+
+	_isRedAttack1 = _isRedAttack2 = _isRedAttack3 = false; //레드 기본어택
+	_isRedDownAttack = _isRedDynamiteDance = _isRedCatchAttack = _isRedHomeRunAttack = false;
+	_isRedJumpAttack = _isRedCatch = _isRedGrip = _isRedLegKickAttack = isRedSliding = false;
+	_isRedDynamiteOn = _isRedCatchAttackPre = _isRedThrow = false;
 }
 
 

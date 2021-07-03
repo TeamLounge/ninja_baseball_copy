@@ -8,7 +8,7 @@ HRESULT enemyManager::init()
 	//setBlueBaseball();		
 	//setGreenBaseball();
 	//setWhiteBaseball();			
-	//setYellowBaseball();		//데스로 못가네
+	//setYellowBaseball();		
 	
 	//setBat1();
 	//setBat2();
@@ -26,7 +26,7 @@ void enemyManager::release()
 void enemyManager::update()
 {
 	//updateBaseball();
-	//baseballCollision();	//플레이어 vs 베이스볼타격범위렉트
+	//baseballCollision();	
 
 	//updateBat();
 	//batCollision();
@@ -69,7 +69,7 @@ void enemyManager::setBlueBaseball()
 	for (int i = 0; i < 2; i++)
 	{
 		blueBaseball* _bb = new blueBaseball;
-		_bb->init(PointMake(1200, 450 - i * 100));
+		_bb->init(PointMake(1200, 450 - i * 400));
 		_vBb.push_back(_bb);
 
 	}
@@ -80,7 +80,7 @@ void enemyManager::setGreenBaseball()
 	for (int i = 0; i < 2; i++)
 	{
 		greenBaseball* _gb = new greenBaseball;
-		_gb->init(PointMake(2500 + i * 400, -200));
+		_gb->init(PointMake(2500 + i * 400, -100));		//2500, -200
 		_vGb.push_back(_gb);
 
 	}
@@ -199,7 +199,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viWb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viWb)->isCrash = true;
-			(*_viWb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viWb)->isCrash = false;
@@ -230,7 +229,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viYb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viYb)->isCrash = true;
-			(*_viYb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viYb)->isCrash = false;
@@ -261,7 +259,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viGb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viGb)->isCrash = true;
-			(*_viGb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viGb)->isCrash = false;
@@ -292,7 +289,6 @@ void enemyManager::baseballCollision()
 		{
 			(*_viBb)->setIsCollisionDamaged(true);		//충돌했으면 bool 값 true로 전환
 			(*_viBb)->isCrash = true;
-			(*_viBb)->damagedCount++;
 		}
 
 		if (!_player->isattack) (*_viBb)->isCrash = false;
@@ -995,6 +991,7 @@ void enemyManager::assultedCollisionCard()
 			RECT temp;
 			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->_attack_rc))
 			{
+				//그린
 				if (_player->_isGreenAttack1 || _player->_isGreenAttack2 ||
 					_player->_isGreenAttack3 || _player->_isGreenDashAttack ||
 					_player->_isGreenJumpAttack)
@@ -1006,14 +1003,43 @@ void enemyManager::assultedCollisionCard()
 				{
 					(*_viCard)->_isCardHeavyDamaged = true;
 				}
+
+				//레드
+				if (_player->_isRedAttack1 || _player->_isRedAttack2 ||
+					_player->_isRedAttack3 || _player->_isRedJumpAttack || 
+					_player->_isRedSliding)
+				{
+					(*_viCard)->_isCardSmallDamaged = true;
+				}
+
+				if (_player->_isRedHomeRunAttack)
+				{
+					(*_viCard)->_isRedHomeRunAttack = true;
+					(*_viCard)->_isCardHeavyDamaged = true;
+				}
+
+				if (_player->_isRedDashAttack || _player->_isRedLegKickAttack)
+				{
+					(*_viCard)->_isCardHeavyDamaged = true;
+				}
+
+				if (_player->_isRedDynamiteDance)
+				{
+					(*_viCard)->_isRedDynamiteDance = true;
+					(*_viCard)->_isCardSmallDamaged = true;
+				}
 			}
 		}
+
+		//필살기 종료 신호 보내기
+		if (!_player->_isRedDynamiteDance) (*_viCard)->_isRedDynamiteDance = false;
 
 		if ((*_viCard)->_isCardSmallDamagedState && _player->isattack)
 		{
 			RECT temp;
 			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->_attack_rc))
 			{
+				//그린
 				if (_player->_isGreenAttack1)
 				{
 					(*_viCard)->_isCardSmallDamaged = true;
@@ -1029,9 +1055,69 @@ void enemyManager::assultedCollisionCard()
 				{
 					(*_viCard)->_isGreenAttack3 = true;
 				}
+
+				//레드
+				if (_player->_isRedAttack1)
+				{
+					(*_viCard)->_isCardSmallDamaged = true;
+					(*_viCard)->_isRedAttack1 = true;
+				}
+
+				if (_player->_isRedAttack2)
+				{
+					(*_viCard)->_isRedAttack2 = true;
+				}
+
+				if (_player->_isRedAttack3)
+				{
+					(*_viCard)->_isRedAttack3 = true;
+				}
+
+				if (_player->_isRedHomeRunAttack)
+				{
+					(*_viCard)->_isRedHomeRunAttack = true;
+				}
+			}
+		}
+		//레드 지지고 볶기 (다운어택 아직 구현못하신듯)
+		//if ((*_viCard)->_isCardLandState && _player->)
+
+		//레드가 캐치하기위한
+		if ((*_viCard)->_isCardMoveState && _player->_isRedGrip)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &(*_viCard)->_assultedRect, &_player->getRect()))
+			{
+				_player->iscatch = true;
+				(*_viCard)->_isRedCatch = true;
+				(*_viCard)->_isCardSmallDamaged = true;
 			}
 		}
 
+		if ((*_viCard)->_isCardSmallDamagedState && _player->iscatch)
+		{
+			if (_player->_isRedCatchAttack && !_player->_isRedCatchAttackOn)
+			{
+				(*_viCard)->_isRedCatchAttack = true;
+				_player->_isRedCatchAttackOn = true;
+			}
+
+			if (_player->_isRedHomeRunAttack &&
+				!(*_viCard)->_isRedHomeRunAttack)
+			{
+				(*_viCard)->_isRedHomeRunAttack = true;
+				_player->_isRedHomeRunAttack = false;
+			}
+
+			if (_player->_isRedThrow &&
+				!(*_viCard)->_isRedThrow)
+			{
+				(*_viCard)->_isRedThrow = true;
+				_player->_isRedThrow = false;
+			}
+		}
+
+		//그린이 캐치하기 위한
 		if ((*_viCard)->_isCardMoveState && _player->iscrawl)
 		{
 			RECT temp;
@@ -1069,11 +1155,21 @@ void enemyManager::assultedCollisionCard()
 		if (!_player->iscatch)
 		{
 			(*_viCard)->_isGreenCatch = false;
+			(*_viCard)->_isRedCatch = false;
 		}
 
-		//if ((*_viCard)->_isDeathState)
+		//사라져라 카드여//
+		//for (int i = 0; i < _vCard.size(); ++i)
 		//{
-		//	RENDERMANAGER->deleteObj("card", 0);
+		//	if (_vCard[i]->_isDeathState)
+		//	{
+		//		RENDERMANAGER->deleteObj("card", i);
+		//		//RENDERMANAGER->deleteObj("card_Shadow", i);
+		//		_vCard[i]->_isDeathState = false;
+		//		break;
+		//	}
+		//		
+		//	break;
 		//}
 	}
 }
@@ -1293,6 +1389,7 @@ void enemyManager::assultedCollisionBoss()
 		RECT temp;
 		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
 		{
+			//그린이
 			if (_player->_isGreenAttack1 ||	_player->_isGreenAttack2 ||
 				_player->_isGreenAttack3 || _player->_isGreenDashAttack ||
 				_player->_isGreenJumpAttack)
@@ -1304,14 +1401,43 @@ void enemyManager::assultedCollisionBoss()
 			{
 				_boss->_isDamaged = true;
 			}
+
+			//레드
+			if (_player->_isRedAttack1 || _player->_isRedAttack2 ||
+				_player->_isRedAttack3 || _player->_isRedJumpAttack ||
+				_player->_isRedSliding)
+			{
+				_boss->_isSmallDamaged = true;
+			}
+
+			if (_player->_isRedHomeRunAttack)
+			{
+				_boss->_isRedHomeRunAttack = true;
+				_boss->_isDamaged = true;
+			}
+
+			if (_player->_isRedDashAttack || _player->_isRedLegKickAttack)
+			{
+				_boss->_isDamaged = true;
+			}
+
+			if (_player->_isRedDynamiteDance)
+			{
+				_boss->_isRedDynamiteDance = true;
+				_boss->_isSmallDamaged = true;
+			}
 		}
 	}
+
+	//필살기 종료 신호 보내기
+	if (!_player->_isRedDynamiteDance) _boss->_isRedDynamiteDance = false;
 
 	if (_boss->_isSmallDamagedState && _player->isattack)
 	{
 		RECT temp;
 		if (IntersectRect(&temp, &_boss->_assultedRect, &_player->_attack_rc))
 		{
+			// 그린이
 			if (_player->_isGreenAttack1)
 			{
 				_boss->_isSmallDamaged = true;
@@ -1326,10 +1452,32 @@ void enemyManager::assultedCollisionBoss()
 			{
 				_boss->_isGreenAttack3 = true;
 			}
+
+			//레드
+			if (_player->_isRedAttack1)
+			{
+				_boss->_isSmallDamaged = true;
+				_boss->_isRedAttack1 = true;
+			}
+
+			if (_player->_isRedAttack2)
+			{
+				_boss->_isRedAttack2 = true;
+			}
+
+			if (_player->_isRedAttack3)
+			{
+				_boss->_isRedAttack3 = true;
+			}
+
+			if (_player->_isRedHomeRunAttack)
+			{
+				_boss->_isRedHomeRunAttack = true;
+			}
 		}
 	}
 
-
+	//그린좌 잡기
 	RECT temp;
 	if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
 	{
@@ -1341,27 +1489,43 @@ void enemyManager::assultedCollisionBoss()
 		}
 	}
 
+	//레드좌 잡기
+	if (IntersectRect(&temp, &_boss->_assultedRect, &_player->getRect()))
+	{
+		if (_boss->_isMoveState && _player->iscrawl)
+		{
+			_player->iscatch = true;
+			_boss->_isGreenCatch = true;
+			_boss->_isSmallDamaged = true;
+		}
+	}
+
+	if (_boss->_isSmallDamagedState && _player->iscatch)
+	{
+		if (_player->_isGreenCatchAttack &&
+			!_boss->_isGreenCatchAttack)
+		{
+			_boss->_isGreenCatchAttack = true;
+			_player->_isGreenCatchAttack = false;
+		}
+
+		if (_player->_isGreenCatchBackAttack &&
+			!_boss->_isGreenCatchBackAttack)
+		{
+			_boss->_isGreenCatchBackAttack = true;
+			_player->_isGreenCatchBackAttack = false;
+		}
+
+		if (_player->_isGreenCatchFrontCombo && 
+			!_boss->_isGreenCatchFrontCombo)
+		{
+			_boss->_isGreenCatchFrontCombo = true;
+			_player->_isGreenCatchFrontCombo = false;
+		}
+	}
+
 	if (!_player->iscatch)
 	{
 		_boss->_isGreenCatch = false;
-	}
-
-	if (_player->_isGreenCatchAttack  && _player->iscatch)
-	{
-		_boss->_isGreenCatchAttack = true;
-		_player->_isGreenCatchAttack = false;
-		_player->_isGreenCatchBackAttack = false;
-	}
-
-	if (_player->_isGreenCatchBackAttack && _player->iscatch)
-	{
-		_boss->_isGreenCatchBackAttack = true;
-		_player->_isGreenCatchAttack = false;
-	}
-
-	if (_player->_isGreenCatchFrontCombo && _player->iscatch)
-	{
-		_boss->_isGreenCatchFrontCombo = true;
-		_player->_isGreenCatchFrontCombo = false;
 	}
 }

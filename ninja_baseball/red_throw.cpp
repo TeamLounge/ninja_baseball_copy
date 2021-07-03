@@ -6,6 +6,9 @@ playerstate * red_throw::handleInput(player * _player)
 {
 	if (_time > 30)
 	{
+		_player->_isRedThrow = false;
+		_player->isattack = false;
+		_player->iscatch = false;
 		return new red_idleState;
 	}
 
@@ -21,14 +24,14 @@ void red_throw::update(player * _player)
 		if (_player->isRight == true)
 		{
 			_player->getImage()->setFrameX(_index);
-			_player->getImage()->setFrameY(0);
+			_player->getImage()->setFrameY(1);
 			_index++;
 		}
 
 		if (_player->isRight == false)
 		{
 			_player->getImage()->setFrameX(_index);
-			_player->getImage()->setFrameY(1);
+			_player->getImage()->setFrameY(0);
 			_index++;
 		}
 
@@ -67,12 +70,14 @@ void red_throw::enter(player * _player)
 	if (_player->isRight == true)
 	{
 		_player->getImage()->setFrameX(_index);
-		_player->getImage()->setFrameY(0);
+		_player->getImage()->setFrameY(1);
 	}
 
 	if (_player->isRight == false)
 	{
 		_player->getImage()->setFrameX(_index);
-		_player->getImage()->setFrameY(1);
+		_player->getImage()->setFrameY(0);
 	}
+
+	_player->_isRedThrow = true;
 }
