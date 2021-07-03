@@ -33,6 +33,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	{
 		return new red_damage1State; 
 	}
+	if (KEYMANAGER->isOnceKeyDown('D'))
+	{
+		return new red_damage1State;
+	}
 	if (_time > 200)
 	{
 		return new red_idleState2;
@@ -40,6 +44,10 @@ playerstate * red_idleState::handleInput(player * _player)
 	if (KEYMANAGER->isOnceKeyDown('V'))
 	{
 		return new red_dynamiteDance;
+	}
+	if (_player->gethp() <= 0)
+	{
+		return new red_dieState;
 	}
 
 	//=============================================================================
@@ -59,10 +67,10 @@ playerstate * red_idleState::handleInput(player * _player)
 		return new red_downAttackState; //¸öÀÌ ´©¿üÀ» ¶§ ³»·ÁÂï±â
 	}
 
-	if (KEYMANAGER->isOnceKeyDown('K'))
-	{
-		return new red_dieState; //ÇÇ°¡ ¶³¾îÁ®¼­ Á×¾úÀ½
-	}
+	//if (KEYMANAGER->isOnceKeyDown('K'))
+	//{
+	//	return new red_dieState; //ÇÇ°¡ ¶³¾îÁ®¼­ Á×¾úÀ½
+	//}
 	//================================================================================
 
 	//if ((KEYMANAGER->isStayKeyDown(VK_LEFT) && KEYMANAGER->isOnceKeyDown('A')) ||
@@ -125,6 +133,10 @@ void red_idleState::enter(player * _player)
 		_rc = RectMakeCenter(_player->getX() - 20, _player->getY(), 130, _player->getImage()->getFrameHeight());
 	}
 	
+	if (KEYMANAGER->isOnceKeyDown('I'))
+	{
+		_player->sethp(_player->gethp() - 1);
+	}
 
 	_player->setRect(_rc);
 
