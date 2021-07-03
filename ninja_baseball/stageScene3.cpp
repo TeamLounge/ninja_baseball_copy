@@ -206,7 +206,6 @@ void stageScene3::render()
 	{
 		IMAGEMANAGER->findImage("빵빠레")->frameRender(getMemDC(), IMAGEMANAGER->findImage("stage_3")->getWidth() - 680, WINSIZEY - 350);
 	}
-	_player->render();
 	if (_isSetBoss)
 	{
 		_em->pinRender();
@@ -220,7 +219,7 @@ void stageScene3::render()
 	}
 	EFFECTMANAGER->render();
 	_em->render();
-
+	_player->render();
 	_playerUI->render();
 	_timerUI->render();
 	//보스 체력바 출력
