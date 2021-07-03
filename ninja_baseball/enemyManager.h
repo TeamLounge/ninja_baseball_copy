@@ -184,5 +184,6 @@ public:
 	void assultedCollisionBoss();
 
 	bool isAllDead();
+
 };
 
