@@ -124,10 +124,12 @@ void player::update()
 	if (_playerrc.left < CAMERAMANAGER->getCameraLEFT())
 	{
 		_x = _x + CAMERAMANAGER->getCameraLEFT() - _playerrc.left;
+		_shadowX = _x;
 	}
 	if (_playerrc.right > CAMERAMANAGER->getCameraRIGHT())
 	{
 		_x = _x - (_playerrc.right - CAMERAMANAGER->getCameraRIGHT());
+		_shadowX = _x;
 	}
 
 	handleInput();

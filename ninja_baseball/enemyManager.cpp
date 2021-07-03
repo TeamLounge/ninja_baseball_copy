@@ -218,6 +218,61 @@ void enemyManager::baseballCollision()
 		}
 	}
 
+	//노란색 베이스볼끼리 충돌
+	if (!_vWb.empty())
+	{
+		for (int i = 0; i < _vWb.size() - 1; i++)
+		{
+			if (_vWb[i]->isJump) continue;
+			for (int j = i + 1; j < _vWb.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vWb[i]->getShadowRect(), &_vWb[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vWb[i]->getShadowY() < _vWb[j]->getShadowY())
+						{
+							_vWb[i]->setShadowY(_vWb[i]->getShadowY() - height);
+							_vWb[i]->setY(_vWb[i]->getShadowY() - 315);
+							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
+							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vWb[i]->setShadowY(_vWb[i]->getShadowY() + height);
+							_vWb[i]->setY(_vWb[i]->getShadowY() - 315);
+							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
+							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vWb[i]->getShadowX() < _vWb[j]->getShadowX())
+						{
+							_vWb[i]->setShadowX(_vWb[i]->getShadowX() - width);
+							_vWb[i]->setX(_vWb[i]->getShadowX() - 200);
+							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
+							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vWb[i]->setShadowX(_vWb[i]->getShadowX() + width);
+							_vWb[i]->setX(_vWb[i]->getShadowX() - 200);
+							_vWb[i]->setRc(RectMakeCenter(_vWb[i]->getX() + 200, _vWb[i]->getY() + 200, 300, 230));
+							_vWb[i]->setShadowRc(RectMakeCenter(_vWb[i]->getShadowX(), _vWb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
+
 	////////////////
    //   yellow   //
    ///////////////
@@ -261,7 +316,62 @@ void enemyManager::baseballCollision()
 			}
 		}
 	}
-		
+
+	//노란색 베이스볼끼리 충돌
+	if(!_vYb.empty())
+	{
+		for (int i = 0; i < _vYb.size() - 1; i++)
+		{
+			for (int j = i + 1; j < _vYb.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vYb[i]->getShadowRect(), &_vYb[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vYb[i]->getShadowY() < _vYb[j]->getShadowY())
+						{
+							_vYb[i]->setShadowY(_vYb[i]->getShadowY() - height);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vYb[i]->setShadowY(_vYb[i]->getShadowY() + height);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vYb[i]->getShadowX() < _vYb[j]->getShadowX())
+						{
+							_vYb[i]->setShadowX(_vYb[i]->getShadowX() - width);
+							_vYb[i]->setX(_vYb[i]->getShadowX() - 200);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vYb[i]->setShadowX(_vYb[i]->getShadowX() + width);
+							_vYb[i]->setX(_vYb[i]->getShadowX() - 200);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
+	
+
 	////////////////
    //   green    //
    ///////////////
@@ -305,6 +415,60 @@ void enemyManager::baseballCollision()
 		}
 	}
 
+	//초록이들끼리 충돌
+	if (!_vGb.empty())
+	{
+		for (int i = 0; i < _vGb.size() - 1; i++)
+		{
+			for (int j = i + 1; j < _vGb.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vGb[i]->getShadowRect(), &_vGb[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vGb[i]->getShadowY() < _vGb[j]->getShadowY())
+						{
+							_vGb[i]->setShadowY(_vGb[i]->getShadowY() - height);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 315);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vGb[i]->setShadowY(_vGb[i]->getShadowY() + height);
+							_vGb[i]->setY(_vGb[i]->getShadowY() - 315);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vGb[i]->getShadowX() < _vGb[j]->getShadowX())
+						{
+							_vGb[i]->setShadowX(_vGb[i]->getShadowX() - width);
+							_vGb[i]->setX(_vGb[i]->getShadowX() - 200);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vGb[i]->setShadowX(_vGb[i]->getShadowX() + width);
+							_vGb[i]->setX(_vGb[i]->getShadowX() - 200);
+							_vGb[i]->setRc(RectMakeCenter(_vGb[i]->getX() + 200, _vGb[i]->getY() + 200, 300, 230));
+							_vGb[i]->setShadowRc(RectMakeCenter(_vGb[i]->getShadowX(), _vGb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
+
 	////////////////
    //   blue     //
    ///////////////
@@ -344,6 +508,114 @@ void enemyManager::baseballCollision()
 				RENDERMANAGER->deleteObj("blueBaseball", i);
 				_vBb.erase(_vBb.begin() + i);	//딜리트하자
 				break;
+			}
+		}
+	}
+
+	//파랑이들끼리 충돌
+	if (!_vBb.empty())
+	{
+		for (int i = 0; i < _vBb.size() - 1; i++)
+		{
+			for (int j = i + 1; j < _vBb.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vBb[i]->getShadowRect(), &_vBb[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vBb[i]->getShadowY() < _vBb[j]->getShadowY())
+						{
+							_vBb[i]->setShadowY(_vBb[i]->getShadowY() - height);
+							_vBb[i]->setY(_vBb[i]->getShadowY() - 315);
+							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
+							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vBb[i]->setShadowY(_vBb[i]->getShadowY() + height);
+							_vBb[i]->setY(_vBb[i]->getShadowY() - 315);
+							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
+							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vBb[i]->getShadowX() < _vBb[j]->getShadowX())
+						{
+							_vBb[i]->setShadowX(_vBb[i]->getShadowX() - width);
+							_vBb[i]->setX(_vBb[i]->getShadowX() - 200);
+							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
+							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vBb[i]->setShadowX(_vBb[i]->getShadowX() + width);
+							_vBb[i]->setX(_vBb[i]->getShadowX() - 200);
+							_vBb[i]->setRc(RectMakeCenter(_vBb[i]->getX() + 200, _vBb[i]->getY() + 200, 300, 230));
+							_vBb[i]->setShadowRc(RectMakeCenter(_vBb[i]->getShadowX(), _vBb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//노랑이랑 파랑이 충돌 처리
+	if (!_vYb.empty() && !_vBb.empty())
+	{
+		for (int i = 0; i < _vYb.size(); i++)
+		{
+			for (int j = 0; j < _vBb.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vYb[i]->getShadowRect(), &_vBb[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vYb[i]->getShadowY() < _vBb[j]->getShadowY())
+						{
+							_vYb[i]->setShadowY(_vYb[i]->getShadowY() - height);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vYb[i]->setShadowY(_vYb[i]->getShadowY() + height);
+							_vYb[i]->setY(_vYb[i]->getShadowY() - 315);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vYb[i]->getShadowX() < _vBb[j]->getShadowX())
+						{
+							_vYb[i]->setShadowX(_vYb[i]->getShadowX() - width);
+							_vYb[i]->setX(_vYb[i]->getShadowX() - 200);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vYb[i]->setShadowX(_vYb[i]->getShadowX() + width);
+							_vYb[i]->setX(_vYb[i]->getShadowX() - 200);
+							_vYb[i]->setRc(RectMakeCenter(_vYb[i]->getX() + 200, _vYb[i]->getY() + 200, 300, 230));
+							_vYb[i]->setShadowRc(RectMakeCenter(_vYb[i]->getShadowX(), _vYb[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
 			}
 		}
 	}
@@ -398,6 +670,60 @@ void enemyManager::batCollision()
 			}
 		}
 	}
+
+	//배트들끼리 충돌
+	if (!_vBat.empty())
+	{
+		for (int i = 0; i < _vBat.size() - 1; i++)
+		{
+			for (int j = i + 1; j < _vBat.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vBat[i]->getShadowRect(), &_vBat[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vBat[i]->getShadowY() < _vBat[j]->getShadowY())
+						{
+							_vBat[i]->setShadowY(_vBat[i]->getShadowY() - height);
+							_vBat[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
+							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vBat[i]->setShadowY(_vBat[i]->getShadowY() + height);
+							_vBat[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
+							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vBat[i]->getShadowX() < _vBat[j]->getShadowX())
+						{
+							_vBat[i]->setShadowX(_vBat[i]->getShadowX() - width);
+							_vBat[i]->setX(_vBat[i]->getShadowX() - 200);
+							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
+							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vBat[i]->setShadowX(_vBat[i]->getShadowX() + width);
+							_vBat[i]->setX(_vBat[i]->getShadowX() - 200);
+							_vBat[i]->setRc(RectMakeCenter(_vBat[i]->getX() + 200, _vBat[i]->getY() + 200, 300, 230));
+							_vBat[i]->setShadowRc(RectMakeCenter(_vBat[i]->getShadowX(), _vBat[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
 }
 void enemyManager::gloveCollision()
 {
@@ -443,6 +769,61 @@ void enemyManager::gloveCollision()
 			}
 		}
 	}
+
+	//글러브들끼리 충돌
+	if (!_vGlove.empty())
+	{
+		for (int i = 0; i < _vGlove.size() - 1; i++)
+		{
+			for (int j = i + 1; j < _vGlove.size(); j++)
+			{
+				RECT temp;
+				if (IntersectRect(&temp, &_vGlove[i]->getShadowRect(), &_vGlove[j]->getShadowRect()))	//에너미 몸과 충돌하면.. 다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+				{
+					float width = temp.right - temp.left;
+					float height = temp.bottom - temp.top;
+					//상하충돌
+					if (width > height)
+					{
+						//i 가 j 위에서 충돌
+						if (_vGlove[i]->getShadowY() < _vGlove[j]->getShadowY())
+						{
+							_vGlove[i]->setShadowY(_vGlove[i]->getShadowY() - height);
+							_vGlove[i]->setY(_vGlove[i]->getShadowY() - 315);
+							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
+							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
+						}
+						else //아래에서 충돌
+						{
+							_vGlove[i]->setShadowY(_vBat[i]->getShadowY() + height);
+							_vGlove[i]->setY(_vBat[i]->getShadowY() - 315);
+							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
+							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
+						}
+					}
+					else
+					{
+						//왼쪽에서 충돌
+						if (_vGlove[i]->getShadowX() < _vGlove[j]->getShadowX())
+						{
+							_vGlove[i]->setShadowX(_vGlove[i]->getShadowX() - width);
+							_vGlove[i]->setX(_vGlove[i]->getShadowX() - 200);
+							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
+							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
+						}
+						else //오른쪽에서 충돌
+						{
+							_vGlove[i]->setShadowX(_vGlove[i]->getShadowX() + width);
+							_vGlove[i]->setX(_vGlove[i]->getShadowX() - 200);
+							_vGlove[i]->setRc(RectMakeCenter(_vGlove[i]->getX() + 200, _vGlove[i]->getY() + 200, 300, 230));
+							_vGlove[i]->setShadowRc(RectMakeCenter(_vGlove[i]->getShadowX(), _vGlove[i]->getShadowY(), 215, 50));
+						}
+					}
+				}
+			}
+		}
+	}
+
 }
 
 void enemyManager::setBat1()

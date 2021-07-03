@@ -52,6 +52,7 @@ HRESULT whiteBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 
 	damagedCount = 0;
 
+	isRollState = true;
 	
 	RENDERMANAGER->addObj("whiteBaseball", _imgName.c_str(), "wBaseball_shadow", 
 		&_whiteBaseball.x, &_whiteBaseball.y, &_wbShadow.x, &_wbShadow.y, 
@@ -102,22 +103,9 @@ void whiteBaseball::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		SetBkMode(getMemDC(), TRANSPARENT);
-		SetTextColor(getMemDC(), RGB(255, 255, 255));
-
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
-
-		HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
-		SelectObject(getMemDC(), myPen);
-
 		Rectangle(getMemDC(), _whiteBaseball.rcAttackRange);	//공격 범위 렉트
 		Rectangle(getMemDC(), _whiteBaseball.rc);				//에너미 렉트
 		Rectangle(getMemDC(), _wbShadow.rc);					//그림자 렉트
-
-		SelectObject(getMemDC(), oldBrush);
-		DeleteObject(myPen);
-		DeleteObject(myBrush);
 	}
 	//Rectangle(getMemDC(), _whiteBaseball.rcStop);			//등장 충돌 렉트
 

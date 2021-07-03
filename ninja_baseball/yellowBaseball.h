@@ -61,10 +61,6 @@ public:
 	bool isDeathDeleteState;	//죽고 지워줄 준비가 됐는지 판별할 bool값
 
 
-	float _x = _yellowBaseball.x;
-	float _y = _yellowBaseball.y;
-
-
 	yellowBaseball() {};
 	~yellowBaseball() {};
 
@@ -105,7 +101,17 @@ public:
 
 	void setImageName(string s) { _imgName = s; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _yellowBaseball.x = x; }
+	void setY(float y) { _yellowBaseball.y = y; }
 
+	RECT getShadowRect() { return _ybShadow.rc; }
+	void setShadowRc(RECT rc) { _ybShadow.rc = rc; }
+
+	float getShadowX() { return _ybShadow.x; }
+	float getShadowY() { return _ybShadow.y; }
+
+	void setShadowX(float x) { _ybShadow.x = x; }
+	void setShadowY(float y) { _ybShadow.y = y; }
+
+	void setRc(RECT rc) { _yellowBaseball.rc = rc; }
 };

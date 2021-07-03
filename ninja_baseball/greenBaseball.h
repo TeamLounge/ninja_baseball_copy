@@ -66,11 +66,6 @@ public:
 
 	bool isPlayerReached;		//플레이어 특정 좌표 도착했어?
 
-	float _x = _greenBaseball.x;
-	float _y = _greenBaseball.y;
-
-
-
 
 	greenBaseball() {};
 	~greenBaseball() {};
@@ -112,6 +107,17 @@ public:
 
 	void setImageName(string s) { _imgName = s; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _greenBaseball.x = x; }
+	void setY(float y) { _greenBaseball.y = y; }
+
+	RECT getShadowRect() { return _gbShadow.rc; }
+	void setShadowRc(RECT rc) { _gbShadow.rc = rc; }
+
+	float getShadowX() { return _gbShadow.x; }
+	float getShadowY() { return _gbShadow.y; }
+
+	void setShadowX(float x) { _gbShadow.x = x; }
+	void setShadowY(float y) { _gbShadow.y = y; }
+
+	void setRc(RECT rc) { _greenBaseball.rc = rc; }
 };

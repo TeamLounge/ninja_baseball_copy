@@ -75,9 +75,6 @@ public:
 	int timeCount;				//인터벌 주기 위한 카운트
 	bool iscatch;				//잡혔어?
 
-	float _x = _bat.x;
-	float _y = _bat.y;
-
 
 	bat() {};
 	~bat() {};
@@ -119,8 +116,19 @@ public:
 
 	void setImageName(string s) { _imgName = s; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _bat.x = x; }
+	void setY(float y) { _bat.y = y; }
+
+	RECT getShadowRect() { return _batShadow.rc; }
+	void setShadowRc(RECT rc) { _batShadow.rc = rc; }
+
+	float getShadowX() { return _batShadow.x; }
+	float getShadowY() { return _batShadow.y; }
+
+	void setShadowX(float x) { _batShadow.x = x; }
+	void setShadowY(float y) { _batShadow.y = y; }
+
+	void setRc(RECT rc) { _bat.rc = rc; }
 
 };
 

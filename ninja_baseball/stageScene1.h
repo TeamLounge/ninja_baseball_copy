@@ -51,6 +51,7 @@ private:
 	
 	bool _setBaseBallandGlove;
 	bool _isAllEnemySet;
+	bool _isWhiteBaseBallSet;
 
 	int _count;
 

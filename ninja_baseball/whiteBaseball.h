@@ -61,8 +61,7 @@ public:
 	bool isdamage;				//에너미가 데미지 받았어??							
 	bool iscatch;				//에저미가 잡혔어??
 
-	float _x = _whiteBaseball.x;
-	float _y = _whiteBaseball.y;
+	bool isRollState; //등장 상태인지
 
 	whiteBaseball() {};
 	~whiteBaseball() {};
@@ -110,6 +109,17 @@ public:
 
 	void setImageName(string imgName) { _imgName = imgName; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _whiteBaseball.x = x; }
+	void setY(float y) { _whiteBaseball.y = y; }
+
+	RECT getShadowRect() { return _wbShadow.rc; }
+	void setShadowRc(RECT rc) { _wbShadow.rc = rc; }
+
+	float getShadowX() { return _wbShadow.x; }
+	float getShadowY() { return _wbShadow.y; }
+
+	void setShadowX(float x) { _wbShadow.x = x; }
+	void setShadowY(float y) { _wbShadow.y = y; }
+
+	void setRc(RECT rc) { _whiteBaseball.rc = rc; }
 };

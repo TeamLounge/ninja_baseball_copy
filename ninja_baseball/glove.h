@@ -60,12 +60,8 @@ public:
 	bool isdamage;					//에너미가 데미지 받았어??							
 	bool iscatch;					//에저미가 잡혔어??
 
-	float _x = _glove.x;
-	float _y = _glove.y;
-
 	float _imageX;
 	float _imageY;
-
 
 	//이미지 좌표 수정 위한 bool값들
 	bool isAttackTongueState;
@@ -113,7 +109,18 @@ public:
 
 	void setImageName(string s) { _imgName = s; }
 
-	void setX(float x) { _x = x; }
-	void setY(float y) { _y = y; }
+	void setX(float x) { _glove.x = x; }
+	void setY(float y) { _glove.y = y; }
+
+	RECT getShadowRect() { return _gloveShadow.rc; }
+	void setShadowRc(RECT rc) { _gloveShadow.rc = rc; }
+
+	float getShadowX() { return _gloveShadow.x; }
+	float getShadowY() { return _gloveShadow.y; }
+
+	void setShadowX(float x) { _gloveShadow.x = x; }
+	void setShadowY(float y) { _gloveShadow.y = y; }
+
+	void setRc(RECT rc) { _glove.rc = rc; }
 };
 

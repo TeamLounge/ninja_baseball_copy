@@ -69,6 +69,8 @@ HRESULT stageScene1::init()
 
 	_setBaseBallandGlove = false;
 
+	_isWhiteBaseBallSet = false;
+
 	_isAllEnemySet = false;
 	SOUNDMANAGER->stop("캐릭터선택");
 	SOUNDMANAGER->play("스테이지1", 0.7f);
@@ -113,20 +115,22 @@ void stageScene1::update()
 		{
 			if (_setEnemy.front() == 1150)
 			{
-				//_em->setBlueBaseball();
-				//_em->setYellowBaseball();
+				_em->setBlueBaseball();
+				_em->setYellowBaseball();
 
 			}
 			else if (_setEnemy.front() == 2250)
 			{
-				//_em->setWhiteBaseball();
+				_em->setWhiteBaseball();
+				_isWhiteBaseBallSet = true;
 			}
 			else if (_setEnemy.front() == 2450)
 			{
-				//_em->setCard();
+				_em->setCard();
 			}
 			else if (_setEnemy.front() == BACKGROUNDX - 100)
 			{
+				_count = 0;
 				_setBaseBallandGlove = true;
 			}
 			_setEnemy.pop();
@@ -144,7 +148,7 @@ void stageScene1::update()
 				}
 				else if (_count % 700 == 0)
 				{
-					//_em->setGreenBaseball();
+					_em->setGreenBaseball();
 				}
 				if (_count > 700)
 				{
@@ -157,12 +161,16 @@ void stageScene1::update()
 		//=======================================================================================
 
 		//==================에너미 업데이트 ================================
+
+	
 		//UPDATE baseBall////////////
 		_em->update();
+	
 		_em->updateBlueBaseball();
 		_em->updateGreenBaseball();
 		_em->updateWhiteBaseball();
 		_em->updateYellowBaseball();
+		
 		_em->baseballCollision();
 		/////////////////////////////
 
@@ -178,9 +186,10 @@ void stageScene1::update()
 
 		//UPDATE CARD
 		_em->updateCard();
-
+		
 		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
 		_em->playerLocation();
+
 
 		//===============================================================
 
@@ -188,7 +197,7 @@ void stageScene1::update()
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 		{
 			_cameraStopX.pop();	//이전 카메라 지워줌
-			//CAMERAMANAGER->_isFixed = true;
+			CAMERAMANAGER->_isFixed = true;
 		}
 
 		if (_em->isAllDead())
@@ -360,9 +369,9 @@ void stageScene1::shutterCollison()
 	float top = 0;
 	float bottom = WINSIZEY;
 
-	float _probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
+	float probeRight = _player->getShadowX() + _player->_shadow->getWidth() / 2;
 
-	for (int i = _player->_shadow->getX(); i < _probeRight + 20; ++i)
+	for (int i = _player->_shadow->getX(); i < probeRight + 20; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), i, _player->getShadowY() - _player->_shadow->getHeight() / 2);
 
@@ -387,6 +396,41 @@ void stageScene1::shutterCollison()
 	{
 		_player->setShadowX(_player->getShadowX() - (_player->getShadowX() + _player->_shadow->getWidth() / 2 - right) + 6);
 		_player->setX(_player->getShadowX());
+	}
+
+	if (!_em->getVWb().empty())
+	{
+		for (int i = 0; i < _em->getVWb().size(); i++)
+		{
+			right = BACKGROUNDX;
+			if (_em->getVWb()[i]->isRollState) continue;
+			float enemyProbeRight = _em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2;
+			for (int j = _em->getVWb()[i]->getShadowX() - (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2; 
+				j < enemyProbeRight + 50; ++j)
+			{
+				COLORREF color = GetPixel(IMAGEMANAGER->findImage("shutter_pixel")->getMemDC(), j,
+					_em->getVWb()[i]->getShadowY() - (_em->getVWb()[i]->getShadowRect().bottom - _em->getVWb()[i]->getShadowRect().top) / 2);
+
+				int r = GetRValue(color);
+				int g = GetGValue(color);
+				int b = GetBValue(color);
+
+				if ((r == 0 && g == 0 && b == 255))
+				{
+					if (right > j)
+					{
+						right = j;
+					}
+
+				}
+			}
+
+			if (right <= _em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2)
+			{
+				_em->getVWb()[i]->setShadowX(_em->getVWb()[i]->getShadowX() - (_em->getVWb()[i]->getShadowX() + (_em->getVWb()[i]->getShadowRect().right - _em->getVWb()[i]->getShadowRect().left) / 2 - right) + 6);
+				_em->getVWb()[i]->setX(_em->getVWb()[i]->getShadowX() - 200);
+			}
+		}
 	}
 }
 
@@ -444,29 +488,34 @@ void stageScene1::updateShutter()
 		_down -= _gravity;
 	}
 
-	if(KEYMANAGER->isStayKeyDown('E'))
+	if(_isWhiteBaseBallSet)
 	{
-		
-		if (_shutter.body.bottom >= WINSIZEY)
+		_count++;
+		if (_count >= 50)
 		{
-			if (!_shutter.isClosed)
+			if (_shutter.body.bottom >= WINSIZEY)
 			{
-				_shutter.body.bottom = WINSIZEY - _shutter.height;
-				_shutter.height -= 5;
-				if (_shutter.height <= 0)
+				if (!_shutter.isClosed)
 				{
-					_shutter.isClosed = true;
+					_shutter.body.bottom = WINSIZEY - _shutter.height;
+					_shutter.height -= 5;
+					if (_shutter.height <= 0)
+					{
+						_shutter.isClosed = true;
+						_isWhiteBaseBallSet = false;
+						_count = 0;
+					}
 				}
+				else
+				{
+					_shutter.body.bottom = WINSIZEY;
+				}
+				_shutter.y = _shutter.body.bottom - IMAGEMANAGER->findImage("셔터")->getHeight();
 			}
 			else
 			{
-				_shutter.body.bottom = WINSIZEY;
+				_shutter.y += 10;
 			}
-			_shutter.y = _shutter.body.bottom - IMAGEMANAGER->findImage("셔터")->getHeight();
-		}
-		else
-		{
-			_shutter.y += 10;
 		}
 		_shutter.body = RectMake(_shutter.x, _shutter.y, IMAGEMANAGER->findImage("셔터")->getWidth(), IMAGEMANAGER->findImage("셔터")->getHeight());
 	}
