@@ -55,9 +55,10 @@ public:
 	int timeCount;
 
 	bool isattack;              //에너미가 공격했어??
-	bool isdamage;				//에너미가 데미지 받았어??							
+	bool isdamage;				//에너미가 데미지 받았어??
 	bool iscatch;				//에저미가 잡혔어??
 	bool isGreenFly;			//Green이 날았어?
+	bool isDeathDeleteState;	//죽고 지워줄 준비가 됐는지 판별할 bool값
 
 
 	float _x = _yellowBaseball.x;

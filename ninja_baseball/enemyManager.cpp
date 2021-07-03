@@ -204,6 +204,19 @@ void enemyManager::baseballCollision()
 
 		if (!_player->isattack) (*_viWb)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vWb.empty())
+	{
+		for (int i = 0; i < _vWb.size(); ++i)
+		{
+			if (_vWb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("whiteBaseball", i);
+				_vWb.erase(_vWb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 
 	////////////////
    //   yellow   //
@@ -221,6 +234,7 @@ void enemyManager::baseballCollision()
 			(*_viYb)->setIsCollisionAttack(false);		//아니면 false로 전환
 		}
 	}
+
 	//Damaged//
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
@@ -233,6 +247,19 @@ void enemyManager::baseballCollision()
 		}
 
 		if (!_player->isattack) (*_viYb)->isCrash = false;
+	}
+	//죽은 애들 지워주자
+	if (!_vYb.empty())
+	{
+		for (int i = 0; i < _vYb.size(); ++i)
+		{
+			if (_vYb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("yellowBaseball", i);	
+				_vYb.erase(_vYb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
 	}
 		
 	////////////////
@@ -264,6 +291,19 @@ void enemyManager::baseballCollision()
 
 		if (!_player->isattack) (*_viGb)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vGb.empty())
+	{
+		for (int i = 0; i < _vGb.size(); ++i)
+		{
+			if (_vGb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("greenBaseball", i);
+				_vGb.erase(_vGb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 
 	////////////////
    //   blue     //
@@ -293,6 +333,19 @@ void enemyManager::baseballCollision()
 		}
 
 		if (!_player->isattack) (*_viBb)->isCrash = false;
+	}
+	//죽은 애들 지워주자
+	if (!_vBb.empty())
+	{
+		for (int i = 0; i < _vBb.size(); ++i)
+		{
+			if (_vBb[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("blueBaseball", i);
+				_vBb.erase(_vBb.begin() + i);	//딜리트하자
+				break;
+			}
+		}
 	}
 }
 void enemyManager::batCollision()
@@ -332,6 +385,19 @@ void enemyManager::batCollision()
 		//	(*_viBat)->setIsCollisionDamaged(false);		//아니면 false로 전환
 		//}
 	}
+	//죽은 애들 지워주자
+	if (!_vBat.empty())
+	{
+		for (int i = 0; i < _vBat.size(); ++i)
+		{
+			if (_vBat[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("bat", i);
+				_vBat.erase(_vBat.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 }
 void enemyManager::gloveCollision()
 {
@@ -364,6 +430,19 @@ void enemyManager::gloveCollision()
 		}
 		if (!_player->isattack) (*_viGlove)->isCrash = false;
 	}
+	//죽은 애들 지워주자
+	if (!_vGlove.empty())
+	{
+		for (int i = 0; i < _vGlove.size(); ++i)
+		{
+			if (_vGlove[i]->isDeathDeleteState)	//죽었고 신호 들어오면
+			{
+				RENDERMANAGER->deleteObj("glove", i);
+				_vGlove.erase(_vGlove.begin() + i);	//딜리트하자
+				break;
+			}
+		}
+	}
 }
 
 void enemyManager::setBat1()
@@ -375,6 +454,18 @@ void enemyManager::setBat1()
 		_bat->init(PointMake(1150 + i * 300, 220 + i * 100));
 		_vBat.push_back(_bat);
 	}
+	////이렇게 나눠줄 순 없나..
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	bat* _bat1 = new bat;
+	//	bat* _bat3 = new bat;
+	//	
+	//	_bat1->init(PointMake(1150 + i * 300, 220 + i * 100));
+	//	_vBat.push_back(_bat1);
+	//
+	//	_bat3->init(PointMake(1150 + i * 300, 220 + i * 100));
+	//	_vBat.push_back(_bat3);
+	//}
 }
 void enemyManager::setBat2()
 {

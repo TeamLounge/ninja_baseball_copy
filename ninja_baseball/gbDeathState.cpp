@@ -9,7 +9,16 @@
 
 gbState * gbDeathState::inputHandle(greenBaseball * greenBaseball)
 {
-
+	if (greenBaseball->getCurrentFrameX() == greenBaseball->_greenBaseball.img->getMaxFrameX())
+	{
+		count++;
+		if (count >= 8)
+		{
+			count = 0;
+			greenBaseball->isDeathDeleteState = true;
+			/*RENDERMANAGER->deleteObj("card", 0);*/
+		}
+	}
 	return nullptr;
 }
 

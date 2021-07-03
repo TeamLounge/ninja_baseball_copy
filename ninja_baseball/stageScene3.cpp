@@ -35,7 +35,8 @@ HRESULT stageScene3::init()
 	_obj = new objectManager;
 	_obj->setgoldbat(0,0);
 
-	//_em->setBat2();		//stage3에 등장하는 배트 3마리
+	//bat
+	_em->setBat2();		//stage3에 등장하는 배트 3마리
 
 	_em->setPlayerMemoryAddressLink(_player);
 	_player->setEmMemoryAddressLink(_em);
@@ -87,10 +88,12 @@ void stageScene3::update()
 			}
 		}
 
-	_em->updateBat();
+	
 	//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
-	_em->playerLocation();
 	_player->update();
+	_em->playerLocation();
+	_em->updateBat();
+	_em->batCollision();
 	_em->update();
 		if (KEYMANAGER->isOnceKeyDown('Q'))
 		{

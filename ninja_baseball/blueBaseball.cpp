@@ -39,9 +39,6 @@ HRESULT blueBaseball::init(POINT position)		//POINT : x, y를 같이 불러오는 것
 	_blueBaseball.img->setX(_blueBaseball.x);
 	_blueBaseball.img->setY(_blueBaseball.y);	//이미지도 좌표에 맞게 뿌려줬고
 
-	//등장 충돌 렉트
-	_blueBaseball.rcStop = RectMakeCenter(_blueBaseball.x - RND->getFromIntTo(800, 900), _blueBaseball.y + 200, 50, 100);
-
 	isRight = false;
 	isDown = false;
 	isCollisionAttack = false;

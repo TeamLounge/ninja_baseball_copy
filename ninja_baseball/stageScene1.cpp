@@ -31,9 +31,9 @@ HRESULT stageScene1::init()
 	_timerUI->init(99, 2, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
 	//SET baseBall
-	_em->setBlueBaseball();
-	_em->setGreenBaseball();
-	_em->setWhiteBaseball();
+	//_em->setBlueBaseball();
+	//_em->setGreenBaseball();
+	//_em->setWhiteBaseball();
 	_em->setYellowBaseball();
 	//////////////////////////
 
@@ -54,6 +54,7 @@ HRESULT stageScene1::init()
 
 	_cameraStopX.push(1300);
 	_cameraStopX.push(2300);
+	_cameraStopX.push(BACKGROUNDX - 5);
 
 	_gameoverUI = new gameOverUI;
 	_gameoverUI->init();
@@ -90,10 +91,10 @@ void stageScene1::update()
 
 		updateShutter();
 		//UPDATE baseBall////////////
-		_em->updateBlueBaseball();
-		_em->updateGreenBaseball();
-		_em->updateWhiteBaseball();
-		_em->updateYellowBaseball();
+		//_em->updateBlueBaseball();
+		//_em->updateGreenBaseball();
+		//_em->updateWhiteBaseball();
+		//_em->updateYellowBaseball();
 		_em->baseballCollision();
 		/////////////////////////////
 
@@ -107,6 +108,8 @@ void stageScene1::update()
 			_em->updateCard();
 		}
 
+			//0703_1807
+			//화이트볼 등장
 
 		//UPDATE BAT
 		_em->updateBat();
@@ -125,10 +128,33 @@ void stageScene1::update()
 		CAMERAMANAGER->updateCamera(_player->getX(), _player->getY(), 0.51f);
 		CAMERAMANAGER->update();
 
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//if (CAMERAMANAGER->getCameraRIGHT() >= _cameraStopX.front() - 50)		//카메라가 1300에 있으면
+		//{
+		//	if (_cameraStopX.front() == 1300)
+		//	{
+		//		_em->updateBlueBaseball();
+		//		_em->updateGreenBaseball();
+		//		_em->updateWhiteBaseball();
+		//		_em->updateYellowBaseball();
+
+		//	}
+		//	if (_cameraStopX.front() == 2300)		//카메라가 1300에 있으면
+		//	{
+
+		//	}
+		//	_cameraStopX.pop();	//이전 카메라 지워줌
+		//	CAMERAMANAGER->_isFixed = true;
+		//}
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+
 		//카메라
 		if (!_cameraStopX.empty() && _cameraStopX.front() <= CAMERAMANAGER->getCameraRIGHT())
 		{
-			_cameraStopX.pop();
+			
+			_cameraStopX.pop();	//이전 카메라 지워줌
 			CAMERAMANAGER->_isFixed = true;
 		}
 
@@ -216,7 +242,7 @@ void stageScene1::render()
 	_em->renderBlueBaseball();
 	_em->renderGreenBaseball();
 	_em->renderWhiteBaseball();
-	_em->renderGreenBaseball();
+	_em->renderYellowBaseball();
 	///////////////////////////////
 
 	//RENDER BAT

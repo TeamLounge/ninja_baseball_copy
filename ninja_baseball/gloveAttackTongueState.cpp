@@ -27,7 +27,7 @@ void gloveAttackTongueState::update(glove * glove)
 {
 	//frame
 	frameCount++;
-	if (frameCount >= 20)
+	if (frameCount >= 5)
 	{
 		frameCount = 0;
 		if (glove->getCurrentFrameX() == glove->_glove.img->getMaxFrameX())			//프레임 한 바퀴만 돌아
@@ -43,7 +43,6 @@ void gloveAttackTongueState::update(glove * glove)
 
 void gloveAttackTongueState::enter(glove * glove)
 {
-	glove->isattack = true;
 	glove->_glove.img = IMAGEMANAGER->findImage("glove_attackTongue");
 	glove->setImageName("glove_attackTongue");
 

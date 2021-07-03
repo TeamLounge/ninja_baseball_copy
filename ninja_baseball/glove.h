@@ -53,6 +53,7 @@ public:
 
 	int damagedCount;				//맞은 횟수
 	int timeCount;					//공격 인터벌 주기 위함
+	bool isDeathDeleteState;	//죽고 지워줄 준비가 됐는지 판별할 bool값
 
 	bool isattack;					//에너미가 공격했어??
 	bool isdamage;					//에너미가 데미지 받았어??							
@@ -65,6 +66,7 @@ public:
 	//이미지 좌표 수정 위한 bool값들
 	bool isAttackTongueState;
 	bool isJumpState;
+	bool isMoveState;
 
 	glove() {};
 	~glove() {};
