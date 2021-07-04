@@ -35,7 +35,7 @@ bossState * bossDeathState::inputHandle(boss * boss)
 		{
 			_soundOn = true;
 			SOUNDMANAGER->stop("보스씬");
-			SOUNDMANAGER->play("스테이지클리어", 0.7f);
+			SOUNDMANAGER->play("스테이지클리어", 0.2f);
 		}
 	}
 

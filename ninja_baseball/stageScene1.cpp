@@ -259,7 +259,7 @@ void stageScene1::update()
 				if (!_isGameOverSound)
 				{
 					_isGameOverSound = true;
-					SOUNDMANAGER->play("gameOver", 0.7f);
+					SOUNDMANAGER->play("gameOver", 0.2f);
 				}
 			}
 		}
@@ -291,7 +291,7 @@ void stageScene1::update()
 			if (!_isContinueSound)
 			{
 				_isContinueSound = true;
-				SOUNDMANAGER->play("continue", 0.7f);
+				SOUNDMANAGER->play("continue", 0.2f);
 			}
 		}
 	}
