@@ -73,7 +73,7 @@ HRESULT stageScene1::init()
 
 	_isAllEnemySet = false;
 	SOUNDMANAGER->stop("캐릭터선택");
-	SOUNDMANAGER->play("스테이지1", 0.7f);
+	SOUNDMANAGER->play("스테이지1", 0.2f);
 
 	_isGameOverSound = false;
 	_isContinueSound = false;

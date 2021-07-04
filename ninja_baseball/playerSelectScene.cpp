@@ -49,7 +49,7 @@ HRESULT playerSelectScene::init()
 	_timerUI = new timerUI;
 	_timerUI->init(20, 1, CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 81);
 
-	SOUNDMANAGER->play("캐릭터선택", 0.7f);
+	SOUNDMANAGER->play("캐릭터선택", 0.2f);
 
 	return S_OK;
 }

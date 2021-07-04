@@ -30,7 +30,7 @@ HRESULT endingScene::init()
 	_dialog.push_back("ON THE STEAM SHIP!!");
 
 	SOUNDMANAGER->stop("스테이지클리어");
-	SOUNDMANAGER->play("스토리씬", 0.7f);
+	SOUNDMANAGER->play("스토리씬", 0.2f);
 
 	return S_OK;
 }
