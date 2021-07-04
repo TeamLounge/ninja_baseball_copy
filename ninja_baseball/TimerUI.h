@@ -15,5 +15,8 @@ public :
 
 	int getTime() { return _time; }
 	void setTime(int time) { _time = time; }
+
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
 };
 

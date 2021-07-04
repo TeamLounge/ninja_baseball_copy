@@ -6,7 +6,15 @@ playerstate * red_dieState::handleInput(player * _player)
 {
 	if (_time > 230)
 	{
-		return new red_startState;
+		if (_player->getlife() <= 0)
+		{
+			_player->isEnd = true;
+		}
+		else
+		{
+			_player->sethp(5);
+			return new red_startState;
+		}
 	}
 	return nullptr;
 }
@@ -107,9 +115,13 @@ void red_dieState::enter(player * _player)
 {
 	_player->setImage(IMAGEMANAGER->findImage("red_damage3"));
 	_player->setImageName("red_damage3");
-	
+
 	//죽으면 life 1개 줄어든다
 	_player->setlife(_player->getlife() - 1);
+	if (_player->getlife() <= 0)
+	{
+		_player->setlife(0);
+	}
 
 
 	_count = _index = _time = 0;

@@ -160,7 +160,7 @@ void stageScene3::update()
 					_isSetBoss = true;
 					_em->setBoss();
 					SOUNDMANAGER->stop("보스등장");
-					SOUNDMANAGER->play("보스씬", 0.7f);
+					SOUNDMANAGER->play("보스씬", 0.2f);
 
 				}
 				else
@@ -173,7 +173,7 @@ void stageScene3::update()
 		if (IMAGEMANAGER->findImage("빵빠레")->getFrameX() == 1)
 		{
 			SOUNDMANAGER->stop("스테이지1");
-			SOUNDMANAGER->play("보스등장", 0.7f);
+			SOUNDMANAGER->play("보스등장", 0.2f);
 		}
 
 		if (_isSetBoss)

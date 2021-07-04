@@ -73,7 +73,7 @@ HRESULT stageScene1::init()
 
 	_isAllEnemySet = false;
 	SOUNDMANAGER->stop("캐릭터선택");
-	SOUNDMANAGER->play("스테이지1", 0.7f);
+	SOUNDMANAGER->play("스테이지1", 0.2f);
 
 	_isGameOverSound = false;
 	_isContinueSound = false;
@@ -243,6 +243,12 @@ void stageScene1::update()
 
 		_timerUI->update(CAMERAMANAGER->getCameraCenterX(), CAMERAMANAGER->getCameraTOP() + 36);
 
+		if (_timerUI->getTime() == 0)
+		{
+			_gameoverUI->setIsGameOver(true);
+		}
+
+		_gameoverUI->update();
 
 		if (_player->getlife() <= 0 && _player->gethp() <= 0)
 		{
@@ -264,7 +270,8 @@ void stageScene1::update()
 		{
 			_gameoverUI->setIsGameOver(false);
 			_gameoverUI->setTimer(9);
-			_player->setlife(4);
+			_timerUI->setTime(99);
+			_player->setlife(3);
 			_player->sethp(5);
 			_player->isEnd = false;
 			_soundCount = 0;
@@ -279,9 +286,8 @@ void stageScene1::update()
 
 		if (_soundCount >= 100)
 		{
-			_gameoverUI->update();
 			SOUNDMANAGER->stop("gameOver");
-			
+			_gameoverUI->update();
 			if (!_isContinueSound)
 			{
 				_isContinueSound = true;
@@ -352,13 +358,6 @@ void stageScene1::render()
 	{
 		_gameoverUI->render();
 	}
-
-	char str[128];
-	sprintf_s(str, "set : %d", _setBaseBallandGlove);
-	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 50, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
-	sprintf_s(str, "count : %d", _count);
-	TextOut(getMemDC(), CAMERAMANAGER->getCameraLEFT() + 120, CAMERAMANAGER->getCameraTOP() + 140, str, strlen(str));
-	
 }
 
 void stageScene1::shutterCollison()

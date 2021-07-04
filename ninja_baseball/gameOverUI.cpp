@@ -22,10 +22,15 @@ void gameOverUI::update()
 		if (_timerUI->getTime() <= 0)
 		{
 			SCENEMANAGER->changeScene("title");
+			SOUNDMANAGER->stop("continue");
 			_isGameOver = false;
 		}
 	}
-
+	else
+	{
+		_timerUI->setX(CAMERAMANAGER->getCameraCenterX());
+		_timerUI->setY(CAMERAMANAGER->getCameraCenterY() + 100);
+	}
 }
 
 void gameOverUI::render()
