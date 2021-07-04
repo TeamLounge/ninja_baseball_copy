@@ -952,7 +952,7 @@ void enemyManager::renderGlove()
 }
 
 //카메라 밖 나가지 않게
-void enemyManager::wallLoaction()
+void enemyManager::wallLocation()
 {
 	////////////////
    //   blue      //
@@ -960,9 +960,9 @@ void enemyManager::wallLoaction()
 	for (_viBb = _vBb.begin(); _viBb != _vBb.end(); ++_viBb)
 	{
 		//위
-		if ((*_viBb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		if ((*_viBb)->getY() <= 162)		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
-			(*_viBb)->setY((*_viBb)->getY() + 3);
+			(*_viBb)->setY(162);
 		}
 		//아래
 		if ((*_viBb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
@@ -988,9 +988,9 @@ void enemyManager::wallLoaction()
 	for (_viGb = _vGb.begin(); _viGb != _vGb.end(); ++_viGb)
 	{
 		//위
-		if ((*_viGb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		if ((*_viGb)->getY() <= 162)		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
-			(*_viGb)->setY((*_viGb)->getY() + 3);
+			(*_viGb)->setY(162);
 		}
 		//아래
 		if ((*_viGb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
@@ -1015,9 +1015,9 @@ void enemyManager::wallLoaction()
 	for (_viYb = _vYb.begin(); _viYb != _vYb.end(); ++_viYb)
 	{
 		//위
-		if ((*_viYb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		if ((*_viYb)->getY() <= 162)		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
-			(*_viYb)->setY((*_viYb)->getY() + 3);
+			(*_viYb)->setY(162);
 		}
 		//아래
 		if ((*_viYb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())
@@ -1042,9 +1042,9 @@ void enemyManager::wallLoaction()
 	for (_viWb = _vWb.begin(); _viWb != _vWb.end(); ++_viWb)
 	{
 		//위
-		if ((*_viWb)->getY() <= CAMERAMANAGER->getCameraTOP())		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
+		if ((*_viWb)->getY() <= 162)		//충돌하면..	다른 상태에서 충돌 여부 판별하여 상태 변경하기 위함
 		{
-			(*_viWb)->setY((*_viWb)->getY() + 3);
+			(*_viWb)->setY(162);
 		}
 		//아래
 		if ((*_viWb)->getY() >= CAMERAMANAGER->getCameraBOTTOM())

@@ -34,7 +34,7 @@ HRESULT stageScene1::init()
 	//_em->setBlueBaseball();
 	//_em->setGreenBaseball();
 	//_em->setWhiteBaseball();
-	_em->setYellowBaseball();
+	//_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat
@@ -190,6 +190,7 @@ void stageScene1::update()
 		//ryno, red 위치 찾아주기 (baseball, bat, glove 다 들어있어요)
 		_em->playerLocation();
 
+		_em->wallLocation();
 
 		//===============================================================
 
@@ -259,7 +260,7 @@ void stageScene1::update()
 				if (!_isGameOverSound)
 				{
 					_isGameOverSound = true;
-					SOUNDMANAGER->play("gameOver", 0.7f);
+					SOUNDMANAGER->play("gameOver", 0.2f);
 				}
 			}
 		}
@@ -291,7 +292,7 @@ void stageScene1::update()
 			if (!_isContinueSound)
 			{
 				_isContinueSound = true;
-				SOUNDMANAGER->play("continue", 0.7f);
+				SOUNDMANAGER->play("continue", 0.2f);
 			}
 		}
 	}
@@ -346,10 +347,13 @@ void stageScene1::render()
 
 
 	RENDERMANAGER->render(getMemDC());
+	IMAGEMANAGER->findImage("기둥")->render(getMemDC(), BACKGROUNDX - 1032, 0);
+	_player->render();
+
 	_playerUI->render();
 	_timerUI->render();
-	_player->render();
-	IMAGEMANAGER->findImage("기둥")->render(getMemDC(), BACKGROUNDX - 1032, 0);
+
+	
 
 
 	//EFFECTMANAGER->render();

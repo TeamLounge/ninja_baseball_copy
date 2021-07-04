@@ -312,7 +312,7 @@ void objectManager::collsion()
 					_ball->isattack = false;
 					_ball->isappear = false;
 					_ball->deleteRendermanager();
-					_em->getVWb()[i]->isdamage = true;
+					_em->getVWb()[i]->isCollisionDamaged = true;
 				}
 			}
 		}
@@ -328,7 +328,7 @@ void objectManager::collsion()
 					_ball->isattack = false;
 					_ball->isappear = false;
 					_ball->deleteRendermanager();
-					//_em->getVBb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
+					_em->getVBb()[i]->isCollisionDamaged = true;
 				}
 			}
 	
@@ -345,7 +345,7 @@ void objectManager::collsion()
 					_ball->isattack = false;
 					_ball->isappear = false;
 					_ball->deleteRendermanager();
-					//_em->getVYb()[i]->isdamage = true;   isdamage변수추가하면 주석풀어주세용
+					_em->getVYb()[i]->isCollisionDamaged = true;
 				}
 			}
 		
@@ -362,7 +362,7 @@ void objectManager::collsion()
 					_ball->isattack = false;
 					_ball->isappear = false;
 					_ball->deleteRendermanager();
-					//_em->getVYb()[i]->isdamage = true;  isdamage변수추가하면 주석풀어주세용
+					_em->getVYb()[i]->isCollisionDamaged = true;
 				}
 			}
 	
