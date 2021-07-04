@@ -54,7 +54,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->changeScene("title");
 
 	setMusic();
-	
+
 	return S_OK;
 }
 
@@ -69,6 +69,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
+	
 	SCENEMANAGER->update();
 }
 
