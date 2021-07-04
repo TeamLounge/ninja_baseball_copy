@@ -34,7 +34,7 @@ HRESULT stageScene1::init()
 	//_em->setBlueBaseball();
 	//_em->setGreenBaseball();
 	//_em->setWhiteBaseball();
-	_em->setYellowBaseball();
+	//_em->setYellowBaseball();
 	//////////////////////////
 
 	//SET bat
@@ -115,13 +115,13 @@ void stageScene1::update()
 		{
 			if (_setEnemy.front() == 1150)
 			{
-				_em->setBlueBaseball();
-				_em->setYellowBaseball();
+				//_em->setBlueBaseball();
+				//_em->setYellowBaseball();
 
 			}
 			else if (_setEnemy.front() == 2250)
 			{
-				_em->setWhiteBaseball();
+				//_em->setWhiteBaseball();
 				_isWhiteBaseBallSet = true;
 			}
 			else if (_setEnemy.front() == 2450)
@@ -131,7 +131,7 @@ void stageScene1::update()
 			else if (_setEnemy.front() == BACKGROUNDX - 100)
 			{
 				_count = 0;
-				_setBaseBallandGlove = true;
+				//_setBaseBallandGlove = true;
 			}
 			_setEnemy.pop();
 		}
