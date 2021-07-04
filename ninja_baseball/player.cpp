@@ -428,11 +428,11 @@ void player::collision()
 				{
 					isdamage = true;
 				}
-				if (!_em->getVCard().empty())
+				if (!_em->getVCard()[i]->getBulletVector().empty())
 				{
 					for (int j = 0; j < _em->getVCard()[i]->getBulletVector().size(); j++)
 					{
-						if (IntersectRect(&temp, &t1, &_em->getVCard()[i]->getBulletVector()[i].rc))
+						if (IntersectRect(&temp, &t1, &_em->getVCard()[i]->getBulletVector()[j].rc))
 						{
 							isdamage = true;
 						}
