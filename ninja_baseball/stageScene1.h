@@ -35,11 +35,11 @@ private:
 	enemyManager* _em;
 	objectManager* _obj;
 
-	playerUI* _playerUI;
+	playerUI* _playerUI; //플레이어 정보창
 	
-	timerUI* _timerUI;
+	timerUI* _timerUI; //타이머
 
-	tagShutter _shutter;
+	tagShutter _shutter; //셔터
 
 	float  _down, _gravity;
 

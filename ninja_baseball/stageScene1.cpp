@@ -347,10 +347,13 @@ void stageScene1::render()
 
 
 	RENDERMANAGER->render(getMemDC());
+	IMAGEMANAGER->findImage("±âµÕ")->render(getMemDC(), BACKGROUNDX - 1032, 0);
+	_player->render();
+
 	_playerUI->render();
 	_timerUI->render();
-	_player->render();
-	IMAGEMANAGER->findImage("±âµÕ")->render(getMemDC(), BACKGROUNDX - 1032, 0);
+
+	
 
 
 	//EFFECTMANAGER->render();
